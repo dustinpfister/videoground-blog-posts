@@ -19,7 +19,6 @@ VIDEO.init = function(sm, scene, camera){
     let light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(8, 2, -1).normalize();
     scene.add(light);
-
 };
 
 // update method for the video

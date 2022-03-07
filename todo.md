@@ -4,4 +4,4 @@
 * start a video for my post on fog in threejs canvas texture
 
 ### () - video for threejs-fog
-* start a video for my post on fog in threejs
+* start a fog-basic example that is just a simple example of THREE.Fog
