@@ -24,6 +24,6 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
     let mesh = scene.userData.mesh;
-    mesh.position.z = -8 + 11 * sm.bias;
+    scene.fog.far = 1 + 20 * sm.bias
 };
 
