@@ -18,14 +18,14 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.MeshStandardMaterial({
             color: new THREE.Color('red')
         }));
+    mesh.position.y = 1.5;
     scene.add(mesh);
-
     let floor_canvasObj = CanvasMod.createCanvasObject()
-    floor_canvasObj.draw({drawMethod: 'randomGrid', gridWidth:20, gridHeight:20});
+    floor_canvasObj.draw({drawMethod: 'randomGrid', gridWidth:30, gridHeight:30, gRange:[128, 255]});
     let floor = scene.userData.floor = new THREE.Mesh(
         new THREE.BoxGeometry(30, 30, 1),
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color('green'),
+            color: new THREE.Color('white'),
             map: floor_canvasObj.texture
         }));
     floor.rotation.x = 1.57;
@@ -38,8 +38,14 @@ VIDEO.init = function(sm, scene, camera){
 
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
+
     let mesh = scene.userData.mesh;
-    mesh.position.y = 1.5;
-    mesh.position.z = -8 + 11 * sm.bias;
+
+    camera.position.z = 5 + 10 * sm.bias;
+    //camera.position.x = -2 + 4 * (Math.sin(Math.PI * 2 * sm.bias))
+    camera.lookAt(mesh.position);
+
+    //mesh.position.y = 1.5;
+    //mesh.position.z = -8 + 11 * sm.bias;
 };
 
