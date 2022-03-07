@@ -7,9 +7,9 @@
 * start canvas-text-cube.js file
 
 ### () - start js folder
-* start a js folder and have the files that I use thus far
-* have canvas.js
-* have guy.js and guy.canvas
+* (done) start a js folder and have the files that I use thus far
+* (done) have canvas.js
+* (done) have guy.js and guy.canvas
 * use canvas textures in threejs-fog
 
 ### ( done 03/07/2022 ) - start video folder for threejs-fog

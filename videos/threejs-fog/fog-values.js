@@ -16,10 +16,13 @@ VIDEO.init = function(sm, scene, camera){
         }));
     sphere.position.y = 1.5;
     scene.add(sphere);
+    let floor_canvasObj = CanvasMod.createCanvasObject()
+    floor_canvasObj.draw({drawMethod: 'randomGrid', gridWidth:30, gridHeight:30, gRange:[128, 255]});
     let floor = scene.userData.floor = new THREE.Mesh(
         new THREE.BoxGeometry(30, 30, 1),
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color('green')
+            color: new THREE.Color('white'),
+            map: floor_canvasObj.texture
         }));
     floor.rotation.x = 1.57;
     scene.add(floor);

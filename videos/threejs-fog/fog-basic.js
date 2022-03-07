@@ -1,3 +1,7 @@
+VIDEO.scripts = [
+   '../../js/canvas.js'
+];
+
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
     var fogColor = new THREE.Color('white');
@@ -15,10 +19,14 @@ VIDEO.init = function(sm, scene, camera){
             color: new THREE.Color('red')
         }));
     scene.add(mesh);
+
+    let floor_canvasObj = CanvasMod.createCanvasObject()
+    floor_canvasObj.draw({drawMethod: 'randomGrid', gridWidth:20, gridHeight:20});
     let floor = scene.userData.floor = new THREE.Mesh(
         new THREE.BoxGeometry(30, 30, 1),
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color('green')
+            color: new THREE.Color('green'),
+            map: floor_canvasObj.texture
         }));
     floor.rotation.x = 1.57;
     scene.add(floor);
