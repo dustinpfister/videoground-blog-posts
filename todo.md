@@ -12,6 +12,8 @@
 
 <!-- DAE FOLDER -->
 
+### () - See about emmisive color
+* cube-emmisve-red.dae file that will just be
 
 ### () - dae folder geometry groups
 <!-- groups -->
@@ -21,9 +23,8 @@
 * have a dea/cube/textures folder to contain images
 * cube-uv.dae - this one should export with a uv attribute, and also make use of a texture
 
-### () - dae folder cube color emmsive
-* cube-color-red.dae file that will just be a solid color
-* cube-emmisve-red.dae file that will just be
+### ( done) - dae folder cube color example
+* (done) cube-color-red.dae file that will just be a solid color
 
 ### ( done 03/10/2022 ) - start a dae folder and cube
 * (done) start a dae folder, and start with a simple cube folder
