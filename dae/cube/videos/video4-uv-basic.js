@@ -5,7 +5,7 @@ VIDEO.daePaths = [
 
 VIDEO.init = function(sm, scene, camera){
     // CAMERA
-    camera.position.set(-3, 3, -5);
+    camera.position.set(5, 3, -2);
     camera.lookAt(0,0,0)
 
     // LIGHT
