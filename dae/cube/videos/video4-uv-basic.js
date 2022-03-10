@@ -1,6 +1,6 @@
 
 VIDEO.daePaths = [
-  '../cube-uv-basic.dae'
+  '../cube-uv-face.dae'
 ];
 
 VIDEO.init = function(sm, scene, camera){
