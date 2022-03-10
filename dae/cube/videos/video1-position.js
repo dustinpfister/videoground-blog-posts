@@ -1,11 +1,11 @@
 
 VIDEO.daePaths = [
-  '../cube-1.dae'
+  '../cube-pos.dae'
 ];
 
 VIDEO.init = function(sm, scene, camera){
     // CAMERA
-    camera.position.set(0, 0, -35);
+    camera.position.set(-3, 3, -5);
     camera.lookAt(0,0,0)
 
     // LIGHT
