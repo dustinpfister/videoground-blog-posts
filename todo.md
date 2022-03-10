@@ -29,6 +29,7 @@
 ### () - start a dae folder and cube
 * start a dae folder, and start with a simple cube folder
 * have a dea/cube/textures folder to contain images
+* have a dae/cube/videos folder for any and all VideoGround test videos
 * start a README.md file for dae/cube and write notes as needed
 <!-- posiiton only -->
 * start with a dae/cube/cube-pos-only.blend file that will just be a cube
