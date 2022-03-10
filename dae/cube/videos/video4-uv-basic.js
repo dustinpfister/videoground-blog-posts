@@ -24,10 +24,16 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(cube);
 
     // geometry object should have a uv attribue
-    console.log(cube.geometry);
+    console.log(cube.geometry.getAttribute('uv'));
 
+    // the material type used is MeshPhongMaterial
+    console.log(cube.material.type);
 
-
+    // it might be crude but I can just do this
+    var m = new THREE.MeshBasicMaterial({
+        map: cube.material.map
+    });
+    cube.material = m;
 };
 
 VIDEO.update = function(sm, scene, camera, per, bias){
