@@ -12,8 +12,16 @@
 
 <!-- DAE FOLDER -->
 
-### () - See about emmisive color
-* cube-emmisve-red.dae file that will just be
+### () - See about emmisive color?
+* so far it seems like it is not possible to export a material with an emmisve color and intensity
+```
+// I can create a material with an emmisve color like this
+let material = new THREE.MeshStandardMaterial({
+    emmisive: new THREE.Color('red'),
+    emmisiveIntensity : 0.1
+});
+```
+* cube-emmisve-red.dae file for this if I can find a way that is
 
 ### () - dae folder geometry groups
 <!-- groups -->
