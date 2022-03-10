@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.79.0</authoring_tool>
     </contributor>
-    <created>2022-03-10T14:59:25</created>
-    <modified>2022-03-10T14:59:25</modified>
+    <created>2022-03-10T15:10:15</created>
+    <modified>2022-03-10T15:10:15</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -122,7 +122,7 @@
         <technique sid="common">
           <phong>
             <emission>
-              <color sid="emission">0 0 0 1</color>
+              <texture texture="test1_png-sampler" texcoord="UVMap"/>
             </emission>
             <ambient>
               <color sid="ambient">0 0 0 1</color>
