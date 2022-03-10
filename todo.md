@@ -18,21 +18,18 @@
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 ### () - dae folder cube uv
-<!-- uv -->
+* have a dea/cube/textures folder to contain images
 * cube-uv.dae - this one should export with a uv attribute, and also make use of a texture
 
 ### () - dae folder cube color emmsive
-<!-- color, and emmisve -->
 * cube-color-red.dae file that will just be a solid color
 * cube-emmisve-red.dae file that will just be
 
-### () - start a dae folder and cube
-* start a dae folder, and start with a simple cube folder
-* have a dea/cube/textures folder to contain images
-* have a dae/cube/videos folder for any and all VideoGround test videos
-* start a README.md file for dae/cube and write notes as needed
-<!-- posiiton only -->
-* start with a dae/cube/cube-pos-only.blend file that will just be a cube
+### ( done 03/10/2022 ) - start a dae folder and cube
+* (done) start a dae folder, and start with a simple cube folder
+* (done) have a dae/cube/videos folder for any and all VideoGround test videos
+* (done) start a README.md file for dae/cube and write notes as needed
+* (done) start with a dae/cube/cube-pos.blend file that will just be a cube with position and normals
 
 <!-- ROOT FOLDER -->
 
