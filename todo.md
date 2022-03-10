@@ -24,14 +24,15 @@ let material = new THREE.MeshStandardMaterial({
 * cube-emmisve-red.dae file for this if I can find a way that is
 
 ### () - dae folder geometry groups
+
 <!-- groups -->
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
-### () - dae folder cube uv
-* have a dea/cube/textures folder to contain images
-* cube-uv.dae - this one should export with a uv attribute, and also make use of a texture
+### ( done 03/10/2022 ) - dae folder cube uv
+* (done) have a dea/cube/textures folder to contain images
+* (done) cube-uv.dae - this one should export with a uv attribute, and also make use of a texture
 
-### ( done) - dae folder cube color example
+### ( done 03/10/2022 ) - dae folder cube color example
 * (done) cube-color-red.dae file that will just be a solid color
 
 ### ( done 03/10/2022 ) - start a dae folder and cube
