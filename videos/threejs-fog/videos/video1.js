@@ -21,13 +21,14 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = fogColor;
     scene.fog = new THREE.Fog(fogColor, 0.25, 1);
 
+
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
         height: 128,
-        lineWidth: 3,
-        lineColor: 'red',
-        lineCount: 4,
+        lineWidth: 7,
+        lineColor: 'rgba(0,100,128,0.8)',
+        lineCount: 9,
         lines: [
             ['Fog in Three.js.', 64, 40, 17],
             ['( r135 03/11/2022 )', 64, 70, 10, 'gray']
@@ -103,7 +104,6 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
-
 };
 
 // update method for the video
