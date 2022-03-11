@@ -8,16 +8,19 @@ var CanvasTextCube = (function () {
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
     };
     // draw edge
-    var drawEdge = (ctx, canvas, style, width) => {
+    var drawEdge = (ctx, canvas, style, width, count) => {
         ctx.lineWidth = width || 1;
-        var i = 0, lc = 3;
+        var i = 0, lc = count === undefined ? 1 : count;
         while(i < lc){
+            var x = width / 2 + width * i,
+            y = width / 2 + width * i;
+            ctx.globalAlpha = 1 - (i / lc);
             ctx.strokeStyle = style || 'blue';
-            var x = width * 6 * i,
-            y = width * 6 * i;
             ctx.strokeRect(x, y, canvas.width - x * 2, canvas.height - y * 2);
+          
             i += 1;
         }
+        ctx.globalAlpha = 1;
     };
 
     // draw methods
@@ -51,7 +54,11 @@ var CanvasTextCube = (function () {
         var geo = new THREE.BoxGeometry(1, 1, 1);
         // canvas obj
         let canvasObj = CanvasMod.createCanvasObject({}, DRAW_METHODS, opt)
-        canvasObj.draw({ drawClass: 'text', drawMethod: 'face', text: 'foo', lines: opt.lines || []});
+        canvasObj.draw({
+            drawClass: 'text', 
+            drawMethod: 'face', 
+            lines: opt.lines || [],
+            lineWidth: opt.lineWidth || 1});
         // material
         var material = new THREE.MeshBasicMaterial({
             map: canvasObj.texture,
