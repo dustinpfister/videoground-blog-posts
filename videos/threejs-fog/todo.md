@@ -1,6 +1,7 @@
 ## threejs-fog video todo list
 
-
+## () - video title text
+* have a video title text sequence
 
 ## ( done 03/07/2022 ) - added sequences.js, start video1.js
 * (done) added sequences.js from my 'beta-world' project
