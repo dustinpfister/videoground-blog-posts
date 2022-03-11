@@ -20,13 +20,21 @@ var CanvasTextCube = (function () {
     DRAW_METHODS.text = {};
 
     DRAW_METHODS.text.face = (ctx, canvas, sm, opt) => {
+        opt = opt || {};
+        opt.lines = opt.lines || [];
         // solid background
         drawBackground(ctx, canvas, 'black');
         // edge
         drawEdge(ctx, canvas, 'cyan', 3);
 
-        ctx.fillStyle = 'white';
-        ctx.fillText(opt.text, 10, 10);	
+        // draw lines
+        opt.lines.forEach(function(line){
+            ctx.fillStyle = line[4] || 'white';
+            ctx.textAlign = line[5] || 'left';
+            var size = line[3] === undefined ? 10 : line[3];
+            ctx.font = size + 'px arial';
+            ctx.fillText(line[0] || '', line[1] || 0, line[2] || 0);
+        });	
     };
 
     api.create = function(opt){
@@ -36,7 +44,7 @@ var CanvasTextCube = (function () {
         var geo = new THREE.BoxGeometry(1, 1, 1);
         // canvas obj
         let canvasObj = CanvasMod.createCanvasObject({}, DRAW_METHODS, opt)
-        canvasObj.draw({ drawClass: 'text', drawMethod: 'face', text: 'foo'});
+        canvasObj.draw({ drawClass: 'text', drawMethod: 'face', text: 'foo', lines: opt.lines || []});
         // material
         var material = new THREE.MeshBasicMaterial({
             map: canvasObj.texture,
