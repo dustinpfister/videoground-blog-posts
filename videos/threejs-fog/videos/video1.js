@@ -117,6 +117,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     // default position of camera
     cameraPos(camera, 0);
 
+    textCube.rotation.y = 0;
     textCube.position.set(6, 2.4 + 5, 0);
 
     // sequences
