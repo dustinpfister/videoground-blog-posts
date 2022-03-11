@@ -39,9 +39,19 @@ VIDEO.init = function(sm, scene, camera){
 };
 
 // update method for the video
+
+var cameraPos = function(camera, per){
+    var radian = Math.PI * 2 * per,
+    x = Math.cos(radian) * 8,
+    z = Math.sin(radian) * 8;
+    camera.position.set(x, 3, z);
+};
+
 VIDEO.update = function(sm, scene, camera, per, bias){
     // UPDATE FOG OVER TIME
+    //camera.position.set(8, 3, 8);
 
+    cameraPos(camera, 0);
 
     var seq = Sequences.create({
         sm: sm,
@@ -50,22 +60,26 @@ VIDEO.update = function(sm, scene, camera, per, bias){
                 per: 0,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-
-
-    scene.fog.far = 1 + 40 * sm.bias;
-
+                    scene.fog.far = 1 + 40 * partPer;
                 }
             },
             {
-                per: 0.5,
+                per: 0.33,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    cameraPos(camera, partPer);
+                }
+            },
+            {
+                per: 0.66,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    scene.fog.far = 41 - 40 * partPer;
                 }
             }
         ]
     });
-
     Sequences.update(seq, sm);
-
+    camera.lookAt(0, 0, 0);
 };
 
