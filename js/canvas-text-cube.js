@@ -14,7 +14,7 @@ var CanvasTextCube = (function () {
     DRAW_METHODS.text = {};
 
     DRAW_METHODS.text.face = (ctx, canvas, sm, opt) => {
-        drawBackground(ctx, canvas, 'white');
+        drawBackground(ctx, canvas, 'black');
     };
 
     api.create = function(opt){
@@ -23,8 +23,8 @@ var CanvasTextCube = (function () {
         // box geomety
         var geo = new THREE.BoxGeometry(1, 1, 1);
         // canvas obj
-        let canvasObj = CanvasMod.createCanvasObject()
-        canvasObj.draw({drawMethod: 'randomGrid', gridWidth:30, gridHeight:30, gRange:[128, 255]});
+        let canvasObj = CanvasMod.createCanvasObject({}, DRAW_METHODS)
+        canvasObj.draw({ drawClass: 'text', drawMethod: 'face', text: 'foo'});
         // material
         var material = new THREE.MeshBasicMaterial({
             map: canvasObj.texture,
