@@ -1,9 +1,15 @@
 # videoground-blog-posts todo list
 
-<!-- For post projects -->
+<!-- FOR POST PROJECTS -->
 
 ### () - video for threejs-canvas-texture
 * start a video for my post on fog in threejs canvas texture
+
+### () - video for threejs-fog
+* use  start canvas-text-cube.js file for title at least in video1
+* finish video1
+* upload video1 to youtube
+* embed video1 into threejs-fog blog post
 
 <!-- javaScript files -->
 
@@ -24,7 +30,6 @@ let material = new THREE.MeshStandardMaterial({
 * cube-emmisve-red.dae file for this if I can find a way that is
 
 ### () - dae folder geometry groups
-
 <!-- groups -->
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
@@ -51,3 +56,4 @@ let material = new THREE.MeshStandardMaterial({
 ### ( done 03/07/2022 ) - start video folder for threejs-fog
 * (done) start a fog-basic example that is just a simple example of THREE.Fog
 * (done) start todo list for this and take it from there
+
