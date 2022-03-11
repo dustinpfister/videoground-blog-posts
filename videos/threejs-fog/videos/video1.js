@@ -59,6 +59,13 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    textCube.position.set(5, 1, 0);
+                }
+            },
+            {
+                per: 0.1,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
                     textCube.position.set(5, 1 + 20 * partPer, 0);
                 }
             },
