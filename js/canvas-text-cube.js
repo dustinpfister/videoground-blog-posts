@@ -34,7 +34,7 @@ var CanvasTextCube = (function () {
         // solid background
         drawBackground(ctx, canvas, 'black');
         // edge
-        drawEdge(ctx, canvas, 'cyan', opt.lineWidth || 1, opt.lineCount);
+        drawEdge(ctx, canvas, opt.lineColor || 'red', opt.lineWidth || 1, opt.lineCount);
         // draw lines
         opt.lines.forEach(function(line){
             ctx.fillStyle = line[4] || 'white';
@@ -58,6 +58,7 @@ var CanvasTextCube = (function () {
             drawMethod: 'face', 
             lines: opt.lines || [],
             lineWidth: opt.lineWidth || 1,
+            lineColor: opt.lineColor || 'green',
             lineCount: opt.lineCount || 0
         });
         // material
