@@ -30,9 +30,10 @@ var CanvasTextCube = (function () {
         // draw lines
         opt.lines.forEach(function(line){
             ctx.fillStyle = line[4] || 'white';
-            ctx.textAlign = line[5] || 'left';
+            ctx.textAlign = line[5] || 'center';
             var size = line[3] === undefined ? 10 : line[3];
             ctx.font = size + 'px arial';
+            ctx.textBaseline = line[6] || 'middle';
             ctx.fillText(line[0] || '', line[1] || 0, line[2] || 0);
         });	
     };

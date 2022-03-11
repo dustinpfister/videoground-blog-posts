@@ -26,7 +26,8 @@ VIDEO.init = function(sm, scene, camera){
         width: 128,
         height: 128,
         lines: [
-            ['Fog in Three.js.', 64, 64, 15, 'white', 'center', 'middle']
+            ['Fog in Three.js.', 64, 40, 17],
+            ['( r135 03/11/2022 )', 64, 70, 10, 'gray']
         ]
     });
     scene.add(textCube);
