@@ -22,7 +22,10 @@ VIDEO.init = function(sm, scene, camera){
     scene.fog = new THREE.Fog(fogColor, 0.25, 1);
 
     // TEXT CUBE
-    var textCube = scene.userData.textCube = CanvasTextCube.create();
+    var textCube = scene.userData.textCube = CanvasTextCube.create({
+        width: 128,
+        height: 128
+    });
     scene.add(textCube);
 
     // SPHERE MESH
