@@ -6,15 +6,16 @@
 * start a video for my post on fog in threejs canvas texture
 
 ### () - video for threejs-fog
-* use  start canvas-text-cube.js file for title at least in video1
+* (done) use  start canvas-text-cube.js file for title at least in video1
 * finish video1
 * upload video1 to youtube
 * embed video1 into threejs-fog blog post
 
-<!-- javaScript files -->
+<!-- JAVASCRIPT FILES -->
 
-### () - start a canvas-text-cube.js javaScript files
-* start canvas-text-cube.js file
+## () - lines feature, edge effect in canvas-text-cube.js;
+* have a lines option for drawing custom text to a text cube
+* have an edge effect for the cube where color gets weeker from the edge
 
 <!-- DAE FOLDER -->
 
@@ -30,8 +31,12 @@ let material = new THREE.MeshStandardMaterial({
 * cube-emmisve-red.dae file for this if I can find a way that is
 
 ### () - dae folder geometry groups
-<!-- groups -->
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
+
+<!-- DONE -->
+
+### ( done 03/11/2022) - start a canvas-text-cube.js javaScript files
+* (done) start canvas-text-cube.js file
 
 ### ( done 03/10/2022 ) - dae folder cube uv
 * (done) have a dea/cube/textures folder to contain images
@@ -45,8 +50,6 @@ let material = new THREE.MeshStandardMaterial({
 * (done) have a dae/cube/videos folder for any and all VideoGround test videos
 * (done) start a README.md file for dae/cube and write notes as needed
 * (done) start with a dae/cube/cube-pos.blend file that will just be a cube with position and normals
-
-<!-- ROOT FOLDER -->
 
 ### ( done 03/07/2022 ) - start js folder
 * (done) start a js folder and have the files that I use thus far
