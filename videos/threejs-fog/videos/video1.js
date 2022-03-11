@@ -94,6 +94,7 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.5,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    scene.fog.far = 41 - 40 * partBias;
                     cameraPos(camera, partPer);
                 }
             },
@@ -111,8 +112,12 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
 
+    var textCube = scene.userData.textCube;
+
     // default position of camera
     cameraPos(camera, 0);
+
+    textCube.position.set(6, 2.4 + 5, 0);
 
     // sequences
     Sequences.update(sm.seq, sm);
