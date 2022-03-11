@@ -22,8 +22,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.fog = new THREE.Fog(fogColor, 0.25, 1);
 
     // TEXT CUBE
-    var textCube = CanvasTextCube.create();
-    textCube.position.set(0,1,0);
+    var textCube = scene.userData.textCube = CanvasTextCube.create();
     scene.add(textCube);
 
     // SPHERE MESH
@@ -60,18 +59,25 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    textCube.position.set(5, 1 + 20 * partPer, 0);
+                }
+            },
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
                     scene.fog.far = 1 + 40 * partPer;
                 }
             },
             {
-                per: 0.33,
+                per: 0.5,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     cameraPos(camera, partPer);
                 }
             },
             {
-                per: 0.66,
+                per: 0.75,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     scene.fog.far = 41 - 40 * partPer;
