@@ -1,7 +1,11 @@
 ## threejs-fog video todo list
 
-## () - video title text
-* have a video title text sequence
+## () - video2
+* add more mesh objects in the scene
+
+## ( done) - video title text, and video1 done
+* (done) have a video title text sequence using new text cube feature
+* (done) have video1 done
 
 ## ( done 03/07/2022 ) - added sequences.js, start video1.js
 * (done) added sequences.js from my 'beta-world' project

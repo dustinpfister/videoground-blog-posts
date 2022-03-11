@@ -30,8 +30,10 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['Fog in Three.js.', 64, 40, 17],
-            ['( r135 03/11/2022 )', 64, 70, 10, 'gray']
+            ['Fog', 64, 20, 22, 'white'],
+            ['in Three.js.', 64, 45, 22, 'white'],
+            ['( r135 03/11/2022 )', 64, 70, 12, 'gray'],
+            ['video1', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
