@@ -1,6 +1,7 @@
 // 
 VIDEO.scripts = [
    '../../../js/canvas.js',
+   '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js'
 ];
 
@@ -19,6 +20,11 @@ VIDEO.init = function(sm, scene, camera){
     var fogColor = new THREE.Color('white');
     scene.background = fogColor;
     scene.fog = new THREE.Fog(fogColor, 0.25, 1);
+
+    // TEXT CUBE
+    var textCube = CanvasTextCube.create();
+    textCube.position.set(0,1,0);
+    scene.add(textCube);
 
     // SPHERE MESH
     let sphere = scene.userData.sphere = new THREE.Mesh(
