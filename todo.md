@@ -13,9 +13,7 @@
 
 <!-- JAVASCRIPT FILES -->
 
-## () - lines feature, edge effect in canvas-text-cube.js;
-* have a lines option for drawing custom text to a text cube
-* have an edge effect for the cube where color gets weeker from the edge
+## () -
 
 <!-- DAE FOLDER -->
 
@@ -34,6 +32,10 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+## ( done 03/11/2022 ) - lines feature, edge effect in canvas-text-cube.js;
+* (done) have a lines option for drawing custom text to a text cube
+* (done) have an edge effect for the cube where color gets weeker from the edge
 
 ### ( done 03/11/2022) - start a canvas-text-cube.js javaScript files
 * (done) start canvas-text-cube.js file
