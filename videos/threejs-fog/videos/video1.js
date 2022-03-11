@@ -4,15 +4,22 @@ VIDEO.scripts = [
    '../../../js/sequences.js'
 ];
 
+
+var cameraPos = function(camera, per){
+    var radian = Math.PI * 2 * per,
+    x = Math.cos(radian) * 8,
+    z = Math.sin(radian) * 8;
+    camera.position.set(x, 3, z);
+};
+
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
+
     // FOG AND BACKGROUND
     var fogColor = new THREE.Color('white');
     scene.background = fogColor;
     scene.fog = new THREE.Fog(fogColor, 0.25, 1);
-    // CAMERA
-    camera.position.set(0, 3, 8);
-    camera.lookAt(0, 0, 0);
+
     // SPHERE MESH
     let sphere = scene.userData.sphere = new THREE.Mesh(
         new THREE.SphereGeometry(1, 30, 30),
@@ -21,6 +28,7 @@ VIDEO.init = function(sm, scene, camera){
         }));
     sphere.position.y = 1.5;
     scene.add(sphere);
+
     // FLOOR MESH
     let floor_canvasObj = CanvasMod.createCanvasObject()
     floor_canvasObj.draw({drawMethod: 'randomGrid', gridWidth:30, gridHeight:30, gRange:[128, 255]});
@@ -32,28 +40,14 @@ VIDEO.init = function(sm, scene, camera){
         }));
     floor.rotation.x = 1.57;
     scene.add(floor);
+
     // LIGHT
     let light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(8, 2, -1).normalize();
     scene.add(light);
-};
 
-// update method for the video
-
-var cameraPos = function(camera, per){
-    var radian = Math.PI * 2 * per,
-    x = Math.cos(radian) * 8,
-    z = Math.sin(radian) * 8;
-    camera.position.set(x, 3, z);
-};
-
-VIDEO.update = function(sm, scene, camera, per, bias){
-    // UPDATE FOG OVER TIME
-    //camera.position.set(8, 3, 8);
-
-    cameraPos(camera, 0);
-
-    var seq = Sequences.create({
+    // SET UP SEQ OBJECT
+    sm.seq = Sequences.create({
         sm: sm,
         part : [
             {
@@ -79,7 +73,19 @@ VIDEO.update = function(sm, scene, camera, per, bias){
             }
         ]
     });
-    Sequences.update(seq, sm);
+
+};
+
+// update method for the video
+VIDEO.update = function(sm, scene, camera, per, bias){
+
+    // default position of camera
+    cameraPos(camera, 0);
+
+    // sequences
+    Sequences.update(sm.seq, sm);
+
+    // have camera always look at center
     camera.lookAt(0, 0, 0);
 };
 
