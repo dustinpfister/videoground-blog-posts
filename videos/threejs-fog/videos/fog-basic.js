@@ -1,5 +1,5 @@
 VIDEO.scripts = [
-   '../../js/canvas.js'
+   '../../../js/canvas.js'
 ];
 
 // init method for the video

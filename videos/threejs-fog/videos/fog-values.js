@@ -1,3 +1,7 @@
+VIDEO.scripts = [
+   '../../../js/canvas.js'
+];
+
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
     var fogColor = new THREE.Color('white');
