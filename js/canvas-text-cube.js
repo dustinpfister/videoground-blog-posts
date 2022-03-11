@@ -2,10 +2,16 @@ var CanvasTextCube = (function () {
 
     var api = {};
 
-    // just draw a solid color background
+    // solid color background
     var drawBackground = (ctx, canvas, style) => {
         ctx.fillStyle = style || 'gray';
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+    };
+    // draw edge
+    var drawEdge = (ctx, canvas, style, width) => {
+        ctx.strokeStyle = style || 'blue';
+        ctx.lineWidth = width || 1;
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
     };
 
     // draw methods
@@ -14,7 +20,11 @@ var CanvasTextCube = (function () {
     DRAW_METHODS.text = {};
 
     DRAW_METHODS.text.face = (ctx, canvas, sm, opt) => {
+        // solid background
         drawBackground(ctx, canvas, 'black');
+        // edge
+        drawEdge(ctx, canvas, 'cyan', 3);
+
         ctx.fillStyle = 'white';
         ctx.fillText(opt.text, 10, 10);	
     };
