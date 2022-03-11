@@ -47,6 +47,15 @@ VIDEO.init = function(sm, scene, camera){
     sphere.position.y = 1.5;
     scene.add(sphere);
 
+    // SPHERE MESH
+    var box = scene.userData.box = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshStandardMaterial({
+            color: new THREE.Color('cyan')
+        }));
+    box.position.set(5, 1.5, 1);
+    scene.add(box);
+
     // FLOOR MESH
     let floor_canvasObj = CanvasMod.createCanvasObject()
     floor_canvasObj.draw({drawMethod: 'randomGrid', gridWidth:30, gridHeight:30, gRange:[128, 255]});
@@ -72,6 +81,7 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    scene.fog.far = 1
                     textCube.position.set(6, 2.4, 0);
                 }
             },
@@ -79,6 +89,7 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.1,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    scene.fog.far = 1;
                     textCube.position.set(6, 2.4 + 5 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                 }
