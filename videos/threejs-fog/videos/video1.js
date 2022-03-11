@@ -25,6 +25,7 @@ VIDEO.init = function(sm, scene, camera){
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
         height: 128,
+        lineWidth: 3,
         lines: [
             ['Fog in Three.js.', 64, 40, 17],
             ['( r135 03/11/2022 )', 64, 70, 10, 'gray']

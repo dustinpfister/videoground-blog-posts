@@ -9,9 +9,15 @@ var CanvasTextCube = (function () {
     };
     // draw edge
     var drawEdge = (ctx, canvas, style, width) => {
-        ctx.strokeStyle = style || 'blue';
         ctx.lineWidth = width || 1;
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        var i = 0, lc = 3;
+        while(i < lc){
+            ctx.strokeStyle = style || 'blue';
+            var x = width * 6 * i,
+            y = width * 6 * i;
+            ctx.strokeRect(x, y, canvas.width - x * 2, canvas.height - y * 2);
+            i += 1;
+        }
     };
 
     // draw methods
@@ -25,7 +31,7 @@ var CanvasTextCube = (function () {
         // solid background
         drawBackground(ctx, canvas, 'black');
         // edge
-        drawEdge(ctx, canvas, 'cyan', 3);
+        drawEdge(ctx, canvas, 'cyan', opt.lineWidth || 1);
 
         // draw lines
         opt.lines.forEach(function(line){
