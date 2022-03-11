@@ -41,6 +41,31 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
     // UPDATE FOG OVER TIME
+
+
+    var seq = Sequences.create({
+        sm: sm,
+        part : [
+            {
+                per: 0,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+
+
     scene.fog.far = 1 + 40 * sm.bias;
+
+                }
+            },
+            {
+                per: 0.5,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                }
+            }
+        ]
+    });
+
+    Sequences.update(seq, sm);
+
 };
 
