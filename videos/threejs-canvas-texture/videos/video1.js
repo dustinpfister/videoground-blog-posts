@@ -42,6 +42,7 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    textCube.visible = true;
                     textCube.position.set(6, 0, 0);
                 }
             },
@@ -49,8 +50,8 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.1,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-
-                    textCube.position.set(6, 2 * partPer, 0);
+                    textCube.visible = true;
+                    textCube.position.set(6, 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                 }
             },
@@ -58,7 +59,6 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.25,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-                    textCube.position.set(6, 2, 0);
 
                 }
             }
@@ -75,6 +75,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     textCube.rotation.y = 0;
     textCube.position.set(6, 0, 0);
+    textCube.visible = false;
 
     // sequences
     Sequences.update(sm.seq, sm);
