@@ -8,6 +8,8 @@ VIDEO.scripts = [
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
 
+    scene.add( new THREE.GridHelper(10, 10))
+
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
@@ -40,7 +42,7 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-                    textCube.position.set(6, 2.4, 0);
+                    textCube.position.set(6, 0, 0);
                 }
             },
             {
@@ -48,7 +50,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
 
-                    textCube.position.set(6, 2.4 + 5 * partPer, 0);
+                    textCube.position.set(6, 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                 }
             },
@@ -56,6 +58,7 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.25,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    textCube.position.set(6, 2, 0);
 
                 }
             }
@@ -68,8 +71,10 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
 
+    camera.position.set(8, 0, 0);
+
     textCube.rotation.y = 0;
-    textCube.position.set(6, 2.4 + 5, 0);
+    textCube.position.set(6, 0, 0);
 
     // sequences
     Sequences.update(sm.seq, sm);
