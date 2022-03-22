@@ -2,12 +2,21 @@
 
 <!-- FOR POST PROJECTS -->
 
+### () - video for threejs-object3d-scale
+* start a video1 for threejs-object3d-scale
+
+### () - video for threejs-object3d-lookat
+* start a video1 for threejs-object3d-lookat
+
+### () - video for threejs-materials-transparent
+* start a video1 for threejs-materials-transparent
+
 ### () - video for threejs-canvas-texture
-* start a video for my post on fog in threejs canvas texture
+* start a videos for threejs-materials-transparent
 
 ### () - video for threejs-fog
 * (done) use  start canvas-text-cube.js file for title at least in video1
-* finish video1
+* (done) finish video1
 * upload video1 to youtube
 * embed video1 into threejs-fog blog post
 
