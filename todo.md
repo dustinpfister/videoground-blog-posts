@@ -2,23 +2,26 @@
 
 <!-- FOR POST PROJECTS -->
 
-### () - video for threejs-object3d-scale
+### () - video1 for threejs-object3d-scale
 * start a video1 for threejs-object3d-scale
 
-### () - video for threejs-object3d-lookat
+### () - video1 for threejs-object3d-lookat
 * start a video1 for threejs-object3d-lookat
 
-### () - video for threejs-materials-transparent
+### () - video1 for threejs-materials-transparent
 * start a video1 for threejs-materials-transparent
 
-### () - video for threejs-canvas-texture
-* start a videos for threejs-materials-transparent
+### () - video1 for threejs-canvas-texture
+* (done) start a videos for threejs-materials-transparent
+* finish video1 with at least a few segments
+* upload video1 to youtube
+* embed video1 into threejs-canvas-texture blog post
 
-### () - video for threejs-fog
+### ( done 03/22/2022 ) - video1 for threejs-fog
 * (done) use  start canvas-text-cube.js file for title at least in video1
 * (done) finish video1
-* upload video1 to youtube
-* embed video1 into threejs-fog blog post
+* (done) upload video1 to youtube
+* (done) embed video1 into threejs-fog blog post
 
 <!-- JAVASCRIPT FILES -->
 
