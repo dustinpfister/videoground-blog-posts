@@ -1,0 +1,3 @@
+## threejs-fog video 
+
+This is what I have togetaher when it comes to my video on the THREE.Fog constructor in threejs. This is also the first video that I have made for my collection of posts on threejs, so I am still figuring things out when it comes to this sort of thing. For now I am just I think that I just want to have a simple video that shows a basic sean and an edn result of one of the built in fog constrcuors and that is it for now at least.
