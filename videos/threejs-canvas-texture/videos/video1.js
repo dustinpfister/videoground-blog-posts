@@ -43,22 +43,23 @@ VIDEO.init = function(sm, scene, camera){
         ctx.rect(x, y, w, h);
         ctx.stroke();
     };
- 
-    // canvas mod Object
-    var canvasObj = CanvasMod.createCanvasObject(sm, drawMethods, {
+  
+    // cube1 at center of scene
+	var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
         width: 32,
         height: 32
     });
-    // draw to canvas Obj
-    canvasObj.draw({drawClass: 'basic', drawMethod: 'square'});
- 
-    // cube1 at center of scene
     let cube1 = scene.userData.cube1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
             emissive: new THREE.Color('white'),
             emissiveMap: canvasObj.texture
         }));
+
+    cube1.userData.canvasObj = canvasObj;
+    // draw to canvas Obj
+    //canvasObj.draw({drawClass: 'basic', drawMethod: 'square'});
+
     scene.add(cube1);
  
  
@@ -96,11 +97,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
 
-                    canvasObj.draw({
-                        drawClass: 'basic', drawMethod: 'square',
-                        x: 0 + 10 * partBias, y: 0 + 10 * partBias,
-                        w: 32 - 20 * partBias, h: 32 - 20 * partBias
-                    });
+
 
                     camera.position.set(8,1,5 * partPer);
                     camera.lookAt(0, 0, 0);
@@ -113,10 +110,19 @@ VIDEO.init = function(sm, scene, camera){
 
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
-    var textCube = scene.userData.textCube;
+    var textCube = scene.userData.textCube,
+    cube1 = scene.userData.cube1;
     textCube.rotation.y = 0;
     textCube.position.set(6, 0, 0);
     textCube.visible = false;
+
+    var per_c1 = per * 8 % 1;
+    var bias_c1 = 1 - Math.abs(0.5 - per_c1) / 0.5;
+                    cube1.userData.canvasObj.draw({
+                        drawClass: 'basic', drawMethod: 'square',
+                        x: 0 + 10 * bias_c1, y: 0 + 10 * bias_c1,
+                        w: 32 - 20 * bias_c1, h: 32 - 20 * bias_c1
+                    });
     // sequences
     Sequences.update(sm.seq, sm);
     // have camera always look at center
