@@ -2,4 +2,4 @@
 
 
 ## ( ) - video1 - start video 1
-* () just start video1
+* (done) just start video1
