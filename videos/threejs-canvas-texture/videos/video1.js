@@ -35,7 +35,12 @@ VIDEO.init = function(sm, scene, camera){
         ctx.strokeStyle = 'lime';
         ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.rect(0,0,canvas.width, canvas.height);
+        // the square
+        var x = opt.x === undefined ? 0: opt.x,
+		y = opt.y === undefined ? 0: opt.y,
+		w = opt.w === undefined ? canvas.width: opt.w,
+		h = opt.h === undefined ? canvas.height: opt.h;
+        ctx.rect(x, y, w, h);
         ctx.stroke();
     };
  
@@ -90,6 +95,13 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.25,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+
+                    canvasObj.draw({
+                        drawClass: 'basic', drawMethod: 'square',
+                        x: 0 + 10 * partBias, y: 0 + 10 * partBias,
+                        w: 32 - 20 * partBias, h: 32 - 20 * partBias
+                    });
+
                     camera.position.set(8,1,5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
