@@ -75,7 +75,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                per: 0.1,
+                per: 0.10,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
@@ -88,7 +88,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                per: 0.25,
+                per: 0.20,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
