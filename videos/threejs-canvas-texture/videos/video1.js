@@ -43,20 +43,27 @@ VIDEO.init = function(sm, scene, camera){
         ctx.rect(x, y, w, h);
         ctx.stroke();
     };
+    drawMethods.basic.noise = function(ctx, canvas, sm, opt){
+        ctx.fillStyle = opt.bgStyle || 'white';
+        ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+    };
   
     // ground mesh
-    //var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
-    //    width: 32,
-    //    height: 32
-    //});
+    var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
+        width: 32,
+        height: 32
+    });
     let ground = scene.userData.ground = new THREE.Mesh(
         new THREE.BoxGeometry(10, 0.5, 10),
         new THREE.MeshStandardMaterial({
             emissive: new THREE.Color('white'),
-            //emissiveMap: canvasObj.texture
+            emissiveMap: canvasObj.texture
         }));
     ground.position.set(0,-1.0,0);
-    //ground.userData.canvasObj = canvasObj;
+    ground.userData.canvasObj = canvasObj;
+    ground.userData.canvasObj.draw({
+        drawClass: 'basic', drawMethod: 'noise'
+    });
     scene.add(ground);
   
     // cube1 at center of scene
