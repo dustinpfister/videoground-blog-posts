@@ -8,7 +8,7 @@ VIDEO.scripts = [
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
-    scene.add( new THREE.GridHelper(10, 10))
+    //scene.add( new THREE.GridHelper(10, 10))
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -43,6 +43,21 @@ VIDEO.init = function(sm, scene, camera){
         ctx.rect(x, y, w, h);
         ctx.stroke();
     };
+  
+    // ground mesh
+    //var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
+    //    width: 32,
+    //    height: 32
+    //});
+    let ground = scene.userData.ground = new THREE.Mesh(
+        new THREE.BoxGeometry(10, 0.5, 10),
+        new THREE.MeshStandardMaterial({
+            emissive: new THREE.Color('white'),
+            //emissiveMap: canvasObj.texture
+        }));
+    ground.position.set(0,-1.0,0);
+    //ground.userData.canvasObj = canvasObj;
+    scene.add(ground);
   
     // cube1 at center of scene
     var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
