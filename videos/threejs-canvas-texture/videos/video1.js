@@ -9,7 +9,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     //scene.add( new THREE.GridHelper(10, 10));
-	scene.background = new THREE.Color('cyan');
+    scene.background = new THREE.Color('cyan');
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({

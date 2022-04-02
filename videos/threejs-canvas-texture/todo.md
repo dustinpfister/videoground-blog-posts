@@ -13,6 +13,7 @@
 * have a way to set rotation for each square
 * have a way to set color for each square
 * add a cube2 mesh that will use new advanced squares method
+* use noise method for sky but with new cyan color
 
 ## ( done 04/02/2022 ) - more draw methods and mesh objects
 * (done) improve the square drawMethods.basic.square with options for setting offset and size of square
