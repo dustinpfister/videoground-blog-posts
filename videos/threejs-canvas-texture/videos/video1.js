@@ -30,8 +30,13 @@ VIDEO.init = function(sm, scene, camera){
     var drawMethods = {};
     drawMethods.basic = {};
     drawMethods.basic.square = function(ctx, canvas, sm, opt){
-        ctx.fillStyle = opt.bgStyle || 'gray';
+        ctx.fillStyle = opt.bgStyle || 'black';
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+        ctx.strokeStyle = 'lime';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.rect(0,0,canvas.width, canvas.height);
+        ctx.stroke();
     };
  
     // canvas mod Object
@@ -39,18 +44,19 @@ VIDEO.init = function(sm, scene, camera){
         width: 32,
         height: 32
     });
-    // darw to canvas Obj
+    // draw to canvas Obj
     canvasObj.draw({drawClass: 'basic', drawMethod: 'square'});
  
-    // SPHERE MESH
-    let sphere = scene.userData.sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 30, 30),
+    // cube1 at center of scene
+    let cube1 = scene.userData.cube1 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
             emissive: new THREE.Color('white'),
             emissiveMap: canvasObj.texture
         }));
-    scene.add(sphere);
-
+    scene.add(cube1);
+ 
+ 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
