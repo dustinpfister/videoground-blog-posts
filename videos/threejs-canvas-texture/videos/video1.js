@@ -37,15 +37,15 @@ VIDEO.init = function(sm, scene, camera){
         ctx.beginPath();
         // the square
         var x = opt.x === undefined ? 0: opt.x,
-		y = opt.y === undefined ? 0: opt.y,
-		w = opt.w === undefined ? canvas.width: opt.w,
-		h = opt.h === undefined ? canvas.height: opt.h;
+        y = opt.y === undefined ? 0: opt.y,
+        w = opt.w === undefined ? canvas.width: opt.w,
+        h = opt.h === undefined ? canvas.height: opt.h;
         ctx.rect(x, y, w, h);
         ctx.stroke();
     };
   
     // cube1 at center of scene
-	var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
+    var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
         width: 32,
         height: 32
     });
@@ -55,13 +55,8 @@ VIDEO.init = function(sm, scene, camera){
             emissive: new THREE.Color('white'),
             emissiveMap: canvasObj.texture
         }));
-
     cube1.userData.canvasObj = canvasObj;
-    // draw to canvas Obj
-    //canvasObj.draw({drawClass: 'basic', drawMethod: 'square'});
-
     scene.add(cube1);
- 
  
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -96,16 +91,13 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.25,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-
-
-
+                    // camera
                     camera.position.set(8,1,5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
         ]
     });
-
 };
 
 // update method for the video
@@ -115,17 +107,16 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(6, 0, 0);
     textCube.visible = false;
-
+ 
+    // cube1
     var per_c1 = per * 8 % 1;
     var bias_c1 = 1 - Math.abs(0.5 - per_c1) / 0.5;
-                    cube1.userData.canvasObj.draw({
-                        drawClass: 'basic', drawMethod: 'square',
-                        x: 0 + 10 * bias_c1, y: 0 + 10 * bias_c1,
-                        w: 32 - 20 * bias_c1, h: 32 - 20 * bias_c1
-                    });
+    cube1.userData.canvasObj.draw({
+        drawClass: 'basic', drawMethod: 'square',
+        x: 0 + 10 * bias_c1, y: 0 + 10 * bias_c1,
+        w: 32 - 20 * bias_c1, h: 32 - 20 * bias_c1
+    });
     // sequences
     Sequences.update(sm.seq, sm);
-    // have camera always look at center
-    //camera.lookAt(0, 0, 0);
 };
 
