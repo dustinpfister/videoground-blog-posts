@@ -8,7 +8,8 @@ VIDEO.scripts = [
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
-    //scene.add( new THREE.GridHelper(10, 10))
+    //scene.add( new THREE.GridHelper(10, 10));
+	scene.background = new THREE.Color('cyan');
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -50,12 +51,12 @@ VIDEO.init = function(sm, scene, camera){
         len = parseInt(canvas.width) * parseInt(canvas.height),
         x = 0, y = 0;
         while(i < len){
-			x = i % canvas.width;
-			y = Math.floor(i / canvas.width);
-			ctx.fillStyle = 'rgb(0,' + Math.floor(128 + 100 * Math.random()) + ',0)';
-			ctx.fillRect(x, y, 1, 1);
-			i += 1;
-		}
+            x = i % canvas.width;
+            y = Math.floor(i / canvas.width);
+            ctx.fillStyle = 'rgb(0,' + Math.floor(128 + 100 * Math.random()) + ',0)';
+            ctx.fillRect(x, y, 1, 1);
+            i += 1;
+        }
     };
   
     // ground mesh
