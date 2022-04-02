@@ -26,10 +26,9 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
+    // custom draw methods for this video
     var drawMethods = {};
-
     drawMethods.basic = {};
-
     drawMethods.basic.square = function(ctx, canvas, sm, opt){
         ctx.fillStyle = opt.bgStyle || 'gray';
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
@@ -40,7 +39,7 @@ VIDEO.init = function(sm, scene, camera){
         width: 32,
         height: 32
     });
-
+    // darw to canvas Obj
     canvasObj.draw({drawClass: 'basic', drawMethod: 'square'});
  
     // SPHERE MESH
@@ -60,24 +59,33 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0, 0);
+                    textCube.position.set(6, 0.8, 0);
+                    // camera
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 0, 0);
                 }
             },
             {
                 per: 0.1,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 2 * partPer, 0);
+                    textCube.position.set(6, 1 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
+                    // camera
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 0, 0);
                 }
             },
             {
                 per: 0.25,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-
+                    camera.position.set(8,1,5 * partPer);
+                    camera.lookAt(0, 0, 0);
                 }
             }
         ]
@@ -88,13 +96,12 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
-    camera.position.set(8, 0, 0);
     textCube.rotation.y = 0;
     textCube.position.set(6, 0, 0);
     textCube.visible = false;
     // sequences
     Sequences.update(sm.seq, sm);
     // have camera always look at center
-    camera.lookAt(0, 0, 0);
+    //camera.lookAt(0, 0, 0);
 };
 
