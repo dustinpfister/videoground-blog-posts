@@ -46,6 +46,16 @@ VIDEO.init = function(sm, scene, camera){
     drawMethods.basic.noise = function(ctx, canvas, sm, opt){
         ctx.fillStyle = opt.bgStyle || 'white';
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+        var i = 0,
+        len = parseInt(canvas.width) * parseInt(canvas.height),
+        x = 0, y = 0;
+        while(i < len){
+			x = i % canvas.width;
+			y = Math.floor(i / canvas.width);
+			ctx.fillStyle = 'rgb(0,' + Math.floor(128 + 100 * Math.random()) + ',0)';
+			ctx.fillRect(x, y, 1, 1);
+			i += 1;
+		}
     };
   
     // ground mesh
