@@ -95,6 +95,15 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8,1,5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            {
+                per: 0.40,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 16 * partPer,1,5);
+                    camera.lookAt(0, 0, 0);
+                }
             }
         ]
     });
