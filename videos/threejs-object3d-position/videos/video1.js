@@ -161,7 +161,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
         mesh.material.opacity = 0;
         mesh.position.copy(mesh.userData.homePos).multiplyScalar(1);
     });
-    group1.position.y = 0;
+    group1.position.set(0, 0, 0);
 
     // cube1
     // sequences
