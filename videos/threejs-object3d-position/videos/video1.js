@@ -136,7 +136,7 @@ VIDEO.init = function(sm, scene, camera){
                     group1.rotation.y = Math.PI * partPer;
                     // cube1
                     cube1.material.opacity = 1 - 1 * partPer;
-                    cube1.position.z += 2 * partPer;
+                    cube1.position.set(5, 2 * partPer, 0);
                     // camera
                     camera.position.set(8 + 5 * partPer, 1 + 4 * partPer,  0);
                     camera.lookAt(0, 0, 0);
@@ -156,10 +156,12 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
  
     cube1.material.opacity = 0;
+    cube1.position.set(0, 0, 0);
     group1.children.forEach(function(mesh){
-        mesh.material.opacity = 1;
+        mesh.material.opacity = 0;
         mesh.position.copy(mesh.userData.homePos).multiplyScalar(1);
     });
+    group1.position.y = 0;
 
     // cube1
     // sequences
