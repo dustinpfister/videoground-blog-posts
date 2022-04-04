@@ -1,5 +1,6 @@
 	// scripts
 VIDEO.scripts = [
+   '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js'
 ];
