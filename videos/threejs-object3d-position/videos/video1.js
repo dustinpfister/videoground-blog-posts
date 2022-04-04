@@ -28,6 +28,7 @@ VIDEO.init = function(sm, scene, camera){
     textCube.material.opacity = 0.5;
     scene.add(textCube);
  
+    // a single lone cube
     let cube1 = scene.userData.cube1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
@@ -62,13 +63,23 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // moving a single lone cube
             {
                 per: 0.20,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // cube1
+                    var radian = Math.PI * 2 * partPer,
+                    radius = 5 * partPer,
+                    p = partPer * 8 % 1,
+                    b = 1 - Math.abs(p - 0.5) / 0.5,
+                    x = Math.cos(radian) * radius,
+                    y = -0.5 + 1 * b,
+                    z = Math.sin(radian) * radius;
+                    cube1.position.set(x, y, z);
                     // camera
-                    camera.position.set(8,1,5 * partPer);
-                    camera.lookAt(0, 0, 0);
+                    //camera.position.set(8,1,5 * partPer);
+                    //camera.lookAt(0, 0, 0);
                 }
             },
             {
@@ -76,8 +87,8 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8 - 16 * partPer,1,5);
-                    camera.lookAt(0, 0, 0);
+                    //camera.position.set(8 - 16 * partPer,1,5);
+                    //camera.lookAt(0, 0, 0);
                 }
             }
         ]
