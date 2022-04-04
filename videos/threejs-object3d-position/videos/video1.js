@@ -1,4 +1,4 @@
-// scripts
+	// scripts
 VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js'
@@ -123,13 +123,15 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // group1
-                    group1.children.forEach(function(mesh){
+                    group1.children.forEach(function(mesh, i){
                         mesh.material.opacity = 1;
-                        mesh.position.copy(mesh.userData.homePos).multiplyScalar(1 + partPer * 2);
+                        var dy = -10 * (i / group1.children.length) * partPer;
+                        mesh.position.copy(mesh.userData.homePos).multiplyScalar(1 + partPer * 2).add(new THREE.Vector3(0, dy, 0))
                     });
                     // change position of group as a whole
                     group1.position.z = 4 * partBias;
                     group1.position.x = -4 * partBias;
+                    group1.position.y = 5 * partPer;
                     // rotate group
                     group1.rotation.y = Math.PI * partPer;
                     // cube1
