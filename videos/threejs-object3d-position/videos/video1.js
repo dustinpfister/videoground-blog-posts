@@ -29,9 +29,12 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
  
     // a single lone cube
-    let cube1 = scene.userData.cube1 = new THREE.Mesh(
+    var cube1 = scene.userData.cube1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
+        new THREE.MeshNormalMaterial({
+            transparent: true,
+            opacity: 0.5
+        }));
     scene.add(cube1);
  
     // SET UP SEQ OBJECT
@@ -48,6 +51,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // cube1
+                    cube1.material.opacity = 1;
                 }
             },
             {
@@ -61,6 +66,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // cube1
+                    cube1.material.opacity = 1;
                 }
             },
             // moving a single lone cube
@@ -69,6 +76,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // cube1
+                    cube1.material.opacity = 1;
                     var radian = Math.PI * 2 * partPer,
                     radius = 5 * partPer,
                     p = partPer * 8 % 1,
@@ -86,6 +94,9 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.40,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // cube1
+                    cube1.material.opacity = 1 - 1 * partPer;
+                    cube1.position.z += 2 * partPer;
                     // camera
                     //camera.position.set(8 - 16 * partPer,1,5);
                     //camera.lookAt(0, 0, 0);
@@ -98,10 +109,13 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
+    let cube1 = scene.userData.cube1;
     textCube.rotation.y = 0;
     textCube.position.set(6, 0, 0);
     textCube.visible = false;
  
+    cube1.material.opacity = 0;
+
     // cube1
     // sequences
     Sequences.update(sm.seq, sm);
