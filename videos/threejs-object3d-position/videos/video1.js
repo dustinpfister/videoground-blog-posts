@@ -130,6 +130,8 @@ VIDEO.init = function(sm, scene, camera){
                     // change position of group as a whole
                     group1.position.z = 4 * partBias;
                     group1.position.x = -4 * partBias;
+                    // rotate group
+                    group1.rotation.y = Math.PI * partPer;
                     // cube1
                     cube1.material.opacity = 1 - 1 * partPer;
                     cube1.position.z += 2 * partPer;
