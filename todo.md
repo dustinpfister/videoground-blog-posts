@@ -1,6 +1,9 @@
 # videoground-blog-posts todo list
 
-<!-- FOR POST PROJECTS -->
+<!-- FOR NEW POSTS -->
+
+### ( done 04/04/2022 ) - video1 for threejs-object3d-position
+* (done) start a video1 for new threejs-object3d-position post
 
 ### () - video1 for threejs-object3d-scale
 * start a video1 for threejs-object3d-scale
@@ -10,6 +13,18 @@
 
 ### () - video1 for threejs-materials-transparent
 * start a video1 for threejs-materials-transparent
+
+
+<!--  TRAFFIC -->
+
+### () - video1 for threejs-vector3
+* have a video1 for vector3
+
+### () - video1 for threejs-grouping-mesh-objects
+* have a video1 for groups
+
+### () - video1 for threejs-line
+* have a video1 for threejs-line
 
 ### () - video1 for threejs-canvas-texture
 * (done) start a videos for threejs-materials-transparent
