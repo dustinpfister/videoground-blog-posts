@@ -107,15 +107,23 @@ VIDEO.init = function(sm, scene, camera){
                     y = -0.5 + 1 * b,
                     z = Math.sin(radian) * radius;
                     cube1.position.set(x, y, z);
+                    // group1
+                    group1.children.forEach(function(mesh){
+                        mesh.material.opacity = 1 * partPer;
+                    });
                     // camera
-                    //camera.position.set(8,1,5 * partPer);
-                    //camera.lookAt(0, 0, 0);
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 0, 0);
                 }
             },
             {
                 per: 0.40,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // group1
+                    group1.children.forEach(function(mesh){
+                        mesh.material.opacity = 1;
+                    });
                     // cube1
                     cube1.material.opacity = 1 - 1 * partPer;
                     cube1.position.z += 2 * partPer;
