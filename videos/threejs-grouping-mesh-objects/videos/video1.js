@@ -86,7 +86,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
  
     // three instances of the model
-    var mod1 = new Model({
+    var mod1 = scene.userData.mod1 = new Model({
             count: 8,
             bxSize: 1,
             color: 0xff0000
@@ -111,10 +111,10 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(8.5, 7.0, 0);
                     // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(10, 7.8, 0);
+                    camera.lookAt(0, 1, 0);
                 }
             },
             {
@@ -123,11 +123,11 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 1 + 2 * partPer, 0);
+                    textCube.position.set(8.5, 7.0 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(10, 7.8, 0);
+                    camera.lookAt(0, 1, 0);
 
                 }
             },
@@ -150,6 +150,14 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.position.set(6, 0, 0);
     textCube.visible = false;
  
+    var mod1 = scene.userData.mod1;
+    mod1.setRadius(1 + 6 * bias);
+    // changing the rotation of the group
+    mod1.group.rotation.set(
+        Math.PI * 2 * per,
+        Math.PI * 4 * per,
+        Math.PI * 8 * per);
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
