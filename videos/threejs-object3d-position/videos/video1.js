@@ -125,6 +125,9 @@ VIDEO.init = function(sm, scene, camera){
                     group1.children.forEach(function(mesh){
                         mesh.material.opacity = 1;
                     });
+                    // change position of group as a whole
+                    group1.position.z = 4 * partBias;
+                    group1.position.x = -4 * partBias;
                     // cube1
                     cube1.material.opacity = 1 - 1 * partPer;
                     cube1.position.z += 2 * partPer;
