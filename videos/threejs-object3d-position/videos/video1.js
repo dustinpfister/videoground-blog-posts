@@ -36,6 +36,28 @@ VIDEO.init = function(sm, scene, camera){
             opacity: 0.5
         }));
     scene.add(cube1);
+
+    var group1 = scene.userData.group1 = new THREE.Group();
+    var i = 0, len = 30, radian, radius, x, y, z;
+    while(i < len){
+        var mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial({
+            transparent: true,
+            opacity: 0.5
+            })
+        );
+        radian = Math.PI * 2 * 4 / len * i;
+        radius = 1;
+        x = Math.cos(radian) * radius;
+        y = 10 / 2 * -1 + 10 * ( i / len);
+        z = Math.sin(radian) * radius;
+        // SETTING THE POSITION OF JUST THIS MESH
+        mesh.position.set(x, y, z);
+        group1.add(mesh);
+        i += 1;
+    }
+    scene.add(group1);
  
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -98,8 +120,8 @@ VIDEO.init = function(sm, scene, camera){
                     cube1.material.opacity = 1 - 1 * partPer;
                     cube1.position.z += 2 * partPer;
                     // camera
-                    //camera.position.set(8 - 16 * partPer,1,5);
-                    //camera.lookAt(0, 0, 0);
+                    camera.position.set(8 + 5 * partPer, 1 + 4 * partPer,  0);
+                    camera.lookAt(0, 0, 0);
                 }
             }
         ]
@@ -110,11 +132,15 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     let cube1 = scene.userData.cube1;
+    let group1 = scene.userData.group1;
     textCube.rotation.y = 0;
     textCube.position.set(6, 0, 0);
     textCube.visible = false;
  
     cube1.material.opacity = 0;
+    group1.children.forEach(function(mesh){
+        mesh.material.opacity = 0;
+    });
 
     // cube1
     // sequences
