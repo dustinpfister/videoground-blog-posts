@@ -5,17 +5,20 @@
 ### ( done 04/04/2022 ) - video1 for threejs-object3d-position
 * (done) start a video1 for new threejs-object3d-position post
 
-### () - video1 for threejs-object3d-scale
-* start a video1 for threejs-object3d-scale
-
-### () - video1 for threejs-object3d-lookat
-* start a video1 for threejs-object3d-lookat
-
 ### () - video1 for threejs-materials-transparent
 * start a video1 for threejs-materials-transparent
 
 
 <!--  TRAFFIC -->
+
+### () - video1 for threejs-object3d-scale
+* start a video1 for threejs-object3d-scale
+
+### () - video1 for threejs-geometry-attributes-position
+* start a video1 for position attribute
+
+### () - video1 for threejs-object3d-lookat
+* start a video1 for threejs-object3d-lookat
 
 ### () - video1 for threejs-vector3
 * have a video1 for vector3
