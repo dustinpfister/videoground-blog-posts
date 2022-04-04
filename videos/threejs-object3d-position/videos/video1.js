@@ -18,12 +18,14 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['Canvas Textures', 64, 20, 16, 'white'],
+            ['Object3d Position', 64, 20, 16, 'white'],
             ['in Three.js.', 64, 45, 16, 'white'],
-            ['( r135 04/02/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 04/04/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
+    textCube.material.transparent = true;
+    textCube.material.opacity = 0.5;
     scene.add(textCube);
  
     let cube1 = scene.userData.cube1 = new THREE.Mesh(
