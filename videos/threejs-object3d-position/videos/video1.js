@@ -25,7 +25,7 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     textCube.material.transparent = true;
-    textCube.material.opacity = 0.5;
+    textCube.material.opacity = 0.8;
     scene.add(textCube);
  
     // a single lone cube
