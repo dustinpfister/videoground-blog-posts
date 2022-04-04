@@ -54,6 +54,7 @@ VIDEO.init = function(sm, scene, camera){
         z = Math.sin(radian) * radius;
         // SETTING THE POSITION OF JUST THIS MESH
         mesh.position.set(x, y, z);
+        mesh.userData.homePos = mesh.position.clone();
         mesh.lookAt(0, 0, 0);
         group1.add(mesh);
         i += 1;
@@ -124,6 +125,7 @@ VIDEO.init = function(sm, scene, camera){
                     // group1
                     group1.children.forEach(function(mesh){
                         mesh.material.opacity = 1;
+                        mesh.position.copy(mesh.userData.homePos).multiplyScalar(1 + partPer * 2);
                     });
                     // change position of group as a whole
                     group1.position.z = 4 * partBias;
@@ -152,6 +154,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     cube1.material.opacity = 0;
     group1.children.forEach(function(mesh){
         mesh.material.opacity = 1;
+        mesh.position.copy(mesh.userData.homePos).multiplyScalar(1);
     });
 
     // cube1
