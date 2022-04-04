@@ -38,10 +38,10 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(cube1);
 
     var group1 = scene.userData.group1 = new THREE.Group();
-    var i = 0, len = 30, radian, radius, x, y, z;
+    var i = 0, h = 5, len = 30, radian, radius, x, y, z;
     while(i < len){
         var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
             new THREE.MeshNormalMaterial({
             transparent: true,
             opacity: 0.5
@@ -50,10 +50,11 @@ VIDEO.init = function(sm, scene, camera){
         radian = Math.PI * 2 * 4 / len * i;
         radius = 1;
         x = Math.cos(radian) * radius;
-        y = 10 / 2 * -1 + 10 * ( i / len);
+        y = h / 2 * -1 + h * ( i / len);
         z = Math.sin(radian) * radius;
         // SETTING THE POSITION OF JUST THIS MESH
         mesh.position.set(x, y, z);
+        mesh.lookAt(0, 0, 0);
         group1.add(mesh);
         i += 1;
     }
@@ -147,7 +148,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
  
     cube1.material.opacity = 0;
     group1.children.forEach(function(mesh){
-        mesh.material.opacity = 0;
+        mesh.material.opacity = 1;
     });
 
     // cube1
