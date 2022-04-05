@@ -5,11 +5,23 @@
 ### ( done 04/04/2022 ) - video1 for threejs-object3d-position
 * (done) start a video1 for new threejs-object3d-position post
 
+<!-- JUST BECAUSE I WANT TO -->
+
 ### () - video1 for threejs-materials-transparent
 * start a video1 for threejs-materials-transparent
 
+### () - video1 for threejs-examples-backyard
+* start a video1 for threejs-examples-backyard
+
+### () - video1 for threejs-examples-hamster-wheel
+* start a video1 for threejs-examples-hamster-wheel off of what I all ready have in test threejs
+
 
 <!--  TRAFFIC -->
+
+### () - video1 for threejs-grouping-mesh-objects
+* (done) start video1 for groups
+* add guy1 in there for the hell of it
 
 ### () - video1 for threejs-object3d-scale
 * start a video1 for threejs-object3d-scale
@@ -22,9 +34,6 @@
 
 ### () - video1 for threejs-vector3
 * have a video1 for vector3
-
-### () - video1 for threejs-grouping-mesh-objects
-* have a video1 for groups
 
 ### () - video1 for threejs-line
 * have a video1 for threejs-line
