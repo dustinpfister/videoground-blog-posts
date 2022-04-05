@@ -111,12 +111,17 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(mod3.group);
 
     // light
-    scene.add(new THREE.PointLight().add(new THREE.Mesh(
-                new THREE.SphereGeometry(.5, 10, 10),
-                new THREE.MeshBasicMaterial({
-                    color: 0xffffff
-                }))));
- 
+    var pointLight = new THREE.PointLight(0xffffff, 1.0).add(new THREE.Mesh(
+        new THREE.SphereGeometry(0.25, 15, 15),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        })
+    ));
+    scene.add(pointLight);
+    var dirLight = new THREE.DirectionalLight(0xffffff, 0.4);
+    dirLight.position.set(1, 1, 1);
+    scene.add(dirLight);
+    
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
