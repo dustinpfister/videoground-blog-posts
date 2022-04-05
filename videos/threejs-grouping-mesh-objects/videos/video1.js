@@ -152,7 +152,8 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.20,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-                    
+                    camera.position.set(16.5, 7.7 - 7.7 * partPer, 0);
+                    camera.lookAt(0, 1 - partPer, 0);
                 }
             }
         ]
