@@ -72,12 +72,12 @@ VIDEO.init = function(sm, scene, camera){
         width: 128,
         height: 128,
         lineWidth: 7,
-        lineColor: 'rgba(0,100,128,0.8)',
+        lineColor: 'rgba(0,128,128,0.8)',
         lineCount: 9,
         lines: [
             ['Groups', 64, 20, 16, 'white'],
             ['in Three.js.', 64, 45, 16, 'white'],
-            ['( r135 04/04/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 04/05/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
@@ -93,6 +93,22 @@ VIDEO.init = function(sm, scene, camera){
  
         });
     scene.add(mod1.group);
+    var mod2 = new Model({
+            count: 16,
+            radius: 8,
+            bxSize: 1
+ 
+        });
+    scene.add(mod2.group); 
+    var mod3 = new Model({
+            count: 32,
+            radius: 9,
+            bxSize: 1,
+            color: 0x0000ff
+ 
+        });
+    mod3.group.rotation.set(Math.PI * 1.5, 0, 0)
+    scene.add(mod3.group);
 
     // light
     scene.add(new THREE.PointLight().add(new THREE.Mesh(
@@ -111,9 +127,9 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(8.5, 7.0, 0);
+                    textCube.position.set(14.5, 7.0, 0);
                     // camera
-                    camera.position.set(10, 7.8, 0);
+                    camera.position.set(16.5, 7.7, 0);
                     camera.lookAt(0, 1, 0);
                 }
             },
@@ -123,10 +139,10 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(8.5, 7.0 + 2 * partPer, 0);
+                    textCube.position.set(14.5, 7.0 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(10, 7.8, 0);
+                    camera.position.set(16.5, 7.7, 0);
                     camera.lookAt(0, 1, 0);
 
                 }
