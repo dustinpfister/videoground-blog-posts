@@ -36,9 +36,6 @@
 ### () - video1 for threejs-canvas-texture
 * (done) start a videos for threejs-materials-transparent
 * finish video1 with at least a few segments
-* upload video1 to youtube
-* embed video1 into threejs-canvas-texture blog post
-
 
 
 <!-- JAVASCRIPT FILES -->
