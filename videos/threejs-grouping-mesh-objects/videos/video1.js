@@ -1,4 +1,4 @@
-// scripts
+	// scripts
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
@@ -159,6 +159,19 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     camera.position.set(16.5, 7.7 - 7.7 * partPer, 0);
                     camera.lookAt(0, 1 - partPer, 0);
+                }
+            },
+            // moving a single lone cube
+            {
+                per: 0.30,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    var radian = Math.PI * partPer,
+                    radius = 16.5 + 15.5 * partPer;
+                    var x = Math.cos(radian) * radius,
+                    z = Math.sin(radian) * radius;
+                    camera.position.set(x, 0, z);
+                    camera.lookAt(0, 0, 0);
                 }
             }
         ]
