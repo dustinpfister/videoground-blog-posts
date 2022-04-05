@@ -2,8 +2,7 @@
 
 <!-- FOR NEW POSTS -->
 
-### ( done 04/04/2022 ) - video1 for threejs-object3d-position
-* (done) start a video1 for new threejs-object3d-position post
+
 
 <!-- JUST BECAUSE I WANT TO -->
 
@@ -18,10 +17,6 @@
 
 
 <!--  TRAFFIC -->
-
-### () - video1 for threejs-grouping-mesh-objects
-* (done) start video1 for groups
-* add guy1 in there for the hell of it
 
 ### () - video1 for threejs-object3d-scale
 * start a video1 for threejs-object3d-scale
@@ -44,11 +39,7 @@
 * upload video1 to youtube
 * embed video1 into threejs-canvas-texture blog post
 
-### ( done 03/22/2022 ) - video1 for threejs-fog
-* (done) use  start canvas-text-cube.js file for title at least in video1
-* (done) finish video1
-* (done) upload video1 to youtube
-* (done) embed video1 into threejs-fog blog post
+
 
 <!-- JAVASCRIPT FILES -->
 
@@ -71,6 +62,18 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/05/2022 ) - video1 for threejs-grouping-mesh-objects
+* (done) start video1 for groups
+
+### ( done 04/04/2022 ) - video1 for threejs-object3d-position
+* (done) start a video1 for new threejs-object3d-position post
+
+### ( done 03/22/2022 ) - video1 for threejs-fog
+* (done) use  start canvas-text-cube.js file for title at least in video1
+* (done) finish video1
+* (done) upload video1 to youtube
+* (done) embed video1 into threejs-fog blog post
 
 ## ( done 03/11/2022 ) - lines feature, edge effect in canvas-text-cube.js;
 * (done) have a lines option for drawing custom text to a text cube
