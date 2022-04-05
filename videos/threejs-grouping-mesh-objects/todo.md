@@ -1,5 +1,9 @@
 ## threejs-grouping-mesh-objects video todo list
 
+## () - video1 - add guy1 model
+* make guy.js part of the video
+* have a section in which the camera moves into a scene in which there are a few guy models
 
 ## () - video1 - start video 1
-* () start video1 with the model example from the post
+* (done) start video1 with the model example from the post
+* have somehting just like what is in the post example for a model
