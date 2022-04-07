@@ -33,10 +33,6 @@
 ### () - video1 for threejs-line
 * have a video1 for threejs-line
 
-### () - video1 for threejs-canvas-texture
-* (done) start a videos for threejs-materials-transparent
-* finish video1 with at least a few segments
-
 
 <!-- JAVASCRIPT FILES -->
 
@@ -59,6 +55,10 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/07/2022 ) - video1 for threejs-canvas-texture
+* (done) start a videos for threejs-materials-transparent
+* (done) finish video1 with at least a few segments
 
 ### ( done 04/05/2022 ) - video1 for threejs-grouping-mesh-objects
 * (done) start video1 for groups
