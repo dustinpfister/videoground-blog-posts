@@ -10,8 +10,9 @@
 * add a cube2 mesh that will use new advanced squares method
 * use noise method for sky but with new cyan color
 
-## () - just more mesh objects
-* just have more mesh objects in the scene
+## () - add guy1, more mesh objects, video1 done
+* (done) add guy1 to scene
+* add some cones
 
 ## ( done 04/02/2022 ) - more draw methods and mesh objects
 * (done) improve the square drawMethods.basic.square with options for setting offset and size of square
