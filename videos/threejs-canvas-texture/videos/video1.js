@@ -79,12 +79,12 @@ VIDEO.init = function(sm, scene, camera){
         height: 32
     });
     let ground = scene.userData.ground = new THREE.Mesh(
-        new THREE.BoxGeometry(10, 0.5, 10),
+        new THREE.BoxGeometry(15, 0.5, 15),
         new THREE.MeshStandardMaterial({
             color: new THREE.Color('white'),
             map: canvasObj.texture
         }));
-    ground.position.set(0,-1.0,0);
+    ground.position.set(0, -1.0, 0);
     ground.userData.canvasObj = canvasObj;
     ground.userData.canvasObj.draw({
         drawClass: 'basic', drawMethod: 'noise'
