@@ -35,7 +35,7 @@ VIDEO.init = function(sm, scene, camera){
         lines: [
             ['Canvas Textures', 64, 20, 16, 'white'],
             ['in Three.js.', 64, 45, 16, 'white'],
-            ['( r135 04/02/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 04/07/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
