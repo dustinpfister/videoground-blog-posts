@@ -38,37 +38,26 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
-    // CANVAS DRAW METHODS
-    var drawMethods = {};
-    drawMethods.basic = {};
-    drawMethods.basic.square = function(ctx, canvas, sm, opt){
-        ctx.fillStyle = opt.bgStyle || 'black';
-        ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
-        ctx.strokeStyle = 'lime';
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        // the square
-        var x = opt.x === undefined ? 0: opt.x,
-        y = opt.y === undefined ? 0: opt.y,
-        w = opt.w === undefined ? canvas.width: opt.w,
-        h = opt.h === undefined ? canvas.height: opt.h;
-        ctx.rect(x, y, w, h);
-        ctx.stroke();
-    };
-    drawMethods.basic.noise = function(ctx, canvas, sm, opt){
-        ctx.fillStyle = opt.bgStyle || 'white';
-        ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
-        var i = 0,
-        len = parseInt(canvas.width) * parseInt(canvas.height),
-        x = 0, y = 0;
-        while(i < len){
-            x = i % canvas.width;
-            y = Math.floor(i / canvas.width);
-            ctx.fillStyle = 'rgb(0,' + Math.floor(128 + 100 * Math.random()) + ',0)';
-            ctx.fillRect(x, y, 1, 1);
-            i += 1;
-        }
-    };
+    // CONES
+    var coneMaterial = new THREE.MeshNormalMaterial();
+    // [ [[x, y, z], coneLength], ... ]
+    var coneDataArray = [],
+    len = 8,
+    i = 0, x, y, z, radian, radius = 3;
+    while(i < len){
+        radian = Math.PI * 2 / len * i;
+        x = Math.cos(radian) * radius;
+        y = 0;
+        z = Math.sin(radian) * radius;
+        coneDataArray.push([[ x, y, z], 2]);
+        i += 1;
+    }
+    coneDataArray.forEach(function(coneData){
+        var cone = new THREE.Mesh( new THREE.ConeGeometry(1, coneData[1], 30, 30), coneMaterial); 
+        cone.position.fromArray(coneData[0]);
+        cone.position.y += coneData[1] / 2 - 0.8;
+        scene.add(cone);
+    });
   
 
     // SET UP SEQ OBJECT
