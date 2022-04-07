@@ -107,9 +107,13 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(cube1);
 
     // CONES
+    var coneMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color('white'),
+        map: ground.userData.canvasObj.texture
+    });
     // [ [[x, y, z], coneLength], ... ]
     [ [ [-3, 0, -3], 6], [ [2, 0, -1], 2], [ [0, 0, -3], 4] ].forEach(function(coneData){
-        var cone = new THREE.Mesh( new THREE.ConeGeometry(1, coneData[1], 30, 30), new THREE.MeshNormalMaterial()); 
+        var cone = new THREE.Mesh( new THREE.ConeGeometry(1, coneData[1], 30, 30), coneMaterial); 
         cone.position.fromArray(coneData[0]);
         cone.position.y += coneData[1] / 2 - 0.8;
         scene.add(cone);
