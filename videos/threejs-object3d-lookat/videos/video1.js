@@ -32,6 +32,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(demoGroup);
     var sphere = new THREE.Mesh( new THREE.SphereGeometry(1, 30, 30), new THREE.MeshNormalMaterial() );
     demoGroup.add(sphere);
+    demoGroup.rotation.set(0,Math.PI / 180 * 22.5,0);
 
     // CONE GROUP
     var coneGroup = new THREE.Group();
@@ -50,7 +51,7 @@ VIDEO.init = function(sm, scene, camera){
         i += 1;
     }
     coneDataArray.forEach(function(coneData){
-        var cone = new THREE.Mesh( new THREE.ConeGeometry(1, coneData[1], 30, 30), coneMaterial);
+        var cone = new THREE.Mesh( new THREE.ConeGeometry(0.5, coneData[1], 30, 30), coneMaterial);
         cone.geometry.rotateX(1.57);
         cone.position.fromArray(coneData[0]);
         cone.position.y += coneData[1] / 2 - 0.8;
@@ -63,7 +64,6 @@ VIDEO.init = function(sm, scene, camera){
             child.lookAt(target.position);
         });
     };
-
     allLook(coneGroup, sphere);
   
 
