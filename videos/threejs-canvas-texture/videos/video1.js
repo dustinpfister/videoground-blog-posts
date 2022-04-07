@@ -108,9 +108,8 @@ VIDEO.init = function(sm, scene, camera){
 
     // CONES
     // [ [[x, y, z], coneLength], ... ]
-    [ [[-3, 0, -3], 7], [[0, 0, -1], 3]].forEach(function(coneData){
-        var cone = new THREE.Mesh( new THREE.ConeGeometry(1, coneData[1], 30, 30), new THREE.MeshNormalMaterial());
-        
+    [ [ [-3, 0, -3], 6], [ [2, 0, -1], 2], [ [0, 0, -3], 4] ].forEach(function(coneData){
+        var cone = new THREE.Mesh( new THREE.ConeGeometry(1, coneData[1], 30, 30), new THREE.MeshNormalMaterial()); 
         cone.position.fromArray(coneData[0]);
         cone.position.y += coneData[1] / 2 - 0.8;
         scene.add(cone);
@@ -134,12 +133,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     // camera
-                    //camera.position.set(8, 1, 0);
-                    //camera.lookAt(0, 0, 0);
-
-                    camera.position.set(8, -0.7, -4);
-                    camera.lookAt(0, 0, -4);
-
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 0, 0);
                     // guy1
                     guy1.head.lookAt(camera.position);
                 }
