@@ -134,10 +134,13 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // sphere and cones
-                    sphere.position.y = -2 + 8 * partPer;
+                    sphere.position.y = -2 + 16 * partPer;
                     allLook(coneGroup, sphere);
                     // demo group
-                    demoGroup.rotation.set(Math.PI * 2 * partPer, Math.PI / 180 * 22.5, 0);
+                    demoGroup.rotation.set(
+                        Math.PI / 180 * 45 * partPer, 
+                        Math.PI / 180 * 22.5,
+                        Math.PI / 180 * 90 * partPer);
                 }
             }
         ]
