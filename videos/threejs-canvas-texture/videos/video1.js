@@ -11,7 +11,7 @@ VIDEO.scripts = [
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
-    //scene.add( new THREE.GridHelper(10, 10));
+    // BACKGROUND
     scene.background = new THREE.Color('cyan');
  
     // LIGHT
@@ -41,7 +41,7 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
-    // custom draw methods for this video
+    // CANVAS DRAW METHODS
     var drawMethods = {};
     drawMethods.basic = {};
     drawMethods.basic.square = function(ctx, canvas, sm, opt){
@@ -73,7 +73,7 @@ VIDEO.init = function(sm, scene, camera){
         }
     };
   
-    // ground mesh
+    // THE GROUND MESH
     var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
         width: 32,
         height: 32
@@ -91,7 +91,7 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(ground);
   
-    // cube1 at center of scene
+    // CUBE1 AT CENTER
     var canvasObj =  CanvasMod.createCanvasObject(sm, drawMethods, {
         width: 32,
         height: 32
@@ -106,17 +106,11 @@ VIDEO.init = function(sm, scene, camera){
     cube1.userData.canvasObj = canvasObj;
     scene.add(cube1);
  
-    // Guy 1 obj
+    // ADDING GUY1 to scece
     GuyCharacters.create(scene, 'guy1');
-
     var guy1 = scene.userData.guy1;
-
     guy1.group.scale.set(0.5, 0.5, 0.5);
-    guy1.group.position.set(2, 1, 1);
-
-
-    //var guy1 = scene.userData.guy1;
-    //guy1.scale.set(0.5, 0.5, 0.5);
+    guy1.group.position.set(2, 0.8, 1);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -127,7 +121,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
-                    textCube.visible = false;
+                    textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     // camera
                     camera.position.set(8, -0.7, 0);
