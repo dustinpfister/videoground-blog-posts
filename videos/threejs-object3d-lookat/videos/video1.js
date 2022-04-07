@@ -39,7 +39,9 @@ VIDEO.init = function(sm, scene, camera){
     var sphere = new THREE.Mesh( 
         new THREE.SphereGeometry(0.25, 30, 30), 
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color('blue')
+            color: new THREE.Color('blue'),
+            transparent: true,
+            opacity: 0.5
         })
     );
     demoGroup.add(sphere);
@@ -48,7 +50,9 @@ VIDEO.init = function(sm, scene, camera){
     var coneGroup = new THREE.Group();
     demoGroup.add(coneGroup);
     var coneMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color('cyan')
+        color: new THREE.Color('cyan'),
+        transparent: true,
+        opacity: 0.5
     });
     // [ [[x, y, z], coneLength], ... ]
     var coneDataArray = [],
