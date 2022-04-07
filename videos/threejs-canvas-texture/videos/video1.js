@@ -21,7 +21,7 @@ VIDEO.init = function(sm, scene, camera){
             emissive: 0xffffff
         }));
     light.add(new THREE.PointLight(0xdfdfdf, 0.8));
-    light.position.set(0, 50, -50);
+    light.position.set(0, 50, 50);
     scene.add(light);
     scene.add(new THREE.AmbientLight(0xffffff, 0.15))
 
@@ -124,8 +124,10 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     // camera
-                    camera.position.set(8, -0.7, 0);
+                    camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // guy1
+                    guy1.head.lookAt(camera.position);
                 }
             },
             {
@@ -139,6 +141,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // guy1
+                    guy1.head.lookAt(camera.position);
+
                 }
             },
             {
@@ -148,6 +153,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8,1,5 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // guy1
+                    guy1.head.lookAt(camera.position);
+
                 }
             },
             {
@@ -157,6 +165,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 - 16 * partPer,1,5);
                     camera.lookAt(0, 0, 0);
+                    // guy1
+                    guy1.head.lookAt(camera.position);
+
                 }
             }
         ]
