@@ -102,6 +102,7 @@ VIDEO.init = function(sm, scene, camera){
             color: new THREE.Color('white'),
             map: canvasObj.texture
         }));
+    cube1.position.set(0, -0.3, 0);
     cube1.userData.canvasObj = canvasObj;
     scene.add(cube1);
  
@@ -126,10 +127,10 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
-                    textCube.visible = true;
+                    textCube.visible = false;
                     textCube.position.set(6, 0.8, 0);
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(8, -0.7, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
