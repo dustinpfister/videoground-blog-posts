@@ -39,6 +39,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
  
     // CONES
+    var coneGroup = new THREE.Group();
+    scene.add(coneGroup);
     var coneMaterial = new THREE.MeshNormalMaterial();
     // [ [[x, y, z], coneLength], ... ]
     var coneDataArray = [],
@@ -56,7 +58,7 @@ VIDEO.init = function(sm, scene, camera){
         var cone = new THREE.Mesh( new THREE.ConeGeometry(1, coneData[1], 30, 30), coneMaterial); 
         cone.position.fromArray(coneData[0]);
         cone.position.y += coneData[1] / 2 - 0.8;
-        scene.add(cone);
+        coneGroup.add(cone);
     });
   
 
