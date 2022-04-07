@@ -32,7 +32,6 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(demoGroup);
     var sphere = new THREE.Mesh( new THREE.SphereGeometry(1, 30, 30), new THREE.MeshNormalMaterial() );
     demoGroup.add(sphere);
-    demoGroup.rotation.set(0,Math.PI / 180 * 22.5,0);
 
     // CONE GROUP
     var coneGroup = new THREE.Group();
@@ -60,8 +59,10 @@ VIDEO.init = function(sm, scene, camera){
 
     // ALL LOOK HELPER
     var allLook = function(group, target){
+        var v = new THREE.Vector3();
+        target.getWorldPosition(v);
         group.children.forEach(function(child){
-            child.lookAt(target.position);
+            child.lookAt(v);
         });
     };
     allLook(coneGroup, sphere);
@@ -84,6 +85,8 @@ VIDEO.init = function(sm, scene, camera){
                     // sphere and cones
                     sphere.position.y = 0;
                     allLook(coneGroup, sphere);
+                    // demo group
+                    demoGroup.rotation.set(0, Math.PI / 180 * 22.5, 0);
                 }
             },
             {
@@ -100,7 +103,8 @@ VIDEO.init = function(sm, scene, camera){
                     // sphere and cones
                     sphere.position.y = 0;
                     allLook(coneGroup, sphere);
-
+                    // demo group
+                    demoGroup.rotation.set(0, Math.PI / 180 * 22.5, 0);
                 }
             },
             {
@@ -110,6 +114,30 @@ VIDEO.init = function(sm, scene, camera){
                     // sphere and cones
                     sphere.position.y = 2 * partPer;
                     allLook(coneGroup, sphere);
+                    // demo group
+                    demoGroup.rotation.set(0, Math.PI / 180 * 22.5, 0);
+                }
+            },
+            {
+                per: 0.30,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // sphere and cones
+                    sphere.position.y = 2 - 4 * partPer;
+                    allLook(coneGroup, sphere);
+                    // demo group
+                    demoGroup.rotation.set(0, Math.PI / 180 * 22.5, 0);
+                }
+            },
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // sphere and cones
+                    sphere.position.y = -2 + 8 * partPer;
+                    allLook(coneGroup, sphere);
+                    // demo group
+                    demoGroup.rotation.set(Math.PI * 2 * partPer, Math.PI / 180 * 22.5, 0);
                 }
             }
         ]
