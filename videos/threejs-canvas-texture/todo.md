@@ -1,11 +1,6 @@
 ## threejs-fog video todo list
 
-## () - start video2 for this
-* start video2 for this
-* start a new cube3 mesh object
-* have an array of materials for cube3
-
-## () - advanced draw methods, and video1 done
+## () - advanced draw methods, and video2 started
 * start a new advanced draw methods class for the video
 * first advanced draw methods can be just an advanced squares method
 * have an option that can be used to set the number or squares to draw
@@ -14,6 +9,9 @@
 * have a way to set color for each square
 * add a cube2 mesh that will use new advanced squares method
 * use noise method for sky but with new cyan color
+
+## () - just more mesh objects
+* just have more mesh objects in the scene
 
 ## ( done 04/02/2022 ) - more draw methods and mesh objects
 * (done) improve the square drawMethods.basic.square with options for setting offset and size of square
