@@ -2,7 +2,10 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   '../../../js/guy.js',
+   '../../../js/guy-canvas.js',
+   '../../../js/guy-characters.js'
 ];
  
 // init method for the video
@@ -11,6 +14,17 @@ VIDEO.init = function(sm, scene, camera){
     //scene.add( new THREE.GridHelper(10, 10));
     scene.background = new THREE.Color('cyan');
  
+    // LIGHT
+    let light = scene.userData.light = new THREE.Mesh(
+        new THREE.SphereGeometry(0.25, 20, 20),
+        new THREE.MeshStandardMaterial({
+            emissive: 0xffffff
+        }));
+    light.add(new THREE.PointLight(0xdfdfdf, 0.8));
+    light.position.set(0, 50, -50);
+    scene.add(light);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.15))
+
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
@@ -67,8 +81,8 @@ VIDEO.init = function(sm, scene, camera){
     let ground = scene.userData.ground = new THREE.Mesh(
         new THREE.BoxGeometry(10, 0.5, 10),
         new THREE.MeshStandardMaterial({
-            emissive: new THREE.Color('white'),
-            emissiveMap: canvasObj.texture
+            color: new THREE.Color('white'),
+            map: canvasObj.texture
         }));
     ground.position.set(0,-1.0,0);
     ground.userData.canvasObj = canvasObj;
@@ -85,12 +99,24 @@ VIDEO.init = function(sm, scene, camera){
     let cube1 = scene.userData.cube1 = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshStandardMaterial({
-            emissive: new THREE.Color('white'),
-            emissiveMap: canvasObj.texture
+            color: new THREE.Color('white'),
+            map: canvasObj.texture
         }));
     cube1.userData.canvasObj = canvasObj;
     scene.add(cube1);
  
+    // Guy 1 obj
+    GuyCharacters.create(scene, 'guy1');
+
+    var guy1 = scene.userData.guy1;
+
+    guy1.group.scale.set(0.5, 0.5, 0.5);
+    guy1.group.position.set(2, 1, 1);
+
+
+    //var guy1 = scene.userData.guy1;
+    //guy1.scale.set(0.5, 0.5, 0.5);
+
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
