@@ -81,6 +81,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // sphere and cones
+                    sphere.position.y = 0;
+                    allLook(coneGroup, sphere);
                 }
             },
             {
@@ -94,6 +97,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // sphere and cones
+                    sphere.position.y = 0;
+                    allLook(coneGroup, sphere);
 
                 }
             },
@@ -101,8 +107,9 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.20,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-                    
-
+                    // sphere and cones
+                    sphere.position.y = 2 * partPer;
+                    allLook(coneGroup, sphere);
                 }
             }
         ]
@@ -115,8 +122,6 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(6, 0, 0);
     textCube.visible = false;
- 
- 
     // sequences
     Sequences.update(sm.seq, sm);
 };
