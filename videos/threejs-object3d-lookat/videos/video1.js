@@ -11,17 +11,6 @@ VIDEO.init = function(sm, scene, camera){
     // BACKGROUND
     scene.background = new THREE.Color('cyan');
  
-    // LIGHT
-    let light = scene.userData.light = new THREE.Mesh(
-        new THREE.SphereGeometry(0.25, 20, 20),
-        new THREE.MeshStandardMaterial({
-            emissive: 0xffffff
-        }));
-    light.add(new THREE.PointLight(0xdfdfdf, 0.8));
-    light.position.set(0, 50, 50);
-    scene.add(light);
-    scene.add(new THREE.AmbientLight(0xffffff, 0.15))
-
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
@@ -38,9 +27,13 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
-    // CONES
+    // DEMO GROUP
+    var demoGroup = new THREE.Group();
+    scene.add(demoGroup);
+
+    // CONE GROUP
     var coneGroup = new THREE.Group();
-    scene.add(coneGroup);
+    demoGroup.add(coneGroup);
     var coneMaterial = new THREE.MeshNormalMaterial();
     // [ [[x, y, z], coneLength], ... ]
     var coneDataArray = [],
