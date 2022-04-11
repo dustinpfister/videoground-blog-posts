@@ -33,10 +33,22 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(demoGroup);
     var i = 0, len = 5;
     while(i < len){
-        var mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial() );
+        var material = new THREE.MeshNormalMaterial({
+            transparent: true,
+            opacity: 0.2
+        });
+        var mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), material );
         demoGroup.add(mesh);
         i += 1;
     }
+
+    var demoGroupInit = function(demoGroup){
+        var len = demoGroup.children.length; 
+        demoGroup.children.forEach(function(mesh, i){
+            mesh.material.opacity = 0.0;
+            mesh.position.z = -5 + 10 * (i / (len -1 ));
+        });
+    };
 
 
     // SET UP SEQ OBJECT
@@ -53,6 +65,10 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // demoGroup
+                    demoGroupInit(demoGroup);
+                    var mesh = demoGroup.children[2];
+                    mesh.material.opacity = 1;
                 }
             },
             {
@@ -66,13 +82,23 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // demoGroup
+                    demoGroupInit(demoGroup);
+                    var mesh = demoGroup.children[2];
+                    mesh.material.opacity = 1;
                 }
             },
             {
                 per: 0.20,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-
+                    // camera
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 0, 0);
+                    // demoGroup
+                    demoGroupInit(demoGroup);
+                    var mesh = demoGroup.children[2];
+                    mesh.material.opacity = 1;
                 }
             }
         ]
@@ -83,7 +109,7 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(6, 0, 0);
+    textCube.position.set(8, 1, 0);
     textCube.visible = false;
     // sequences
     Sequences.update(sm.seq, sm);
