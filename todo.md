@@ -18,9 +18,6 @@
 
 <!--  TRAFFIC -->
 
-### () - video1 for threejs-object3d-scale
-* start a video1 for threejs-object3d-scale
-
 ### () - video1 for threejs-geometry-attributes-position
 * start a video1 for position attribute
 
@@ -52,6 +49,9 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/11/2022 ) - video1 for threejs-object3d-scale
+* (done) start a video1 for threejs-object3d-scale
 
 ### ( done 04/11/2022 ) - video1 for threejs-object3d-lookat
 * (done) start a video1 for threejs-object3d-lookat
