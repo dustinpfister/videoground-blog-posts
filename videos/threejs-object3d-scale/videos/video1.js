@@ -50,6 +50,7 @@ VIDEO.init = function(sm, scene, camera){
             mesh.position.x = 0;
             mesh.position.z = -5 + 10 * (i / (len -1 ));
             mesh.scale.set(1, 1, 1);
+            mesh.rotation.set(0, 0, 0);
             forMesh(mesh, i);
         });
     };
@@ -99,7 +100,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
                     // demoGroup - init with opacity going up to 1 for all mesh objects
                     demoGroupInit(demoGroup, function(mesh, i){
@@ -122,19 +123,18 @@ VIDEO.init = function(sm, scene, camera){
                     // demoGroup - init with opacity going up to 1 for all mesh objects
                     demoGroupInit(demoGroup, function(mesh, i){
                         mesh.material.opacity = 1;
-
-// POSITION FOR EACH MESH
-var orderPer = i / (len -1 ),
-orderBias = 1 - Math.abs(0.5 - orderPer) / 0.5;
-var radian = Math.PI * 0.5 + (-Math.PI + Math.PI * orderBias) * partPer,
-radius = 5 - 10 * orderPer;
-mesh.position.x = Math.cos(radian) * radius;
-mesh.position.z = Math.sin(radian) * radius;
-
-// Scale for each mesh
-var scalar = 1 + (2 * partPer) * orderPer;
-mesh.scale.multiplyScalar(scalar);
-
+                        // POSITION FOR EACH MESH
+                        var orderPer = i / (len -1 ),
+                        orderBias = 1 - Math.abs(0.5 - orderPer) / 0.5,
+                        radian = Math.PI * 0.5 + (-Math.PI + Math.PI * orderBias) * partPer,
+                        radius = 5 - 10 * orderPer;
+                        mesh.position.x = Math.cos(radian) * radius;
+                        mesh.position.z = Math.sin(radian) * radius;
+                        // SCALE FOR EACH MESH
+                        var scalar = 1 + ( (-0.25 + 1.75 * orderPer) * partPer) * orderPer;
+                        mesh.scale.multiplyScalar(scalar);
+                        // ROTATION FOR EACH MESH
+                        mesh.rotation.y = Math.PI * 0.25 * partPer * orderPer;
                     });
                 }
             }
