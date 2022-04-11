@@ -18,15 +18,32 @@
 
 <!--  TRAFFIC -->
 
-### () - video1 for threejs-geometry-attributes-position
+### () - video1 for threejs-materials-transparent ( 447 - 3mo - 4/11/2022 )
+* start a video1 
+
+### () - video1 for threejs-object3d-get-world-position ( 429 - 3mo - 4/11/2022 )
+* get world position demo video
+
+### () - video1 for threejs-geometry-attributes-position ( 406 - 3mo - 4/11/2022 )
 * start a video1 for position attribute
 
-### () - video1 for threejs-vector3
-* have a video1 for vector3
+### () - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
+* start video1
+
+### () - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
+* start a video1 for this
+
+### () - video1 for threejs-examples-house ( 346 - 3mo - 4/11/2022 )
+* start video1
+
+### () - video1 for threejs-geometry-traverse
+* see about figuring out some kind of video for this
 
 ### () - video1 for threejs-line
 * have a video1 for threejs-line
 
+### () - video1 for threejs-vector3
+* have a video1 for vector3
 
 <!-- JAVASCRIPT FILES -->
 
