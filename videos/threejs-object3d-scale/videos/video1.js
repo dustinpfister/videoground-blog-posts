@@ -89,16 +89,19 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                per: 0.20,
+                per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                     // demoGroup
                     demoGroupInit(demoGroup);
                     var mesh = demoGroup.children[2];
                     mesh.material.opacity = 1;
+                    // scale one child up and down
+                    //mesh.scale.set( = 1 + 3 * partBias;
+                    mesh.scale.set(1, 1, 1).multiplyScalar(1 + 3 * partBias);
                 }
             }
         ]
