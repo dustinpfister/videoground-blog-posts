@@ -53,6 +53,8 @@ VIDEO.init = function(sm, scene, camera){
             mesh.rotation.set(0, 0, 0);
             forMesh(mesh, i);
         });
+        demoGroup.position.set(0, 0, 0);
+        demoGroup.rotation.set(0, 0, 0);
     };
 
 
@@ -131,10 +133,11 @@ VIDEO.init = function(sm, scene, camera){
                         mesh.position.x = Math.cos(radian) * radius;
                         mesh.position.z = Math.sin(radian) * radius;
                         // SCALE FOR EACH MESH
-                        var scalar = 1 + ( (-0.25 + 1.75 * orderPer) * partPer) * orderPer;
+                        var scalar = 1 + ( -0.25 + 1.50 * orderPer * partPer) * orderPer;
                         mesh.scale.multiplyScalar(scalar);
                         // ROTATION FOR EACH MESH
                         mesh.rotation.y = Math.PI * 0.25 * partPer * orderPer;
+                        mesh.rotation.x = Math.PI * 2 * orderPer * partPer;
                     });
                 }
             }
