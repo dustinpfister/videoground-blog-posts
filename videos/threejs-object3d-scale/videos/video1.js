@@ -47,6 +47,7 @@ VIDEO.init = function(sm, scene, camera){
         var len = demoGroup.children.length; 
         demoGroup.children.forEach(function(mesh, i){
             mesh.material.opacity = 0.0;
+            mesh.position.x = 0;
             mesh.position.z = -5 + 10 * (i / (len -1 ));
             mesh.scale.set(1, 1, 1);
             forMesh(mesh, i);
@@ -110,17 +111,31 @@ VIDEO.init = function(sm, scene, camera){
                     mesh.scale.multiplyScalar(1 + 3 * partBias);
                 }
             },
-            // sq2 -
+            // sq2 - move, rotate, and scale all cubes togetaher
             {
                 per: 0.50,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(10, 6, 10);
                     camera.lookAt(0, 0, 0);
                     // demoGroup - init with opacity going up to 1 for all mesh objects
                     demoGroupInit(demoGroup, function(mesh, i){
                         mesh.material.opacity = 1;
+
+                        //var orderPer = i / (len -1 );
+                        //var radian = Math.PI * 1.5 * partPer;       
+                        //mesh.position.z = -5 + ( 10 - Math.sin(radian) * 10 ) * orderPer;
+
+var orderPer = i / (len -1 ),
+orderBias = 1 - Math.abs(0.5 - orderPer) / 0.5;
+
+var radian = Math.PI * 0.5 + (-Math.PI + Math.PI * orderBias) * partPer,
+radius = 5 - 10 * orderPer;
+
+mesh.position.x = Math.cos(radian) * radius;
+mesh.position.z = Math.sin(radian) * radius;
+
                     });
                 }
             }
