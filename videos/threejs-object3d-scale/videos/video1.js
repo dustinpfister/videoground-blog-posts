@@ -123,18 +123,17 @@ VIDEO.init = function(sm, scene, camera){
                     demoGroupInit(demoGroup, function(mesh, i){
                         mesh.material.opacity = 1;
 
-                        //var orderPer = i / (len -1 );
-                        //var radian = Math.PI * 1.5 * partPer;       
-                        //mesh.position.z = -5 + ( 10 - Math.sin(radian) * 10 ) * orderPer;
-
+// POSITION FOR EACH MESH
 var orderPer = i / (len -1 ),
 orderBias = 1 - Math.abs(0.5 - orderPer) / 0.5;
-
 var radian = Math.PI * 0.5 + (-Math.PI + Math.PI * orderBias) * partPer,
 radius = 5 - 10 * orderPer;
-
 mesh.position.x = Math.cos(radian) * radius;
 mesh.position.z = Math.sin(radian) * radius;
+
+// Scale for each mesh
+var scalar = 1 + (2 * partPer) * orderPer;
+mesh.scale.multiplyScalar(scalar);
 
                     });
                 }
