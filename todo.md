@@ -24,9 +24,6 @@
 ### () - video1 for threejs-geometry-attributes-position
 * start a video1 for position attribute
 
-### () - video1 for threejs-object3d-lookat
-* start a video1 for threejs-object3d-lookat
-
 ### () - video1 for threejs-vector3
 * have a video1 for vector3
 
@@ -55,6 +52,9 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/11/2022 ) - video1 for threejs-object3d-lookat
+* (done) start a video1 for threejs-object3d-lookat
 
 ### ( done 04/07/2022 ) - video1 for threejs-canvas-texture
 * (done) start a videos for threejs-materials-transparent
