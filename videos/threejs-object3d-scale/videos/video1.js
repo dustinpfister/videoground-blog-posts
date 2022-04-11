@@ -12,7 +12,6 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
     scene.add( new THREE.GridHelper(10, 10, '#ffffff', '#00afaf') );
  
-
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
@@ -29,6 +28,16 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
+    // MESH OBJECTS
+    var demoGroup = scene.userData.demoGroup = new THREE.Group();
+    scene.add(demoGroup);
+    var i = 0, len = 5;
+    while(i < len){
+        var mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), new THREE.MeshNormalMaterial() );
+        demoGroup.add(mesh);
+        i += 1;
+    }
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
