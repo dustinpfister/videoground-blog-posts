@@ -42,11 +42,14 @@ VIDEO.init = function(sm, scene, camera){
         i += 1;
     }
 
-    var demoGroupInit = function(demoGroup){
+    var demoGroupInit = function(demoGroup, forMesh){
+        forMesh = forMesh || function(){};
         var len = demoGroup.children.length; 
         demoGroup.children.forEach(function(mesh, i){
             mesh.material.opacity = 0.0;
             mesh.position.z = -5 + 10 * (i / (len -1 ));
+            mesh.scale.set(1, 1, 1);
+            forMesh(mesh, i);
         });
     };
 
@@ -88,6 +91,8 @@ VIDEO.init = function(sm, scene, camera){
                     mesh.material.opacity = 1;
                 }
             },
+            // sq1 - single mesh object scales up and down, camera changes position, and 
+            // all other mesh objects become visable by end of sequence
             {
                 per: 0.15,
                 init: function(sm){},
@@ -95,13 +100,28 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
-                    // demoGroup
-                    demoGroupInit(demoGroup);
+                    // demoGroup - init with opacity going up to 1 for all mesh objects
+                    demoGroupInit(demoGroup, function(mesh, i){
+                        mesh.material.opacity = partPer;
+                    });
+                    // mesh 2 stays at 1, and scales up and down alone
                     var mesh = demoGroup.children[2];
                     mesh.material.opacity = 1;
-                    // scale one child up and down
-                    //mesh.scale.set( = 1 + 3 * partBias;
-                    mesh.scale.set(1, 1, 1).multiplyScalar(1 + 3 * partBias);
+                    mesh.scale.multiplyScalar(1 + 3 * partBias);
+                }
+            },
+            // sq2 -
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                    // demoGroup - init with opacity going up to 1 for all mesh objects
+                    demoGroupInit(demoGroup, function(mesh, i){
+                        mesh.material.opacity = 1;
+                    });
                 }
             }
         ]
