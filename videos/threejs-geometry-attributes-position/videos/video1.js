@@ -37,15 +37,27 @@ VIDEO.init = function(sm, scene, camera){
         })
     );
     var pos = cube.geometry.getAttribute('position');
-    var norm = cube.geometry.getAttribute('normal');
+    //var norm = cube.geometry.getAttribute('normal');
     cube.userData.posHome = pos.clone();
     scene.add(cube);
 
 
+    var posVectors = cube.userData.posVectors = [];
+    var v = 0;
+    while(v < pos.count){
+        //console.log(v, pos.array[v], pos.array[v + 1], pos.array[v + 2]);
+        posVectors.push(new THREE.Vector3(
+            pos.array[v], pos.array[v + 1], pos.array[v + 2]
+        ));
+        v += 1;
+    }
+console.log(posVectors);
+    
 
-    console.log('pos', pos);
-    console.log('norm', norm);
-    console.log('groups', cube.geometry.groups)
+
+    //console.log('pos', pos);
+    //console.log('norm', norm);
+    //console.log('groups', cube.geometry.groups)
 
 //console.log( pos.array.slice(0, 3 * 6) );
 
