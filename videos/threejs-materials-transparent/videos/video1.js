@@ -76,6 +76,9 @@ VIDEO.init = function(sm, scene, camera){
     var demoGroup = scene.userData.demoGroup = demoMod.createGroup();
     scene.add(demoGroup);
 
+    var demoGroup2 = scene.userData.demoGroup2 = demoMod.createGroup();
+    scene.add(demoGroup2);
+
     //demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){});
 
 
@@ -128,40 +131,44 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
     // sequences
     Sequences.update(sm.seq, sm);
-    // update demoMod outside of seq
+
+    // update demogroup
     demoMod.updateGroup(scene.userData.demoGroup, per, function(mesh, i, len, group, loopPer){
         // adjust posiitons
         var zDelta = 10 * loopPer * -1;
         mesh.position.z += zDelta;
         mesh.position.z = THREE.MathUtils.euclideanModulo(mesh.position.z + 5, 10) - 5;
-
         var xDelta = 3.5 + Math.pow(8, Math.abs(mesh.position.z / 5) ) * -1;
         mesh.position.x += xDelta;
         mesh.position.x = THREE.MathUtils.euclideanModulo(mesh.position.x + 5, 10) - 5;
-
         // set opacity based on distance
         var d = mesh.position.distanceTo( new THREE.Vector3(0, 0, 0) );
         var dPer = d / 5;
         dPer = dPer > 1 ? 1 : dPer;
         mesh.material.opacity = 1 - dPer;
-
         // look at center
         mesh.lookAt(scene.userData.demoGroup.position);
         mesh.rotation.y += Math.PI / 180 * 45;
+    });
+
+    // update demogroup2
+    demoMod.updateGroup(scene.userData.demoGroup2, per, function(mesh, i, len, group, loopPer){
+        // adjust posiitons
 
     });
 
-var grid = scene.userData.grid;
 
-grid.material.transparent = true;
-grid.material.opacity = 1 - per;
-   grid.visible = true;
-if( parseFloat(grid.material.opacity) < 0.1){
-   grid.visible = false;
-}
-
+    // grid effect
+    var grid = scene.userData.grid;
+    grid.material.transparent = true;
+    grid.material.opacity = 1 - per;
+    grid.visible = true;
+    if( parseFloat(grid.material.opacity) < 0.1){
+        grid.visible = false;
+    }
 
 };
 
