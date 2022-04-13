@@ -52,6 +52,17 @@ VIDEO.init = function(sm, scene, camera){
         v += 1;
     }
 console.log(posVectors);
+// for each face
+    var face = cube.userData.face = [];
+    var i = 0, len = 6;
+    while(i < len){
+        var vectors = posVectors.slice(i,  i + 4);
+        face.push({
+           vectors: vectors
+        });
+        i += 1;
+    }
+    console.log(face);
     
 
 
