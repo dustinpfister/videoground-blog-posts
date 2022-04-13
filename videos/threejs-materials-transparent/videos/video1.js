@@ -117,15 +117,13 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
                     demoMod.updateGroup(demoGroup, partPer, function(mesh, i, len, group, loopPer){
-
+                        // adjust z posiiton
                         var zDelta = 10 * loopPer * -1;
                         mesh.position.z += zDelta;
+                        mesh.position.z = THREE.MathUtils.euclideanModulo(mesh.position.z + 5, 10) - 5; 
+                        // set opacity based on z position
+                        mesh.material.opacity = 1 - 1 * (Math.abs(mesh.position.z) / 5);
 
-/*
-                        var orderPer = i / (len - 1),
-                        orderBias = 1 - Math.abs(orderPer - 0.5) / 0.5;
-                        mesh.material.opacity = 1 * orderBias;
-*/
                     });
                 }
             }
