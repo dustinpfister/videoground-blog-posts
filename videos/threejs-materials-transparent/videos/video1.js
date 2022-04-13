@@ -1,3 +1,12 @@
+
+ 
+300
+
+600
+
+383 / 600
+video1.js
+
 // scripts
 VIDEO.scripts = [
    '../../../js/canvas.js',
@@ -75,8 +84,7 @@ VIDEO.init = function(sm, scene, camera){
     var demoGroup = scene.userData.demoGroup = demoMod.createGroup();
     scene.add(demoGroup);
 
-demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){
-                    });
+    //demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){});
 
 
     // SET UP SEQ OBJECT
@@ -132,12 +140,16 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     Sequences.update(sm.seq, sm);
     // update demoMod outside of seq
     demoMod.updateGroup(scene.userData.demoGroup, per, function(mesh, i, len, group, loopPer){
-        // adjust z posiiton
+        // adjust posiitons
         var zDelta = 10 * loopPer * -1;
         mesh.position.z += zDelta;
-        mesh.position.z = THREE.MathUtils.euclideanModulo(mesh.position.z + 5, 10) - 5; 
-        // set opacity based on z position
-        //mesh.material.opacity = 1 - 1 * (Math.abs(mesh.position.z) / 5);
+        mesh.position.z = THREE.MathUtils.euclideanModulo(mesh.position.z + 5, 10) - 5;
+
+        var xDelta = 4 + Math.pow(10, 0 + Math.abs(mesh.position.z / 5) ) * -1;
+        mesh.position.x += xDelta;
+        mesh.position.x = THREE.MathUtils.euclideanModulo(mesh.position.x + 5, 10) - 5;
+
+        // set opacity based on distance
         var d = mesh.position.distanceTo( new THREE.Vector3(0, 0, 0) );
         var dPer = d / 5;
         dPer = dPer > 1 ? 1 : dPer;
@@ -145,4 +157,5 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     });
 };
+
 
