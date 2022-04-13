@@ -29,34 +29,49 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
-    // MESH OBJECTS
-    var demoGroup = scene.userData.demoGroup = new THREE.Group();
-    scene.add(demoGroup);
-    var i = 0, len = 5;
-    while(i < len){
-        var material = new THREE.MeshNormalMaterial({
-            transparent: true,
-            opacity: 0.2
-        });
-        var mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), material );
-        demoGroup.add(mesh);
-        i += 1;
-    }
+    var demoMod = {};
+
+    demoMod.createGroup = function(){
+        // MESH OBJECTS
+        var demoGroup = scene.userData.demoGroup = new THREE.Group();
+        scene.add(demoGroup);
+        var i = 0, len = 10;
+        while(i < len){
+            var material = new THREE.MeshNormalMaterial({
+                transparent: true,
+                opacity: 0.2
+            });
+            var mesh = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), material );
+            demoGroup.add(mesh);
+            i += 1;
+        }
+        return demoGroup;
+    };
+
+    var demoGroup = demoMod.createGroup();
+
+
 
     var demoGroupInit = function(demoGroup, forMesh){
         forMesh = forMesh || function(){};
-        var len = demoGroup.children.length; 
+        var len = demoGroup.children.length;
+
         demoGroup.children.forEach(function(mesh, i){
-            mesh.material.opacity = 0.0;
+            // default values for demo group
+            mesh.material.opacity = 1.0;
             mesh.position.x = 0;
             mesh.position.z = -5 + 10 * (i / (len -1 ));
             mesh.scale.set(1, 1, 1);
             mesh.rotation.set(0, 0, 0);
+            // call for mesh method for the current mesh
             forMesh(mesh, i);
         });
+        // values for the group as a whole
         demoGroup.position.set(0, 0, 0);
         demoGroup.rotation.set(0, 0, 0);
     };
+
+demoGroupInit(demoGroup);
 
 
     // SET UP SEQ OBJECT
@@ -73,10 +88,6 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
-                    // demoGroup
-                    demoGroupInit(demoGroup);
-                    var mesh = demoGroup.children[2];
-                    mesh.material.opacity = 1;
                 }
             },
             {
@@ -90,10 +101,6 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
-                    // demoGroup
-                    demoGroupInit(demoGroup);
-                    var mesh = demoGroup.children[2];
-                    mesh.material.opacity = 1;
                 }
             },
             // sq1 - single mesh object scales up and down, camera changes position, and 
@@ -105,14 +112,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
-                    // demoGroup - init with opacity going up to 1 for all mesh objects
-                    demoGroupInit(demoGroup, function(mesh, i){
-                        mesh.material.opacity = partPer;
-                    });
-                    // mesh 2 stays at 1, and scales up and down alone
-                    var mesh = demoGroup.children[2];
-                    mesh.material.opacity = 1;
-                    mesh.scale.multiplyScalar(1 + 3 * partBias);
+                    
                 }
             },
             // sq2 - move, rotate, and scale all cubes togetaher
@@ -123,23 +123,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(10, 6, 10);
                     camera.lookAt(0, 0, 0);
-                    // demoGroup - init with opacity going up to 1 for all mesh objects
-                    demoGroupInit(demoGroup, function(mesh, i){
-                        mesh.material.opacity = 1;
-                        // POSITION FOR EACH MESH
-                        var orderPer = i / (len -1 ),
-                        orderBias = 1 - Math.abs(0.5 - orderPer) / 0.5,
-                        radian = Math.PI * 0.5 + (-Math.PI + Math.PI * orderBias) * partPer,
-                        radius = 5 - 10 * orderPer;
-                        mesh.position.x = Math.cos(radian) * radius;
-                        mesh.position.z = Math.sin(radian) * radius;
-                        // SCALE FOR EACH MESH
-                        var scalar = 1 + ( -0.25 + 1.50 * orderPer * partPer) * orderPer;
-                        mesh.scale.multiplyScalar(scalar);
-                        // ROTATION FOR EACH MESH
-                        mesh.rotation.y = Math.PI * 0.25 * partPer * orderPer;
-                        mesh.rotation.x = Math.PI * 2 * orderPer * partPer;
-                    });
+
                 }
             }
         ]
