@@ -43,8 +43,13 @@ VIDEO.init = function(sm, scene, camera){
 
 
 
-    console.log(pos);
-    console.log(norm);
+    console.log('pos', pos);
+    console.log('norm', norm);
+    console.log('groups', cube.geometry.groups)
+
+//console.log( pos.array.slice(0, 3 * 6) );
+
+
 
 //    var v = 0;
 //    while(v < pos.count){
