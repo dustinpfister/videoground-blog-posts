@@ -122,7 +122,12 @@ VIDEO.init = function(sm, scene, camera){
                         mesh.position.z += zDelta;
                         mesh.position.z = THREE.MathUtils.euclideanModulo(mesh.position.z + 5, 10) - 5; 
                         // set opacity based on z position
-                        mesh.material.opacity = 1 - 1 * (Math.abs(mesh.position.z) / 5);
+                        //mesh.material.opacity = 1 - 1 * (Math.abs(mesh.position.z) / 5);
+                        var d = mesh.position.distanceTo( new THREE.Vector3(0, 0, 0) );
+                        var dPer = d / 5;
+                        dPer = dPer > 1 ? 1 : dPer;
+                        mesh.material.opacity = 1 - dPer;
+
 
                     });
                 }
