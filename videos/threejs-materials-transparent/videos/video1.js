@@ -146,6 +146,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
         dPer = dPer > 1 ? 1 : dPer;
         mesh.material.opacity = 1 - dPer;
 
+        // look at center
+        mesh.lookAt(scene.userData.demoGroup.position);
+        mesh.rotation.y += Math.PI / 180 * 45;
+
     });
 };
 
