@@ -1,12 +1,3 @@
-
- 
-300
-
-600
-
-383 / 600
-video1.js
-
 // scripts
 VIDEO.scripts = [
    '../../../js/canvas.js',
@@ -145,7 +136,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
         mesh.position.z += zDelta;
         mesh.position.z = THREE.MathUtils.euclideanModulo(mesh.position.z + 5, 10) - 5;
 
-        var xDelta = 4 + Math.pow(10, 0 + Math.abs(mesh.position.z / 5) ) * -1;
+        var xDelta = 3.5 + Math.pow(8, Math.abs(mesh.position.z / 5) ) * -1;
         mesh.position.x += xDelta;
         mesh.position.x = THREE.MathUtils.euclideanModulo(mesh.position.x + 5, 10) - 5;
 
@@ -157,5 +148,4 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     });
 };
-
 
