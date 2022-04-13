@@ -18,8 +18,7 @@
 
 <!--  TRAFFIC -->
 
-### () - video1 for threejs-materials-transparent ( 447 - 3mo - 4/11/2022 )
-* start a video1 
+
 
 ### () - video1 for threejs-object3d-get-world-position ( 429 - 3mo - 4/11/2022 )
 * get world position demo video
@@ -66,6 +65,9 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/13/2022 ) - video1 for threejs-materials-transparent ( 447 - 3mo - 4/11/2022 )
+* (done) start a video1 
 
 ### ( done 04/11/2022 ) - video1 for threejs-object3d-scale
 * (done) start a video1 for threejs-object3d-scale
