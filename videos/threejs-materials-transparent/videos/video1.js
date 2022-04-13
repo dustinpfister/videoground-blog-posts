@@ -5,36 +5,12 @@ VIDEO.scripts = [
    '../../../js/sequences.js'
 ];
  
-// init method for the video
-VIDEO.init = function(sm, scene, camera){
- 
-    // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
-    scene.add( new THREE.GridHelper(10, 10, '#ffffff', '#00afaf') );
- 
-    // TEXT CUBE
-    var textCube = scene.userData.textCube = CanvasTextCube.create({
-        width: 128,
-        height: 128,
-        lineWidth: 7,
-        lineColor: 'rgba(0,100,128,0.8)',
-        lineCount: 9,
-        lines: [
-            ['Transparent', 64, 17, 16, 'white'],
-            ['Materials', 64, 32, 16, 'white'],
-            ['in Three.js.', 64, 47, 16, 'white'],
-            ['( r135 04/13/2022 )', 64, 70, 12, 'gray'],
-            ['video1', 64, 100, 10, 'gray']
-        ]
-    });
-    scene.add(textCube);
- 
-    var demoMod = {};
+
+var demoMod = {};
 
     // create a new demo group object
     demoMod.createGroup = function(){
-        var demoGroup = scene.userData.demoGroup = new THREE.Group();
-        scene.add(demoGroup);
+        var demoGroup = new THREE.Group();
         var i = 0, len = 10;
         while(i < len){
             var material = new THREE.MeshNormalMaterial({
@@ -68,15 +44,39 @@ VIDEO.init = function(sm, scene, camera){
         demoGroup.rotation.set(0, 0, 0);
     };
 
+// init method for the video
+VIDEO.init = function(sm, scene, camera){
+ 
+    // BACKGROUND
+    scene.background = new THREE.Color('#2a2a2a');
+    scene.add( new THREE.GridHelper(10, 10, '#ffffff', '#00afaf') );
+ 
+    // TEXT CUBE
+    var textCube = scene.userData.textCube = CanvasTextCube.create({
+        width: 128,
+        height: 128,
+        lineWidth: 7,
+        lineColor: 'rgba(0,100,128,0.8)',
+        lineCount: 9,
+        lines: [
+            ['Transparent', 64, 17, 16, 'white'],
+            ['Materials', 64, 32, 16, 'white'],
+            ['in Three.js.', 64, 47, 16, 'white'],
+            ['( r135 04/13/2022 )', 64, 70, 12, 'gray'],
+            ['video1', 64, 100, 10, 'gray']
+        ]
+    });
+    scene.add(textCube);
+ 
+    
+
 
     // create a demo group with the demoMod method
     var demoGroup = demoMod.createGroup();
+    scene.add(demoGroup);
 
-
-    demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){
-       
-      
-    });
+demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){
+                    });
 
 
     // SET UP SEQ OBJECT
@@ -116,7 +116,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
-                    demoMod.updateGroup(demoGroup, partPer, function(mesh, i, len, group, loopPer){
+                    demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){
                         // adjust z posiiton
                         var zDelta = 10 * loopPer * -1;
                         mesh.position.z += zDelta;
@@ -127,8 +127,6 @@ VIDEO.init = function(sm, scene, camera){
                         var dPer = d / 5;
                         dPer = dPer > 1 ? 1 : dPer;
                         mesh.material.opacity = 1 - dPer;
-
-
                     });
                 }
             }
