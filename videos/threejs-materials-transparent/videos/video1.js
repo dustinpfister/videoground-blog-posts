@@ -49,7 +49,7 @@ VIDEO.init = function(sm, scene, camera){
     };
 
     // update a demoGroup object
-    demoMod.updateGroup = function(demoGroup, forMesh){
+    demoMod.updateGroup = function(demoGroup, loopPer, forMesh){
         forMesh = forMesh || function(){};
         var len = demoGroup.children.length;
         // for each child in the group
@@ -61,7 +61,7 @@ VIDEO.init = function(sm, scene, camera){
             mesh.scale.set(1, 1, 1);
             mesh.rotation.set(0, 0, 0);
             // call for mesh method for the current mesh
-            forMesh(mesh, i, len, demoGroup);
+            forMesh(mesh, i, len, demoGroup, loopPer);
         });
         // values for the group as a whole
         demoGroup.position.set(0, 0, 0);
@@ -73,11 +73,9 @@ VIDEO.init = function(sm, scene, camera){
     var demoGroup = demoMod.createGroup();
 
 
-
-
-    demoMod.updateGroup(demoGroup, function(mesh, i, len, group){
-        var orderPer = i / (len - 1); 
-        mesh.material.opacity = 0.2 + 0.8 * orderPer;
+    demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){
+       
+      
     });
 
 
@@ -110,8 +108,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - single mesh object scales up and down, camera changes position, and 
-            // all other mesh objects become visable by end of sequence
+            // sq1 - 
             {
                 per: 0.15,
                 init: function(sm){},
@@ -119,18 +116,17 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
-                    
-                }
-            },
-            // sq2 - move, rotate, and scale all cubes togetaher
-            {
-                per: 0.50,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
-                    // camera
-                    camera.position.set(10, 6, 10);
-                    camera.lookAt(0, 0, 0);
+                    demoMod.updateGroup(demoGroup, partPer, function(mesh, i, len, group, loopPer){
 
+                        var zDelta = 10 * loopPer * -1;
+                        mesh.position.z += zDelta;
+
+/*
+                        var orderPer = i / (len - 1),
+                        orderBias = 1 - Math.abs(orderPer - 0.5) / 0.5;
+                        mesh.material.opacity = 1 * orderBias;
+*/
+                    });
                 }
             }
         ]
