@@ -31,8 +31,8 @@ VIDEO.init = function(sm, scene, camera){
  
     var demoMod = {};
 
+    // create a new demo group object
     demoMod.createGroup = function(){
-        // MESH OBJECTS
         var demoGroup = scene.userData.demoGroup = new THREE.Group();
         scene.add(demoGroup);
         var i = 0, len = 10;
@@ -48,30 +48,37 @@ VIDEO.init = function(sm, scene, camera){
         return demoGroup;
     };
 
-    var demoGroup = demoMod.createGroup();
-
-
-
-    var demoGroupInit = function(demoGroup, forMesh){
+    // update a demoGroup object
+    demoMod.updateGroup = function(demoGroup, forMesh){
         forMesh = forMesh || function(){};
         var len = demoGroup.children.length;
-
+        // for each child in the group
         demoGroup.children.forEach(function(mesh, i){
             // default values for demo group
             mesh.material.opacity = 1.0;
             mesh.position.x = 0;
-            mesh.position.z = -5 + 10 * (i / (len -1 ));
+            mesh.position.z = 5 - 10 * (i / (len -1 ));
             mesh.scale.set(1, 1, 1);
             mesh.rotation.set(0, 0, 0);
             // call for mesh method for the current mesh
-            forMesh(mesh, i);
+            forMesh(mesh, i, len, demoGroup);
         });
         // values for the group as a whole
         demoGroup.position.set(0, 0, 0);
         demoGroup.rotation.set(0, 0, 0);
     };
 
-demoGroupInit(demoGroup);
+
+    // create a demo group with the demoMod method
+    var demoGroup = demoMod.createGroup();
+
+
+
+
+    demoMod.updateGroup(demoGroup, function(mesh, i, len, group){
+        var orderPer = i / (len - 1); 
+        mesh.material.opacity = 0.2 + 0.8 * orderPer;
+    });
 
 
     // SET UP SEQ OBJECT
