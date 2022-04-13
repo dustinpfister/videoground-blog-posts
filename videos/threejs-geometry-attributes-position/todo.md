@@ -1,7 +1,8 @@
 ## threejs-geometry-attributes-position video todo list
 
+## () - just work soemthing out for video 1
+* find a system for moving each face
 
-## ( ) - start video1
-* have a box geometry
-* have each triangle of the box geomety move out from the center of the box
-
+## ( done 04/13/2022 ) - start video1
+* (done) have a box geometry
+* (done) using normals as a way to move points
