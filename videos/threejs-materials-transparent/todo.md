@@ -1,8 +1,8 @@
 ## threejs-materials-transparent video todo list
 
-## () - video1 - more mesh objects
-* have another collection of mesh objects like the first one
-* have this other collection move up and down over the origin
+## ( done 04/13/2022 ) - video1 - more mesh objects
+* (done) have another collection of mesh objects like the first one
+* (done) have this other collection move up and down over the origin
 
 ## ( done 04/13/2022 ) - start video1
 * (done) have a demo group of cubes
