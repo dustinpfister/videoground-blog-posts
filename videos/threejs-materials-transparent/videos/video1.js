@@ -49,7 +49,8 @@ VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
-    scene.add( new THREE.GridHelper(10, 10, '#ffffff', '#00afaf') );
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -151,5 +152,16 @@ VIDEO.update = function(sm, scene, camera, per, bias){
         mesh.rotation.y += Math.PI / 180 * 45;
 
     });
+
+var grid = scene.userData.grid;
+
+grid.material.transparent = true;
+grid.material.opacity = 1 - per;
+   grid.visible = true;
+if( parseFloat(grid.material.opacity) < 0.1){
+   grid.visible = false;
+}
+
+
 };
 
