@@ -58,6 +58,8 @@ console.log(posVectors);
     while(i < len){
         var vectors = posVectors.slice(i,  i + 4);
         face.push({
+           si: i,
+           ei: i + 4,
            vectors: vectors
         });
         i += 1;
