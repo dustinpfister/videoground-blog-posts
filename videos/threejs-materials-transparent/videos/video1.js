@@ -77,6 +77,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(demoGroup);
 
     var demoGroup2 = scene.userData.demoGroup2 = demoMod.createGroup();
+    demoGroup2.rotation.set(1,0,0);
     scene.add(demoGroup2);
 
     //demoMod.updateGroup(demoGroup, 0, function(mesh, i, len, group, loopPer){});
@@ -157,9 +158,17 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     // update demogroup2
     demoMod.updateGroup(scene.userData.demoGroup2, per, function(mesh, i, len, group, loopPer){
         // adjust posiitons
+        var zDelta = 10 * loopPer * -1;
+        mesh.position.z += zDelta;
+        mesh.position.z = THREE.MathUtils.euclideanModulo(mesh.position.z + 5, 10) - 5;
 
+        // set opacity based on distance
+        var d = mesh.position.distanceTo( new THREE.Vector3(0, 0, 0) );
+        var dPer = d / 4;
+        dPer = dPer > 1 ? 1 : dPer;
+        mesh.material.opacity = 1 - dPer;
     });
-
+    scene.userData.demoGroup2.rotation.set(1.57, (Math.PI / 180 * 45) * per,0);
 
     // grid effect
     var grid = scene.userData.grid;
