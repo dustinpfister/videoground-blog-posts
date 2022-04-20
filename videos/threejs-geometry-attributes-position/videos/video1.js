@@ -38,6 +38,24 @@ var CubeDeltas = [
     new THREE.Vector3(0, 0, -2)
 ];
 
+var updateCubeGeo = function(cube, per){
+    var pos = cube.geometry.getAttribute('position'),
+    posHome = cube.userData.posHome;
+    var i = 0;
+    while(i < pos.count){
+        var s = i * 3;
+        var x = pos.array[s],
+        y = pos.array[s + 1],
+        z = pos.array[s + 2]
+        var delta = CubeDeltas[i];
+        pos.array[s] = posHome.array[s] + delta.x * per;
+        pos.array[s + 1] = posHome.array[s + 1] + delta.y * per;
+        pos.array[s + 2] = posHome.array[s + 2] + delta.z * per;
+        i += 1;
+    }
+    pos.needsUpdate = true;
+};
+
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
@@ -57,7 +75,7 @@ VIDEO.init = function(sm, scene, camera){
             ['Position Attribute of', 64, 17, 14, 'white'],
             ['Bufer Geometry', 64, 32, 14, 'white'],
             ['in Three.js.', 64, 47, 14, 'white'],
-            ['( r135 04/13/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 04/20/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
@@ -110,6 +128,31 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
+                    updateCubeGeo(scene.userData.cube, partPer);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10, 6, 10);
+                    camera.lookAt(0, 0, 0);
+                    updateCubeGeo(scene.userData.cube, 1);
+                    cube.rotation.y = Math.PI * 2 * partPer;
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.85,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10, 6, 10);
+                    camera.lookAt(0, 0, 0);
+                    updateCubeGeo(scene.userData.cube, 1 - partPer);
+                    cube.rotation.y = Math.PI * 2 * partPer;
                 }
             }
         ]
@@ -123,10 +166,13 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
 
+
+    var cube = scene.userData.cube;
+    cube.rotation.y = 0;
+/*
     var cube = scene.userData.cube;
     var pos = cube.geometry.getAttribute('position'),
     posHome = cube.userData.posHome;
-
     var i = 0;
     while(i < pos.count){
         var s = i * 3;
@@ -140,6 +186,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
         i += 1;
     }
     pos.needsUpdate = true;
+*/
 
     // sequences
     Sequences.update(sm.seq, sm);

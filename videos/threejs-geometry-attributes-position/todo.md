@@ -1,7 +1,7 @@
 ## threejs-geometry-attributes-position video todo list
 
-## () - try yet again maybe
-* see about making yet another system for moving each face, maybe one that works if I can find a way
+## ( done 04/20 2022 ) - try yet again maybe
+* (done) see about making yet another system for moving each face, maybe one that works if I can find a way
 
 ## ( done 04/13/2022 ) - just work soemthing out for video 1
 * (done) find a system for moving each face
