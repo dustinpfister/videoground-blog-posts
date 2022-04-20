@@ -5,6 +5,39 @@ VIDEO.scripts = [
    '../../../js/sequences.js'
 ];
 
+var CubeDeltas = [
+
+    new THREE.Vector3(3, 0, 0),
+    new THREE.Vector3(3, 0, 0),
+    new THREE.Vector3(3, 0, 0),
+    new THREE.Vector3(3, 0, 0),
+
+    new THREE.Vector3(-3, 0, 0),
+    new THREE.Vector3(-3, 0, 0),
+    new THREE.Vector3(-3, 0, 0),
+    new THREE.Vector3(-3, 0, 0),
+
+    new THREE.Vector3(0, 2, 0),
+    new THREE.Vector3(0, 2, 0),
+    new THREE.Vector3(0, 2, 0),
+    new THREE.Vector3(0, 2, 0),
+
+    new THREE.Vector3(0, -2, 0),
+    new THREE.Vector3(0, -2, 0),
+    new THREE.Vector3(0, -2, 0),
+    new THREE.Vector3(0, -2, 0),
+
+    new THREE.Vector3(0, 0, 2),
+    new THREE.Vector3(0, 0, 2),
+    new THREE.Vector3(0, 0, 2),
+    new THREE.Vector3(0, 0, 2),
+
+    new THREE.Vector3(0, 0, -2),
+    new THREE.Vector3(0, 0, -2),
+    new THREE.Vector3(0, 0, -2),
+    new THREE.Vector3(0, 0, -2)
+];
+
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
@@ -91,12 +124,20 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
 
     var cube = scene.userData.cube;
-    var pos = cube.geometry.getAttribute('position');
+    var pos = cube.geometry.getAttribute('position'),
+    posHome = cube.userData.posHome;
 
-    var v = 0;
-    while(v < pos.count){
-
-        v += 1;
+    var i = 0;
+    while(i < pos.count){
+        var s = i * 3;
+        var x = pos.array[s],
+        y = pos.array[s + 1],
+        z = pos.array[s + 2]
+        var delta = CubeDeltas[i];
+        pos.array[s] = posHome.array[s] + delta.x * bias;
+        pos.array[s + 1] = posHome.array[s + 1] + delta.y * bias;
+        pos.array[s + 2] = posHome.array[s + 2] + delta.z * bias;
+        i += 1;
     }
     pos.needsUpdate = true;
 
