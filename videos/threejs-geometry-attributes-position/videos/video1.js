@@ -5,21 +5,6 @@ VIDEO.scripts = [
    '../../../js/sequences.js'
 ];
 
-var getMeanVector = function(vectors){
-    var mean = vectors.reduce(function(acc, v){
-       acc.x += v.x;
-       acc.y += v.y;
-       acc.z += v.z;
-       return acc;
-    }, new THREE.Vector3(0, 0, 0));
-    mean.x = mean.x / vectors.length;
-    mean.y = mean.y / vectors.length;
-    mean.z = mean.z / vectors.length;
-    // NaN
-    mean.x = String(mean.x) === 'NaN' ? 0 : mean.x;
-    return mean;
-};
-
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
@@ -52,52 +37,8 @@ VIDEO.init = function(sm, scene, camera){
         })
     );
     var pos = cube.geometry.getAttribute('position');
-    //var norm = cube.geometry.getAttribute('normal');
     cube.userData.posHome = pos.clone();
     scene.add(cube);
-
-
-    var posVectors = cube.userData.posVectors = [];
-    var v = 0;
-    while(v < pos.count){
-        //console.log(v, pos.array[v], pos.array[v + 1], pos.array[v + 2]);
-        posVectors.push(new THREE.Vector3(
-            pos.array[v], pos.array[v + 1], pos.array[v + 2]
-        ));
-        v += 1;
-    }
-    console.log(posVectors);
-    // for each face
-    var face = cube.userData.face = [];
-    var i = 0, len = 6;
-    while(i < len){
-        var vectors = posVectors.slice(i,  i + 4);
-        face.push({
-           si: i,
-           ei: i + 4,
-           vectors: vectors,
-           mean: getMeanVector(vectors)
-        });
-        i += 1;
-    }
-    console.log(face);
-    
-
-
-    //console.log('pos', pos);
-    //console.log('norm', norm);
-    //console.log('groups', cube.geometry.groups)
-
-//console.log( pos.array.slice(0, 3 * 6) );
-
-
-
-//    var v = 0;
-//    while(v < pos.count){
-//        console.log(v, pos.array[v], pos.array[v + 1], pos.array[v + 2]);
-//        v += 1;
-//    }
-
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -150,28 +91,14 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
 
     var cube = scene.userData.cube;
-    var posHome = cube.userData.posHome;
     var pos = cube.geometry.getAttribute('position');
-    var norm = cube.geometry.getAttribute('normal');
 
     var v = 0;
     while(v < pos.count){
-        //var vecNorm = new THREE.Vector3(norm.array[v], norm.array[v + 1], norm.array[v + 2]);
-        var vecPosHome = new THREE.Vector3(posHome.array[v], posHome.array[v + 1], posHome.array[v + 2]);
-
-        //pos.array[v] = vecPosHome.x + vecNorm.x * 2 * bias;
-
-        var face = cube.userData.face[ Math.floor(v / 4)],
-        mean = face.mean;
-
-
-        pos.array[v] = vecPosHome.x + mean.x * 2 * bias;
-        pos.array[v + 1] = vecPosHome.y + mean.y * 2 * bias;
-        pos.array[v + 2] = vecPosHome.y + mean.y * 2 * bias;
 
         v += 1;
     }
-pos.needsUpdate = true;
+    pos.needsUpdate = true;
 
     // sequences
     Sequences.update(sm.seq, sm);
