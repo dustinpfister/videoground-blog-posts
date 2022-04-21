@@ -22,9 +22,9 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['The Standard', 64, 17, 16, 'white'],
-            ['Material', 64, 32, 16, 'white'],
-            ['in Three.js.', 64, 47, 16, 'white'],
+            ['Plane Geometry', 64, 17, 15, 'white'],
+            ['Mutation of Points', 64, 32, 15, 'white'],
+            ['in Three.js.', 64, 47, 15, 'white'],
             ['( r135 04/21/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
