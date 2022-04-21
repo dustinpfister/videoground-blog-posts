@@ -19,6 +19,19 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     geo.computeVertexNormals();
 };
 
+var yDeltas = [
+    [4, -6],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0]
+];
+
+// update plane helper
 var updatePlane = function(geo, per){
     per = per === undefined ? 0 : per;
     // for each point in the position attribute
@@ -26,7 +39,9 @@ var updatePlane = function(geo, per){
     var i = 0,
     len = pos.count;
     while(i < pos.count){
-        adjustPlanePoint(geo, i, -0.1);
+        var yd = yDeltas[i];
+        var y = -0.1 + yd[0] + yd[1] * per;
+        adjustPlanePoint(geo, i, y);
         i += 1;
     }
 };
@@ -62,43 +77,32 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
  
 
-// MESH
-var geo = scene.userData.geo = new THREE.PlaneGeometry(10, 10, 2, 2);
-geo.rotateX(Math.PI * 1.5);
-// USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-// Using the seeded random method of the MathUtils object
-var width = 16, height = 16;
-var size = width * height;
-var data = new Uint8Array( 4 * size );
-for ( let i = 0; i < size; i ++ ) {
-    var stride = i * 4;
-    var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
-    data[ stride ] = v;
-    data[ stride + 1 ] = v;
-    data[ stride + 2 ] = v;
-    data[ stride + 3 ] = 255;
-}
-var texture = new THREE.DataTexture( data, width, height );
-texture.needsUpdate = true;
-var plane = scene.userData.plane = new THREE.Mesh(
+    // MESH
+    var geo = scene.userData.geo = new THREE.PlaneGeometry(10, 10, 2, 2);
+    geo.rotateX(Math.PI * 1.5);
+    // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
+    // Using the seeded random method of the MathUtils object
+    var width = 16, height = 16;
+    var size = width * height;
+    var data = new Uint8Array( 4 * size );
+    for ( let i = 0; i < size; i ++ ) {
+        var stride = i * 4;
+        var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+        data[ stride ] = v;
+        data[ stride + 1 ] = v;
+        data[ stride + 2 ] = v;
+        data[ stride + 3 ] = 255;
+    }
+    var texture = new THREE.DataTexture( data, width, height );
+    texture.needsUpdate = true;
+    var plane = scene.userData.plane = new THREE.Mesh(
         geo,
         new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture }));
-plane.position.set(0, 0, 0);
-scene.add(plane);
+    plane.position.set(0, 0, 0);
+    scene.add(plane);
   
-
-
-updatePlane(geo, 0);
-/* 
-    // for each point in the position attribute
-    var pos = geo.getAttribute('position');
-    var i = 0,
-    len = pos.count;
-    while(i < pos.count){
-        adjustPlanePoint(geo, i, -0.1);
-        i += 1;
-    }
-*/
+    // call update plane for first time
+    updatePlane(geo, 0);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -153,6 +157,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
 
     var geo = scene.userData.geo;
+    updatePlane(geo, per);
     //adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
     //adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
 
