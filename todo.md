@@ -2,6 +2,9 @@
 
 <!-- FOR NEW POSTS -->
 
+### () - video1 for threejs-examples-weird-walk-one
+* video1 done for this
+
 <!-- FOR FULL EDITS -->
 
 ### () - video1 for threejs-scene
