@@ -97,7 +97,7 @@ VIDEO.init = function(sm, scene, camera){
     texture.needsUpdate = true;
     var plane = scene.userData.plane = new THREE.Mesh(
         geo,
-        new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture }));
+        new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture, side: THREE.DoubleSide }));
     plane.position.set(0, 0, 0);
     scene.add(plane);
   
