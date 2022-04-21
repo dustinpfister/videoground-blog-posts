@@ -44,7 +44,7 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     geo.computeVertexNormals();
 };
 // MESH
-var geo = new THREE.PlaneGeometry(1, 1, 2, 2);
+var geo = new THREE.PlaneGeometry(10, 10, 2, 2);
 geo.rotateX(Math.PI * 1.5);
 // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
 // Using the seeded random method of the MathUtils object
@@ -64,6 +64,7 @@ texture.needsUpdate = true;
 var plane = scene.userData.plane = new THREE.Mesh(
         geo,
         new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture }));
+plane.position.set(0, -0.1, 0);
 scene.add(plane);
    
 
