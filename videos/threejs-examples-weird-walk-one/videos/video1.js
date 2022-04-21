@@ -122,10 +122,13 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
-                    // camera
-                    camera.position.set(8, 1, 0);
                     var v = guy.position.clone(),
                     len = v.length();
+                    // camera
+                    var camPos = new THREE.Vector3(8, 1, 0);
+                    // BOOK MARK
+                    camera.position.copy(camPos);
+                    // look at
                     camera.lookAt(v.clone().normalize().multiplyScalar(len * partPer));
                 }
             },
@@ -176,19 +179,10 @@ var guy = scene.userData.guy;
             var body = guy.getObjectByName(guy.name + '_body');
             body.rotation.y = -0.5 + 1 * v.bias;
 
-
             //var v = getFrameValues(frame, maxFrame, 40);
             //weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 300 );
             //weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 300 );
 
-            // update camera
-/*
-            var v = getFrameValues(frame, maxFrame, 1);
-            camera.position.copy(guy.position).add(new THREE.Vector3(4, 2, 4));
-            var a = new THREE.Vector3(0, 0, 0);
-            guy.getWorldPosition(a);
-            camera.lookAt(a.add(new THREE.Vector3( 1 - 2 * v.bias, -1, 0)));
-*/
 
     // sequences
     Sequences.update(sm.seq, sm);
