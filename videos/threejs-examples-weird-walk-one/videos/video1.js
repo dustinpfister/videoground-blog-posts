@@ -99,6 +99,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     // camera
+                    camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
 
                 }
@@ -112,6 +113,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.position.set(6, 0.8 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
+                    camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -121,10 +123,20 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
+                    camera.position.set(8, 1, 0);
                     var v = guy.position.clone(),
                     len = v.length();
-
                     camera.lookAt(v.clone().normalize().multiplyScalar(len * partPer));
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(guy.position);
                 }
             }
         ]
