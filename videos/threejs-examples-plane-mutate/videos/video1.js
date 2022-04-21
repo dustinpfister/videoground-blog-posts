@@ -19,6 +19,18 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
     geo.computeVertexNormals();
 };
 
+var updatePlane = function(geo, per){
+    per = per === undefined ? 0 : per;
+    // for each point in the position attribute
+    var pos = geo.getAttribute('position');
+    var i = 0,
+    len = pos.count;
+    while(i < pos.count){
+        adjustPlanePoint(geo, i, -0.1);
+        i += 1;
+    }
+};
+
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
@@ -73,7 +85,20 @@ var plane = scene.userData.plane = new THREE.Mesh(
         new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture }));
 plane.position.set(0, 0, 0);
 scene.add(plane);
-   
+  
+
+
+updatePlane(geo, 0);
+/* 
+    // for each point in the position attribute
+    var pos = geo.getAttribute('position');
+    var i = 0,
+    len = pos.count;
+    while(i < pos.count){
+        adjustPlanePoint(geo, i, -0.1);
+        i += 1;
+    }
+*/
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -128,8 +153,8 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
 
     var geo = scene.userData.geo;
-    adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
-    adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
+    //adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
+    //adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
 
     // sequences
     Sequences.update(sm.seq, sm);
