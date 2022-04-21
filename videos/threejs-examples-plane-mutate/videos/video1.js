@@ -141,8 +141,19 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
-
-
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.5,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    var r = Math.PI * 0.25 + Math.PI * 2 * partPer;
+                    var x = Math.cos(r) * 14;
+                    var z = Math.sin(r) * 14;
+                    camera.position.set(x, 6, z);
+                    camera.lookAt(0, 0, 0);
                 }
             }
         ]
@@ -158,8 +169,6 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     var geo = scene.userData.geo;
     updatePlane(geo, per);
-    //adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
-    //adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
 
     // sequences
     Sequences.update(sm.seq, sm);
