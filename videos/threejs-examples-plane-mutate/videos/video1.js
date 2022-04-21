@@ -20,15 +20,15 @@ var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
 };
 
 var yDeltas = [
-    [4, -6],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0]
+    [4, -2],
+    [2, -1],
+    [0.1, 1],
+    [-1.0, 1],
+    [-1.0, 1],
+    [-2.0, 4],
+    [-1.0, 6],
+    [-2.0, 1],
+    [-2.0, 1]
 ];
 
 // update plane helper
@@ -73,7 +73,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(10, 4, 0);
+    dl.position.set(0, 6, -9);
     scene.add(dl);
  
 
