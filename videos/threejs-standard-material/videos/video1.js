@@ -56,13 +56,13 @@ VIDEO.init = function(sm, scene, camera){
     texture.needsUpdate = true;
    
     // A MESH OBJECT
-    var mesh = new THREE.Mesh(
+    var mesh1 = scene.userData.mesh1 = new THREE.Mesh(
         new THREE.BoxGeometry(2.5, 2.5, 2.5),
         new THREE.MeshStandardMaterial({
             map: texture
         })
     );
-    scene.add(mesh);
+    scene.add(mesh1);
 
 
     // SET UP SEQ OBJECT
@@ -102,6 +102,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // rotate mesh 1
+                    mesh1.rotation.y = Math.PI * 2 * partPer;
+                    mesh1.rotation.x = Math.PI * 4 * partPer;
 
                 }
             }
@@ -115,6 +118,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
+    var mesh1 = scene.userData.mesh1;
+    mesh1.rotation.set(0, 0, 0);
 
     // sequences
     Sequences.update(sm.seq, sm);
