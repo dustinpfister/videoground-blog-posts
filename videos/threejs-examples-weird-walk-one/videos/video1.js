@@ -3,17 +3,32 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   './guy-weird.js'
 ];
 
+    // ********** **********
+    // HELPER METHODS
+    // ********** **********
+    // give frame, maxframe, and count to get values like per, bias, ect
+    var getFrameValues = function(frame, maxFrame, count){
+        count = count === undefined ? 1 : count;
+        var values = {
+            frame: frame, 
+            maxFrame: maxFrame
+        };
+        values.per = frame / maxFrame * count % 1;
+        values.bias = 1 - Math.abs(0.5 - values.per) / 0.5;
+        return values;
+    };
 
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -32,6 +47,49 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    var dl = new THREE.DirectionalLight(0xffffff, 0.8);
+    dl.position.set(5, 10, 1);
+    scene.add(dl);
+
+
+    // ********** **********
+    // GROUND MESH
+    // ********** **********
+    var width = 20, height = 100;
+    var size = width * height;
+    var data = new Uint8Array( 4 * size );
+    for ( let i = 0; i < size; i ++ ) {
+        var stride = i * 4;
+        var x = i % width;
+        var y = Math.floor(i / width);
+        //var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+        var v = y % 2 === 0 ? 255 - 200 * (x / width) : 55 + 200 * (x / width);
+        data[ stride ] = 0;
+        data[ stride + 1 ] = v;
+        data[ stride + 2 ] = 0;
+        data[ stride + 3 ] = 255;
+    }
+    var texture = new THREE.DataTexture( data, width, height );
+    texture.needsUpdate = true;
+
+    var ground = new THREE.Mesh( new THREE.BoxGeometry(20, 1, 100), new THREE.MeshStandardMaterial({
+        map: texture
+    }) );
+    ground.position.y = -0.5;
+    scene.add(ground);
+    // ********** **********
+    // WEIRD GUY INSTANCE
+    // ********** **********
+    var guy = scene.userData.guy = weirdGuy.create({
+        guyID: 'mrguy1'
+    });
+    guy.position.y = 2.75;
+    scene.add(guy);
+
+console.log(guy);
+
+    weirdGuy.setWalk(guy, 0);
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -45,8 +103,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
+                    //camera.position.set(8, 1, 0);
+                    //camera.lookAt(0, 0, 0);
                 }
             },
             {
@@ -58,8 +116,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.position.set(6, 0.8 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
+                    //camera.position.set(8, 1, 0);
+                    //camera.lookAt(0, 0, 0);
                 }
             },
             // sq1 - 
@@ -68,21 +126,8 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
-                    camera.lookAt(0, 0, 0);
-                }
-            },
-            // sq2 - 
-            {
-                per: 0.5,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
-                    // camera
-                    var r = Math.PI * 0.25 + Math.PI * 2 * partPer;
-                    var x = Math.cos(r) * 14;
-                    var z = Math.sin(r) * 14;
-                    camera.position.set(x, 6, z);
-                    camera.lookAt(0, 0, 0);
+                    //camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
+                    //camera.lookAt(0, 0, 0);
                 }
             }
         ]
@@ -95,6 +140,46 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
+var frame = sm.frame, maxFrame = sm.frameMax;
+
+
+var guy = scene.userData.guy;
+
+// update guy position over mesh
+
+            var v = getFrameValues(frame, maxFrame, 1);
+            guy.position.z = -10 + 20 * v.per;
+
+            // set walk
+            var v = getFrameValues(frame, maxFrame, 40);
+            weirdGuy.setWalk(guy, v.bias);
+
+            // setting arms
+            var v1 = getFrameValues(frame, maxFrame, 10);
+            var v2 = getFrameValues(frame, maxFrame, 80);
+            var a2 = 360 - (80 + 20 * v2.bias);
+            weirdGuy.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
+            weirdGuy.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
+
+            // body rotation
+            var v = getFrameValues(frame, maxFrame, 1);
+            var body = guy.getObjectByName(guy.name + '_body');
+            body.rotation.y = -0.5 + 1 * v.bias;
+
+
+            //var v = getFrameValues(frame, maxFrame, 40);
+            //weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 300 );
+            //weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 300 );
+
+            // update camera
+/*
+            var v = getFrameValues(frame, maxFrame, 1);
+            camera.position.copy(guy.position).add(new THREE.Vector3(4, 2, 4));
+            var a = new THREE.Vector3(0, 0, 0);
+            guy.getWorldPosition(a);
+            camera.lookAt(a.add(new THREE.Vector3( 1 - 2 * v.bias, -1, 0)));
+*/
 
     // sequences
     Sequences.update(sm.seq, sm);
