@@ -13,9 +13,6 @@
 ### () - video1 for threejs-texture-loader
 * () video1 done
 
-### () - video1 for threejs-examples-plane-mutate
-* () video1 done
-
 <!-- JUST BECAUSE I WANT TO -->
 
 ### () - video1 for threejs-examples-backyard
@@ -70,6 +67,9 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/21/2022 ) - video1 for threejs-examples-plane-mutate
+* (done) video1 done
 
 ### ( done 04/21/2022 ) - video1 for threejs-standard-material
 * (done) video1 done
