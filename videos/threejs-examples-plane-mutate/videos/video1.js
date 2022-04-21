@@ -6,6 +6,19 @@ VIDEO.scripts = [
    '../../../js/sequences.js'
 ];
 
+// ADJUST PLANE POINT HELPER
+var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
+    // get position and normal
+    var position = geo.getAttribute('position');
+    var normal = geo.getAttribute('normal');
+    var i = vertIndex * 3;
+    // ADJUSTING POSITION ( Y Only for now )
+    position.array[i + 1] = yAdjust;
+    position.needsUpdate = true;
+    // ADJUSTING NORMALS USING computeVertexNormals method
+    geo.computeVertexNormals();
+};
+
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
@@ -30,21 +43,15 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(10, 4, 0);
+    scene.add(dl);
  
-// ADJUST PLANE POINT HELPER
-var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
-    // get position and normal
-    var position = geo.getAttribute('position');
-    var normal = geo.getAttribute('normal');
-    var i = vertIndex * 3;
-    // ADJUSTING POSITION ( Y Only for now )
-    position.array[i + 1] = yAdjust;
-    position.needsUpdate = true;
-    // ADJUSTING NORMALS USING computeVertexNormals method
-    geo.computeVertexNormals();
-};
+
 // MESH
-var geo = new THREE.PlaneGeometry(10, 10, 2, 2);
+var geo = scene.userData.geo = new THREE.PlaneGeometry(10, 10, 2, 2);
 geo.rotateX(Math.PI * 1.5);
 // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
 // Using the seeded random method of the MathUtils object
@@ -64,7 +71,7 @@ texture.needsUpdate = true;
 var plane = scene.userData.plane = new THREE.Mesh(
         geo,
         new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture }));
-plane.position.set(0, -0.1, 0);
+plane.position.set(0, 0, 0);
 scene.add(plane);
    
 
@@ -106,8 +113,7 @@ scene.add(plane);
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
 
-    adjustPlanePoint(geo, 1, 0.75 - 1.00 * partBias);
-    adjustPlanePoint(geo, 0, 0 + 0.75 * partBias);
+
                 }
             }
         ]
@@ -120,6 +126,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
+    var geo = scene.userData.geo;
+    adjustPlanePoint(geo, 1, 0.75 - 1.00 * bias);
+    adjustPlanePoint(geo, 0, 0 + 0.75 * bias);
 
     // sequences
     Sequences.update(sm.seq, sm);
