@@ -11,6 +11,8 @@ VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
+
+    // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     scene.add( grid );
  
@@ -31,7 +33,37 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
+    // LIGHT
+    var light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(8, 4, 10);
+    scene.add(light);
+
+
+    // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
+    // Uisng the seeded random method of the MathUtils object
+    var width = 16, height = 16;
+    var size = width * height;
+    var data = new Uint8Array( 4 * size );
+    for ( let i = 0; i < size; i ++ ) {
+    var stride = i * 4;
+    var v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+        data[ stride ] = v;
+        data[ stride + 1 ] = v;
+        data[ stride + 2 ] = v;
+        data[ stride + 3 ] = 255;
+    }
+    var texture = new THREE.DataTexture( data, width, height );
+    texture.needsUpdate = true;
    
+    // A MESH OBJECT
+    var mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(2.5, 2.5, 2.5),
+        new THREE.MeshStandardMaterial({
+            map: texture
+        })
+    );
+    scene.add(mesh);
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -70,6 +102,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
+
                 }
             }
         ]
