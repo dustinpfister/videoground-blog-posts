@@ -105,6 +105,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    updateCubeGeo(scene.userData.cube, 0);
                 }
             },
             {
@@ -118,6 +119,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    updateCubeGeo(scene.userData.cube, 0);
                 }
             },
             // sq1 - 
@@ -166,27 +168,8 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
 
-
     var cube = scene.userData.cube;
     cube.rotation.y = 0;
-/*
-    var cube = scene.userData.cube;
-    var pos = cube.geometry.getAttribute('position'),
-    posHome = cube.userData.posHome;
-    var i = 0;
-    while(i < pos.count){
-        var s = i * 3;
-        var x = pos.array[s],
-        y = pos.array[s + 1],
-        z = pos.array[s + 2]
-        var delta = CubeDeltas[i];
-        pos.array[s] = posHome.array[s] + delta.x * bias;
-        pos.array[s + 1] = posHome.array[s + 1] + delta.y * bias;
-        pos.array[s + 2] = posHome.array[s + 2] + delta.z * bias;
-        i += 1;
-    }
-    pos.needsUpdate = true;
-*/
 
     // sequences
     Sequences.update(sm.seq, sm);

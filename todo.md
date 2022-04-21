@@ -2,19 +2,22 @@
 
 <!-- FOR NEW POSTS -->
 
+<!-- FOR FULL EDITS -->
 
+### () - video1 for threejs-scene
+
+### () - video1 for threejs-emissive-map
+
+### () - video1 for threejs-texture-loader
+
+### () - video1 for threejs-examples-plane-mutate
+
+### () - video1 for threejs-standard-material
 
 <!-- JUST BECAUSE I WANT TO -->
 
-### () - video1 for threejs-materials-transparent
-* start a video1 for threejs-materials-transparent
-
 ### () - video1 for threejs-examples-backyard
 * start a video1 for threejs-examples-backyard
-
-### () - video1 for threejs-examples-hamster-wheel
-* start a video1 for threejs-examples-hamster-wheel off of what I all ready have in test threejs
-
 
 <!--  TRAFFIC -->
 
