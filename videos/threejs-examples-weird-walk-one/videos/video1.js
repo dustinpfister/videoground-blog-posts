@@ -7,20 +7,20 @@ VIDEO.scripts = [
    './guy-weird.js'
 ];
 
-    // ********** **********
-    // HELPER METHODS
-    // ********** **********
-    // give frame, maxframe, and count to get values like per, bias, ect
-    var getFrameValues = function(frame, maxFrame, count){
-        count = count === undefined ? 1 : count;
-        var values = {
-            frame: frame, 
-            maxFrame: maxFrame
-        };
-        values.per = frame / maxFrame * count % 1;
-        values.bias = 1 - Math.abs(0.5 - values.per) / 0.5;
-        return values;
+// ********** **********
+// HELPER METHODS
+// ********** **********
+// give frame, maxframe, and count to get values like per, bias, ect
+var getFrameValues = function(frame, maxFrame, count){
+    count = count === undefined ? 1 : count;
+    var values = {
+        frame: frame, 
+        maxFrame: maxFrame
     };
+    values.per = frame / maxFrame * count % 1;
+    values.bias = 1 - Math.abs(0.5 - values.per) / 0.5;
+    return values;
+};
 
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
@@ -85,11 +85,7 @@ VIDEO.init = function(sm, scene, camera){
     });
     guy.position.y = 2.75;
     scene.add(guy);
-
-console.log(guy);
-
     weirdGuy.setWalk(guy, 0);
-
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -103,8 +99,8 @@ console.log(guy);
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     // camera
-                    //camera.position.set(8, 1, 0);
-                    //camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, 0, 0);
+
                 }
             },
             {
@@ -116,8 +112,7 @@ console.log(guy);
                     textCube.position.set(6, 0.8 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    //camera.position.set(8, 1, 0);
-                    //camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, 0, 0);
                 }
             },
             // sq1 - 
@@ -126,8 +121,10 @@ console.log(guy);
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    //camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
-                    //camera.lookAt(0, 0, 0);
+                    var v = guy.position.clone(),
+                    len = v.length();
+
+                    camera.lookAt(v.clone().normalize().multiplyScalar(len * partPer));
                 }
             }
         ]
