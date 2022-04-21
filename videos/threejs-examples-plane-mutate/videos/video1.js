@@ -126,7 +126,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 1 + 2 * partPer, 0);
+                    textCube.position.set(6, 0.8 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.position.set(8, 1, 0);
