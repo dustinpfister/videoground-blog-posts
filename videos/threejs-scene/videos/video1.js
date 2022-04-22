@@ -10,6 +10,8 @@ VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
+
+    // GRID
     scene.add( new THREE.GridHelper(10, 10, '#ffffff', '#00afaf') );
  
     // TEXT CUBE
@@ -27,6 +29,20 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // LIGHT
+    var lightSphere = scene.userData.lightSphere = new THREE.Mesh( 
+        new THREE.SphereGeometry(0.1, 30, 30), 
+        new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
+    lightSphere.add(new THREE.PointLight(0xffffff, 1));
+    scene.add(lightSphere);
+
+    // mesh 1
+    var mesh1 = new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({
+        color: 0xff0000
+    }));
+    mesh1.position.set(0, 0.5, 0)
+    scene.add(mesh1);
  
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -63,7 +79,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(8, 1 + 3 * partPer, -5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
@@ -77,6 +93,12 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
+    var lightSphere = scene.userData.lightSphere;
+    var r =  Math.PI * 4 * per, 
+    x = Math.cos(r) * 5,
+    z = Math.sin(r) * 5;
+    lightSphere.position.set(x, 2, z);
     // sequences
     Sequences.update(sm.seq, sm);
 };
