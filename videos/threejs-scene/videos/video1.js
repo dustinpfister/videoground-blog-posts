@@ -136,9 +136,29 @@ VIDEO.init = function(sm, scene, camera){
                         1 * partBias,
                         0.5 * partBias,
                         0);
-                    scene.scale.set(1 + 1 * partPer, 1 + 1 * partPer, 1 + 1 * partPer);
+                    scene.scale.set(1 + 1 * partBias, 1 + 1 * partBias, 1 + 1 * partBias);
                 }
-            }    
+            },
+            // sq6 - object3d - end
+            {
+                per: 0.98,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-8, 4, -8);
+                    camera.lookAt(0, 0, 0);
+                    // object3d
+                    scene.rotation.set(
+                        0, 
+                        Math.PI / 180 * 45,
+                        Math.PI * 2);
+                    scene.position.set(
+                        0,
+                        0,
+                        0);
+                    scene.scale.set(1 - 1 * partPer, 1 - 1 * partPer, 1 - 1 * partPer);
+                }
+            }               
         ]
     });
 };
