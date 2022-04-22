@@ -85,7 +85,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             // sq2 - background color
             {
-                per: 0.25,
+                per: 0.20,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
@@ -97,7 +97,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             // sq3 - fog
             {
-                per: 0.50,
+                per: 0.40,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
@@ -109,7 +109,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             // sq4 - material override
             {
-                per: 0.75,
+                per: 0.60,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
@@ -118,7 +118,27 @@ VIDEO.init = function(sm, scene, camera){
                     // mr
                     scene.overrideMaterial = new THREE.MeshNormalMaterial();
                 }
-            },       
+            },
+            // sq5 - object3d
+            {
+                per: 0.80,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-8, 4, -8);
+                    camera.lookAt(0, 0, 0);
+                    // object3d
+                    scene.rotation.set(
+                        0, 
+                        Math.PI / 180 * 45 * partPer,
+                        Math.PI * 2 * partPer);
+                    scene.position.set(
+                        1 * partBias,
+                        0.5 * partBias,
+                        0);
+                    scene.scale.set(1 + 1 * partPer, 1 + 1 * partPer, 1 + 1 * partPer);
+                }
+            }    
         ]
     });
 };
