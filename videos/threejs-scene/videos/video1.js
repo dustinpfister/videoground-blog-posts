@@ -43,6 +43,13 @@ VIDEO.init = function(sm, scene, camera){
     }));
     mesh1.position.set(0, 0.5, 0)
     scene.add(mesh1);
+
+    // mesh 2
+    var mesh2 = new THREE.Mesh( new THREE.SphereGeometry(1, 20, 20), new THREE.MeshStandardMaterial({
+        color: 0x00ff00
+    }));
+    mesh2.position.set(-4, 1.0, 4);
+    scene.add(mesh2);
  
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
