@@ -9,7 +9,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    //scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
     scene.add( new THREE.GridHelper(10, 10, '#ffffff', '#00afaf') );
@@ -82,6 +82,18 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 1 + 3 * partPer, -5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            // sq2 - background color
+            {
+                per: 0.3,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 4, -5);
+                    camera.lookAt(0, 0, 0);
+                    // bg
+                    scene.background = new THREE.Color(0.2, 0.2 + 0.8 * partBias, 0.2);       
+                }
             }
         ]
     });
@@ -94,6 +106,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
 
+    // default scene values
+    scene.background = new THREE.Color(0.2, 0.2, 0.2);
+
+    // move light
     var lightSphere = scene.userData.lightSphere;
     var r =  Math.PI * 4 * per, 
     x = Math.cos(r) * 5,
