@@ -1,4 +1,4 @@
 ## threejs-examples-weird-walk-one video todo list
 
-## (  ) - start video1
-* () just have video1 done for this
+## ( done 04/22/2022 ) - start video1
+* (done) just have video1 done for this

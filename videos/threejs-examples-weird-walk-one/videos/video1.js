@@ -39,10 +39,12 @@ VIDEO.init = function(sm, scene, camera){
             ['Weird Walk', 64, 17, 15, 'white'],
             ['Guy Example', 64, 32, 15, 'white'],
             ['in Three.js.', 64, 47, 15, 'white'],
-            ['( r135 04/21/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 04/22/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
+    //camera.fov = 60;
+    //camera.updateProjectionMatrix();
     camera.add(textCube);
     //camera.add(textCube);
     //scene.add(camera);
@@ -103,8 +105,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     //textCube.position.set(6, 0.8, 0);
                     // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
+                    //camera.position.set(8, 1, 0);
+                    //camera.lookAt(guy.position);
 
                 }
             },
@@ -117,8 +119,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.position.set(0, 2 * partPer, -2);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
+                    //camera.position.set(8, 1, 0);
+                    //camera.lookAt(guy.position);
                 }
             },
             // sq1 - 
@@ -126,6 +128,10 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    //camera.position.set(8, 1, 0);
+                    //camera.lookAt(guy.position);
+/*
                     var v = guy.position.clone(),
                     len = v.length();
                     // camera
@@ -134,16 +140,7 @@ VIDEO.init = function(sm, scene, camera){
                      camera.position.copy(camPos);
                     // look at
                      camera.lookAt(v.clone().normalize().multiplyScalar(len * partPer));
-                }
-            },
-            // sq2 - 
-            {
-                per: 0.35,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
-                    // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(guy.position);
+*/
                 }
             }
         ]
@@ -157,16 +154,15 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.position.set(0, 0, -2);
     textCube.visible = false;
 
-    //camera.position.set(8, 1, 0);
-    //camera.lookAt(0, 0, 0);
-
     var frame = sm.frame, maxFrame = sm.frameMax;
-
 
     var guy = scene.userData.guy;
 
-    // update guy position over mesh
+    // camera
+    camera.position.set(4, 2, 4);
+    camera.lookAt(guy.position.clone().add(new THREE.Vector3(0,-0.50,0)));
 
+    // update guy position over mesh
     var v = getFrameValues(frame, maxFrame, 1);
     guy.position.z = -10 + 20 * v.per;
 

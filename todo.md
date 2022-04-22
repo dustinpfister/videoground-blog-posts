@@ -2,8 +2,7 @@
 
 <!-- FOR NEW POSTS -->
 
-### () - video1 for threejs-examples-weird-walk-one
-* video1 done for this
+
 
 <!-- FOR FULL EDITS -->
 
@@ -70,6 +69,9 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/22/2022 ) - video1 for threejs-examples-weird-walk-one
+* (done) video1 done for this
 
 ### ( done 04/21/2022 ) - video1 for threejs-examples-plane-mutate
 * (done) video1 done
