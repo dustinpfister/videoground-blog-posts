@@ -27,8 +27,6 @@ VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -45,7 +43,9 @@ VIDEO.init = function(sm, scene, camera){
             ['video1', 64, 100, 10, 'gray']
         ]
     });
-    scene.add(textCube);
+    camera.add(textCube);
+    //camera.add(textCube);
+    //scene.add(camera);
 
     var dl = new THREE.DirectionalLight(0xffffff, 0.8);
     dl.position.set(5, 10, 1);
@@ -77,6 +77,7 @@ VIDEO.init = function(sm, scene, camera){
     }) );
     ground.position.y = -0.5;
     scene.add(ground);
+
     // ********** **********
     // WEIRD GUY INSTANCE
     // ********** **********
@@ -86,6 +87,9 @@ VIDEO.init = function(sm, scene, camera){
     guy.position.y = 2.75;
     scene.add(guy);
     weirdGuy.setWalk(guy, 0);
+
+
+    guy.add(camera)
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -97,7 +101,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    //textCube.position.set(6, 0.8, 0);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -110,7 +114,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 2 * partPer, 0);
+                    textCube.position.set(0, 2 * partPer, -2);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.position.set(8, 1, 0);
@@ -125,11 +129,11 @@ VIDEO.init = function(sm, scene, camera){
                     var v = guy.position.clone(),
                     len = v.length();
                     // camera
-                    var camPos = new THREE.Vector3(8, 1, 0);
+                     var camPos = new THREE.Vector3(8, 1, 0);
                     // BOOK MARK
-                    camera.position.copy(camPos);
+                     camera.position.copy(camPos);
                     // look at
-                    camera.lookAt(v.clone().normalize().multiplyScalar(len * partPer));
+                     camera.lookAt(v.clone().normalize().multiplyScalar(len * partPer));
                 }
             },
             // sq2 - 
@@ -150,39 +154,41 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(8, 1, 0);
+    textCube.position.set(0, 0, -2);
     textCube.visible = false;
 
-var frame = sm.frame, maxFrame = sm.frameMax;
+    //camera.position.set(8, 1, 0);
+    //camera.lookAt(0, 0, 0);
+
+    var frame = sm.frame, maxFrame = sm.frameMax;
 
 
-var guy = scene.userData.guy;
+    var guy = scene.userData.guy;
 
-// update guy position over mesh
+    // update guy position over mesh
 
-            var v = getFrameValues(frame, maxFrame, 1);
-            guy.position.z = -10 + 20 * v.per;
+    var v = getFrameValues(frame, maxFrame, 1);
+    guy.position.z = -10 + 20 * v.per;
 
-            // set walk
-            var v = getFrameValues(frame, maxFrame, 40);
-            weirdGuy.setWalk(guy, v.bias);
+    // set walk
+    var v = getFrameValues(frame, maxFrame, 40);
+    weirdGuy.setWalk(guy, v.bias);
 
-            // setting arms
-            var v1 = getFrameValues(frame, maxFrame, 10);
-            var v2 = getFrameValues(frame, maxFrame, 80);
-            var a2 = 360 - (80 + 20 * v2.bias);
-            weirdGuy.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
-            weirdGuy.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
+    // setting arms
+    var v1 = getFrameValues(frame, maxFrame, 10);
+    var v2 = getFrameValues(frame, maxFrame, 80);
+    var a2 = 360 - (80 + 20 * v2.bias);
+    weirdGuy.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
+    weirdGuy.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
 
-            // body rotation
-            var v = getFrameValues(frame, maxFrame, 1);
-            var body = guy.getObjectByName(guy.name + '_body');
-            body.rotation.y = -0.5 + 1 * v.bias;
+    // body rotation
+    var v = getFrameValues(frame, maxFrame, 1);
+    var body = guy.getObjectByName(guy.name + '_body');
+    body.rotation.y = -0.5 + 1 * v.bias;
 
-            //var v = getFrameValues(frame, maxFrame, 40);
-            //weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 300 );
-            //weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 300 );
-
+    //var v = getFrameValues(frame, maxFrame, 40);
+    //weirdGuy.setArm(guy, 1, 180 - 90 * v.bias, 300 );
+    //weirdGuy.setArm(guy, 2, 90 + 90 * v.bias, 300 );
 
     // sequences
     Sequences.update(sm.seq, sm);
