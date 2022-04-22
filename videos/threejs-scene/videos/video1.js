@@ -101,12 +101,24 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 4, -5);
+                    camera.position.set(8 - 16 * partPer, 4, -5 - 3 * partPer);
                     camera.lookAt(0, 0, 0);
                     // fog
-                    scene.fog = new THREE.FogExp2(new THREE.Color(0.2, 0.2, 0.2), 0.25 * partBias);   
+                    scene.fog = new THREE.FogExp2(new THREE.Color(0.2, 0.2, 0.2), 0.50 * partBias);   
                 }
-            },          
+            },
+            // sq4 - material override
+            {
+                per: 0.75,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-8, 4, -8);
+                    camera.lookAt(0, 0, 0);
+                    // mr
+                    scene.overrideMaterial = new THREE.MeshNormalMaterial();
+                }
+            },       
         ]
     });
 };
@@ -122,6 +134,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     var bgColor = new THREE.Color(0.2, 0.2, 0.2);
     scene.background = bgColor;
     scene.fog = new THREE.FogExp2(bgColor, 0.0);
+    scene.overrideMaterial = null;
+    scene.position.set(0, 0, 0);
+    scene.rotation.set(0, 0, 0);
+    scene.scale.set(1, 1, 1);
 
     // move light
     var lightSphere = scene.userData.lightSphere;
