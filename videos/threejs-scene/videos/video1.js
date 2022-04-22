@@ -73,7 +73,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - move camera
             {
                 per: 0.15,
                 init: function(sm){},
@@ -85,7 +85,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             // sq2 - background color
             {
-                per: 0.3,
+                per: 0.25,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
@@ -94,7 +94,19 @@ VIDEO.init = function(sm, scene, camera){
                     // bg
                     scene.background = new THREE.Color(0.2, 0.2 + 0.8 * partBias, 0.2);       
                 }
-            }
+            },
+            // sq3 - fog
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 4, -5);
+                    camera.lookAt(0, 0, 0);
+                    // fog
+                    scene.fog = new THREE.FogExp2(new THREE.Color(0.2, 0.2, 0.2), 0.25 * partBias);   
+                }
+            },          
         ]
     });
 };
@@ -107,7 +119,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
 
     // default scene values
-    scene.background = new THREE.Color(0.2, 0.2, 0.2);
+    var bgColor = new THREE.Color(0.2, 0.2, 0.2);
+    scene.background = bgColor;
+    scene.fog = new THREE.FogExp2(bgColor, 0.0);
 
     // move light
     var lightSphere = scene.userData.lightSphere;
