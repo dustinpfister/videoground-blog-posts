@@ -60,26 +60,21 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
  
 
+
+    var group = scene.userData.group = createGroup(0xff0000); // group 1
+    scene.add(group);
+    group.position.set(-2.0, 0, 0.0);
+    var group2 = scene.userData.group2 = createGroup(0x00ff00); // group2
+    scene.add(group2);
+    group2.position.set(2.0, 0, 0.0);
  
-var group = createGroup(0xff0000); // group 1
-scene.add(group);
-group.position.set(-2.0, 0, 0.0);
-var group2 = createGroup(0x00ff00); // group2
-scene.add(group2);
-group2.position.set(2.0, 0, 0.0);
+    // just look at the ube of the group
+    group.userData.pointer.lookAt(group.userData.cube.position);
  
-// the first group in am just using the look at method, and passing
-// the value of the cube.position instance of vector3. THIS RESULTS IN THE
-// CONE NOT POINTING AT THE CUBE, but at the location of the cube if it where
-// positioned relative to world space rather than a location relative to the group
-group.userData.pointer.lookAt(group.userData.cube.position);
- 
-// IF I WANT TO HAVE THE POINTER LOOK AT THE CUBE
-// THAT IS A CHILD OF THE GROUP, THEN I WILL WANT TO ADJUST
-// FOR THAT FOR THIS THERE IS THE getWorldPosition METHOD
-var v = new THREE.Vector3(0, 0, 0);
-group2.userData.cube.getWorldPosition(v);
-group2.userData.pointer.lookAt(v);
+    // use the getWorldPosition off of the cube to get the location in world space
+    var v = new THREE.Vector3(0, 0, 0);
+    group2.userData.cube.getWorldPosition(v);
+    group2.userData.pointer.lookAt(v);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -91,9 +86,9 @@ group2.userData.pointer.lookAt(v);
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(0, 0.8, 6);
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(0, 1, 8);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -103,10 +98,10 @@ group2.userData.pointer.lookAt(v);
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 2 * partPer, 0);
+                    textCube.position.set(0, 0.8 + 2 * partPer, 6);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(0, 1, 8);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -125,8 +120,12 @@ group2.userData.pointer.lookAt(v);
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(6, 0, 0);
+    textCube.position.set(0, 0, 6);
     textCube.visible = false;
+
+var group = scene.userData.group,
+group2 = scene.userData.group2;
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
