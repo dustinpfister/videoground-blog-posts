@@ -22,11 +22,6 @@
 
 <!--  TRAFFIC -->
 
-
-
-### () - video1 for threejs-object3d-get-world-position ( 429 - 3mo - 4/11/2022 )
-* get world position demo video
-
 ### () - video1 for threejs-geometry-attributes-position ( 406 - 3mo - 4/11/2022 )
 * start a video1 for position attribute
 
@@ -69,6 +64,9 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/24/2022 ) - video1 for threejs-object3d-get-world-position ( 429 - 3mo - 4/11/2022 )
+* (done) get world position demo video
 
 ### ( done 04/22/2022 ) - video1 for threejs-examples-weird-walk-one
 * (done) video1 done for this
