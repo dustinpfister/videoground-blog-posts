@@ -67,7 +67,7 @@ VIDEO.init = function(sm, scene, camera){
 
 
     // freeCube at 0,0,11
-    var freeCube = group.userData.cube = new THREE.Mesh(
+    var freeCube = scene.userData.freeCube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
     freeCube.position.set(0, 0, 1);
