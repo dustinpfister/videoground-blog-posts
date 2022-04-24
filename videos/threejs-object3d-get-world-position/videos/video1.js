@@ -60,13 +60,11 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
  
 
-
     var group = scene.userData.group = createGroup(0xff0000); // group 1
     scene.add(group);
-    group.position.set(-2.0, 0, 0.0);
     var group2 = scene.userData.group2 = createGroup(0x00ff00); // group2
     scene.add(group2);
-    group2.position.set(2.0, 0, 0.0);
+
 
     // cube at 0,0,11
     var cube = group.userData.cube = new THREE.Mesh(
@@ -117,6 +115,43 @@ VIDEO.init = function(sm, scene, camera){
                     group2.position.z = -2 * partPer;
 
                 }
+            },
+            {
+                per: 0.40,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 5, 8);
+                    camera.lookAt(0, 0, 0);
+
+                    group.position.z = 2;
+                    group2.position.z = -2;
+
+                    group.rotation.set(0.0, Math.PI / 2 * partPer, 0.0);
+                    group2.rotation.set(0.0, Math.PI / 2 * partPer * -1, 0.0);
+
+                }
+            },
+            {
+                per: 0.60,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 5, 8);
+                    camera.lookAt(0, 0, 0);
+
+                    group.position.z = 2;
+                    group2.position.z = -2;
+
+                    group.position.x = -2 + 4 * partPer;
+                    group2.position.x = 2 - 4 * partPer;
+
+                    group.rotation.set(0.0, Math.PI / 2, 0.0);
+                    group2.rotation.set(0.0, Math.PI / 2 * -1, 0.0);
+
+                    
+
+                }
             }
         ]
     });
@@ -129,9 +164,13 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.position.set(0, 0, 6);
     textCube.visible = false;
 
-var group = scene.userData.group,
-group2 = scene.userData.group2;
+    var group = scene.userData.group,
+    group2 = scene.userData.group2;
 
+    group.position.set(-2.0, 0, 0.0);
+    group.rotation.set(0.0, 0, 0.0);
+    group2.position.set(2.0, 0, 0.0);
+    group2.rotation.set(0.0, 0, 0.0);
 
     // just look at the ube of the group
     group.userData.pointer.lookAt(group.userData.cube.position);
