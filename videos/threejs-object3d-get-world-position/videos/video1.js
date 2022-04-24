@@ -66,12 +66,12 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(group2);
 
 
-    // cube at 0,0,11
-    var cube = group.userData.cube = new THREE.Mesh(
+    // freeCube at 0,0,11
+    var freeCube = group.userData.cube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial());
-    cube.position.set(0, 0, 1);
-    scene.add(cube);
+    freeCube.position.set(0, 0, 1);
+    scene.add(freeCube);
  
 
     // SET UP SEQ OBJECT
