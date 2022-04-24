@@ -67,14 +67,14 @@ VIDEO.init = function(sm, scene, camera){
     var group2 = scene.userData.group2 = createGroup(0x00ff00); // group2
     scene.add(group2);
     group2.position.set(2.0, 0, 0.0);
+
+    // cube at 0,0,11
+    var cube = group.userData.cube = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshNormalMaterial());
+    cube.position.set(0, 0, 1);
+    scene.add(cube);
  
-    // just look at the ube of the group
-    group.userData.pointer.lookAt(group.userData.cube.position);
- 
-    // use the getWorldPosition off of the cube to get the location in world space
-    var v = new THREE.Vector3(0, 0, 0);
-    group2.userData.cube.getWorldPosition(v);
-    group2.userData.pointer.lookAt(v);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -109,6 +109,12 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.20,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 1 + 4 * partPer, 8);
+                    camera.lookAt(0, 0, 0);
+
+                    group.position.z = 2 * partPer;
+                    group2.position.z = -2 * partPer;
 
                 }
             }
@@ -125,6 +131,15 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
 var group = scene.userData.group,
 group2 = scene.userData.group2;
+
+
+    // just look at the ube of the group
+    group.userData.pointer.lookAt(group.userData.cube.position);
+ 
+    // use the getWorldPosition off of the cube to get the location in world space
+    var v = new THREE.Vector3(0, 0, 0);
+    group2.userData.cube.getWorldPosition(v);
+    group2.userData.pointer.lookAt(v);
 
     // sequences
     Sequences.update(sm.seq, sm);
