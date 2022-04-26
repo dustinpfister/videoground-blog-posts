@@ -71,7 +71,7 @@ wheel.group.scale.set(0.5, 0.5, 0.5);
 wheel.group.position.set(2, 1.5, 2);
 scene.add(wheel.group);
 // GUY
-var guy = GuyMod.create();
+var guy = scene.userData.guy = GuyMod.create();
 guy.group.scale.set(0.25, 0.25, 0.25);
 guy.group.position.set(0, 0.8, 5.5);
 scene.add(guy.group);
@@ -143,6 +143,14 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1.8, 0);
     textCube.visible = false;
+
+
+    // guy
+    var guy = scene.userData.guy;
+    GuyMod.walk(guy, per, 32);
+    var r = Math.PI * 2 * per * -1;
+    guy.group.position.set(Math.cos(r) * 5, 0.8, Math.sin(r) * 5);
+    guy.group.lookAt(Math.cos(r - 0.5) * 5, 0.8, Math.sin(r - 0.5) * 5);
 
     // sequences
     Sequences.update(sm.seq, sm);
