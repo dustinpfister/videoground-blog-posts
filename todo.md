@@ -15,7 +15,8 @@
 <!-- JUST BECAUSE I WANT TO -->
 
 ### () - video1 for threejs-examples-backyard
-* start a video1
+* (done) start a video1
+* () move wheel in example
 * upload to youtube
 * embed in post
 
