@@ -6,8 +6,7 @@
 
 <!-- FOR FULL EDITS -->
 
-### () - video1 for threejs-scene
-* () video1 done
+
 
 ### () - video1 for threejs-emissive-map
 * () video1 done
@@ -22,8 +21,6 @@
 
 <!--  TRAFFIC -->
 
-### () - video1 for threejs-geometry-attributes-position ( 406 - 3mo - 4/11/2022 )
-* start a video1 for position attribute
 
 ### () - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
 * start video1
@@ -64,6 +61,12 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/26/2022 ) - video1 for threejs-scene
+* (done) video1 done
+
+### ( done 04/26/2022 ) - video1 for threejs-geometry-attributes-position ( 406 - 3mo - 4/11/2022 )
+* start a video1 for position attribute
 
 ### ( done 04/24/2022 ) - video1 for threejs-object3d-get-world-position ( 429 - 3mo - 4/11/2022 )
 * (done) get world position demo video
