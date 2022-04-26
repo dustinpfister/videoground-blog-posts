@@ -116,23 +116,32 @@ scene.add(ambientLight);
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(8, 1.8 + 1.5 * partPer, 0);
+                    textCube.position.set(8, 1.7 + 1.5 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.position.set(10, 2, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - move camera to upper corner 10, 10, 10
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                      // camera
-                    camera.position.set(10, 2, 0);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(12, 2 + 10 * partPer, 12 * partPer);
+                    camera.lookAt(0, -3 * partPer, 0);
                 }
-            }
+            },
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                     // camera
+                    camera.position.set(12, 12, 12);
+                    camera.lookAt(0, -3, 0);
+                }
+            },
         ]
     });
 };
@@ -141,7 +150,7 @@ scene.add(ambientLight);
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(8, 1.8, 0);
+    textCube.position.set(8, 1.7, 0);
     textCube.visible = false;
 
 
