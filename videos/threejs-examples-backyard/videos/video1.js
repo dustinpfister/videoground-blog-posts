@@ -3,7 +3,11 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   'canvas_texture.js',
+   'guy.js',
+   'hamster_wheel.js',
+   'house.js'
 ];
 
 
@@ -31,6 +35,65 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+
+// HOUSE
+var house = HouseMod.create();
+house.position.set(-2, 1.05, 0);
+scene.add(house);
+
+// GROUND
+var materials = {
+    ground: [
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            map: canvasTextureMod.randomGrid(['0', 'r1', '0'], 96, 96, 220),
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0xffaa00,
+            map: canvasTextureMod.randomGrid(['r1', 'r1', '0'], 64, 96, 220),
+            side: THREE.DoubleSide
+        })
+    ]
+};
+var ground = new THREE.Mesh(new THREE.BoxGeometry(14, 14, 1.25), materials.ground);
+ground.position.set(0, -0.575, 0);
+ground.rotation.set(-Math.PI / 2, 0, 0);
+ground.geometry.groups.forEach(function (face) {
+    face.materialIndex = 1;
+});
+ground.geometry.groups[4].materialIndex = 0;
+scene.add(ground);
+
+// WHEEL
+var wheel = WheelMod.create();
+wheel.group.scale.set(0.5, 0.5, 0.5);
+wheel.group.position.set(2, 1.5, 2);
+scene.add(wheel.group);
+// GUY
+var guy = GuyMod.create();
+guy.group.scale.set(0.25, 0.25, 0.25);
+guy.group.position.set(0, 0.8, 5.5);
+scene.add(guy.group);
+
+// sun
+var sunTexture = canvasTextureMod.randomGrid(['r1', 'r1', '0']);
+var sun = new THREE.Mesh(
+        new THREE.SphereGeometry(1, 20, 20),
+        new THREE.MeshStandardMaterial({
+            emissive: 'white',
+            emissiveMap: sunTexture
+        }));
+sun.add(new THREE.PointLight(0xffffff, 1));
+sun.position.set(0, 8, 0);
+scene.add(sun);
+
+// add AmbientLight
+var ambientLight = new THREE.AmbientLight(0xffffff);
+ambientLight.intensity = 0.3;
+scene.add(ambientLight);
+
+
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
@@ -42,7 +105,7 @@ VIDEO.init = function(sm, scene, camera){
                     // text cube
                     textCube.visible = true;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 2, 0);
                     camera.lookAt(0, 0, 0);
 
                 }
@@ -53,10 +116,10 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1.5 * partPer, 0);
+                    textCube.position.set(8, 1.8 + 1.5 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 2, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -65,7 +128,9 @@ VIDEO.init = function(sm, scene, camera){
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
- 
+                     // camera
+                    camera.position.set(10, 2, 0);
+                    camera.lookAt(0, 0, 0);
                 }
             }
         ]
@@ -76,7 +141,7 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(6, 0.8, 0);
+    textCube.position.set(8, 1.8, 0);
     textCube.visible = false;
 
     // sequences
