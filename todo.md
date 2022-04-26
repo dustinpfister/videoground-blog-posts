@@ -6,8 +6,6 @@
 
 <!-- FOR FULL EDITS -->
 
-
-
 ### () - video1 for threejs-emissive-map
 * () video1 done
 
@@ -17,10 +15,26 @@
 <!-- JUST BECAUSE I WANT TO -->
 
 ### () - video1 for threejs-examples-backyard
-* start a video1 for threejs-examples-backyard
+* start a video1
+* upload to youtube
+* embed in post
+
+### () - video1 for threejs-basic-framework
+* start a video1
+* upload to youtube
+* embed in post
+
+### () - video1 for threejs-examples-biplane
+* start a video1
+* upload to youtube
+* embed in post
+
+### () - video1 for threejs-examples-biplane-group
+* start a video1
+* upload to youtube
+* embed in post
 
 <!--  TRAFFIC -->
-
 
 ### () - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
 * start video1
@@ -31,7 +45,7 @@
 ### () - video1 for threejs-examples-house ( 346 - 3mo - 4/11/2022 )
 * start video1
 
-### () - video1 for threejs-geometry-traverse
+### () - video1 for threejs-object32-traverse
 * see about figuring out some kind of video for this
 
 ### () - video1 for threejs-line
