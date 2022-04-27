@@ -11,10 +11,10 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#008a8a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#ffffff', '#000000');
     scene.add( grid );
  
     // TEXT CUBE
