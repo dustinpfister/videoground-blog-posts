@@ -34,6 +34,31 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
 
+// basic rotating cube
+var api = scene.userData.api = threeFrame.create({
+    materials: [new THREE.MeshBasicMaterial({
+            color: 0x00ff00,
+            wireframe: true
+        }),
+        new THREE.MeshNormalMaterial({})],
+    init: function (api) {
+        api.cube1 = threeFrame.addCube(api, api.scene, 0, 0, 0, 1, 1);
+        api.cube2 = threeFrame.addCube(api, api.scene, -2.5, 1, 0, 1, 0);
+        api.rotation = 0;
+    },
+    update: function (api, secs) {
+        api.rotation += 1 * secs;
+        api.rotation %= Math.PI * 2;
+        api.cube1.rotation.set(0, api.rotation, 0);
+        api.cube2.rotation.set(0, api.rotation, api.rotation);
+    }
+});
+
+
+scene.add(api.scene)
+
+console.log(api)
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -84,6 +109,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
+var api = scene.userData.api;
+api.update(api, 1 / 30 );
 
     // sequences
     Sequences.update(sm.seq, sm);

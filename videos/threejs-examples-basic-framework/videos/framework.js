@@ -24,7 +24,7 @@
         camera.lookAt(0, 0, 0);
         // RENDERER
         var renderer = new THREE.WebGLRenderer();
-        document.getElementById('demo').appendChild(renderer.domElement);
+        //document.getElementById('demo').appendChild(renderer.domElement);
         renderer.render(scene, camera);
         // return an object with refs to scene and other items of interest
         return {
@@ -66,8 +66,8 @@
         // call init method
         api.init(api);
         // start loop
-        var loop = createLoopFunction(api);
-        loop();
+        //var loop = createLoopFunction(api);
+        //loop();
         return api;
     };
 
