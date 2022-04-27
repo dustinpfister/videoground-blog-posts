@@ -14,23 +14,6 @@
 
 <!-- JUST BECAUSE I WANT TO -->
 
-### () - video1 for threejs-examples-backyard
-* (done) start a video1
-* (done) move wheel in example
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-basic-framework
-* (done) start a video1
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-examples-biplane
-* (done) start a video1
-* (done) data textures
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples-biplane-group
 * () start a video1
 * () upload to youtube
@@ -79,22 +62,34 @@
 <!--  TRAFFIC -->
 
 ### () - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
-* start video1
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
-* start a video1 for this
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-house ( 346 - 3mo - 4/11/2022 )
-* start video1
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-object32-traverse
-* see about figuring out some kind of video for this
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-line
-* have a video1 for threejs-line
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-vector3
-* have a video1 for vector3
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 <!-- JAVASCRIPT FILES -->
 
@@ -117,6 +112,23 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/27/2022 ) - video1 for threejs-examples-backyard
+* (done) start a video1
+* (done) move wheel in example
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 04/27/2022 ) - video1 for threejs-basic-framework
+* (done) start a video1
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 04/27/2022 ) - video1 for threejs-examples-biplane
+* (done) start a video1
+* (done) data textures
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 04/26/2022 ) - video1 for threejs-scene
 * (done) video1 done
