@@ -21,7 +21,7 @@
 * () embed in post
 
 ### () - video1 for threejs-basic-framework
-* () start a video1
+* (done) start a video1
 * () upload to youtube
 * () embed in post
 
