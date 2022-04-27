@@ -32,6 +32,9 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    var bp = scene.userData.bp = Biplane.create();
+    bp.scale.set(0.25, 0.25, 0.25);
+    scene.add(bp);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -82,6 +85,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(6, 0.8, 0);
     textCube.visible = false;
+
+    var bp = scene.userData.bp;
+    Biplane.update(bp, per);
 
     // sequences
     Sequences.update(sm.seq, sm);
