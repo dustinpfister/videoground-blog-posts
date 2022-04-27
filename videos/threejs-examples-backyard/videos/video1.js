@@ -66,7 +66,7 @@ ground.geometry.groups[4].materialIndex = 0;
 scene.add(ground);
 
 // WHEEL
-var wheel = WheelMod.create();
+var wheel = scene.userData.wheel = WheelMod.create();
 wheel.group.scale.set(0.5, 0.5, 0.5);
 wheel.group.position.set(2, 1.5, 2);
 scene.add(wheel.group);
@@ -153,6 +153,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.position.set(8, 1.7, 0);
     textCube.visible = false;
 
+    // wheel
+    var wheel = scene.userData.wheel;
+    var r = Math.PI * 2  * 8 * per;
+    wheel.wheel.rotation.z = r;
 
     // guy
     var guy = scene.userData.guy;
