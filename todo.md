@@ -17,23 +17,57 @@
 ### () - video1 for threejs-examples-backyard
 * (done) start a video1
 * (done) move wheel in example
-* upload to youtube
-* embed in post
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-basic-framework
-* start a video1
-* upload to youtube
-* embed in post
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-biplane
-* start a video1
-* upload to youtube
-* embed in post
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-biplane-group
-* start a video1
-* upload to youtube
-* embed in post
+* () start a video1
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-examples-build-a-box
+
+### () - video1 for threejs-examples-clock-basic
+
+### () - video1 for threejs-examples-dae-tools
+
+### () - video1 for threejs-examples-guy-one
+
+### () - video1 for threejs-examples-house
+
+### () - video1 for threejs-examples-land-sections
+
+### () - video1 for threejs-examples-menus
+
+### () - video1 for threejs-examples-nested-groups
+
+### () - video1 for threejs-examples-position-things-to-sphere-surface
+
+### () - video1 for threejs-examples-scene-shake
+
+### () - video1 for threejs-examples-sphere-mutate
+
+### () - video1 for threejs-examples-tool-source-layer-3d
+
+### () - video1 for threejs-examples-tree
+
+### () - video1 for threejs-examples-tree-sphere
+
+### () - video1 for threejs-examples-tree-sphere-world
+
+### () - video1 for threejs-examples-waves
+
+### () - video1 for threejs-examples-weird-walk-guy-two
 
 <!--  TRAFFIC -->
 
