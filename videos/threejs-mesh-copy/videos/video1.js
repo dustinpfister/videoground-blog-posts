@@ -30,11 +30,10 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
- 
-    // a group
-    var group = new THREE.Group();
-    scene.add(group);
 
+    // HELPERS
+ 
+    // create box helper
     var createBox = function(w, h, d){
         var box = new THREE.Mesh(
             new THREE.BoxGeometry(w, h, d),
@@ -43,30 +42,41 @@ VIDEO.init = function(sm, scene, camera){
             }));
         return box;
     };
-    var mainBox = createBox(1, 1, 1);
-    group.add(mainBox);
 
-    // Mesh cloned a bunch of times from original
-    var i = 0, len = 10, mesh, rad, s, x, z, per;
-    while (i < len) {
-        per = i / len
-        s = 0.25 + 0.25 * ( Math.random() * 5 );
-        mesh = mainBox.clone();
-        // changes made to position and rotation to not effect original
-        rad = Math.PI * 2 * per;
-        x = Math.cos(rad) * 3;
-        z = Math.sin(rad) * 3;
+    var createBoxGroup = function(){
 
-        mesh.position.set(x, 0, z);
-        mesh.scale.set(1, 1 - 0.75 * per, 1);
+        // a group
+        var group = new THREE.Group();
 
-        mesh.lookAt(mainBox.position);
-        group.add(mesh);
-        i += 1;
-    }
+        var mainBox = createBox(1, 1, 1);
+        group.add(mainBox);
 
-    // changing the color of the main box ONLY EFFECTS THE MAIN BOX
-    mainBox.material.color.setRGB(0, 1, 0);
+        // Mesh cloned a bunch of times from original
+        var i = 0, len = 10, mesh, rad, s, x, z, per;
+        while (i < len) {
+            per = i / len
+            s = 0.25 + 0.25 * ( Math.random() * 5 );
+            mesh = mainBox.clone();
+            // changes made to position and rotation to not effect original
+            rad = Math.PI * 2 * per;
+            x = Math.cos(rad) * 3;
+            z = Math.sin(rad) * 3;
+
+            mesh.position.set(x, 0, z);
+            mesh.scale.set(1, 1 - 0.75 * per, 1);
+
+            mesh.lookAt(mainBox.position);
+            group.add(mesh);
+            i += 1;
+        }
+
+        // changing the color of the main box ONLY EFFECTS THE MAIN BOX
+        //mainBox.material.color.setRGB(0, 1, 0);
+
+    };
+
+    var g1 = scene.userData.g1 = createBoxGroup();
+    scene.add(g1);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
