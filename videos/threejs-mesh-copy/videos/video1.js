@@ -22,10 +22,11 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['Mesh Copy Method', 64, 20, 16, 'white'],
-            ['in Three.js.', 64, 45, 16, 'white'],
-            ['( r135 04/27/2022 )', 64, 70, 12, 'gray'],
-            ['video1', 64, 100, 10, 'gray']
+            ['Mesh Copy', 64, 20, 15, 'white'],
+            ['Method', 64, 35, 15, 'white'],
+            ['in Three.js.', 64, 50, 15, 'white'],
+            ['( r135 04/27/2022 )', 64, 80, 12, 'gray'],
+            ['video1', 64, 115, 10, 'gray']
         ]
     });
     scene.add(textCube);
