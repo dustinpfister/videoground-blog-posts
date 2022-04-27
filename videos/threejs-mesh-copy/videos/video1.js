@@ -80,7 +80,7 @@ VIDEO.init = function(sm, scene, camera){
         return group;
     };
 
-    var g1 = createBoxGroup();
+    var g1 = scene.userData.g1 = createBoxGroup({r1: 2});
     scene.add(g1);
 
     // SET UP SEQ OBJECT
@@ -97,6 +97,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+
+                    // g1
+                    g1.rotation.set(0, 0, 0);
                 }
             },
             {
@@ -110,9 +113,11 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // g1
+                    g1.rotation.set(0, 0, 0);
                 }
             },
-            // sq1 - move camera
+            // sq1 - move camera and rotate g1 along y
             {
                 per: 0.15,
                 init: function(sm){},
@@ -120,17 +125,24 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 3 * partPer, -5 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // g1
+                    g1.rotation.set(0, Math.PI * 0.5 * partPer, 0);
                 }
             },
-            // sq2 - background color
+            // sq2 -
             {
-                per: 0.20,
+                per: 0.30,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
                     camera.position.set(8, 4, -5);
                     camera.lookAt(0, 0, 0);
- 
+                     // g1
+                    g1.rotation.set(
+                        Math.PI * 2 * partPer, 
+                        Math.PI * 0.5  + Math.PI * 1.5 * partPer, 
+                        0
+                    );
                 }
             }     
         ]
@@ -143,6 +155,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
+    var g1 = scene.userData.g1;
+    g1.rotation.set(0, 0, 0);
 
     // sequences
     Sequences.update(sm.seq, sm);
