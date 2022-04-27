@@ -63,6 +63,7 @@
 
 ### () - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
 * (done) start a video1
+* () have functions that can be used to mutate a group (color, position, and so forth)
 * () upload to youtube
 * () embed in post
 
