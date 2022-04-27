@@ -3,7 +3,7 @@ var Biplane = (function () {
 
     var materials = {
         plane: new THREE.MeshStandardMaterial({
-            color: 0x00af00
+            color: 0xaf0000
             //emissive: 0x000044
         }),
         guy: new THREE.MeshStandardMaterial({

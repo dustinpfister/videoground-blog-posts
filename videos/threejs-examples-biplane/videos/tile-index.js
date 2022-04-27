@@ -2,13 +2,13 @@
 
     var MATERIALS = [
         new THREE.MeshStandardMaterial({
-            color: 0xffffff,
+            color: 0x00ff00,
             //emissive: 0x00ff00,
             //emissiveIntensity: 0.75,
             side: THREE.DoubleSide
         }),
         new THREE.MeshStandardMaterial({
-            color: 0xaaaaaa,
+            color: 0x00aa00,
             //emissive: 0x00ff00,
             //emissiveIntensity: 0.2,
             side: THREE.DoubleSide
