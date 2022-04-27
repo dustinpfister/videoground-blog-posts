@@ -77,7 +77,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 2 * partPer, 0);
                 }
             },
-            // sq1 - 
+            // sq2 - 
             {
                 per: 0.20,
                 init: function(sm){},
@@ -85,6 +85,16 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(12, 1, 0);
                     camera.lookAt(0, 2, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12 - 12 * partPer, 1 + 3 * partPer, 0);
+                    camera.lookAt(bp.position);
                 }
             }
         ]
