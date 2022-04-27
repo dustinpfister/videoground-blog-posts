@@ -3,16 +3,16 @@ var Biplane = (function () {
 
     var materials = {
         plane: new THREE.MeshStandardMaterial({
-            color: 0x0000af,
-            emissive: 0x000044
+            color: 0x00af00
+            //emissive: 0x000044
         }),
         guy: new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            emissive: 0x444444
+            color: 0xffffff
+            //emissive: 0x444444
         }),
         prop: new THREE.MeshStandardMaterial({
-            color: 0x404040,
-            emissive: 0x202020
+            color: 0x404040
+            //emissive: 0x202020
         })
     };
 

@@ -4,6 +4,7 @@ VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js',
+   'tile-index.js',
    'biplane.js'
 ];
 
@@ -14,8 +15,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#008a8a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#ffffff', '#000000');
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#ffffff', '#000000');
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -34,9 +35,26 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // light
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 1, 1);
+    scene.add(dl);
+
+    // the bp plane
     var bp = scene.userData.bp = Biplane.create();
     bp.scale.set(0.25, 0.25, 0.25);
     scene.add(bp);
+
+    // ground
+    var ground = TileMod.create({
+            w: 200,
+            h: 200,
+            sw: 20,
+            sh: 20
+        });
+    ground.position.set(0, -5, 0);
+    TileMod.setCheckerBoard(ground);
+    scene.add(ground)
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
