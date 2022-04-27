@@ -52,6 +52,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(10, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // bp
+                    bp.rotation.z += 1;
                 }
             },
             {
@@ -65,6 +67,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(10, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // bp
+                    bp.rotation.z += 1;
                 }
             },
             // sq1 - 
@@ -75,6 +79,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(10 + 2 * partPer, 1, 0);
                     camera.lookAt(0, 2 * partPer, 0);
+                    // bp
+                    bp.rotation.z += 1;
                 }
             },
             // sq2 - 
@@ -85,6 +91,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(12, 1, 0);
                     camera.lookAt(0, 2, 0);
+                    // bp
+                    bp.rotation.z += 1;
                 }
             },
             // sq3 - 
@@ -95,6 +103,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(12 - 12 * partPer, 1 + 3 * partPer, 0);
                     camera.lookAt(bp.position);
+                    // bp
+                    bp.rotation.z += 1 + (Math.PI * 2 * 4) * partPer;
                 }
             }
         ]
@@ -116,7 +126,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     z = Math.sin(r) * 5;
     bp.position.set(x, 2, z);
     bp.lookAt( Math.cos(r + 0.25) * 5, 2.0, Math.sin(r + 0.25) * 5 );
-    bp.rotation.z += 1;
+
 
     // sequences
     Sequences.update(sm.seq, sm);
