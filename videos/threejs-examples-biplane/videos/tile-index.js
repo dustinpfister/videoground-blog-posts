@@ -1,14 +1,20 @@
 (function (api) {
 
+
+    var textureRND1 = datatex.seededRandom(80, 80, 1, 1, 1, [130, 250]);
+    var textureRND2 = datatex.seededRandom(160, 160, 1, 1, 1, [64, 170]);
+
     var MATERIALS = [
         new THREE.MeshStandardMaterial({
             color: 0x00ff00,
+            map: textureRND1,
             //emissive: 0x00ff00,
             //emissiveIntensity: 0.75,
             side: THREE.DoubleSide
         }),
         new THREE.MeshStandardMaterial({
             color: 0x00aa00,
+            map: textureRND2,
             //emissive: 0x00ff00,
             //emissiveIntensity: 0.2,
             side: THREE.DoubleSide

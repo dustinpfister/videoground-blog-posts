@@ -1,9 +1,15 @@
 
 var Biplane = (function () {
 
+    var textureRND = datatex.seededRandom(20, 20, 1, 1, 1, [64, 200]);
+
     var materials = {
         plane: new THREE.MeshStandardMaterial({
-            color: 0xaf0000
+            color: 0xff0000,
+            map: textureRND,
+            //emissive: 0xffffff,
+            //emissiveMap: textureRND,
+            //emissiveIntensity: 0.25
             //emissive: 0x000044
         }),
         guy: new THREE.MeshStandardMaterial({
