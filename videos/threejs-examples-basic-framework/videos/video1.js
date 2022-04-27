@@ -57,9 +57,6 @@ var api = scene.userData.api = threeFrame.create({
 
 scene.add(api.scene)
 
-console.log(api)
-
-
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
@@ -70,9 +67,9 @@ console.log(api)
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(2, 0.6, 0);
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(4, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -82,10 +79,10 @@ console.log(api)
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 2 * partPer, 0);
+                    textCube.position.set(2, 0.6 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(4, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -95,7 +92,7 @@ console.log(api)
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
+                    camera.position.set(4 + 2 * partPer, 1 + 5 * partPer, 5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
@@ -107,11 +104,11 @@ console.log(api)
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(8, 1, 0);
+    textCube.position.set(2, 3, 0);
     textCube.visible = false;
 
-var api = scene.userData.api;
-api.update(api, 1 / 30 );
+    var api = scene.userData.api;
+    api.update(api, 1 / 30 );
 
     // sequences
     Sequences.update(sm.seq, sm);
