@@ -12,7 +12,9 @@ VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+
+    // GRID
+    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#ffffff', '#00afaf');
     scene.add( grid );
  
     // TEXT CUBE
@@ -48,7 +50,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -61,7 +63,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.position.set(6, 0.8 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -71,8 +73,18 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(10 + 2 * partPer, 1, 0);
+                    camera.lookAt(0, 2 * partPer, 0);
+                }
+            },
+            // sq1 - 
+            {
+                per: 0.20,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12, 1, 0);
+                    camera.lookAt(0, 2, 0);
                 }
             }
         ]
@@ -88,6 +100,13 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     var bp = scene.userData.bp;
     Biplane.update(bp, per);
+
+    var r = Math.PI * 4 * per,
+    x = Math.cos(r) * 5,
+    z = Math.sin(r) * 5;
+    bp.position.set(x, 2, z);
+    bp.lookAt( Math.cos(r + 0.25) * 5, 2.0, Math.sin(r + 0.25) * 5 );
+    bp.rotation.z += 1;
 
     // sequences
     Sequences.update(sm.seq, sm);
