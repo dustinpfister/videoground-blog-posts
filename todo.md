@@ -36,8 +36,14 @@
 * () embed in post
 
 ### () - video1 for threejs-examples-build-a-box
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-clock-basic
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-dae-tools
 
