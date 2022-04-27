@@ -129,7 +129,7 @@ VIDEO.init = function(sm, scene, camera){
                     g1.rotation.set(0, Math.PI * 0.5 * partPer, 0);
                 }
             },
-            // sq2 -
+            // sq2 - rotate g1 on x and y
             {
                 per: 0.30,
                 init: function(sm){},
