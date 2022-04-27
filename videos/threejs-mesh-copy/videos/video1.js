@@ -48,14 +48,15 @@ VIDEO.init = function(sm, scene, camera){
         return box;
     };
 
-    var createBoxGroup = function(){
+    var createBoxGroup = function(opt){
+        opt = opt || {};
+        opt.r1 = opt.r1 === undefined ? 4 : opt.r1;
+        opt.r2 = opt.r2 === undefined ? 4 : opt.r2;
 
         // a group
         var group = new THREE.Group();
-
         var mainBox = createBox(1, 1, 1);
         group.add(mainBox);
-
         // Mesh cloned a bunch of times from original
         var i = 0, len = 10, mesh, rad, s, x, z, per;
         while (i < len) {
@@ -64,8 +65,8 @@ VIDEO.init = function(sm, scene, camera){
             mesh = mainBox.clone();
             // changes made to position and rotation to not effect original
             rad = Math.PI * 2 * per;
-            x = Math.cos(rad) * 3;
-            z = Math.sin(rad) * 3;
+            x = Math.cos(rad) * opt.r1;
+            z = Math.sin(rad) * opt.r2;
 
             mesh.position.set(x, 0, z);
             mesh.scale.set(1, 1 - 0.75 * per, 1);
@@ -74,7 +75,6 @@ VIDEO.init = function(sm, scene, camera){
             group.add(mesh);
             i += 1;
         }
-
         // changing the color of the main box ONLY EFFECTS THE MAIN BOX
         //mainBox.material.color.setRGB(0, 1, 0);
         return group;
