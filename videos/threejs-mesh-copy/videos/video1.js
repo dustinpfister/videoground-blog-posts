@@ -31,6 +31,43 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
  
+    // a group
+    var group = new THREE.Group();
+    scene.add(group);
+
+    var createBox = function(w, h, d){
+        var box = new THREE.Mesh(
+            new THREE.BoxGeometry(w, h, d),
+            new THREE.MeshStandardMaterial({
+                color: 'red'
+            }));
+        return box;
+    };
+    var mainBox = createBox(1, 1, 1);
+    group.add(mainBox);
+
+    // Mesh cloned a bunch of times from original
+    var i = 0, len = 10, mesh, rad, s, x, z, per;
+    while (i < len) {
+        per = i / len
+        s = 0.25 + 0.25 * ( Math.random() * 5 );
+        mesh = mainBox.clone();
+        // changes made to position and rotation to not effect original
+        rad = Math.PI * 2 * per;
+        x = Math.cos(rad) * 3;
+        z = Math.sin(rad) * 3;
+
+        mesh.position.set(x, 0, z);
+        mesh.scale.set(1, 1 - 0.75 * per, 1);
+
+        mesh.lookAt(mainBox.position);
+        group.add(mesh);
+        i += 1;
+    }
+
+    // changing the color of the main box ONLY EFFECTS THE MAIN BOX
+    mainBox.material.color.setRGB(0, 1, 0);
+
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
