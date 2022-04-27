@@ -31,6 +31,11 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(3, 2, 1);
+    scene.add(dl);
+
     // HELPERS
  
     // create box helper
@@ -72,10 +77,10 @@ VIDEO.init = function(sm, scene, camera){
 
         // changing the color of the main box ONLY EFFECTS THE MAIN BOX
         //mainBox.material.color.setRGB(0, 1, 0);
-
+        return group;
     };
 
-    var g1 = scene.userData.g1 = createBoxGroup();
+    var g1 = createBoxGroup();
     scene.add(g1);
 
     // SET UP SEQ OBJECT
