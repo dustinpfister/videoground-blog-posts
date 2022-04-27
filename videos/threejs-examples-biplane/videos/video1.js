@@ -66,7 +66,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(8, 0.8, 0);
                     // camera
                     camera.position.set(10, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -80,7 +80,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 2 * partPer, 0);
+                    textCube.position.set(8, 0.8 + 2 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.position.set(10, 1, 0);
@@ -122,7 +122,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(12 - 12 * partPer, 1 + 3 * partPer, 0);
                     camera.lookAt(bp.position);
                     // bp
-                    bp.rotation.z += 1 + (Math.PI * 2 * 4) * partPer;
+                    bp.rotation.z += 1 + (Math.PI * 2 * 2) * partPer;
                 }
             }
         ]
@@ -133,7 +133,7 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(6, 0.8, 0);
+    textCube.position.set(8, 0.8, 0);
     textCube.visible = false;
 
     var bp = scene.userData.bp;
