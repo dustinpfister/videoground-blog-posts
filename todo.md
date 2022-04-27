@@ -16,7 +16,7 @@
 
 ### () - video1 for threejs-examples-backyard
 * (done) start a video1
-* () move wheel in example
+* (done) move wheel in example
 * upload to youtube
 * embed in post
 

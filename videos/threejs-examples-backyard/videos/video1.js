@@ -142,6 +142,15 @@ scene.add(ambientLight);
                     camera.lookAt(0, -3, 0);
                 }
             },
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                     // camera
+                    camera.position.set(12 - 24 * partPer, 12, 12);
+                    camera.lookAt(0, -3, 0);
+                }
+            }
         ]
     });
 };
