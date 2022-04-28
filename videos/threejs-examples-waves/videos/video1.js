@@ -72,16 +72,19 @@ VIDEO.scripts = [
         // update points
         waveGrid({
             waveOffset: per,
-            xStep: 0.125,
-            zStep: 0.125,
+            xStep: 0.25,
+            zStep: 0.25,
+            width: 30,
+            depth: 30,
+            height: 3,
             forPoint: function (x, y, z, i) {
-                position.array[i] = x - 2;
-                position.array[i + 1] = y - 2;
-                position.array[i + 2] = z - 2;
+                position.array[i] = x - 3.7;
+                position.array[i + 1] = y;
+                position.array[i + 2] = z - 3.7;
             }
         });
         position.needsUpdate = true;
-    }
+    };
 
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
@@ -150,7 +153,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(8 + 2 * partPer, 1 + 8 * partPer, 0);
                     camera.lookAt(0, 0, 0);  
                     
                 }
@@ -168,6 +171,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     var points = scene.userData.points;
     updatePoints(points, per * 8 % 1);
+    points.scale.set(4 - 3 * per, 1, 4 - 3 * per);
 
     // sequences
     Sequences.update(sm.seq, sm);
