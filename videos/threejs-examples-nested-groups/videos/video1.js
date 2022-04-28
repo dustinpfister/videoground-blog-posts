@@ -3,14 +3,16 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   'cube-groups.js',
+   'nested-groups.js'
 ];
 
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#008a8a');
+    scene.background = new THREE.Color('#000000');
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#ffffff', '#000000');
@@ -37,6 +39,9 @@ VIDEO.init = function(sm, scene, camera){
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(1, 1, 1);
     scene.add(dl);
+
+    var nested = scene.userData.nested = NestedGroupsMod.create();
+    scene.add(nested);
 
 
     // SET UP SEQ OBJECT
@@ -76,8 +81,8 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(10 + 2 * partPer, 1, 0);
-                    camera.lookAt(0, 2 * partPer, 0);
+                    camera.position.set(10, 1, 0);
+                    camera.lookAt(0, 0, 0);  
                     
                 }
             }
@@ -91,6 +96,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 0.8, 0);
     textCube.visible = false;
+
+    var nested = scene.userData.nested;
+    NestedGroupsMod.update(nested, 1 / 30);
 
     // sequences
     Sequences.update(sm.seq, sm);
