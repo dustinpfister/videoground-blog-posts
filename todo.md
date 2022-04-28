@@ -58,7 +58,7 @@
 ### () - video1 for threejs-examples-menus
 
 ### () - video1 for threejs-examples-nested-groups
-* () start a video1
+* (done) start a video1
 * () upload to youtube
 * () embed in post
 
@@ -81,12 +81,6 @@
 ### () - video1 for threejs-examples-weird-walk-guy-two
 
 <!--  TRAFFIC -->
-
-### () - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
-* (done) start a video1
-* () have functions that can be used to mutate a group (color, position, and so forth)
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
 * () start a video1
@@ -134,6 +128,12 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/28/2022 ) - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
+* (done) start a video1
+* (done) have functions that can be used to mutate a group (color, position, and so forth)
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 04/27/2022 ) - video1 for threejs-examples-backyard
 * (done) start a video1
