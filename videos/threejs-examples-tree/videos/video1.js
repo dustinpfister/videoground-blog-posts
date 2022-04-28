@@ -4,6 +4,8 @@ VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js',
+   'datatex.js',
+   'tile-index.js',
    'tree.js'
 ];
 
@@ -14,8 +16,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#000000');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#00ff00', '#ffffff');
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#00ff00', '#ffffff');
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -42,6 +44,17 @@ VIDEO.init = function(sm, scene, camera){
             })
         });
     scene.add(tree.group);
+
+    // ground
+    var ground = TileMod.create({
+            w: 200,
+            h: 200,
+            sw: 20,
+            sh: 20
+        });
+    ground.position.set(0, -1, 0);
+    TileMod.setCheckerBoard(ground);
+    scene.add(ground)
 
     // light
     var dl = new THREE.DirectionalLight(0xffffff, 1);
