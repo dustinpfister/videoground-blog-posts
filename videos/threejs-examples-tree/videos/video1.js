@@ -98,8 +98,17 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
                     camera.position.set(10, 10, 10);
-                    camera.lookAt(0, 1, 0);  
-                    
+                    camera.lookAt(0, 1, 0);                   
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10 - 20 * partPer, 10, 10 + 10 * partPer);
+                    camera.lookAt(0, 1, 0);                   
                 }
             }
         ]
