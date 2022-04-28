@@ -3,7 +3,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   'tree.js'
 ];
 
 // init method for the video
@@ -32,6 +33,15 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    var tree = scene.userData.tree = new Tree({
+            sections: 8,
+            conesPerSection: 16,
+            coneMaterial: new THREE.MeshStandardMaterial({
+                color: 0x00af00
+            })
+        });
+    scene.add(tree.group);
 
     // light
     var dl = new THREE.DirectionalLight(0xffffff, 1);
@@ -113,6 +123,11 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 0.8, 0);
     textCube.visible = false;
+
+    var tree = scene.userData.tree;
+    tree.group.children.forEach(function(coneGroup, i){
+        coneGroup.rotation.y = Math.PI / 180 * 90 * per * (i + 1);
+    });
 
     // sequences
     Sequences.update(sm.seq, sm);
