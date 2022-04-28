@@ -60,8 +60,8 @@ VIDEO.scripts = [
             geometry,
             // then Material
             new THREE.PointsMaterial({
-                size: .125,
-                color: new THREE.Color(0.0, 0.25, 0.25)
+                size: 0.25,
+                color: new THREE.Color(0.00, 1.00, 1.00)
             }));
     };
 
@@ -90,10 +90,12 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#00afaf');
+    scene.background = new THREE.Color('#000000');
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#00ff00', '#ffffff');
+    grid.material.transparent = true;
+    grid.material.opacity = 0.2;
     scene.add( grid );
  
     // TEXT CUBE
