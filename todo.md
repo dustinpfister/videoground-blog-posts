@@ -80,6 +80,9 @@
 ### () - video1 for threejs-examples-tree-sphere-world
 
 ### () - video1 for threejs-examples-waves
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-weird-walk-guy-two
 
