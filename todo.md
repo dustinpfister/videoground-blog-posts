@@ -6,11 +6,25 @@
 
 <!-- FOR FULL EDITS -->
 
+### () - video1 for threejs-geometry
+* () start a video1
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-materials
+* () start a video1
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-emissive-map
-* () video1 done
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-texture-loader
-* () video1 done
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 <!-- JUST BECAUSE I WANT TO -->
 
@@ -30,16 +44,23 @@
 * () embed in post
 
 ### () - video1 for threejs-examples-dae-tools
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-guy-one
-
-### () - video1 for threejs-examples-house
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-land-sections
 
 ### () - video1 for threejs-examples-menus
 
 ### () - video1 for threejs-examples-nested-groups
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-position-things-to-sphere-surface
 
