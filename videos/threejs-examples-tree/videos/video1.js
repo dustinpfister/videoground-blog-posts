@@ -13,7 +13,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#000000');
+    scene.background = new THREE.Color('#00afaf');
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#00ff00', '#ffffff');
