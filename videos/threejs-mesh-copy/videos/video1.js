@@ -48,22 +48,6 @@ VIDEO.init = function(sm, scene, camera){
         return box;
     };
 
-    var circleGroup = function(boxGroup, opt){
-        opt = opt || {};
-        opt.r1 = opt.r1 === undefined ? 4 : opt.r1;
-        opt.r2 = opt.r2 === undefined ? 4 : opt.r2;
-        var len = boxGroup.children.length;
-        boxGroup.children.forEach(function(mesh, i){
-            var per = i / len,
-            rad = Math.PI * 2 * per,
-            x = Math.cos(rad) * opt.r1,
-            z = Math.sin(rad) * opt.r2;
-            mesh.position.set(x, 0, z);
-            mesh.scale.set(1, 1 - 0.75 * per, 1);
-        });
-
-    };
-
     // create a new box group
     var createBoxGroup = function(opt){
         opt = opt || {};
@@ -77,6 +61,26 @@ VIDEO.init = function(sm, scene, camera){
         }
         circleGroup(mainBox)
         return mainBox
+    };
+
+    // update a boxGroup into a circle like position
+    var circleGroup = function(boxGroup, opt){
+        opt = opt || {};
+        opt.r1 = opt.r1 === undefined ? 4 : opt.r1;
+        opt.r2 = opt.r2 === undefined ? 4 : opt.r2;
+        opt.yPer = opt.yPer === undefined ? 0 : opt.yPer;
+        opt.yMag = opt.yMag === undefined ? 8 : opt.yMag;
+        var len = boxGroup.children.length;
+        boxGroup.children.forEach(function(mesh, i){
+            var per = i / len,
+            bias = 1 - Math.abs(0.5 - per) / 0.5,
+            rad = Math.PI * 2 * per,
+            x = Math.cos(rad) * opt.r1,
+            y = opt.yMag * bias * opt.yPer;
+            z = Math.sin(rad) * opt.r2;
+            mesh.position.set(x, y, z);
+            mesh.scale.set(1, 1 - 0.75 * per, 1);
+        });
     };
 
     var g1 = scene.userData.g1 = createBoxGroup();
@@ -99,7 +103,7 @@ VIDEO.init = function(sm, scene, camera){
 
                     // g1
                     g1.rotation.set(0, 0, 0);
-                    circleGroup(g1, {r1: 4, r2: 4});
+                    circleGroup(g1, {r1: 4, r2: 4, yPer: 0});
                 }
             },
             {
@@ -115,7 +119,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // g1
                     g1.rotation.set(0, 0, 0);
-                    circleGroup(g1, {r1: 4, r2: 4});
+                    circleGroup(g1, {r1: 4, r2: 4, yPer: 0});
                 }
             },
             // sq1 - move camera, rotate g1 along y, change r1 and r2
@@ -128,7 +132,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // g1
                     g1.rotation.set(0, Math.PI * 0.5 * partPer, 0);
-                    circleGroup(g1, {r1: 4 - 2 * partPer, r2: 4 + 2 * partPer});
+                    circleGroup(g1, {r1: 4 - 2 * partPer, r2: 4 + 2 * partPer, yPer: partPer});
                 }
             },
             // sq2 - rotate g1 on x and y
@@ -145,7 +149,7 @@ VIDEO.init = function(sm, scene, camera){
                         Math.PI * 0.5  + Math.PI * 1.5 * partPer, 
                         0
                     );
-                    circleGroup(g1, {r1: 2, r2: 6 - 3 * partPer});
+                    circleGroup(g1, {r1: 2, r2: 6 - 3 * partPer, yPer: 1 - partPer});
                 }
             }     
         ]
