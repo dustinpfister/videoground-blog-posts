@@ -79,7 +79,7 @@ VIDEO.init = function(sm, scene, camera){
         return mainBox
     };
 
-    var g1 = scene.userData.g1 = createBoxGroup({r1: 2});
+    var g1 = scene.userData.g1 = createBoxGroup();
     scene.add(g1);
 
     // SET UP SEQ OBJECT
@@ -99,6 +99,7 @@ VIDEO.init = function(sm, scene, camera){
 
                     // g1
                     g1.rotation.set(0, 0, 0);
+                    circleGroup(g1, {r1: 4, r2: 4});
                 }
             },
             {
@@ -114,9 +115,10 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // g1
                     g1.rotation.set(0, 0, 0);
+                    circleGroup(g1, {r1: 4, r2: 4});
                 }
             },
-            // sq1 - move camera and rotate g1 along y
+            // sq1 - move camera, rotate g1 along y, change r1 and r2
             {
                 per: 0.15,
                 init: function(sm){},
@@ -126,6 +128,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // g1
                     g1.rotation.set(0, Math.PI * 0.5 * partPer, 0);
+                    circleGroup(g1, {r1: 4 - 2 * partPer, r2: 4 + 2 * partPer});
                 }
             },
             // sq2 - rotate g1 on x and y
@@ -142,6 +145,7 @@ VIDEO.init = function(sm, scene, camera){
                         Math.PI * 0.5  + Math.PI * 1.5 * partPer, 
                         0
                     );
+                    circleGroup(g1, {r1: 2, r2: 6 - 3 * partPer});
                 }
             }     
         ]
