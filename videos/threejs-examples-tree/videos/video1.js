@@ -36,11 +36,14 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+
+    var textureRND1 = datatex.seededRandom(80, 80, 1, 1, 1, [200, 250]);
     var tree = scene.userData.tree = new Tree({
             sections: 8,
             conesPerSection: 16,
             coneMaterial: new THREE.MeshStandardMaterial({
-                color: 0x00af00
+                color: 0x00af00,
+                map: textureRND1
             })
         });
     scene.add(tree.group);
