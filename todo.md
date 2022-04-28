@@ -71,7 +71,7 @@
 ### () - video1 for threejs-examples-tool-source-layer-3d
 
 ### () - video1 for threejs-examples-tree
-* () start a video1
+* (done) start a video1
 * () upload to youtube
 * () embed in post
 
