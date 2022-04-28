@@ -14,7 +14,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#000000');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#ffffff', '#000000');
+    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#00ff00', '#ffffff');
     scene.add( grid );
  
     // TEXT CUBE
@@ -45,7 +45,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // light
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(1, 1, 1);
+    dl.position.set(3, 1, 1);
     scene.add(dl);
 
 
@@ -86,8 +86,8 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(10, 1 + 9 * partPer, 0);
-                    camera.lookAt(0, 0, 0);  
+                    camera.position.set(10, 1 + 9 * partPer, 10 * partPer);
+                    camera.lookAt(0, 1 * partPer, 0);  
                     
                 }
             },
@@ -97,19 +97,8 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(10, 10, -10 * partPer);
-                    camera.lookAt(0, 0, 0);  
-                    
-                }
-            },
-            // sq2 - 
-            {
-                per: 0.50,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
-                    // camera
-                    camera.position.set(10 - 20 * partPer, 10, -10);
-                    camera.lookAt(0, 0, 0);  
+                    camera.position.set(10, 10, 10);
+                    camera.lookAt(0, 1, 0);  
                     
                 }
             }
