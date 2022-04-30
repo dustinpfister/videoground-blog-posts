@@ -88,6 +88,7 @@ VIDEO.init = function(sm, scene, camera){
                     // text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
+                    textCube.material.opacity = 0.5;
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -100,6 +101,7 @@ VIDEO.init = function(sm, scene, camera){
                     // move up text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 2 * partPer, 0);
+                    textCube.material.opacity = 0.5 - 0.5 * partPer;
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.position.set(8, 1, 0);
@@ -144,6 +146,8 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+    textCube.material.transparent = true;
+    textCube.material.opacity = 0.0;
 
     var uv = scene.userData.uv;
  
