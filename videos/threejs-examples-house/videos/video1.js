@@ -86,13 +86,23 @@ scene.add(plane);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - move camera to 10, 10, 10
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8 + 2 * partPer, 1 + 5 * partPer, 10 * partPer);
+                    camera.position.set(8 + 2 * partPer, 1 + 9 * partPer, 10 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - camera at 10, 10, 10
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10, 10, 10);
                     camera.lookAt(0, 0, 0);
                 }
             }
