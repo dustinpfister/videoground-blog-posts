@@ -97,8 +97,8 @@
 
 ### () - video1 for threejs-examples-house ( 346 - 3mo - 4/11/2022 )
 * (done) start the video folder and video1 file
-* () have the house displayed in the scene
-* () work out a few seqs for camera movement, and lookAt changes
+* (done) have the house displayed in the scene
+* (done) work out a few seqs for camera movement, and lookAt changes
 * () upload to youtube
 * () embed in post
 
