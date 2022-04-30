@@ -53,7 +53,7 @@ VIDEO.init = function(sm, scene, camera){
     texture.needsUpdate = true;
  
     // GEOMETRY - starting with a plane
-    var geometry = new THREE.PlaneGeometry(4, 4, 1, 1);
+    var geometry = new THREE.PlaneGeometry(5, 5, 1, 1);
  
     var uv = scene.userData.uv = geometry.getAttribute('uv'),
     position = geometry.getAttribute('position');
@@ -63,18 +63,18 @@ VIDEO.init = function(sm, scene, camera){
                 side: THREE.DoubleSide,
                 map: texture
             }));
-    mesh.position.set(0, 0, 2.5);
-    mesh.rotation.set(0, Math.PI * 0.5, 0);
+    mesh.position.set(0, 0.01, 2.5);
+    mesh.rotation.set(1.57, 0, 0);
     scene.add(mesh);
  
     // another mesh where I am not doing anything to the uv values
-    var geometry = new THREE.PlaneGeometry(4, 4, 1, 1);
+    var geometry = new THREE.PlaneGeometry(5, 5, 1, 1);
     var mesh2 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
                 side: THREE.DoubleSide,
                 map: texture
             }));
-    mesh2.position.set(0, 0, -2.5);
-    mesh2.rotation.set(0, Math.PI * 0.5, 0);
+    mesh2.position.set(0, 0.01, -2.5);
+    mesh2.rotation.set(1.57, 0, 0);
     scene.add(mesh2);
 
     // SET UP SEQ OBJECT
@@ -88,7 +88,7 @@ VIDEO.init = function(sm, scene, camera){
                     // text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
-                    textCube.material.opacity = 0.5;
+                    textCube.material.opacity = 1;
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -101,7 +101,7 @@ VIDEO.init = function(sm, scene, camera){
                     // move up text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 2 * partPer, 0);
-                    textCube.material.opacity = 0.5 - 0.5 * partPer;
+                    textCube.material.opacity = 1 - partPer;
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.position.set(8, 1, 0);
@@ -114,7 +114,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(8 + 2 * partPer, 1 + 9 * partPer, 0);
                     camera.lookAt(0, 0, 0);
                     var a = 0.5 * partPer,
                     b = 1 - 0.5 * partPer;
@@ -138,7 +138,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 10, 0);
                     camera.lookAt(0, 0, 0);
 
                     uv.array[0] = 0.5;
@@ -162,7 +162,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 10, 0);
                     camera.lookAt(0, 0, 0);
 
                     var a = 0.5 - 1.5 * partPer,
