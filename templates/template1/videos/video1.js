@@ -1,13 +1,12 @@
-// video1 for threejs-geometry-attributes-uv
+// video1 for template1
+ 
 // scripts
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js'
 ];
-
-
-// init method for the video
+// init
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
@@ -23,10 +22,10 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['UV Attribute of', 64, 17, 14, 'white'],
-            ['Buffer Geometry', 64, 32, 14, 'white'],
-            ['in Three.js.', 64, 47, 14, 'white'],
-            ['( r135 04/30/2022 )', 64, 70, 12, 'gray'],
+            ['Templae Video', 64, 17, 14, 'white'],
+            ['please update', 64, 32, 14, 'white'],
+            ['this text', 64, 47, 14, 'white'],
+            ['( r135 mm/dd/yyyy )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
@@ -82,9 +81,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
-
     // sequences
     Sequences.update(sm.seq, sm);
-
 };
 
