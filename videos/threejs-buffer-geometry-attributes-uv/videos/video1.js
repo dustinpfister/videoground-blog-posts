@@ -43,7 +43,7 @@ VIDEO.init = function(sm, scene, camera){
     ctx.strokeStyle = 'white';
     ctx.fillStyle = 'red';
     ctx.beginPath(); // draw red and white circle
-    ctx.arc(10, 10, 8, 0, Math.PI * 2);
+    ctx.arc(16, 16, 8, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
     ctx.beginPath(); // draw white square
@@ -55,21 +55,8 @@ VIDEO.init = function(sm, scene, camera){
     // GEOMETRY - starting with a plane
     var geometry = new THREE.PlaneGeometry(4, 4, 1, 1);
  
-    var uv = geometry.getAttribute('uv'),
+    var uv = scene.userData.uv = geometry.getAttribute('uv'),
     position = geometry.getAttribute('position');
- 
-    // MUTATING THE UV VALUES
-    uv.array[0] = 0.27;
-    uv.array[1] = 0.73;
- 
-    uv.array[2] = 0.73;
-    uv.array[3] = 0.73;
- 
-    uv.array[4] = 0.27;
-    uv.array[5] = 0.27;
- 
-    uv.array[6] = 0.73;
-    uv.array[7] = 0.27;
  
     // use the geometry with a mesh
     var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
@@ -127,6 +114,24 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+
+                    uv.array[0] = 1;
+   
+
+                }
+            },
+            // sq1 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 0, 0);
+
+                    uv.array[0] = 1;
+  
+
                 }
             }
         ]
@@ -139,6 +144,38 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+
+    var uv = scene.userData.uv;
+ 
+    // starting values
+/*
+    uv.array[0] = 0.27;
+    uv.array[1] = 0.73;
+ 
+    uv.array[2] = 0.73;
+    uv.array[3] = 0.73;
+ 
+    uv.array[4] = 0.27;
+    uv.array[5] = 0.27;
+ 
+    uv.array[6] = 0.73;
+    uv.array[7] = 0.27;
+*/
+
+    // FULL
+    uv.array[0] = 0;
+    uv.array[1] = 1;
+ 
+    uv.array[2] = 1;
+    uv.array[3] = 1;
+ 
+    uv.array[4] = 0;
+    uv.array[5] = 0;
+ 
+    uv.array[6] = 1;
+    uv.array[7] = 0;
+
+    uv.needsUpdate = true;
 
     // sequences
     Sequences.update(sm.seq, sm);
