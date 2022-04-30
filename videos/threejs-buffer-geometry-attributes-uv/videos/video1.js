@@ -108,7 +108,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - from FULL default to zoomed into center
             {
                 per: 0.15,
                 init: function(sm){},
@@ -116,22 +116,69 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    var a = 0.5 * partPer,
+                    b = 1 - 0.5 * partPer;
 
-                    uv.array[0] = 1;
-   
-
+                    uv.array[0] = a;
+                    uv.array[1] = b;
+ 
+                    uv.array[2] = b;
+                    uv.array[3] = b;
+ 
+                    uv.array[4] = a;
+                    uv.array[5] = a;
+ 
+                    uv.array[6] = b;
+                    uv.array[7] = a;
                 }
             },
-            // sq1 - 
+            // sq2 - zoomed into center 
             {
-                per: 0.25,
+                per: 0.50,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
 
-                    uv.array[0] = 1;
+                    uv.array[0] = 0.5;
+                    uv.array[1] = 0.5;
+ 
+                    uv.array[2] = 0.5;
+                    uv.array[3] = 0.5;
+ 
+                    uv.array[4] = 0.5;
+                    uv.array[5] = 0.5;
+ 
+                    uv.array[6] = 0.5;
+                    uv.array[7] = 0.5;
+  
+
+                }
+            },
+            // sq3 - zoomed back out 
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 0, 0);
+
+                    var a = 0.5 - 1.5 * partPer,
+                    b = 0.5 + 1.5 * partPer;
+
+                    uv.array[0] = a;
+                    uv.array[1] = b;
+ 
+                    uv.array[2] = b;
+                    uv.array[3] = b;
+ 
+                    uv.array[4] = a;
+                    uv.array[5] = a;
+ 
+                    uv.array[6] = b;
+                    uv.array[7] = a;
   
 
                 }
@@ -150,23 +197,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.material.opacity = 0.0;
 
     var uv = scene.userData.uv;
- 
-    // starting values
-/*
-    uv.array[0] = 0.27;
-    uv.array[1] = 0.73;
- 
-    uv.array[2] = 0.73;
-    uv.array[3] = 0.73;
- 
-    uv.array[4] = 0.27;
-    uv.array[5] = 0.27;
- 
-    uv.array[6] = 0.73;
-    uv.array[7] = 0.27;
-*/
 
     // FULL
+
     uv.array[0] = 0;
     uv.array[1] = 1;
  
@@ -178,6 +211,53 @@ VIDEO.update = function(sm, scene, camera, per, bias){
  
     uv.array[6] = 1;
     uv.array[7] = 0;
+
+
+    // zoomed in
+/*
+    uv.array[0] = 0.25;
+    uv.array[1] = 0.75;
+ 
+    uv.array[2] = 0.75;
+    uv.array[3] = 0.75;
+ 
+    uv.array[4] = 0.25;
+    uv.array[5] = 0.25;
+ 
+    uv.array[6] = 0.75;
+    uv.array[7] = 0.25;
+*/
+
+
+   // LOWER LEFT
+/*
+    uv.array[0] = 0;
+    uv.array[1] = 0.5;
+ 
+    uv.array[2] = 0.5;
+    uv.array[3] = 0.5;
+ 
+    uv.array[4] = 0;
+    uv.array[5] = 0;
+ 
+    uv.array[6] = 0.5;
+    uv.array[7] = 0;
+*/
+
+    // UPPER RIGHT
+/*
+    uv.array[0] = 0.5;
+    uv.array[1] = 0.0;
+ 
+    uv.array[2] = 0.0;
+    uv.array[3] = 0.0;
+ 
+    uv.array[4] = 0.5;
+    uv.array[5] = 0.5;
+ 
+    uv.array[6] = 0;
+    uv.array[7] = 0.5;
+*/
 
     uv.needsUpdate = true;
 
