@@ -51,7 +51,9 @@ let material = new THREE.MeshStandardMaterial({
 <!-- JUST BECAUSE I WANT TO -->
 
 ### () - video1 for threejs-camera-orthographic
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
+* () base video off of the state of that cube stack animation that switches between the two cameras
+* () A FIX NEEDS TO ME MADE WHERE I CAN CHNAGE WHAT CAMERA IS USED
 * () upload to youtube
 * () embed in post
 

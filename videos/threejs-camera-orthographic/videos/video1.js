@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   'cube-stack.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
