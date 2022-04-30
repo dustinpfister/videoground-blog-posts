@@ -114,11 +114,9 @@ let material = new THREE.MeshStandardMaterial({
 ### () - video1 for threejs-object3d-traverse
 * (done) start video folder and a video1 file
 * (done) see about using one of the exmaples in the post and just move on for video1 at least with this
-
-* () switch to using the standard material
-* () have a default color for each mesh be red in update
-
-* () use traverse to set color of each mesh
+* (done) switch to using the standard material
+* (done) have a default color for each mesh be red in update
+* (done) use traverse to set color of each mesh
 * () upload to youtube
 * () embed in post
 

@@ -106,6 +106,30 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8 + 2 * partPer , 1 + 9 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            // sq2 - color for each mesh
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10 - 20 * partPer, 10, 10 + 5 * partPer);
+                    camera.lookAt(0, 0, 0);
+                    scene.traverse(function(obj){
+                        if(obj.type === 'Group'){
+                            var len = obj.children.length;
+                            obj.children.forEach(function(child, i){
+                                var current = Math.floor(len * partPer);
+                                // default red
+                                child.material.color = new THREE.Color(1, 0, 0);
+                                if(i === current){
+                                    child.material.color = new THREE.Color(0, 1, 0);
+                                }
+                
+                            });
+                        }
+                    });
+                }
             }
         ]
     });
