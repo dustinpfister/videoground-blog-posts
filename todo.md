@@ -1,5 +1,27 @@
 # videoground-blog-posts todo list
 
+
+<!-- JAVASCRIPT FILES -->
+
+## () -
+
+<!-- DAE FOLDER -->
+
+### () - See about emmisive color?
+* so far it seems like it is not possible to export a material with an emmisve color and intensity
+```
+// I can create a material with an emmisve color like this
+let material = new THREE.MeshStandardMaterial({
+    emmisive: new THREE.Color('red'),
+    emmisiveIntensity : 0.1
+});
+```
+* cube-emmisve-red.dae file for this if I can find a way that is
+
+### () - dae folder geometry groups
+* cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
+
+
 <!-- FOR NEW POSTS -->
 
 
@@ -89,19 +111,6 @@
 
 <!--  TRAFFIC -->
 
-### () - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
-* (done) start a video1
-* (done) video one done
-* (done) upload to youtube
-* () embed in post
-
-### () - video1 for threejs-examples-house ( 346 - 3mo - 4/11/2022 )
-* (done) start the video folder and video1 file
-* (done) have the house displayed in the scene
-* (done) work out a few seqs for camera movement, and lookAt changes
-* (done) upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-object3d-traverse
 * (done) start video folder and a video1 file
 * () see about using one of the exmaples in the post and just move on for video1 at least with this
@@ -120,27 +129,20 @@
 * () upload to youtube
 * () embed in post
 
-<!-- JAVASCRIPT FILES -->
-
-## () -
-
-<!-- DAE FOLDER -->
-
-### () - See about emmisive color?
-* so far it seems like it is not possible to export a material with an emmisve color and intensity
-```
-// I can create a material with an emmisve color like this
-let material = new THREE.MeshStandardMaterial({
-    emmisive: new THREE.Color('red'),
-    emmisiveIntensity : 0.1
-});
-```
-* cube-emmisve-red.dae file for this if I can find a way that is
-
-### () - dae folder geometry groups
-* cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
-
 <!-- DONE -->
+
+### ( done 04/30/2022 ) - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
+* (done) start a video1
+* (done) video one done
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 04/30/2022 ) - video1 for threejs-examples-house ( 346 - 3mo - 4/11/2022 )
+* (done) start the video folder and video1 file
+* (done) have the house displayed in the scene
+* (done) work out a few seqs for camera movement, and lookAt changes
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 04/28/2022 ) - video1 for threejs-examples-tree
 * (done) start a video1
