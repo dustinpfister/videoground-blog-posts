@@ -124,6 +124,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     scene.traverse(function(obj){
 
         if(obj.type === 'Mesh'){
+
+            if(obj != scene.userData.textCube){
+                obj.material.color = new THREE.Color(1, 0, 0);
+            }
             
         }
     });
