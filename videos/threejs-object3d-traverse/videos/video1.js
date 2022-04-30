@@ -91,13 +91,13 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - move camera to 10, 10, 10
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8 + 2 * partPer , 1 + 9 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
