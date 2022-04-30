@@ -24,12 +24,40 @@ VIDEO.init = function(sm, scene, camera){
         lines: [
             ['Object3d traverse', 64, 17, 14, 'white'],
             ['method', 64, 32, 14, 'white'],
-            ['in threejs, 64, 47, 14, 'white'],
+            ['in threejs', 64, 47, 14, 'white'],
             ['( r135 04/30/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
+
+    // ADDING A GROUP OF MESH OBJECTS
+    var group = new THREE.Group();
+    var i = 20;
+    while(i--){
+        group.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshNormalMaterial() ));
+    }
+    scene.add( group );
+
+    // TRAVERSING ALL OBJECTS IN THE SCENE
+    scene.traverse(function(obj){
+        if(obj.type === 'GridHelper'){
+            obj.material.color = new THREE.Color(0, 1, 0);
+        }
+        if(obj.type === 'Mesh'){
+            obj.position.x = -5 + Math.floor(10 * Math.random());
+            obj.position.z = -5 + Math.floor(10 * Math.random());
+            obj.rotation.y = Math.PI * 2 * Math.random();
+        }
+        if(obj.type === 'Group'){
+            var len = obj.children.length;
+            obj.children.forEach(function(child, i){
+                child.position.y = -5 + Math.floor( 10 * (i / len) );
+                var s = 0.25 + 1.75 * (1 - i / len);
+                child.scale.set(s, s, s);
+            });
+        }
+    });
 
 
     // SET UP SEQ OBJECT
