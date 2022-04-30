@@ -76,6 +76,9 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 ### () - video1 for threejs-examples-cube-stack
+* () start video folder and a video1 file
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-dae-tools
 * () start video folder and a video1 file
