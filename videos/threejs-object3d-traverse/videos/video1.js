@@ -13,7 +13,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     scene.add( grid );
- 
+
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
@@ -31,11 +31,17 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(3, 10, 3);
+    scene.add(dl);
+
     // ADDING A GROUP OF MESH OBJECTS
     var group = new THREE.Group();
     var i = 20;
     while(i--){
-        group.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshNormalMaterial() ));
+        group.add( new THREE.Mesh( new THREE.BoxGeometry(1,1, 1), new THREE.MeshStandardMaterial({
+            color: 0xffffff
+        }) ));
     }
     scene.add( group );
 
@@ -113,6 +119,15 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
+
+
+    scene.traverse(function(obj){
+
+        if(obj.type === 'Mesh'){
+            
+        }
+    });
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
