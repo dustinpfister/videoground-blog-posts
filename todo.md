@@ -22,8 +22,16 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 
-<!-- FOR NEW POSTS -->
+<!-- NEED VIDEOGROUND r4+ done to do this!! -->
+### () - video1 for threejs-camera-orthographic
+* (done) start video folder and a video1 file
+* () base video off of the state of that cube stack animation that switches between the two cameras
+* () A FIX NEEDS TO ME MADE WHERE I CAN CHNAGE WHAT CAMERA IS USED
+* () upload to youtube
+* () embed in post
 
+
+<!-- FOR NEW POSTS -->
 
 
 <!-- FOR FULL EDITS -->
@@ -49,13 +57,6 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- JUST BECAUSE I WANT TO -->
-
-### () - video1 for threejs-camera-orthographic
-* (done) start video folder and a video1 file
-* () base video off of the state of that cube stack animation that switches between the two cameras
-* () A FIX NEEDS TO ME MADE WHERE I CAN CHNAGE WHAT CAMERA IS USED
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-examples
 
