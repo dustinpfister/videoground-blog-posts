@@ -45,9 +45,9 @@ VIDEO.init = function(sm, scene, camera){
             obj.material.color = new THREE.Color(0, 1, 0);
         }
         if(obj.type === 'Mesh'){
-            obj.position.x = -5 + Math.floor(10 * Math.random());
-            obj.position.z = -5 + Math.floor(10 * Math.random());
-            obj.rotation.y = Math.PI * 2 * Math.random();
+            obj.position.x = -5 + Math.floor(10 * THREE.MathUtils.seededRandom());
+            obj.position.z = -5 + Math.floor(10 * THREE.MathUtils.seededRandom());
+            obj.rotation.y = Math.PI * 2 * THREE.MathUtils.seededRandom();
         }
         if(obj.type === 'Group'){
             var len = obj.children.length;
