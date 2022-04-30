@@ -29,7 +29,7 @@ let material = new THREE.MeshStandardMaterial({
 <!-- FOR FULL EDITS -->
 
 ### () - video1 for threejs-geometry
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
@@ -39,43 +39,48 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 ### () - video1 for threejs-emissive-map
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-texture-loader
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 <!-- JUST BECAUSE I WANT TO -->
 
+### () - video1 for threejs-camera-orthographic
+* () start video folder and a video1 file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-examples
 
 ### () - video1 for threejs-examples-biplane-group
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-build-a-box
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-clock-basic
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-cube-stack
 
 ### () - video1 for threejs-examples-dae-tools
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-guy-one
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
@@ -86,7 +91,7 @@ let material = new THREE.MeshStandardMaterial({
 ### () - video1 for threejs-examples-position-things-to-sphere-surface
 
 ### () - video1 for threejs-examples-scene-shake
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
@@ -95,17 +100,17 @@ let material = new THREE.MeshStandardMaterial({
 ### () - video1 for threejs-examples-tool-source-layer-3d
 
 ### () - video1 for threejs-examples-tree-sphere
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-tree-sphere-world
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-weird-walk-guy-two
-* () start a video1
+* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
