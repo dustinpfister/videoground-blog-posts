@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   'house.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -31,6 +32,15 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 1, 1);
+    scene.add(dl);
+
+    // adding the house
+    var house = HouseMod.create();
+    house.position.set(-2, 1.05, 0);
+    scene.add(house);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -43,6 +53,7 @@ VIDEO.init = function(sm, scene, camera){
                     // text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
+                    textCube.material.opacity = 1.0;
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -54,7 +65,8 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 1 + 2 * partPer, 0);
+                    textCube.position.set(6, 0.8 + 2 * partPer, 0);
+                    textCube.material.opacity = 1.0 - partPer;
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.position.set(8, 1, 0);
@@ -81,6 +93,8 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.rotation.y = 0;
     textCube.position.set(8, 1, 0);
     textCube.visible = false;
+    textCube.material.transparent = true;
+    textCube.material.opacity = 0.0;
     // sequences
     Sequences.update(sm.seq, sm);
 };
