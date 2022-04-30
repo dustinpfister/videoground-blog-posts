@@ -124,11 +124,16 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     scene.traverse(function(obj){
 
         if(obj.type === 'Mesh'){
-
             if(obj != scene.userData.textCube){
                 obj.material.color = new THREE.Color(1, 0, 0);
-            }
-            
+            } 
+        }
+        if(obj.type === 'Group'){
+            var len = obj.children.length;
+            obj.children.forEach(function(child, i){
+                child.rotation.y = Math.PI * 2 * (1 + 5 * (i / len)) * per;
+            });
+            obj.rotation.x = Math.PI / 180 * 45 * per;
         }
     });
 
