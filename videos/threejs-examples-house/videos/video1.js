@@ -12,8 +12,8 @@ VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    scene.add( grid );
+   // var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+   // scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -34,13 +34,26 @@ VIDEO.init = function(sm, scene, camera){
 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(1, 1, 1);
+    dl.position.set(2, 5, 8);
     scene.add(dl);
 
     // adding the house
     var house = HouseMod.create();
     house.position.set(-2, 1.05, 0);
     scene.add(house);
+
+// ground
+var materials = {
+    ground: new THREE.MeshStandardMaterial({
+        color: 0x00ff00,
+        side: THREE.DoubleSide
+    })
+};
+var plane = new THREE.Mesh(new THREE.PlaneGeometry(12, 12, 8), materials.ground);
+plane.rotation.set(-Math.PI / 2, 0, 0);
+plane.castShadow = false; //default is false
+plane.receiveShadow = true; //default
+scene.add(plane);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -98,4 +111,3 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     // sequences
     Sequences.update(sm.seq, sm);
 };
-
