@@ -28,6 +28,8 @@
 
 <!-- JUST BECAUSE I WANT TO -->
 
+### () - video1 for threejs-examples
+
 ### () - video1 for threejs-examples-biplane-group
 * () start a video1
 * () upload to youtube
@@ -43,6 +45,8 @@
 * () upload to youtube
 * () embed in post
 
+### () - video1 for threejs-examples-cube-stack
+
 ### () - video1 for threejs-examples-dae-tools
 * () start a video1
 * () upload to youtube
@@ -57,34 +61,31 @@
 
 ### () - video1 for threejs-examples-menus
 
-### () - video1 for threejs-examples-nested-groups
-* (done) start a video1
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples-position-things-to-sphere-surface
 
 ### () - video1 for threejs-examples-scene-shake
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-examples-sphere-mutate
 
 ### () - video1 for threejs-examples-tool-source-layer-3d
 
-### () - video1 for threejs-examples-tree
-* (done) start a video1
+### () - video1 for threejs-examples-tree-sphere
+* () start a video1
 * () upload to youtube
 * () embed in post
 
-### () - video1 for threejs-examples-tree-sphere
-
 ### () - video1 for threejs-examples-tree-sphere-world
-
-### () - video1 for threejs-examples-waves
-* (done) start a video1
+* () start a video1
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-weird-walk-guy-two
+* () start a video1
+* () upload to youtube
+* () embed in post
 
 <!--  TRAFFIC -->
 
@@ -134,6 +135,21 @@ let material = new THREE.MeshStandardMaterial({
 * cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
 
 <!-- DONE -->
+
+### ( done 04/28/2022 ) - video1 for threejs-examples-tree
+* (done) start a video1
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 04/28/2022 ) - video1 for threejs-examples-nested-groups
+* (done) start a video1
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 04/28/2022 ) - video1 for threejs-examples-waves
+* (done) start a video1
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 04/28/2022 ) - video1 for threejs-mesh-copy ( 368 - 3mo - 4/11/2022 )
 * (done) start a video1
