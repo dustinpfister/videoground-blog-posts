@@ -4,7 +4,9 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   '../../../js/datatex.js',
+   'cube-stack.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -31,6 +33,26 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    var dl = new THREE.DirectionalLight(0xffffff, 0.8);
+    dl.position.set(5, 10, 1);
+    scene.add(dl);
+
+    // STACK
+    var stack = scene.userData.stack = CubeStack.create({
+            gx: 7,
+            gy: 4,
+            boxCount: 35,
+            colors: [
+                [1,1,0, [0, 255]],
+                [0,1,0, [128, 255]],
+                [0,1,0.5, [128, 255]],
+                [1,0,0, [128, 255]],
+                [0,1,1, [128, 255]]
+            ],
+            planeColor: 2
+        });
+    stack.position.set(0, 0.6, 0);
+    scene.add(stack);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -85,6 +107,13 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
+
+    var stack = scene.userData.stack;
+    CubeStack.applyEffect(stack, 'scaleCubes', {
+        yPer: bias
+    });
+    stack.rotation.y = Math.PI * 2 * per;
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
