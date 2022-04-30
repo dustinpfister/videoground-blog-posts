@@ -92,18 +92,18 @@
 ### () - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
 * (done) start a video1
 * (done) video one done
-* () upload to youtube
+* (done) upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-house ( 346 - 3mo - 4/11/2022 )
 * (done) start the video folder and video1 file
 * (done) have the house displayed in the scene
 * (done) work out a few seqs for camera movement, and lookAt changes
-* () upload to youtube
+* (done) upload to youtube
 * () embed in post
 
-### () - video1 for threejs-object32-traverse
-* () start video folder and a video1 file
+### () - video1 for threejs-object3d-traverse
+* (done) start video folder and a video1 file
 * () see about using one of the exmaples in the post and just move on for video1 at least with this
 * () upload to youtube
 * () embed in post
