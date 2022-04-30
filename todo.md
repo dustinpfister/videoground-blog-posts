@@ -90,7 +90,7 @@
 <!--  TRAFFIC -->
 
 ### () - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
-* () start a video1
+* (done) start a video1
 * () upload to youtube
 * () embed in post
 
