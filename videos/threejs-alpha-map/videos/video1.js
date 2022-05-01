@@ -31,25 +31,25 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
  
-// creating a texture with canvas
-var canvas = document.createElement('canvas'),
-ctx = canvas.getContext('2d');
-canvas.width = 64;
-canvas.height = 64;
-// drawing gray scale areas
-ctx.fillStyle = '#404040';
-ctx.fillRect(0, 0, 32, 32);
-ctx.fillStyle = '#808080';
-ctx.fillRect(32, 0, 32, 32);
-ctx.fillStyle = '#c0c0c0';
-ctx.fillRect(0, 32, 32, 32);
-ctx.fillStyle = '#f0f0f0';
-ctx.fillRect(32, 32, 32, 32);
-var texture = new THREE.CanvasTexture(canvas);
+    // creating a texture with canvas
+    var canvas = document.createElement('canvas'),
+    ctx = canvas.getContext('2d');
+    canvas.width = 64;
+    canvas.height = 64;
+    // drawing gray scale areas
+    ctx.fillStyle = '#404040';
+    ctx.fillRect(0, 0, 32, 32);
+    ctx.fillStyle = '#808080';
+    ctx.fillRect(32, 0, 32, 32);
+    ctx.fillStyle = '#c0c0c0';
+    ctx.fillRect(0, 32, 32, 32);
+    ctx.fillStyle = '#f0f0f0';
+    ctx.fillRect(32, 32, 32, 32);
+    var texture = new THREE.CanvasTexture(canvas);
  
-// creating a mesh that is using the Basic material
-var mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
+    // creating a mesh that is using the Basic material
+    var mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(5, 5, 5),
         new THREE.MeshBasicMaterial({
             color: 0x00ffff,
             // using the alpha map property to set the texture
@@ -61,9 +61,10 @@ var mesh = new THREE.Mesh(
             // even when opacity is one the alpha map will 
             // still effect transparency this can just be used to set it even lower
             opacity: 1,
-            side: THREE.DoubleSide
+            //side: THREE.DoubleSide
+            side: THREE.FrontSide
         }));
-scene.add(mesh);
+    scene.add(mesh);
 
 
     // SET UP SEQ OBJECT
@@ -103,7 +104,27 @@ scene.add(mesh);
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8 + 2 * partPer, 1 + 9 * partPer, 10 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.20,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10, 10, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.40,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10 - 3 * partPer, 10 - 3 * partPer, 10 - 3 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
