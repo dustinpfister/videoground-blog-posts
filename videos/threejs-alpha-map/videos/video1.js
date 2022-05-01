@@ -78,9 +78,9 @@ VIDEO.init = function(sm, scene, camera){
             transparent: true,
             // even when opacity is one the alpha map will 
             // still effect transparency this can just be used to set it even lower
-            opacity: 1,
-            //side: THREE.DoubleSide
-            side: THREE.FrontSide
+            opacity: 0.75,
+            side: THREE.DoubleSide
+            //side: THREE.FrontSide
         }));
     scene.add(mesh);
 
@@ -108,6 +108,7 @@ VIDEO.init = function(sm, scene, camera){
                     texture.needsUpdate = true;
                     // mesh
                     mesh.rotation.set( 0, 0, 0);
+                    mesh.material.opacity = 0.75;
                 }
             },
             {
@@ -130,6 +131,7 @@ VIDEO.init = function(sm, scene, camera){
                     texture.needsUpdate = true;
                     // mesh
                     mesh.rotation.set( 0, 0, 0);
+                    mesh.material.opacity = 0.75;
                 }
             },
             // sq1 - 
@@ -148,6 +150,7 @@ VIDEO.init = function(sm, scene, camera){
                     texture.needsUpdate = true;
                     // mesh
                     mesh.rotation.set( 0, 0, 0);
+                    mesh.material.opacity = 0.75;
                 }
             },
             // sq2 - 
@@ -166,6 +169,7 @@ VIDEO.init = function(sm, scene, camera){
                     texture.needsUpdate = true;
                     // mesh
                     mesh.rotation.set( 0, 0, 0);
+                    mesh.material.opacity = 0.75;
                 }
             },
             // sq3 - 
@@ -190,6 +194,7 @@ VIDEO.init = function(sm, scene, camera){
                     texture.needsUpdate = true;
                     // mesh
                     mesh.rotation.set( 0, Math.PI * 2 * partPer, 0);
+                    mesh.material.opacity = 0.75 - 0.75 * partPer;
                 }
             }
         ]
