@@ -43,7 +43,8 @@ VIDEO.init = function(sm, scene, camera){
         opt = opt || {};
         opt.w = opt.w || 4;
         opt.h = opt.h || 4;
-        opt.colors = ['#404040', '#808080', '#c0c0c0', '#f0f0f0'];
+        opt.colors = opt.colors || ['#404040', '#808080', '#c0c0c0', '#f0f0f0'];
+        opt.colorI = opt.colorI || [3,3,3,3];
 
         var i = 0, len = opt.w * opt.h, 
         sizeW = canvas.width / opt.w,
@@ -51,23 +52,10 @@ VIDEO.init = function(sm, scene, camera){
         while(i < len){
             var x = i % opt.w,
             y = Math.floor(i / opt.w);
-            ctx.fillStyle = opt.colors[i % opt.colors.length];
+            ctx.fillStyle = typeof opt.colorI[i] === 'number' ? opt.colors[opt.colorI[i]] : opt.colors[i % opt.colors.length];
             ctx.fillRect(x * sizeW, y * sizeH, sizeW, sizeH);
             i += 1;
         }
-        
-
-        // drawing gray scale areas
-/*
-        ctx.fillStyle = '#404040';
-        ctx.fillRect(0, 0, 32, 32);
-        ctx.fillStyle = '#808080';
-        ctx.fillRect(32, 0, 32, 32);
-        ctx.fillStyle = '#c0c0c0';
-        ctx.fillRect(0, 32, 32, 32);
-        ctx.fillStyle = '#f0f0f0';
-        ctx.fillRect(32, 32, 32, 32);
-*/
     };
 
     drawMethod.grid(ctx, canvas, {});
