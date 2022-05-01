@@ -34,7 +34,9 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-alpha-map
 * (done) start video folder and a video1 file
-* () start with an example from the post
+* (done) start with an example from the post
+* () update alpha map over time
+* () have more than one texture
 * () upload to youtube
 * () embed in post
 
