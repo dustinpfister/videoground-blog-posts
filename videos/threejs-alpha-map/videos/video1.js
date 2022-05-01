@@ -107,6 +107,7 @@ VIDEO.init = function(sm, scene, camera){
                     });
                     texture.needsUpdate = true;
                     // mesh
+                    mesh.rotation.set( 0, 0, 0);
                 }
             },
             {
@@ -127,6 +128,8 @@ VIDEO.init = function(sm, scene, camera){
                         h: 2
                     });
                     texture.needsUpdate = true;
+                    // mesh
+                    mesh.rotation.set( 0, 0, 0);
                 }
             },
             // sq1 - 
@@ -143,6 +146,8 @@ VIDEO.init = function(sm, scene, camera){
                         h: 2
                     });
                     texture.needsUpdate = true;
+                    // mesh
+                    mesh.rotation.set( 0, 0, 0);
                 }
             },
             // sq2 - 
@@ -159,6 +164,8 @@ VIDEO.init = function(sm, scene, camera){
                         h: 2 + Math.round(4 * partPer)
                     });
                     texture.needsUpdate = true;
+                    // mesh
+                    mesh.rotation.set( 0, 0, 0);
                 }
             },
             // sq3 - 
@@ -170,11 +177,19 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(10 - 3 * partPer, 10 - 3 * partPer, 10 - 3 * partPer);
                     camera.lookAt(0, 0, 0);
                     // draw
+                    var colorI = [],
+                    i = 6 * 6;
+                    while(i--){
+                        colorI.push( Math.floor(4 * Math.random()) )
+                    }
                     drawMethod.grid(ctx, canvas, {
                         w: 6,
-                        h: 6
+                        h: 6,
+                        colorI: colorI
                     });
                     texture.needsUpdate = true;
+                    // mesh
+                    mesh.rotation.set( 0, Math.PI * 2 * partPer, 0);
                 }
             }
         ]
