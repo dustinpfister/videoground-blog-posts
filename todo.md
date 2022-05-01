@@ -32,14 +32,6 @@ let material = new THREE.MeshStandardMaterial({
 
 <!-- FROM A-Z YEP -->
 
-### () - video1 for threejs-alpha-map
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-* () update alpha map over time
-* () have more than one texture
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-ambientlight
 * () start video folder and a video1 file
 * () start with an example from the post
@@ -148,6 +140,14 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- DONE -->
+
+### ( done 05/01/2022 ) - video1 for threejs-alpha-map
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) update alpha map over time
+* (done) update canvas texture
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 04/30/2022 ) - video1 for threejs-object3d-traverse
 * (done) start video folder and a video1 file
