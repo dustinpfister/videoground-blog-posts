@@ -30,11 +30,27 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
+<!-- FROM A-Z YEP -->
 
-<!-- FOR NEW POSTS -->
+### () - video1 for threejs-alpha-map
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-ambientlight
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-arrow-helper
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
 
 
-<!-- FOR FULL EDITS -->
 
 ### () - video1 for threejs-geometry
 * () start video folder and a video1 file
@@ -56,7 +72,7 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
-<!-- JUST BECAUSE I WANT TO -->
+<!-- THREEJS-EXAMPLES -->
 
 ### () - video1 for threejs-examples
 
@@ -72,11 +88,6 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-clock-basic
 * () start video folder and a video1 file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-examples-cube-stack
-* (done) start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
@@ -122,15 +133,6 @@ let material = new THREE.MeshStandardMaterial({
 
 <!--  TRAFFIC -->
 
-### () - video1 for threejs-object3d-traverse
-* (done) start video folder and a video1 file
-* (done) see about using one of the exmaples in the post and just move on for video1 at least with this
-* (done) switch to using the standard material
-* (done) have a default color for each mesh be red in update
-* (done) use traverse to set color of each mesh
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-line
 * () start a folder and video1
 * () start with one of the examples from the blog post
@@ -144,6 +146,20 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- DONE -->
+
+### ( done 04/30/2022 ) - video1 for threejs-object3d-traverse
+* (done) start video folder and a video1 file
+* (done) see about using one of the exmaples in the post and just move on for video1 at least with this
+* (done) switch to using the standard material
+* (done) have a default color for each mesh be red in update
+* (done) use traverse to set color of each mesh
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 04/30/2022 ) - video1 for threejs-examples-cube-stack
+* (done) start video folder and a video1 file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 04/30/2022 ) - video1 for threejs-geometry-attributes-uv ( 359 - 3mo - 4/11/2022 )
 * (done) start a video1
