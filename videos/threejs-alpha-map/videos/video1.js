@@ -44,7 +44,7 @@ VIDEO.init = function(sm, scene, camera){
         opt.w = opt.w || 4;
         opt.h = opt.h || 4;
         opt.colors = opt.colors || ['#404040', '#808080', '#c0c0c0', '#f0f0f0'];
-        opt.colorI = opt.colorI || [3,3,3,3];
+        opt.colorI = opt.colorI || [];
 
         var i = 0, len = opt.w * opt.h, 
         sizeW = canvas.width / opt.w,
@@ -58,7 +58,10 @@ VIDEO.init = function(sm, scene, camera){
         }
     };
 
-    drawMethod.grid(ctx, canvas, {});
+    drawMethod.grid(ctx, canvas, {
+        w: 2,
+        h: 2
+    });
 
     var texture = new THREE.CanvasTexture(canvas);
  
@@ -97,6 +100,13 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // draw
+                    drawMethod.grid(ctx, canvas, {
+                        w: 2,
+                        h: 2
+                    });
+                    texture.needsUpdate = true;
+                    // mesh
                 }
             },
             {
@@ -111,6 +121,12 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // draw
+                    drawMethod.grid(ctx, canvas, {
+                        w: 2,
+                        h: 2
+                    });
+                    texture.needsUpdate = true;
                 }
             },
             // sq1 - 
@@ -121,6 +137,12 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 + 2 * partPer, 1 + 9 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // draw
+                    drawMethod.grid(ctx, canvas, {
+                        w: 2,
+                        h: 2
+                    });
+                    texture.needsUpdate = true;
                 }
             },
             // sq2 - 
@@ -131,6 +153,12 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(10, 10, 10);
                     camera.lookAt(0, 0, 0);
+                    // draw
+                    drawMethod.grid(ctx, canvas, {
+                        w: 2 + Math.round(4 * partPer),
+                        h: 2 + Math.round(4 * partPer)
+                    });
+                    texture.needsUpdate = true;
                 }
             },
             // sq3 - 
@@ -141,6 +169,12 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(10 - 3 * partPer, 10 - 3 * partPer, 10 - 3 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // draw
+                    drawMethod.grid(ctx, canvas, {
+                        w: 6,
+                        h: 6
+                    });
+                    texture.needsUpdate = true;
                 }
             }
         ]
