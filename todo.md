@@ -56,6 +56,17 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
+### () - video1 for threejs-mesh
+* (done) start a video1
+
+* () have a sq1 that is just moving a mesh around
+* () have a sq2 that is just rotation of a mesh
+* () have a sq3 that is scaling of a mesh
+* () have a sq4 that is a group of mesh objects with cone geomerties pointing at the single mesh and rotating
+
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-emissive-map
 * () start video folder and a video1 file
 * () upload to youtube
