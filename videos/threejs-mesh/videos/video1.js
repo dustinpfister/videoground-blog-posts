@@ -37,6 +37,7 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial()
     );
+    scene.add(cube);
 
 
     // SET UP SEQ OBJECT
@@ -79,7 +80,10 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
                     // cube
-                    cube.position.set(-4 * partBias, 0, 0);
+                    var radian = Math.PI * 4 * partPer;
+                    var x = Math.cos(radian) * (3 * partBias);
+                    var z = Math.sin(radian) * (3 * partBias);
+                    cube.position.set(x, 0, z);
                 }
             },
             // sq1 - cube rotates
@@ -88,7 +92,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 6, 0);
                     camera.lookAt(0, 0, 0);
                     // cube
                     cube.rotation.set(0, Math.PI * 4 * partPer, 0);
