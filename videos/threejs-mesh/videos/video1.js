@@ -33,11 +33,41 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // single cube
     var cube = scene.userData.cube = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial()
+        new THREE.MeshNormalMaterial({})
     );
     scene.add(cube);
+
+    var group = scene.userData.group = new THREE.Group;
+    group.visible = false;
+    scene.add(group);
+
+    var i = 0, len = 10;
+    var m = new THREE.MeshNormalMaterial({ transparent: true, opacity: 1})
+    while(i < len){
+        var copy = cube.clone();
+        copy.material = m;
+        var per = i / len,
+        radian = Math.PI * 2 * per;
+        copy.position.set(
+            Math.cos(radian) * 4,
+            0,
+            Math.sin(radian) * 4
+        );
+        copy.lookAt(cube.position);
+        group.add(copy);
+        i += 1;
+    }
+
+
+                    var len = group.children.length;
+                    group.children.forEach(function(copy, i){
+
+copy.material.opacity = 0.5;
+
+                    });
 
 
     // SET UP SEQ OBJECT
@@ -110,7 +140,26 @@ VIDEO.init = function(sm, scene, camera){
                     var s = 1 + 4 * partBias;
                     cube.scale.set(s, s, s);
                 }
+            },
+            // sq4 - look at
+            {
+                per: 0.45,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 6, 0);
+                    camera.lookAt(0, 0, 0);
+                    // cube
+
+                    // group
+                    group.visible = true;
+                    //group.material.opacity = partPer;
+                }
             }
+
+
+
+
         ]
     });
 };
@@ -128,6 +177,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     cube.position.set(0, 0, 0);
     cube.rotation.set(0, 0, 0);
     cube.scale.set(1, 1, 1);
+
+    var group = scene.userData.group;
+    group.visible = false;
 
     // sequences
     Sequences.update(sm.seq, sm);
