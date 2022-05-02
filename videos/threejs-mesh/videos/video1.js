@@ -61,15 +61,6 @@ VIDEO.init = function(sm, scene, camera){
         i += 1;
     }
 
-
-                    var len = group.children.length;
-                    group.children.forEach(function(copy, i){
-
-copy.material.opacity = 0.5;
-
-                    });
-
-
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
@@ -141,7 +132,7 @@ copy.material.opacity = 0.5;
                     cube.scale.set(s, s, s);
                 }
             },
-            // sq4 - look at
+            // sq4 - group becomes visible
             {
                 per: 0.45,
                 init: function(sm){},
@@ -153,13 +144,33 @@ copy.material.opacity = 0.5;
 
                     // group
                     group.visible = true;
-                    //group.material.opacity = partPer;
+                    var len = group.children.length;
+                    group.children.forEach(function(copy, i){
+                        copy.material.opacity = partPer;
+                    });
+                }
+            },
+            // sq5 - group rotates
+            {
+                per: 0.55,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 6, 0);
+                    camera.lookAt(0, 0, 0);
+                    // cube
+                    cube.position.y = 4 * partPer;
+                    // group
+                    group.visible = true;
+                    group.rotation.y = Math.PI * 4 * partPer;
+                    //group.rotation.x = Math.PI * 2 * partPer;
+                    var len = group.children.length;
+                    group.children.forEach(function(copy, i){
+                        copy.material.opacity = 1;
+                        copy.lookAt(cube.position);
+                    });
                 }
             }
-
-
-
-
         ]
     });
 };
@@ -179,7 +190,12 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     cube.scale.set(1, 1, 1);
 
     var group = scene.userData.group;
+    group.rotation.set(0, 0, 0);
     group.visible = false;
+    group.children.forEach(function(copy, i){
+        copy.material.opacity = 0.0;
+        copy.rotation.set(0, 0, 0);
+    });
 
     // sequences
     Sequences.update(sm.seq, sm);
