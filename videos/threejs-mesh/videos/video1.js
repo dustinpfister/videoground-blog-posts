@@ -33,6 +33,11 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    var cube = scene.userData.cube = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial()
+    );
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -65,7 +70,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - cube moves around
             {
                 per: 0.15,
                 init: function(sm){},
@@ -73,6 +78,20 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
+                    // cube
+                    cube.position.set(-4 * partBias, 0, 0);
+                }
+            },
+            // sq1 - cube rotates
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.lookAt(0, 0, 0);
+                    // cube
+                    cube.rotation.set(0, Math.PI * 4 * partPer, 0);
                 }
             }
         ]
@@ -87,6 +106,12 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
+
+    var cube = scene.userData.cube;
+    cube.position.set(0, 0, 0);
+    cube.rotation.set(0, 0, 0);
+    cube.scale.set(1, 1, 1);
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
