@@ -70,6 +70,11 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples
 
+### () - video1 for threejs-example-cube-stack-grid
+* () start video folder and a video1 file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-examples-biplane-group
 * () start video folder and a video1 file
 * () upload to youtube
