@@ -1,5 +1,10 @@
 # videoground-blog-posts todo list
 
+### () - video1 for threejs-arrow-helper
+* (done) start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
 
 <!-- JAVASCRIPT FILES -->
 
@@ -31,12 +36,6 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- FROM A-Z YEP -->
-
-### () - video1 for threejs-arrow-helper
-* () start video folder and a video1 file
-* () start with an example from the post
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-basic-material
 * () start video folder and a video1 file
