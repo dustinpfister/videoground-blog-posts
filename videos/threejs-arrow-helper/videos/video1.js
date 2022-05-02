@@ -13,7 +13,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#ffffff');
     scene.add( grid );
  
     // TEXT CUBE
@@ -32,6 +32,38 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+// NORAMIZED DIRECTION AS UNIT VECTOR
+//var V = new THREE.Vector3(0, 1, 0),
+//DIR = V.normalize(),
+//LENGTH = 3;
+
+// Y ARROW HELPER
+var arrowY = new THREE.ArrowHelper(
+        new THREE.Vector3(0, 1, 0),
+        new THREE.Vector3(0, 0, 0),
+        3,
+        0x00ff00);
+scene.add(arrowY);
+
+// X ARROW HELPER
+var arrowX = new THREE.ArrowHelper(
+        new THREE.Vector3(1, 0, 0),
+        new THREE.Vector3(0, 0, 0),
+        3,
+        0x0000ff);
+scene.add(arrowX);
+
+// Z ARROW HELPER
+var arrowZ = new THREE.ArrowHelper(
+        new THREE.Vector3(0, 0, 1),
+        new THREE.Vector3(0, 0, 0),
+        3,
+        0xff0000);
+scene.add(arrowZ);
+
+
+//arrow.setDirection(DIR);
 
 
     // SET UP SEQ OBJECT
