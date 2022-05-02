@@ -42,7 +42,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(mesh);
  
     // add AmbientLight
-    var light = new THREE.AmbientLight(0xffffff, 1);
+    var light = scene.userData.light = new THREE.AmbientLight(0xffffff, 1);
     scene.add(light);
 
 
@@ -87,7 +87,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq2 - 
+            // sq2 - dim intensity
             {
                 per: 0.25,
                 init: function(sm){},
@@ -95,6 +95,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 8, 0);
                     camera.lookAt(0, 0, 0);
+                    // light
+                    light.intensity = 1 - partPer;
                 }
             }
         ]
@@ -109,6 +111,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
+
+    var light = scene.userData.light;
+    light.intensity = 1;
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
