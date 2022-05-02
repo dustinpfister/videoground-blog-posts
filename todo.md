@@ -1,27 +1,5 @@
 # videoground-blog-posts todo list
 
-### () - video1 for threejs-mesh
-* (done) start a video1
-* (done) have a sq1 that is just moving a mesh around
-* (done) have a sq2 that is just rotation of a mesh
-* (done) have a sq3 that is scaling of a mesh
-* (done) have a sq4 that is a group of mesh objects pointing at the single mesh and rotating
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-examples-cube-stack-grid
-* (done) start video folder and a video1 file
-* (done) have example from post working
-* (done) work out some cool camera angles
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-ambientlight
-* (done) start video folder and a video1 file
-* () start with an example from the post
-* () upload to youtube
-* () embed in post
-
 
 <!-- JAVASCRIPT FILES -->
 
@@ -60,7 +38,29 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
+### () - video1 for threejs-basic-material
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
 
+### () - video1 for threejs-box-geometry
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-box-helper
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-buffer-geometry
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-geometry
 * () start video folder and a video1 file
@@ -156,6 +156,28 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- DONE -->
+
+### ( done 05/02/2022 ) - video1 for threejs-mesh
+* (done) start a video1
+* (done) have a sq1 that is just moving a mesh around
+* (done) have a sq2 that is just rotation of a mesh
+* (done) have a sq3 that is scaling of a mesh
+* (done) have a sq4 that is a group of mesh objects pointing at the single mesh and rotating
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 05/02/2022 ) - video1 for threejs-examples-cube-stack-grid
+* (done) start video folder and a video1 file
+* (done) have example from post working
+* (done) work out some cool camera angles
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 05/02/2022 ) - video1 for threejs-ambientlight
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/01/2022 ) - video1 for threejs-alpha-map
 * (done) start video folder and a video1 file
