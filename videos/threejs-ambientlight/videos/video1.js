@@ -45,6 +45,10 @@ VIDEO.init = function(sm, scene, camera){
     var light = scene.userData.light = new THREE.AmbientLight(0xffffff, 1);
     scene.add(light);
 
+    // add AmbientLight
+    var dl = scene.userData.dl = new THREE.DirectionalLight(0xffffff, 1);
+    scene.add(dl);
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -98,6 +102,32 @@ VIDEO.init = function(sm, scene, camera){
                     // light
                     light.intensity = 1 - partPer;
                 }
+            },
+            // sq3 - intensity back up to 0.25
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 0);
+                    camera.lookAt(0, 0, 0);
+                    // light
+                    light.intensity = 0.25 * partPer;
+                }
+            },
+            // sq4 - dl
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 0);
+                    camera.lookAt(0, 0, 0);
+                    // light
+                    light.intensity = 0.25;
+                    dl.intensity = 1 * partPer;
+                    dl.position.set(0, 5 * partPer, 3);
+                }
             }
         ]
     });
@@ -114,6 +144,11 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     var light = scene.userData.light;
     light.intensity = 1;
+
+    var dl = scene.userData.dl;
+    dl.position.set(0, 0, 3);
+    dl.intensity = 0;
+
 
     // sequences
     Sequences.update(sm.seq, sm);
