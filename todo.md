@@ -17,7 +17,7 @@
 * () embed in post
 
 ### () - video1 for threejs-ambientlight
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () start with an example from the post
 * () upload to youtube
 * () embed in post

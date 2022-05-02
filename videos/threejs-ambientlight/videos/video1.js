@@ -33,6 +33,18 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // MESH
+    var mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(3.5, 30, 30),
+        new THREE.MeshStandardMaterial({
+            color: 0xff0000
+        }));
+    scene.add(mesh);
+ 
+    // add AmbientLight
+    var light = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(light);
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -65,13 +77,23 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - move camera
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 1 + 7 * partPer, 0);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 0);
                     camera.lookAt(0, 0, 0);
                 }
             }
