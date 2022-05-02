@@ -1,5 +1,27 @@
 # videoground-blog-posts todo list
 
+### () - video1 for threejs-mesh
+* (done) start a video1
+* (done) have a sq1 that is just moving a mesh around
+* (done) have a sq2 that is just rotation of a mesh
+* (done) have a sq3 that is scaling of a mesh
+* (done) have a sq4 that is a group of mesh objects pointing at the single mesh and rotating
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-examples-cube-stack-grid
+* (done) start video folder and a video1 file
+* (done) have example from post working
+* (done) work out some cool camera angles
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-ambientlight
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
+
 
 <!-- JAVASCRIPT FILES -->
 
@@ -32,12 +54,6 @@ let material = new THREE.MeshStandardMaterial({
 
 <!-- FROM A-Z YEP -->
 
-### () - video1 for threejs-ambientlight
-* () start video folder and a video1 file
-* () start with an example from the post
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-arrow-helper
 * () start video folder and a video1 file
 * () start with an example from the post
@@ -56,17 +72,6 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
-### () - video1 for threejs-mesh
-* (done) start a video1
-* (done) have a sq1 that is just moving a mesh around
-* (done) have a sq2 that is just rotation of a mesh
-* (done) have a sq3 that is scaling of a mesh
-
-* () have a sq4 that is a group of mesh objects pointing at the single mesh and rotating
-
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-emissive-map
 * () start video folder and a video1 file
 * () upload to youtube
@@ -80,13 +85,6 @@ let material = new THREE.MeshStandardMaterial({
 <!-- THREEJS-EXAMPLES -->
 
 ### () - video1 for threejs-examples
-
-### () - video1 for threejs-examples-cube-stack-grid
-* (done) start video folder and a video1 file
-* (done) have example from post working
-* () work out some cool camera angles
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-examples-biplane-group
 * () start video folder and a video1 file
