@@ -59,9 +59,10 @@ let material = new THREE.MeshStandardMaterial({
 ### () - video1 for threejs-mesh
 * (done) start a video1
 
-* () have a sq1 that is just moving a mesh around
-* () have a sq2 that is just rotation of a mesh
-* () have a sq3 that is scaling of a mesh
+* (done) have a sq1 that is just moving a mesh around
+* (done) have a sq2 that is just rotation of a mesh
+* (done) have a sq3 that is scaling of a mesh
+
 * () have a sq4 that is a group of mesh objects with cone geomerties pointing at the single mesh and rotating
 
 * () upload to youtube

@@ -86,7 +86,7 @@ VIDEO.init = function(sm, scene, camera){
                     cube.position.set(x, 0, z);
                 }
             },
-            // sq1 - cube rotates
+            // sq2 - cube rotates
             {
                 per: 0.25,
                 init: function(sm){},
@@ -95,7 +95,20 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 6, 0);
                     camera.lookAt(0, 0, 0);
                     // cube
-                    cube.rotation.set(0, Math.PI * 4 * partPer, 0);
+                    cube.rotation.set(Math.PI * 2 * partPer, Math.PI * 4 * partPer, 0);
+                }
+            },
+            // sq3 - scale cube
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 6, 0);
+                    camera.lookAt(0, 0, 0);
+                    // cube
+                    var s = 1 + 4 * partBias;
+                    cube.scale.set(s, s, s);
                 }
             }
         ]
