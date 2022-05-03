@@ -66,6 +66,14 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(arrowPointer);
 
 
+    var mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(0.25, 30, 30),
+        new THREE.MeshNormalMaterial()
+    );
+    scene.add(mesh);
+
+    mesh.position.set(-1.8, 1.8, 1.8);
+    DIR.copy(mesh.position).normalize();
     arrowPointer.setDirection(DIR);
 
 
