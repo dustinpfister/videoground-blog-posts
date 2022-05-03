@@ -70,10 +70,10 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(4, 0.8, 0);
                     textCube.material.opacity = 1.0;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(6, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -83,11 +83,11 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(4, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(6, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -97,7 +97,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(6, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
                 }
             }
@@ -109,7 +109,7 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(8, 0.8, 0);
+    textCube.position.set(4, 0.8, 0);
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
