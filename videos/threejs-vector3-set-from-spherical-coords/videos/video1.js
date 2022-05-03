@@ -57,6 +57,7 @@ VIDEO.init = function(sm, scene, camera){
         phi = THREE.MathUtils.degToRad(p === undefined ? 0 : p),
         theta = THREE.MathUtils.degToRad(t === undefined ? 0 : t);
         mesh.position.setFromSphericalCoords(radius, phi, theta);
+        mesh.lookAt(0, 0, 0);
     };
 
     setMeshPos(90, 90, 3);
@@ -97,7 +98,7 @@ VIDEO.init = function(sm, scene, camera){
                     setMeshPos(90, 90, 3);
                 }
             },
-            // sq1 - 
+            // sq1 - move camera up and start moving mesh
             {
                 per: 0.15,
                 init: function(sm){},
@@ -106,7 +107,32 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
                     // set mesh pos
-                    setMeshPos(90, 90, 3);
+                    setMeshPos(90, 90 + 90 * partPer, 3);
+                }
+            },
+            // sq2 - move camera and mesh
+            {
+                per: 0.30,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 6 + 2 * partPer, 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                    // set mesh pos
+                    setMeshPos(90, 180 + 90 * partPer, 3);
+                }
+            },
+            // sq3 - move camera up and mesh
+            {
+                per: 0.45,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 16 * partPer, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                    // set mesh pos
+                    var r = Math.PI * 2 * 4 * partPer;
+                    setMeshPos(90 - Math.cos(r) * (45 * partPer), 270 + 360 * 2 * partPer, 3);
                 }
             }
         ]
