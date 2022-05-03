@@ -14,7 +14,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#ffffff');
-    grid.position.y = -0.001;
+    grid.position.y = -0.0005;
     scene.add( grid );
  
     // TEXT CUBE
@@ -38,21 +38,21 @@ VIDEO.init = function(sm, scene, camera){
     var arrowY = new THREE.ArrowHelper(
         new THREE.Vector3(0, 1, 0),
         new THREE.Vector3(0, 0, 0),
-        3,
+        1.75,
         0x00ff00);
     scene.add(arrowY);
     // X ARROW HELPER
     var arrowX = new THREE.ArrowHelper(
         new THREE.Vector3(1, 0, 0),
         new THREE.Vector3(0, 0, 0),
-        3,
+        1.75,
         0x0000ff);
     scene.add(arrowX);
     // Z ARROW HELPER
     var arrowZ = new THREE.ArrowHelper(
         new THREE.Vector3(0, 0, 1),
         new THREE.Vector3(0, 0, 0),
-        3,
+        1.75,
         0xff0000);
     scene.add(arrowZ);
 
@@ -70,7 +70,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(4, 0.8, 0);
+                    textCube.position.set(4, 0.7, 0);
                     textCube.material.opacity = 1.0;
                     // camera
                     camera.position.set(6, 1, 0);
@@ -83,7 +83,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(4, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(4, 0.7 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                     // camera
@@ -97,7 +97,17 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(6, 1 + 5 * partPer, 0);
+                    camera.position.set(6 - 3 * partPer, 1 + 2 * partPer, 3 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(3, 3, 3);
                     camera.lookAt(0, 0, 0);
                 }
             }
@@ -109,7 +119,7 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(4, 0.8, 0);
+    textCube.position.set(4, 0.7, 0);
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
