@@ -145,7 +145,7 @@ VIDEO.init = function(sm, scene, camera){
                     boxGroup.position.set(5, 0, 0);
                 }
             },
-            // sq4 - 
+            // sq4 - rest
             {
                 per: 0.45,
                 init: function(sm){},
@@ -153,6 +153,30 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 0, 4);
                     camera.lookAt(0, 0, 4);
+                    // box group
+                    boxGroup.position.set(5, 0, 0);
+                }
+            },
+            // sq5 - move camera to last
+            {
+                per: 0.55,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 0, 4 - 8 * partPer);
+                    camera.lookAt(0, 0, 4 - 8 * partPer);
+                    // box group
+                    boxGroup.position.set(5, 0, 0);
+                }
+            },
+            // sq6 - rest
+            {
+                per: 0.90,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 0, -4);
+                    camera.lookAt(0, 0, -4);
                     // box group
                     boxGroup.position.set(5, 0, 0);
                 }
