@@ -72,10 +72,14 @@ VIDEO.init = function(sm, scene, camera){
     );
     scene.add(mesh);
 
-    mesh.position.set(-1.8, 1.8, 1.8);
-    DIR.copy(mesh.position).normalize();
-    arrowPointer.setDirection(DIR);
 
+    var moveAndPoint = function(x, y, z){
+        mesh.position.set(x, y, z);
+        DIR.copy(mesh.position).normalize();
+        arrowPointer.setDirection(DIR);
+    };
+
+    moveAndPoint(-1.8, 1.8, 1.8);
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
