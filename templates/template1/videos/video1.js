@@ -83,7 +83,7 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(8, 0.8, 0);
+    textCube.position.set(6, 0.8, 0);
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
