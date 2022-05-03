@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   '../../../js/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -37,14 +38,17 @@ VIDEO.init = function(sm, scene, camera){
     var boxGroup = new THREE.Group();
     scene.add(boxGroup);
 
+    var texture_rnd_white = datatex.seededRandom(32, 32, 1,1,1,[0,255]);
     [
-        { color: 0xff0000 }
-    ].forEach(function(meshOpt){
+        new THREE.MeshBasicMaterial({ color: 0xff0000 }),
+        new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture_rnd_white}),
+    ].forEach(function(material, i, arr){
+        var per = i / (arr.length - 1 );
         // a mesh using the BASIC MATERIAL
         var box = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial(meshOpt));
-        box.position.set(0, 0, 4);
+            material);
+        box.position.set(0, 0, 4 - 8 * per);
         boxGroup.add(box);
     });
 
