@@ -25,13 +25,41 @@ VIDEO.init = function(sm, scene, camera){
         lineCount: 9,
         lines: [
             ['Set From Spherical', 64, 17, 14, 'white'],
-            ['coords Vector3 method', 64, 32, 14, 'white'],
-            ['in threejs', 64, 47, 14, 'white'],
+            ['Coords Vector3', 64, 32, 14, 'white'],
+            ['Method in threejs', 64, 47, 14, 'white'],
             ['( r135 05/03/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
+
+
+    // A Mesh with a Sphere for geometry and using the Standard Material
+    var sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(2.5, 30, 30),
+        new THREE.MeshBasicMaterial({
+            color: new THREE.Color('red'),
+            wireframe: true
+        })
+    );
+    scene.add(sphere);
+ 
+    var mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial({
+        })
+    );
+    scene.add(mesh);
+
+    // USING setFromSphericalCoords to set position of the Mesh
+    var setMeshPos = function(p, t, r){
+        var radius = r === undefined ? 3 : r,
+        phi = THREE.MathUtils.degToRad(p === undefined ? 0 : p),
+        theta = THREE.MathUtils.degToRad(t === undefined ? 0 : t);
+        mesh.position.setFromSphericalCoords(radius, phi, theta);
+    };
+
+    setMeshPos(90, 90, 3);
 
 
     // SET UP SEQ OBJECT
@@ -49,6 +77,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // set mesh pos
+                    setMeshPos(90, 90, 3);
                 }
             },
             {
@@ -63,6 +93,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // set mesh pos
+                    setMeshPos(90, 90, 3);
                 }
             },
             // sq1 - 
@@ -73,6 +105,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
+                    // set mesh pos
+                    setMeshPos(90, 90, 3);
                 }
             }
         ]
