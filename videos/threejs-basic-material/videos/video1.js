@@ -39,10 +39,22 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(boxGroup);
 
     var texture_rnd_white = datatex.seededRandom(32, 32, 1,1,1,[0,255]);
+
+    var texture_dist = datatex.forEachPix(32, 32, function(x, y, w, h, i, stride, data){
+        var obj = {};
+        var v = new THREE.Vector2(x, y);
+        var d = v.distanceTo(new THREE.Vector2(16, 16));
+        var per = d / 16;
+        per = per > 1 ? 1 : per;
+        obj.g = 255 - 250 * per;
+        return obj;
+    });
+
     [
         new THREE.MeshBasicMaterial({ color: 0xff0000 }),
         new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent:true, opacity: 0.15 }),
         new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture_rnd_white}),
+        new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture_dist}),
     ].forEach(function(material, i, arr){
         var per = i / (arr.length - 1 );
         // a mesh using the BASIC MATERIAL
