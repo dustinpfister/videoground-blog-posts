@@ -55,6 +55,14 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent:true, opacity: 0.15 }),
         new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture_rnd_white}),
         new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture_dist}),
+        [
+            new THREE.MeshBasicMaterial({ color: 0xff0000 }),
+            new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
+            new THREE.MeshBasicMaterial({ color: 0x0000ff }),
+            new THREE.MeshBasicMaterial({ color: 0xff00ff }),
+            new THREE.MeshBasicMaterial({ color: 0xffff00 }),
+            new THREE.MeshBasicMaterial({ color: 0x00ffff })
+        ]
     ].forEach(function(material, i, arr){
         var per = i / (arr.length - 1 );
         // a mesh using the BASIC MATERIAL

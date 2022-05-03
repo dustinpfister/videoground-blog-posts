@@ -4,7 +4,7 @@
 
 ### () - video1 for threejs-basic-material
 * (done) start video folder and a video1 file
-* () start with an example from the post
+* (done) start with an example from the post
 * () upload to youtube
 * () embed in post
 
