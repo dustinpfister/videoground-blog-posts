@@ -28,7 +28,7 @@ VIDEO.init = function(sm, scene, camera){
             ['Arrow Helpers', 64, 17, 14, 'white'],
             ['in', 64, 32, 14, 'white'],
             ['three.js', 64, 47, 14, 'white'],
-            ['( r135 05/02/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 05/03/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
