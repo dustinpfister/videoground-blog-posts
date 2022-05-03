@@ -1,26 +1,5 @@
 # videoground-blog-posts todo list
 
-### () - video1 for threejs-arrow-helper
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-* (done) adjust position of grid
-* (done) move text cube and camera in
-* (done) have an arrow that will point to a mesh object in the scene
-* (done) move the mesh object around in the scene
-* (done) work out a few camera angles
-* (done) export to raw video file
-
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-vector3-set-from-spherical-coords
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 <!-- JAVASCRIPT FILES -->
 
 ## () -
@@ -202,6 +181,26 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- DONE -->
+
+### ( 05/03/2022 ) - video1 for threejs-arrow-helper
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) adjust position of grid
+* (done) move text cube and camera in
+* (done) have an arrow that will point to a mesh object in the scene
+* (done) move the mesh object around in the scene
+* (done) work out a few camera angles
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( 05/03/2022 ) - video1 for threejs-vector3-set-from-spherical-coords
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/02/2022 ) - video1 for threejs-mesh
 * (done) start a video1
