@@ -121,7 +121,7 @@ VIDEO.init = function(sm, scene, camera){
                     boxGroup.position.set(5 * partPer, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq2 - rest
             {
                 per: 0.25,
                 init: function(sm){},
@@ -129,6 +129,30 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 0, 0);
                     camera.lookAt(0, 0, 0);
+                    // box group
+                    boxGroup.position.set(5, 0, 0);
+                }
+            },
+            // sq3 - camera moves to and looks at first mesh
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 0, 4 * partPer);
+                    camera.lookAt(0, 0, 4 * partPer);
+                    // box group
+                    boxGroup.position.set(5, 0, 0);
+                }
+            },
+            // sq4 - 
+            {
+                per: 0.45,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 0, 4);
+                    camera.lookAt(0, 0, 4);
                     // box group
                     boxGroup.position.set(5, 0, 0);
                 }
@@ -153,7 +177,7 @@ boxGroup.position.set(0, 0, 0);
 
 boxGroup.children.forEach(function(box, i, arr){
     var a = i / (arr.length - 1);
-    box.rotation.y = Math.PI * 2 * (8 * a) * per;
+    box.rotation.y = Math.PI * 2 * ( 1 + 8 * a) * per;
     box.rotation.x = Math.PI * 2 * per;
 });
 
