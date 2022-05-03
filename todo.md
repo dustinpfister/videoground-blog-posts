@@ -2,14 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-basic-material
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-line
 * (done) start video folder and a video1 file
 * () export to raw video file
@@ -186,6 +178,14 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/03/2022 ) - video1 for threejs-basic-material
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( 05/03/2022 ) - video1 for threejs-arrow-helper
 * (done) start video folder and a video1 file
