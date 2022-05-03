@@ -14,6 +14,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#ffffff');
+    grid.position.y = -0.001;
     scene.add( grid );
  
     // TEXT CUBE
