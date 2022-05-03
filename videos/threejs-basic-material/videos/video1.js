@@ -41,6 +41,7 @@ VIDEO.init = function(sm, scene, camera){
     var texture_rnd_white = datatex.seededRandom(32, 32, 1,1,1,[0,255]);
     [
         new THREE.MeshBasicMaterial({ color: 0xff0000 }),
+        new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent:true, opacity: 0.15 }),
         new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture_rnd_white}),
     ].forEach(function(material, i, arr){
         var per = i / (arr.length - 1 );
