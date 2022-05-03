@@ -2,7 +2,14 @@
 
 ### () - video1 for threejs-arrow-helper
 * (done) start video folder and a video1 file
-* () start with an example from the post
+* (done) start with an example from the post
+
+* () have an arrow that will point to a mesh object in the scene
+* () move the mesh object around in the scene
+* () work out a few camera angles
+
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -32,6 +39,8 @@ let material = new THREE.MeshStandardMaterial({
 * (done) start video folder and a video1 file
 * () base video off of the state of that cube stack animation that switches between the two cameras
 * () A FIX NEEDS TO ME MADE WHERE I CAN CHNAGE WHAT CAMERA IS USED
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -46,28 +55,38 @@ let material = new THREE.MeshStandardMaterial({
 ### () - video1 for threejs-box-geometry
 * () start video folder and a video1 file
 * () start with an example from the post
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-box-helper
 * () start video folder and a video1 file
 * () start with an example from the post
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-buffer-geometry
 * () start video folder and a video1 file
 * () start with an example from the post
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-geometry
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-materials
-* () start a video1
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -78,6 +97,8 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -87,11 +108,15 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-biplane-group
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-build-a-box
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -102,11 +127,15 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-dae-tools
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-guy-one
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -118,6 +147,8 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-scene-shake
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -127,30 +158,38 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-tree-sphere
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-tree-sphere-world
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-weird-walk-guy-two
 * () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 <!--  TRAFFIC -->
 
 ### () - video1 for threejs-line
-* () start a folder and video1
-* () start with one of the examples from the blog post
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-vector3
-* () start a folder and video1
-* () start with one of the examples from the blog post
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
