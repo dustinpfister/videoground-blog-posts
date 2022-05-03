@@ -3,27 +3,27 @@
 <!-- Whats next -->
 
 ### () - video1 for threejs-basic-material
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () start with an example from the post
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-line
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-vector3
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-guy-one
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube

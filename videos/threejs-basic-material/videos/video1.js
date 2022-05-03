@@ -33,6 +33,21 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // box group
+    var boxGroup = new THREE.Group();
+    scene.add(boxGroup);
+
+    [
+        { color: 0xff0000 }
+    ].forEach(function(meshOpt){
+        // a mesh using the BASIC MATERIAL
+        var box = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial(meshOpt));
+        box.position.set(0, 0, 4);
+        boxGroup.add(box);
+    });
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
