@@ -3,15 +3,13 @@
 ### () - video1 for threejs-arrow-helper
 * (done) start video folder and a video1 file
 * (done) start with an example from the post
-
 * (done) adjust position of grid
-* move text cube and camera in
+* (done) move text cube and camera in
+* (done) have an arrow that will point to a mesh object in the scene
+* (done) move the mesh object around in the scene
+* (done) work out a few camera angles
+* (done) export to raw video file
 
-* () have an arrow that will point to a mesh object in the scene
-* () move the mesh object around in the scene
-* () work out a few camera angles
-
-* () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
