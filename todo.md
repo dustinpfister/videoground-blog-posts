@@ -1,5 +1,34 @@
 # videoground-blog-posts todo list
 
+<!-- Whats next -->
+
+### () - video1 for threejs-basic-material
+* () start video folder and a video1 file
+* () start with an example from the post
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-line
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-vector3
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-examples-guy-one
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 <!-- JAVASCRIPT FILES -->
 
 ## () -
@@ -32,12 +61,6 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- FROM A-Z YEP -->
-
-### () - video1 for threejs-basic-material
-* () start video folder and a video1 file
-* () start with an example from the post
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-box-geometry
 * () start video folder and a video1 file
@@ -119,13 +142,6 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
-### () - video1 for threejs-examples-guy-one
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples-land-sections
 
 ### () - video1 for threejs-examples-menus
@@ -166,19 +182,6 @@ let material = new THREE.MeshStandardMaterial({
 
 <!--  TRAFFIC -->
 
-### () - video1 for threejs-line
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-vector3
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 <!-- DONE -->
 
