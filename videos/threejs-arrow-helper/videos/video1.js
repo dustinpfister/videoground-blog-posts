@@ -56,8 +56,17 @@ VIDEO.init = function(sm, scene, camera){
         0xff0000);
     scene.add(arrowZ);
 
+    // POINTER ARROW HELPER
+    var DIR = new THREE.Vector3(1, 1, 1).normalize();
+    var arrowPointer = new THREE.ArrowHelper(
+        DIR,
+        new THREE.Vector3(0, 0, 0),
+        1.75,
+        0xff00ff);
+    scene.add(arrowPointer);
 
-    //arrow.setDirection(DIR);
+
+    arrowPointer.setDirection(DIR);
 
 
     // SET UP SEQ OBJECT
