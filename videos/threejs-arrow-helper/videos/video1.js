@@ -96,6 +96,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(6, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // move and point
+                    moveAndPoint(-1.8, 1.8, 1.8);
                 }
             },
             {
@@ -110,6 +112,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(6, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // move and point
+                    moveAndPoint(-1.8, 1.8, 1.8);
                 }
             },
             // sq1 - 
@@ -120,6 +124,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(6 - 3 * partPer, 1 + 2 * partPer, 3 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // move and point
+                    moveAndPoint(-1.8, 1.8, 1.8);
                 }
             },
             // sq2 - 
@@ -130,6 +136,33 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(3, 3, 3);
                     camera.lookAt(0, 0, 0);
+                    // move and point
+                    moveAndPoint(-1.8, 1.8, 1.8);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(3, 3, 3);
+                    camera.lookAt(0, 0, 0);
+                    // move and point
+                    moveAndPoint(-1.8, 1.8 - 3.6 * partPer, 1.8);
+                }
+            },
+            // sq4 - 
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(3, 3 - 2 * partPer , 3);
+                    camera.lookAt(0, 0, 0);
+                    // move and point
+                    
+                    moveAndPoint(-1.8, -1.8 + 3 * partPer, 1.8 - 8 * partPer);
                 }
             }
         ]
