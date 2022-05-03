@@ -10,10 +10,10 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#008800', '#ffffff');
     scene.add( grid );
  
     // TEXT CUBE
@@ -36,10 +36,12 @@ VIDEO.init = function(sm, scene, camera){
 
     // A Mesh with a Sphere for geometry and using the Standard Material
     var sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(2.5, 30, 30),
+        new THREE.SphereGeometry(2.5, 20, 20),
         new THREE.MeshBasicMaterial({
-            color: new THREE.Color('red'),
-            wireframe: true
+            color: new THREE.Color('lime'),
+            wireframe: true,
+            transparent: true,
+            opacity: 0.4
         })
     );
     scene.add(sphere);
@@ -104,7 +106,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8 - 1 * partPer, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
                     // set mesh pos
                     setMeshPos(90, 90 + 90 * partPer, 3);
@@ -116,7 +118,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 6 + 2 * partPer, 8 * partPer);
+                    camera.position.set(7, 6 + 1 * partPer, 7 * partPer);
                     camera.lookAt(0, 0, 0);
                     // set mesh pos
                     setMeshPos(90, 180 + 90 * partPer, 3);
@@ -128,7 +130,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8 - 16 * partPer, 8, 8);
+                    camera.position.set(7 - 14 * partPer, 7, 7);
                     camera.lookAt(0, 0, 0);
                     // set mesh pos
                     var r = Math.PI * 2 * 4 * partPer;
