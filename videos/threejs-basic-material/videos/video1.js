@@ -35,7 +35,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
     // box group
-    var boxGroup = new THREE.Group();
+    var boxGroup = scene.userData.boxGroup = new THREE.Group();
     scene.add(boxGroup);
 
     var texture_rnd_white = datatex.seededRandom(32, 32, 1,1,1,[0,255]);
@@ -127,6 +127,15 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
+
+
+var boxGroup = scene.userData.boxGroup;
+boxGroup.children.forEach(function(box, i, arr){
+    var a = i / (arr.length - 1);
+    box.rotation.y = Math.PI * 2 * (8 * a) * per;
+    box.rotation.x = Math.PI * 2 * per;
+});
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
