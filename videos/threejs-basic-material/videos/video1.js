@@ -89,6 +89,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // box group
+                    boxGroup.position.set(0, 0, 0);
                 }
             },
             {
@@ -103,16 +105,32 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // box group
+                    boxGroup.position.set(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - box group moves up, camera moves down
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 1 - partPer, 0);
                     camera.lookAt(0, 0, 0);
+                    // box group
+                    boxGroup.position.set(5 * partPer, 0, 0);
+                }
+            },
+            // sq1 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 0, 0);
+                    camera.lookAt(0, 0, 0);
+                    // box group
+                    boxGroup.position.set(5, 0, 0);
                 }
             }
         ]
@@ -130,6 +148,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
 
 var boxGroup = scene.userData.boxGroup;
+
+boxGroup.position.set(0, 0, 0);
+
 boxGroup.children.forEach(function(box, i, arr){
     var a = i / (arr.length - 1);
     box.rotation.y = Math.PI * 2 * (8 * a) * per;
