@@ -32,6 +32,20 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    var points = [];
+    points.push(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 1, 0),
+        new THREE.Vector3(0, 1, 1));
+    var geometry = new THREE.BufferGeometry().setFromPoints( points );
+    // CREATE THE LINE
+    var line = new THREE.Line(
+            geometry,
+            new THREE.LineBasicMaterial({
+                color: 0x0000ff
+            }));
+    scene.add(line);
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
