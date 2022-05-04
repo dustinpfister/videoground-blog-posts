@@ -53,10 +53,12 @@ VIDEO.init = function(sm, scene, camera){
     };
 
 
-    var updateLinesGroup = function(lines, r){
+    var updateLinesGroup = function(lines, r, a){
+        a = a === undefined ? 1 : a;
         lines.children.forEach(function(line, i, arr){
             var per = (i + 1) / arr.length,
-            bias = 1 - Math.abs(0.5 - per) / 0.5;
+            //bias = 1 - Math.abs(0.5 - per) / 0.5;
+            bias = 1 - Math.abs(0.5 - ( Math.pow( a + 1, per ) - a) ) / 0.5;
 
             line.geometry.setFromPoints( createPoints(150, bias * r) );
             line.position.y = r * -1 + r * 2 * per;
