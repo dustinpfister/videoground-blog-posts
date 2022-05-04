@@ -32,17 +32,46 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+
+    // create points helper
+    var createPoints = function(len, rotationCount, height, maxRadius){
+        rotationCount = rotationCount === undefined ? 8 : rotationCount;  // number of rotations
+        height = height === undefined ? 5 : height;
+        maxRadius = maxRadius === undefined ? 5 : maxRadius;
+        var yDelta = height / len;
+        var points = [];
+        var i = 0, v, radian, radius, per;
+        while(i < len){
+            per = i / ( len - 1 );
+            radian = Math.PI * 2 * rotationCount * per;
+            radius = maxRadius  * per;
+            v = new THREE.Vector3();
+            v.x = Math.cos(radian) * radius;
+            v.z = Math.sin(radian) * radius;
+            v.y = i * yDelta;
+            points.push(v);
+            i += 1;
+        };
+        return points;
+    };
+
+
+/*
     var points = [];
     points.push(
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(0, 1, 0),
         new THREE.Vector3(0, 1, 1));
+*/
+var points = createPoints(100, 4, 0, 5);
+
     var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
     // CREATE THE LINE
-    var line = new THREE.Line(
+    var line = scene.userData.line = new THREE.Line(
             geometry,
             new THREE.LineBasicMaterial({
-                color: 0x0000ff
+                color: 0x00ff00
             }));
     scene.add(line);
 

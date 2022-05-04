@@ -4,6 +4,9 @@
 
 ### () - video1 for threejs-line
 * (done) start video folder and a video1 file
+* (done) have at least one instnace of three.line
+* create an intersting kind of line such as a spiral
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
