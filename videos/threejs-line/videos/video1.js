@@ -161,7 +161,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 5, 8);
+                    camera.position.set(8 - 16 * partPer, 5 - 4 * partPer, 8);
                     camera.lookAt(0, 0, 0);
                     // lines
                     updateLinesGroup(lines, 1, 1 + partPer, 4 * partPer, 5 + 5 * partPer);
