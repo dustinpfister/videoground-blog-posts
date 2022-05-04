@@ -26,7 +26,7 @@ VIDEO.init = function(sm, scene, camera){
         lines: [
             ['Lines in', 64, 17, 14, 'white'],
             ['three.js', 64, 32, 14, 'white'],
-            ['( r135 05/03/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 05/04/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
@@ -56,17 +56,37 @@ VIDEO.init = function(sm, scene, camera){
     };
 
 
+    var lines = [];
+    var lineCount = 3;
+    var colors = [0x00ff00, 0xff0000, 0x0000ff];
+    var i = 0;
+    while(i < lineCount){
+        var per = i / lineCount;
+        var points = createPoints(100, 1 + 0.2 * per, 0, 5);
+        var geometry = new THREE.BufferGeometry().setFromPoints( points );
+        var line = scene.userData.line = new THREE.Line(
+            geometry,
+            new THREE.LineBasicMaterial({
+                color: colors[i],
+                linewidth: 6
+            }));
+        lines.push(line);
+        scene.add(line);
 
+        i += 1;
+    }
+
+/*
     var points = createPoints(100, 4, 0, 5);
     var geometry = new THREE.BufferGeometry().setFromPoints( points );
-    // CREATE THE LINE
-    var line = scene.userData.line = new THREE.Line(
+    var line1 = scene.userData.line = new THREE.Line(
             geometry,
             new THREE.LineBasicMaterial({
                 color: 0x00ff00,
                 linewidth: 6
             }));
-    scene.add(line);
+    scene.add(line1);
+*/
 
 
     // SET UP SEQ OBJECT
@@ -85,7 +105,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                     // line
-                    line.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
+                    //line1.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
                 }
             },
             {
@@ -101,7 +121,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                     // line
-                    line.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
+                    //line1.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
                 }
             },
             // sq1 - move camera and increates height of points
@@ -113,7 +133,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 1 + 4 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                     // line
-                    line.geometry.setFromPoints( createPoints(150, 1, 4 * partPer, 5) );
+                    //line1.geometry.setFromPoints( createPoints(150, 1, 4 * partPer, 5) );
                 }
             },
             // sq2 - rest
@@ -125,7 +145,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 5, 8);
                     camera.lookAt(0, 0, 0);
                     // line
-                    line.geometry.setFromPoints( createPoints(150, 1, 4, 5) );
+                    //line1.geometry.setFromPoints( createPoints(150, 1, 4, 5) );
                 }
             },
             // sq3 - rotation count
@@ -137,7 +157,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 5, 8);
                     camera.lookAt(0, 0, 0);
                     // line
-                    line.geometry.setFromPoints( createPoints(150, 1 + 4 * partPer, 4, 5) );
+                    //line1.geometry.setFromPoints( createPoints(150, 1 + 4 * partPer, 4, 5) );
                 }
             }
         ]
