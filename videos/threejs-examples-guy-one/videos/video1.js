@@ -34,6 +34,11 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // dl
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 1, 1);
+    scene.add(dl);
+
     var guy1 = new Guy();
     guy1.group.position.set(0, 3, 0)
     scene.add(guy1.group);

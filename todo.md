@@ -8,14 +8,18 @@
 * (done) create a group that is a collection of circles that looks like a sphere, or sphere like shape
 * (done) change position of the group
 * (done) scale the group
+* (done) export to raw video file
 
-* () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - video1 for threejs-examples-guy-one
 * (done) start video folder and a video1 file
+* (done) have guy models up and running
+
+* add light and change camera angle
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
