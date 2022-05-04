@@ -7,11 +7,10 @@
 * (done) have at least one instnace of three.line
 * (done) create an intersting kind of line such as a spiral
 * (done) have not one but an array of lines
-* () work out cool sequences
-* () move camera around a few times
-
-* () export to raw video file
-* () create final video file
+* (done) work out cool sequences
+* (done) move camera around a few times
+* (done) export to raw video file
+* (done) create final video file
 * () upload to youtube
 * () embed in post
 
