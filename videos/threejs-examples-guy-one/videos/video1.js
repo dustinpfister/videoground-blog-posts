@@ -81,24 +81,45 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // sq1 - 
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8 + 2 * partPer, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             // sq2 - 
             {
-                per: 0.20,
+                per: 0.25,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    var a = 8 + 2 * partPer;
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    var a = 8 + 4 * partPer;
                     camera.position.set(a, a, a);
                     camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq4 - 
+            {
+                per: 0.45,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12 - 24 * partPer, 12, 12);
+                    camera.lookAt(0, 2 * partPer, 0);
                 }
             }
         ]
