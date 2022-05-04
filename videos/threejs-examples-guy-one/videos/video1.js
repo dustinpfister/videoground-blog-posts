@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   'guy.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -32,6 +33,16 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    var guy1 = new Guy();
+    guy1.group.position.set(0, 3, 0)
+    scene.add(guy1.group);
+    var guy2 = new Guy();
+    guy2.group.position.set(5, 3, 0);
+    scene.add(guy2.group);
+    var guy3 = new Guy();
+    guy3.group.position.set(-5, 3, 0);
+    scene.add(guy3.group);
 
 
     // SET UP SEQ OBJECT
@@ -73,6 +84,27 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
+
+            var per = partPer,
+            bias = Math.abs(0.5 - per) / 0.5,
+            r = Math.PI * 2 * per;
+            // guy1 walks around, and moves head
+            guy1.walk(per, 8);
+            guy1.moveHead(0.25 - 0.25 * bias);
+            guy1.group.position.set(
+                Math.cos(r) * 5 - 5,
+                3,
+                Math.sin(r) * 5);
+            guy1.group.lookAt(
+                Math.cos(r + 0.5) * 5 - 5,
+                3,
+                Math.sin(r + 0.5) * 5);
+            // guy 2 shakes his head
+            guy2.moveHead(.125 - .25 * bias);
+            // guy 3 just moves arms
+            guy3.moveArm('arm_right', 0, bias * 2);
+            guy3.moveArm('arm_left', 0, bias * 2);
+
                 }
             }
         ]
