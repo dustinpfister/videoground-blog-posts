@@ -56,7 +56,7 @@ VIDEO.init = function(sm, scene, camera){
     };
 
 
-    var lines = [];
+    var lines = new THREE.Group();
     var lineCount = 3;
     var colors = [0x00ff00, 0xff0000, 0x0000ff];
     var i = 0;
@@ -70,23 +70,12 @@ VIDEO.init = function(sm, scene, camera){
                 color: colors[i],
                 linewidth: 6
             }));
-        lines.push(line);
-        scene.add(line);
-
+        lines.add(line);
+        //lines.push(line);
+        //scene.add(line);
         i += 1;
     }
-
-/*
-    var points = createPoints(100, 4, 0, 5);
-    var geometry = new THREE.BufferGeometry().setFromPoints( points );
-    var line1 = scene.userData.line = new THREE.Line(
-            geometry,
-            new THREE.LineBasicMaterial({
-                color: 0x00ff00,
-                linewidth: 6
-            }));
-    scene.add(line1);
-*/
+    scene.add(lines);
 
 
     // SET UP SEQ OBJECT
