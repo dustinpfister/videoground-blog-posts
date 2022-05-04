@@ -56,17 +56,9 @@ VIDEO.init = function(sm, scene, camera){
     };
 
 
-/*
-    var points = [];
-    points.push(
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(0, 1, 0),
-        new THREE.Vector3(0, 1, 1));
-*/
-var points = createPoints(100, 4, 0, 5);
 
+    var points = createPoints(100, 4, 0, 5);
     var geometry = new THREE.BufferGeometry().setFromPoints( points );
-
     // CREATE THE LINE
     var line = scene.userData.line = new THREE.Line(
             geometry,
@@ -91,6 +83,8 @@ var points = createPoints(100, 4, 0, 5);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // line
+                    line.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
                 }
             },
             {
@@ -105,16 +99,44 @@ var points = createPoints(100, 4, 0, 5);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // line
+                    line.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
                 }
             },
-            // sq1 - 
+            // sq1 - move camera and increates height of points
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 1 + 4 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // line
+                    line.geometry.setFromPoints( createPoints(150, 1, 4 * partPer, 5) );
+                }
+            },
+            // sq2 - rest
+            {
+                per: 0.20,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 5, 8);
+                    camera.lookAt(0, 0, 0);
+                    // line
+                    line.geometry.setFromPoints( createPoints(150, 1, 4, 5) );
+                }
+            },
+            // sq3 - rotation count
+            {
+                per: 0.20,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 5, 8);
+                    camera.lookAt(0, 0, 0);
+                    // line
+                    line.geometry.setFromPoints( createPoints(150, 1 + 4 * partPer, 4, 5) );
                 }
             }
         ]
