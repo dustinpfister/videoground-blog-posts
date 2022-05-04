@@ -4,6 +4,12 @@
 
 ### () - video1 for threejs-vector3
 * (done) start video folder and a video1 file
+
+* start new THREE.Line createPoints function that will create a line that is a circle
+* create a group that is a collection of circles that looks like a sphere, or sphere like shape
+* change position of the group
+* scale the group
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
