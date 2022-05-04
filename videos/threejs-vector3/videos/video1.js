@@ -57,7 +57,6 @@ VIDEO.init = function(sm, scene, camera){
         a = a === undefined ? 1 : a;
         lines.children.forEach(function(line, i, arr){
             var per = (i + 1) / arr.length,
-            //bias = 1 - Math.abs(0.5 - per) / 0.5;
             bias = 1 - Math.abs(0.5 - ( Math.pow( a + 1, per ) - a) ) / 0.5;
 
             line.geometry.setFromPoints( createPoints(150, bias * r) );
@@ -105,6 +104,11 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // line group
+                    updateLinesGroup(lines, 2, 1);
+                    lines.position.set(0, 0, 0);
+                    lines.scale.set(1, 1, 1);
+                    lines.rotation.set(0, 0, 0);
                 }
             },
             {
@@ -119,6 +123,11 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // LINES
+                    updateLinesGroup(lines, 2, 1);
+                    lines.position.set(0, 0, 0);
+                    lines.scale.set(1, 1, 1);
+                    lines.rotation.set(0, 0, 0);
                 }
             },
             // sq1 - 
@@ -129,6 +138,59 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
+                    // LINES
+                    updateLinesGroup(lines, 2 - 1.75 * partPer, 1 + 4 * partPer);
+                    lines.position.set(0, 0, 0);
+                    lines.scale.set(1, 1, 1);
+                    lines.rotation.set(0, 0, 0);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 2 * partPer, 6 , 6 * partPer);
+                    camera.lookAt(0, 0, 0);
+                    // LINES
+                    updateLinesGroup(lines, 0.25 + 3.75 * partPer, 5 - 4.75 * partPer);
+                    lines.position.set(0, 0, 0);
+                    lines.scale.set(1, 1, 1);
+                    lines.rotation.set(0, 0, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.5,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(6 - 12 * partPer, 6 , 6);
+                    camera.lookAt(0, 0, 0);
+                    // LINES
+                    updateLinesGroup(lines, 4 + 4 * partPer, 0.25);
+                    lines.position.set(0, 0, 0);
+                    var s = 1 - 0.75 * partPer;
+                    lines.scale.set(s, s, s);
+                    lines.rotation.set(0, 0, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.75,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-6, 6 , 6);
+                    camera.lookAt(0, 0, 0);
+                    // LINES
+                    updateLinesGroup(lines, 8, 0.25 + 1.75 * partPer);
+                    var p = 10 * partPer;
+                    lines.position.set(p, 0, p * -1);
+                    var s = 0.25 + 1.25 * partPer;
+                    lines.scale.set(s, s, s);
+                    lines.rotation.set(1.57 * partPer, 0, 0);
                 }
             }
         ]
