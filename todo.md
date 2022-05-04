@@ -17,8 +17,7 @@
 ### () - video1 for threejs-examples-guy-one
 * (done) start video folder and a video1 file
 * (done) have guy models up and running
-
-* add light and change camera angle
+* (done) add light and change camera angle
 
 * () export to raw video file
 * () create final video file

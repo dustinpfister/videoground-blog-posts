@@ -14,7 +14,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(20, 20, '#ffffff', '#00afaf');
     scene.add( grid );
  
     // TEXT CUBE
@@ -36,16 +36,16 @@ VIDEO.init = function(sm, scene, camera){
 
     // dl
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(1, 1, 1);
+    dl.position.set(1, 3, 2);
     scene.add(dl);
 
-    var guy1 = new Guy();
+    var guy1 = scene.userData.guy1 = new Guy();
     guy1.group.position.set(0, 3, 0)
     scene.add(guy1.group);
-    var guy2 = new Guy();
+    var guy2 = scene.userData.guy2 =  new Guy();
     guy2.group.position.set(5, 3, 0);
     scene.add(guy2.group);
-    var guy3 = new Guy();
+    var guy3 = scene.userData.guy3 =  new Guy();
     guy3.group.position.set(-5, 3, 0);
     scene.add(guy3.group);
 
@@ -99,10 +99,30 @@ VIDEO.init = function(sm, scene, camera){
                     var a = 8 + 2 * partPer;
                     camera.position.set(a, a, a);
                     camera.lookAt(0, 0, 0);
+                }
+            }
+        ]
+    });
+};
 
-            var per = partPer,
-            bias = Math.abs(0.5 - per) / 0.5,
-            r = Math.PI * 2 * per;
+// update method for the video
+VIDEO.update = function(sm, scene, camera, per, bias){
+    var textCube = scene.userData.textCube;
+    textCube.rotation.y = 0;
+    textCube.position.set(6, 0.8, 0);
+    textCube.visible = false;
+    textCube.material.transparent = true;
+    textCube.material.opacity = 0.0;
+
+
+    var ud = scene.userData,
+    guy1 = ud.guy1,
+    guy2 = ud.guy2,
+    guy3 = ud.guy3;
+
+            //var per = partPer,
+            //bias = Math.abs(0.5 - per) / 0.5,
+            var r = Math.PI * 2 * per;
             // guy1 walks around, and moves head
             guy1.walk(per, 8);
             guy1.moveHead(0.25 - 0.25 * bias);
@@ -120,20 +140,6 @@ VIDEO.init = function(sm, scene, camera){
             guy3.moveArm('arm_right', 0, bias * 2);
             guy3.moveArm('arm_left', 0, bias * 2);
 
-                }
-            }
-        ]
-    });
-};
-
-// update method for the video
-VIDEO.update = function(sm, scene, camera, per, bias){
-    var textCube = scene.userData.textCube;
-    textCube.rotation.y = 0;
-    textCube.position.set(6, 0.8, 0);
-    textCube.visible = false;
-    textCube.material.transparent = true;
-    textCube.material.opacity = 0.0;
     // sequences
     Sequences.update(sm.seq, sm);
 };
