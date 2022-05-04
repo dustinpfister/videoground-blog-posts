@@ -27,7 +27,7 @@ VIDEO.init = function(sm, scene, camera){
             ['Guy One', 64, 17, 13, 'white'],
             ['Mesh object', 64, 32, 13, 'white'],
             ['Model in three.js', 64, 47, 13, 'white'],
-            ['( r135 05/03/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 05/04/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
