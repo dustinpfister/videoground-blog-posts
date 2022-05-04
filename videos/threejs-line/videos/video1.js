@@ -55,10 +55,18 @@ VIDEO.init = function(sm, scene, camera){
         return points;
     };
 
+    var updateLinesGroup = function(lines, rs, rDelta){
+        lines.children.forEach(function(line, i, arr){
+            var per = (i + 1) / arr.length;
+            line.geometry.setFromPoints( createPoints(150, rs + rDelta * per, 0, 5) );
+        });
+    };
 
+
+    // create lines group
     var lines = new THREE.Group();
-    var lineCount = 3;
-    var colors = [0x00ff00, 0xff0000, 0x0000ff];
+    var lineCount = 6;
+    var colors = [0x00ff00, 0xff0000, 0x0000ff, 0xff00ff, 0x00ffff, 0xffff00];
     var i = 0;
     while(i < lineCount){
         var per = i / lineCount;
@@ -67,12 +75,10 @@ VIDEO.init = function(sm, scene, camera){
         var line = scene.userData.line = new THREE.Line(
             geometry,
             new THREE.LineBasicMaterial({
-                color: colors[i],
+                color: colors[i % colors.length],
                 linewidth: 6
             }));
         lines.add(line);
-        //lines.push(line);
-        //scene.add(line);
         i += 1;
     }
     scene.add(lines);
@@ -94,6 +100,9 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                     // line
+
+updateLinesGroup(lines, 1, 0.1);
+
                     //line1.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
                 }
             },
@@ -111,6 +120,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // line
                     //line1.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
+updateLinesGroup(lines, 1, 0.1);
                 }
             },
             // sq1 - move camera and increates height of points
@@ -123,6 +133,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // line
                     //line1.geometry.setFromPoints( createPoints(150, 1, 4 * partPer, 5) );
+updateLinesGroup(lines, 1, 0.1);
                 }
             },
             // sq2 - rest
@@ -135,6 +146,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // line
                     //line1.geometry.setFromPoints( createPoints(150, 1, 4, 5) );
+updateLinesGroup(lines, 1, 0.1);
                 }
             },
             // sq3 - rotation count
@@ -147,6 +159,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // line
                     //line1.geometry.setFromPoints( createPoints(150, 1 + 4 * partPer, 4, 5) );
+updateLinesGroup(lines, 1, 0.1 + 0.9 * partPer);
                 }
             }
         ]
