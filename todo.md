@@ -2,18 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-line
-* (done) start video folder and a video1 file
-* (done) have at least one instnace of three.line
-* (done) create an intersting kind of line such as a spiral
-* (done) have not one but an array of lines
-* (done) work out cool sequences
-* (done) move camera around a few times
-* (done) export to raw video file
-* (done) create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-vector3
 * (done) start video folder and a video1 file
 * () export to raw video file
@@ -183,6 +171,18 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/04/2022 ) - video1 for threejs-line
+* (done) start video folder and a video1 file
+* (done) have at least one instnace of three.line
+* (done) create an intersting kind of line such as a spiral
+* (done) have not one but an array of lines
+* (done) work out cool sequences
+* (done) move camera around a few times
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/03/2022 ) - video1 for threejs-basic-material
 * (done) start video folder and a video1 file
