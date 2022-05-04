@@ -63,7 +63,8 @@ VIDEO.init = function(sm, scene, camera){
     var line = scene.userData.line = new THREE.Line(
             geometry,
             new THREE.LineBasicMaterial({
-                color: 0x00ff00
+                color: 0x00ff00,
+                linewidth: 6
             }));
     scene.add(line);
 
