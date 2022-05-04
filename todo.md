@@ -18,8 +18,8 @@
 * (done) start video folder and a video1 file
 * (done) have guy models up and running
 * (done) add light and change camera angle
+* (done) export to raw video file
 
-* () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
