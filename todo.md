@@ -6,7 +6,9 @@
 * (done) start video folder and a video1 file
 * (done) have at least one instnace of three.line
 * (done) create an intersting kind of line such as a spiral
-* () have not one but an array of lines
+* (done) have not one but an array of lines
+* () work out cool sequences
+* () move camera around a few times
 
 * () export to raw video file
 * () create final video file

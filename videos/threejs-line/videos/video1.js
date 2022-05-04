@@ -55,10 +55,10 @@ VIDEO.init = function(sm, scene, camera){
         return points;
     };
 
-    var updateLinesGroup = function(lines, rs, rDelta){
+    var updateLinesGroup = function(lines, rs, rDelta, height, radius){
         lines.children.forEach(function(line, i, arr){
             var per = (i + 1) / arr.length;
-            line.geometry.setFromPoints( createPoints(150, rs + rDelta * per, 0, 5) );
+            line.geometry.setFromPoints( createPoints(150, rs + rDelta * per, height, radius) );
         });
     };
 
@@ -99,11 +99,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
-                    // line
-
-updateLinesGroup(lines, 1, 0.1);
-
-                    //line1.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
+                    // line3
+                    updateLinesGroup(lines, 1, 0.1, 0, 5);
                 }
             },
             {
@@ -118,9 +115,8 @@ updateLinesGroup(lines, 1, 0.1);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
-                    // line
-                    //line1.geometry.setFromPoints( createPoints(150, 1, 0, 5) );
-updateLinesGroup(lines, 1, 0.1);
+                    // lines
+                    updateLinesGroup(lines, 1, 0.1, 0, 5);
                 }
             },
             // sq1 - move camera and increates height of points
@@ -131,9 +127,8 @@ updateLinesGroup(lines, 1, 0.1);
                     // camera
                     camera.position.set(8, 1 + 4 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
-                    // line
-                    //line1.geometry.setFromPoints( createPoints(150, 1, 4 * partPer, 5) );
-updateLinesGroup(lines, 1, 0.1);
+                    // lines
+                    updateLinesGroup(lines, 1, 0.1, 0, 5);
                 }
             },
             // sq2 - rest
@@ -144,9 +139,8 @@ updateLinesGroup(lines, 1, 0.1);
                     // camera
                     camera.position.set(8, 5, 8);
                     camera.lookAt(0, 0, 0);
-                    // line
-                    //line1.geometry.setFromPoints( createPoints(150, 1, 4, 5) );
-updateLinesGroup(lines, 1, 0.1);
+                    // lines
+                    updateLinesGroup(lines, 1, 0.1, 0, 5);
                 }
             },
             // sq3 - rotation count
@@ -157,9 +151,20 @@ updateLinesGroup(lines, 1, 0.1);
                     // camera
                     camera.position.set(8, 5, 8);
                     camera.lookAt(0, 0, 0);
-                    // line
-                    //line1.geometry.setFromPoints( createPoints(150, 1 + 4 * partPer, 4, 5) );
-updateLinesGroup(lines, 1, 0.1 + 0.9 * partPer);
+                    // lines
+                    updateLinesGroup(lines, 1, 0.1 + 0.9 * partPer, 0, 5);
+                }
+            },
+            // sq4 - height
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 5, 8);
+                    camera.lookAt(0, 0, 0);
+                    // lines
+                    updateLinesGroup(lines, 1, 1 + partPer, 4 * partPer, 5 + 5 * partPer);
                 }
             }
         ]
