@@ -2,24 +2,24 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-vector3
-* (done) start video folder and a video1 file
-* (done) start new THREE.Line createPoints function that will create a line that is a circle
-* (done) create a group that is a collection of circles that looks like a sphere, or sphere like shape
-* (done) change position of the group
-* (done) scale the group
-* (done) export to raw video file
-
+### () - video1 for threejs-box-geometry
+* () start video folder and a video1 file
+* () start with an example from the post
+* () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
 
-### () - video1 for threejs-examples-guy-one
-* (done) start video folder and a video1 file
-* (done) have guy models up and running
-* (done) add light and change camera angle
-* (done) export to raw video file
+### () - video1 for threejs-examples-tree-sphere
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
 
+### () - video1 for threejs-examples-tree-sphere-world
+* () start video folder and a video1 file
+* () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
@@ -56,14 +56,6 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- FROM A-Z YEP -->
-
-### () - video1 for threejs-box-geometry
-* () start video folder and a video1 file
-* () start with an example from the post
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-box-helper
 * () start video folder and a video1 file
@@ -154,20 +146,6 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-tool-source-layer-3d
 
-### () - video1 for threejs-examples-tree-sphere
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-examples-tree-sphere-world
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples-weird-walk-guy-two
 * () start video folder and a video1 file
 * () export to raw video file
@@ -179,6 +157,26 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/04/2022 ) - video1 for threejs-vector3
+* (done) start video folder and a video1 file
+* (done) start new THREE.Line createPoints function that will create a line that is a circle
+* (done) create a group that is a collection of circles that looks like a sphere, or sphere like shape
+* (done) change position of the group
+* (done) scale the group
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 05/04/2022 ) - video1 for threejs-examples-guy-one
+* (done) start video folder and a video1 file
+* (done) have guy models up and running
+* (done) add light and change camera angle
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/04/2022 ) - video1 for threejs-line
 * (done) start video folder and a video1 file
