@@ -8,9 +8,9 @@
 * (done) groupA of cubes
 * (done) rotat each cube on its own
 * (done) rotate and chnage position of groupA in seq function
-
-* () switch to standard material for groupA cubes
-* () add a directional light source
+* (done) switch to standard material for groupA cubes
+* (done) add a directional light source
+* (done) have one more Mesh that is positioned with the apply euler method
 
 * () export to raw video file
 * () create final video file

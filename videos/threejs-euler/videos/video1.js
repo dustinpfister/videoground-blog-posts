@@ -70,10 +70,13 @@ deltasA = scene.userData.deltasA = [
     [0,5,0],[0,10,0], [0,20,0], [0,40,0], [0,80,0], [0,160,0]
 ];
 
-
-// update for first time here?
-updateGroupA(groupA, 0, deltasA);
-
+// MESH B
+var meshB = scene.userData.meshB = new THREE.Mesh(
+        new THREE.SphereGeometry(2, 30, 30),
+        new THREE.MeshStandardMaterial({
+            color: new THREE.Color('lime')
+        }));
+scene.add(meshB)
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -93,6 +96,7 @@ updateGroupA(groupA, 0, deltasA);
                     // groupA
                     groupA.position.set(0, 0, 0);
                     groupA.rotation.set(0, 0, 0);
+                    // meshB
                 }
             },
             {
@@ -153,11 +157,15 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.material.opacity = 0.0;
 
     var ud = scene.userData;
+    // groupA
     var groupA = ud.groupA;
     var deltasA = ud.deltasA;
     var updateGroupA = ud.updateGroupA;
-
     updateGroupA(groupA, per, deltasA);
+    // meshB
+    var meshB = ud.meshB;
+    meshB.position.copy( new THREE.Vector3(-7, 0, 0) ).applyEuler( new THREE.Euler(0, 0, Math.PI * 4 * per))
+
 
     // sequences
     Sequences.update(sm.seq, sm);
