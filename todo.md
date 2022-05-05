@@ -3,9 +3,11 @@
 <!-- Whats next -->
 
 ### () video1 for threejs-euler
-* () start video folder and a video1 file
-* () start with an example from the post
-
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) groupA of cubes
+* (done) rotat each cube on its own
+* () rotate and chnage position of groupA in seq function
 
 * () export to raw video file
 * () create final video file
