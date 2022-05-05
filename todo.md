@@ -2,32 +2,6 @@
 
 <!-- Whats next -->
 
-### () video1 for threejs-euler
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-* (done) groupA of cubes
-* (done) rotat each cube on its own
-* (done) rotate and chnage position of groupA in seq function
-* (done) switch to standard material for groupA cubes
-* (done) add a directional light source
-* (done) have one more Mesh that is positioned with the apply euler method
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () video1 for threejs-getting-started
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-* new camera angles
-
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-box-geometry
 * () start video folder and a video1 file
 * () start with an example from the post
@@ -184,6 +158,29 @@ let material = new THREE.MeshStandardMaterial({
 
 <!-- DONE -->
 
+### ( done 05/05/2022 ) video1 for threejs-euler
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) groupA of cubes
+* (done) rotat each cube on its own
+* (done) rotate and chnage position of groupA in seq function
+* (done) switch to standard material for groupA cubes
+* (done) add a directional light source
+* (done) have one more Mesh that is positioned with the apply euler method
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 05/05/2022 ) video1 for threejs-getting-started
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) new camera angles
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
 ### ( done 05/04/2022 ) - video1 for threejs-vector3
 * (done) start video folder and a video1 file
 * (done) start new THREE.Line createPoints function that will create a line that is a circle
@@ -276,7 +273,7 @@ let material = new THREE.MeshStandardMaterial({
 
 ### ( done 04/30/2022 ) - video1 for threejs-object3d-traverse
 * (done) start video folder and a video1 file
-* (done) see about using one of the exmaples in the post and just move on for video1 at least with this
+* (done) see about using one of the examples in the post and just move on for video1 at least with this
 * (done) switch to using the standard material
 * (done) have a default color for each mesh be red in update
 * (done) use traverse to set color of each mesh
