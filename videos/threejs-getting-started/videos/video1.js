@@ -55,6 +55,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // mesh
+                    mesh.scale.set(1, 1, 1);
                 }
             },
             {
@@ -69,6 +71,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // mesh
+                    mesh.scale.set(1, 1, 1);
                 }
             },
             // sq1 - 
@@ -79,6 +83,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 3 * partPer, 0);
                     camera.lookAt(0, 0, 0);
+                    // mesh
+                    mesh.scale.set(1, 1, 1);
                 }
             },
             // sq2 - 
@@ -89,6 +95,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 - 4 * partPer, 4, 4 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // mesh
+                    mesh.scale.set(1, 1, 1);
                 }
             },
             // sq3 - 
@@ -99,6 +107,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(4 - 8 * partPer, 4, 4);
                     camera.lookAt(0, 0, 0);
+                    // mesh
+                    mesh.scale.set(1, 1, 1);
                 }
             }
         ]
