@@ -33,13 +33,19 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+var dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(1, 3, 2);
+scene.add(dl);
+
 // AN INSTANCE OF THREE.Euler
 var euler = new THREE.Euler(Math.PI / 180 * 45, 0, 0)
 
 // GroupA is a group of mesh objects of box geos in a line
 var meshA = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
+        new THREE.MeshStandardMaterial({
+            color: new THREE.Color('red')
+        }));
 var groupA = scene.userData.groupA = new THREE.Group();
 scene.add(groupA);
 var i = 0, len = 6;
