@@ -19,7 +19,9 @@
 
 ### () video1 for threejs-getting-started
 * (done) start video folder and a video1 file
-* () start with an example from the post
+* (done) start with an example from the post
+* new camera angles
+
 
 * () export to raw video file
 * () create final video file

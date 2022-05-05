@@ -77,7 +77,27 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 1 + 3 * partPer, 0);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 4 * partPer, 4, 4 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(4 - 8 * partPer, 4, 4);
                     camera.lookAt(0, 0, 0);
                 }
             }
@@ -96,7 +116,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     // mesh
     var mesh = scene.userData.mesh;
-    var degree = 360 * per;
+    var degree = 360 *  2 * per;
     mesh.rotation.y = THREE.MathUtils.degToRad(degree);
 
     // sequences
