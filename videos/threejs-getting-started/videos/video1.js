@@ -110,6 +110,19 @@ VIDEO.init = function(sm, scene, camera){
                     // mesh
                     mesh.scale.set(1, 1, 1);
                 }
+            },
+            // sq3 - 
+            {
+                per: 0.90,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-4, 4, 4 - 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                    // mesh
+                    var s = 1 - partPer;
+                    mesh.scale.set(s, s, s);
+                }
             }
         ]
     });
