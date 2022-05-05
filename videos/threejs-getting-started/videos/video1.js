@@ -33,6 +33,12 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // just a mesh
+    var mesh = scene.userData.mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(2, 2, 2), 
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh);
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -87,6 +93,12 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
+
+    // mesh
+    var mesh = scene.userData.mesh;
+    var degree = 360 * per;
+    mesh.rotation.y = THREE.MathUtils.degToRad(degree);
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
