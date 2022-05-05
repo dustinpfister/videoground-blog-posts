@@ -36,28 +36,38 @@ VIDEO.init = function(sm, scene, camera){
 // AN INSTANCE OF THREE.Euler
 var euler = new THREE.Euler(Math.PI / 180 * 45, 0, 0)
 
-// a Mesh
+// GroupA is a group of mesh objects of box geos in a line
 var meshA = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
-// cloning ths mesh
-var box1 = meshA.clone(),
-box2 = meshA.clone(),
-box3 = meshA.clone();
- 
-// USING THE INSTANCE OF EULER TO SET THE STATE
-// OF THE EULER INSTANCES OF THESE MESH CLONES
-box2.rotation.copy(euler);
-box3.rotation.copy(euler);
- 
-// adjusting positions
-box2.position.set(-1,0,0);
-box3.position.set(1,0,0);
+var groupA = scene.userData.groupA = new THREE.Group();
+scene.add(groupA);
+var i = 0, len = 6;
+while(i < len){
+    var m = meshA.clone();
+    groupA.add(m);
+    i += 1;
+}
+// update effect should be rotation of each cube by differing sets of axis deltas
+var updateGroupA = scene.userData.updateGroupA = function(groupA, perANI, deltas){
+    deltas = deltas || [];
+    groupA.children.forEach(function(mesh, i){
+        var d = deltas[i] || [0, 0, 0],
+        per = i / (len - 1);
+        mesh.rotation.set(d[0] * perANI, d[1] * perANI, d[2] * perANI);
+        var z = 5 - 10 * per;
+        mesh.position.set(0, 0, z);
+    });
+};
+// deltas to use with update
+deltasA = scene.userData.deltasA = [
+    [0,5,0],[0,10,0], [0,20,0], [0,40,0], [0,80,0], [0,160,0]
+];
 
-// add the box mesh to the scene
-scene.add(box1);
-scene.add(box2);
-scene.add(box3);
+
+// update for first time here?
+updateGroupA(groupA, 0, deltasA);
+
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -74,6 +84,7 @@ scene.add(box3);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // groupA
                 }
             },
             {
@@ -112,6 +123,14 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
+
+    var ud = scene.userData;
+    var groupA = ud.groupA;
+    var deltasA = ud.deltasA;
+    var updateGroupA = ud.updateGroupA;
+
+    updateGroupA(groupA, per, deltasA);
+
     // sequences
     Sequences.update(sm.seq, sm);
 };
