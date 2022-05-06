@@ -38,7 +38,10 @@ VIDEO.init = function(sm, scene, camera){
 var materials = [
     new THREE.MeshBasicMaterial({color: new THREE.Color('red')}),
     new THREE.MeshBasicMaterial({color: new THREE.Color('lime')}),
-    new THREE.MeshBasicMaterial({color: new THREE.Color('cyan')})
+    new THREE.MeshBasicMaterial({color: new THREE.Color('cyan')}),
+    new THREE.MeshBasicMaterial({color: new THREE.Color('blue')}),
+    new THREE.MeshBasicMaterial({color: new THREE.Color('green')}),
+    new THREE.MeshBasicMaterial({color: new THREE.Color('purple')})
 ];
 // create the box geometry
 var geo = new THREE.BoxGeometry(2, 2, 2);
@@ -92,6 +95,47 @@ scene.add(box)
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 16 * partPer, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.30,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-8, 8, 8 - 16 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq4 - 
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-8, 8, -8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq5 - 
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    var s = 8 - 6 * partPer;
+                    camera.position.set(s * -1, s, s * -1);
                     camera.lookAt(0, 0, 0);
                 }
             }
