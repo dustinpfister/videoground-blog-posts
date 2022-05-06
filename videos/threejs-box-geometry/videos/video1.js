@@ -34,6 +34,26 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
 
+// the array of materials that is only two materials
+var materials = [
+    new THREE.MeshBasicMaterial({color: new THREE.Color('red')}),
+    new THREE.MeshBasicMaterial({color: new THREE.Color('lime')}),
+    new THREE.MeshBasicMaterial({color: new THREE.Color('cyan')})
+];
+// create the box geometry
+var geo = new THREE.BoxGeometry(2, 2, 2);
+// The objects in the groups array is what there is to
+// use to set material index values for each face
+geo.groups.forEach(function (face, i) {
+    face.materialIndex = face.materialIndex % materials.length;
+});
+// now create the box like always passing the geometry first,
+// and the array of materials second
+var box = new THREE.Mesh(
+        geo,
+        materials);
+scene.add(box)
+
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
@@ -71,7 +91,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
