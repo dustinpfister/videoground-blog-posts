@@ -141,8 +141,8 @@ scene.add(wrapB);
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                     // wrap objects
-                    positionWrap(wrapA, 0, 5);
-                    positionWrap(wrapB, 0, 5 );
+                    positionWrap(wrapA, 0, 5, 3 );
+                    positionWrap(wrapB, 0, 5, 3 );
                 }
             },
             {
@@ -158,8 +158,8 @@ scene.add(wrapB);
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                     // wrap objects
-                    positionWrap(wrapA, 0, 5);
-                    positionWrap(wrapB, 0, 5 );
+                    positionWrap(wrapA, 0, 5, 3);
+                    positionWrap(wrapB, 0, 5, 3);
                 }
             },
             // sq1 - 
@@ -171,8 +171,73 @@ scene.add(wrapB);
                     camera.position.set(8 + 4 * partPer, 1 + 11 * partPer, 12 * partPer);
                     camera.lookAt(0, 0, 0);
                     // wrap objects
-                    positionWrap(wrapA, 0, 5);
-                    positionWrap(wrapB, 0, 5 );
+                    positionWrap(wrapA, 0, 5, 3 + 12 * partPer);
+                    positionWrap(wrapB, 0, 5, 3 + 12 * partPer);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12, 12, 12);
+                    camera.lookAt(0, 0, 0);
+                    // wrap objects
+                    positionWrap(wrapA, 0, 5, 15);
+                    positionWrap(wrapB, 0, 5, 15);
+                }
+            },
+            // sq3 - unwrap
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12, 12, 12);
+                    camera.lookAt(0, 0, 0);
+                    // wrap objects
+                    positionWrap(wrapA, 1 * partPer, 5, 15);
+                    positionWrap(wrapB, -1 * partPer, 5, 15);
+                }
+            },
+            // sq4 - rest
+            {
+                per: 0.45,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12, 12, 12);
+                    camera.lookAt(0, 0, 0);
+                    // wrap objects
+                    positionWrap(wrapA, 1, 5, 15);
+                    positionWrap(wrapB, -1, 5, 15);
+                }
+            },
+            // sq4 - move camera
+            {
+                per: 0.55,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12 - 24 * partPer, 12 + 3 * partPer, 12);
+                    camera.lookAt(0, 7.5 * partPer, 0);
+                    // wrap objects
+                    positionWrap(wrapA, 1, 5, 15);
+                    positionWrap(wrapB, -1, 5, 15);
+                }
+            },
+            // sq5 - move camera
+            {
+                per: 0.65,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(-12 + 6 * partPer, 15 - 5 * partPer, 12 - 6 * partPer);
+                    camera.lookAt(0, 7.5, 0);
+                    // wrap objects
+                    positionWrap(wrapA, 1, 5, 15);
+                    positionWrap(wrapB, -1, 5, 15);
                 }
             }
         ]
