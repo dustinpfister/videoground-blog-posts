@@ -72,6 +72,8 @@ scene.add(box)
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // box
+                    box.rotation.set(0, 0, 0);
                 }
             },
             {
@@ -86,6 +88,8 @@ scene.add(box)
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // box
+                    box.rotation.set(0, 0, 0);
                 }
             },
             // sq1 - 
@@ -96,6 +100,8 @@ scene.add(box)
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // box
+                    box.rotation.set(0, 0, 0);
                 }
             },
             // sq2 - 
@@ -106,6 +112,8 @@ scene.add(box)
                     // camera
                     camera.position.set(8 - 16 * partPer, 8, 8);
                     camera.lookAt(0, 0, 0);
+                    // box
+                    box.rotation.set(0, 0, 0);
                 }
             },
             // sq3 - 
@@ -116,6 +124,8 @@ scene.add(box)
                     // camera
                     camera.position.set(-8, 8, 8 - 16 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // box
+                    box.rotation.set(0, 0, 0);
                 }
             },
             // sq4 - 
@@ -126,6 +136,8 @@ scene.add(box)
                     // camera
                     camera.position.set(-8, 8, -8);
                     camera.lookAt(0, 0, 0);
+                    // box
+                    box.rotation.set(0, 0, 0);
                 }
             },
             // sq5 - 
@@ -137,6 +149,8 @@ scene.add(box)
                     var s = 8 - 6 * partPer;
                     camera.position.set(s * -1, s, s * -1);
                     camera.lookAt(0, 0, 0);
+                    // box
+                    box.rotation.set(0, Math.PI * 2 * partPer, 0);
                 }
             }
         ]

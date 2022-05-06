@@ -10,9 +10,8 @@
 * () upload to youtube
 * () embed in post
 
-
 ### () - video1 for threejs-box-geometry
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () start with an example from the post
 * () export to raw video file
 * () create final video file
