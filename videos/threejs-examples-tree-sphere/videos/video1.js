@@ -14,7 +14,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#00afaf');
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -46,13 +46,13 @@ VIDEO.init = function(sm, scene, camera){
         sphere: new THREE.MeshStandardMaterial({
             color: 0xffffff,
             emissive: 0x000000,
-            map: datatex.seededRandom(32, 32, 0, 1, 0, [64, 128]),
+            map: datatex.seededRandom(32, 32, 0, 1, 0, [128, 255]),
             side: THREE.DoubleSide
         }),
         trunk: new THREE.MeshStandardMaterial({
-            color: 0xffffff,
+            color: 0xafafaf,
             emissive: 0x000000,
-            map: datatex.seededRandom(32, 32, 1, 0.5, 0, [64, 128]),
+            map: datatex.seededRandom(32, 32, 1, 0.5, 0, [128, 255]),
             side: THREE.DoubleSide
         })
     };
@@ -87,14 +87,14 @@ VIDEO.init = function(sm, scene, camera){
             materials: [
         new THREE.MeshStandardMaterial({
             color: 0xffffff,
-            map: datatex.seededRandom(80, 80, 0, 1, 0, [32, 64]),
+            map: datatex.seededRandom(80, 80, 0, 1, 0.25, [64, 128]),
             //emissive: 0x00ff00,
             //emissiveIntensity: 0.75,
             side: THREE.DoubleSide
         }),
         new THREE.MeshStandardMaterial({
             color: 0xffffff,
-            map: datatex.seededRandom(80, 80, 0, 1, 0.50, [32, 64]),
+            map: datatex.seededRandom(80, 80, 0, 1, 0.75, [64, 128]),
             //map: textureRND2,
             //emissive: 0x00ff00,
             //emissiveIntensity: 0.2,
@@ -144,7 +144,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 + 2 * partPer, 1 + 4 * partPer, 10 * partPer);
                     camera.lookAt(0, 2 * partPer, 0);
                 }
             },
@@ -154,7 +154,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(10, 5, 10);
                     camera.lookAt(0, 2, 0);
                 }
             }
