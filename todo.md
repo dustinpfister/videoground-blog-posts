@@ -4,9 +4,8 @@
 
 ### () - video1 for threejs-examples-tree-sphere
 * (done) start video folder and a video1 file
-
 * (done) have a quick grid system for createing a collection of mesh objects
-* () add something for a ground mesh
+* (done) add something for a ground mesh
 
 * () export to raw video file
 * () create final video file

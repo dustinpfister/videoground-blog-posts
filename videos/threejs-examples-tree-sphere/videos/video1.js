@@ -157,6 +157,16 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(10, 5, 10);
                     camera.lookAt(0, 2, 0);
                 }
+            },
+            // sq3 - 
+            {
+                per: 0.45,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10 - 10 * partPer, 5, 10 - 40 * partPer);
+                    camera.lookAt(0, 2, 0);
+                }
             }
         ]
     });
