@@ -42,6 +42,21 @@ VIDEO.init = function(sm, scene, camera){
     dl.position.set(1, 1, 1);
     scene.add(dl);
 
+    var materials = {
+        sphere: new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            emissive: 0x000000,
+            map: datatex.seededRandom(32, 32, 0, 1, 0, [64, 128]),
+            side: THREE.DoubleSide
+        }),
+        trunk: new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            emissive: 0x000000,
+            map: datatex.seededRandom(32, 32, 1, 0.5, 0, [64, 128]),
+            side: THREE.DoubleSide
+        })
+    };
+
     // trees
     [
         [1, 4, 0, 0],
@@ -54,7 +69,8 @@ VIDEO.init = function(sm, scene, camera){
         // create a tree
         var tree = TreeSphereMod.create({
             sphereSize: argu[0],
-            trunkLength: argu[1]
+            trunkLength: argu[1],
+            materials: materials
         });
         //tree.add( new THREE.BoxHelper(tree) );
         tree.position.set(argu[2], argu[1] / 2, argu[3]);
@@ -67,7 +83,24 @@ VIDEO.init = function(sm, scene, camera){
             w: 200,
             h: 200,
             sw: 20,
-            sh: 20
+            sh: 20,
+            materials: [
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            map: datatex.seededRandom(80, 80, 0, 1, 0, [32, 64]),
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.75,
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            map: datatex.seededRandom(80, 80, 0, 1, 0.50, [32, 64]),
+            //map: textureRND2,
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.2,
+            side: THREE.DoubleSide
+        })
+    ]
         });
     ground.position.set(0, 0, 0);
     TileMod.setCheckerBoard(ground);
