@@ -6,8 +6,8 @@
 * (done) start video folder and a video1 file
 * (done) have a quick grid system for createing a collection of mesh objects
 * (done) add something for a ground mesh
+* (done) export to raw video file
 
-* () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
