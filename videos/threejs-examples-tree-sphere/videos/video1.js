@@ -4,7 +4,9 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   '../js/canvas_texture.js',
+   '../js/tree_sphere.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -25,13 +27,24 @@ VIDEO.init = function(sm, scene, camera){
         lineCount: 9,
         lines: [
             ['Tree Sphere', 64, 17, 14, 'white'],
-            ['Yhreejs', 64, 32, 14, 'white'],
+            ['Threejs', 64, 32, 14, 'white'],
             ['Example', 64, 47, 14, 'white'],
             ['( r135 05/07/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
+
+    // create a tree
+    var tree = TreeSphereMod.create({
+            sphereSize: 1,
+            trunkLength: 4
+        });
+    tree.add(new THREE.BoxHelper(tree));
+    tree.position.set(0, 2, 0);
+
+    tree.lookAt(0, -10, 0);
+    scene.add(tree);
 
 
     // SET UP SEQ OBJECT
@@ -71,8 +84,8 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(8, 1, 0);
+                    camera.lookAt(0, 3 * partPer, 0);
                 }
             }
         ]
