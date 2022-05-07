@@ -35,16 +35,20 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
-    // create a tree
-    var tree = TreeSphereMod.create({
-            sphereSize: 1,
-            trunkLength: 4
+    [
+        [1, 4, 0, 0],
+        [1, 2, 3, -3]
+    ].forEach(function(argu){
+        // create a tree
+        var tree = TreeSphereMod.create({
+            sphereSize: argu[0],
+            trunkLength: argu[1]
         });
-    tree.add(new THREE.BoxHelper(tree));
-    tree.position.set(0, 2, 0);
-
-    tree.lookAt(0, -10, 0);
-    scene.add(tree);
+        tree.add( new THREE.BoxHelper(tree) );
+        tree.position.set(argu[2], argu[1] / 2, argu[3]);
+        tree.lookAt(argu[2], -10, argu[3]);
+        scene.add(tree);
+    });
 
 
     // SET UP SEQ OBJECT
