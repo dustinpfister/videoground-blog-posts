@@ -37,7 +37,11 @@ VIDEO.init = function(sm, scene, camera){
 
     [
         [1, 4, 0, 0],
-        [1, 2, 3, -3]
+        [1, 2, 3, -3],
+        [2, 3, -3, 3],
+
+        [1, 1, -2, -4],
+        [1, 1, -4, -1]
     ].forEach(function(argu){
         // create a tree
         var tree = TreeSphereMod.create({
