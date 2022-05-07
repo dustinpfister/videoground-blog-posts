@@ -5,6 +5,8 @@ VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js',
+   '../../../js/datatex.js',
+   '../../../js/tile-index.js',
    '../js/canvas_texture.js',
    '../js/tree_sphere.js'
 ];
@@ -15,8 +17,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -35,6 +37,12 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // light
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 1, 1);
+    scene.add(dl);
+
+    // trees
     [
         [1, 4, 0, 0],
         [1, 2, 3, -3],
@@ -48,11 +56,22 @@ VIDEO.init = function(sm, scene, camera){
             sphereSize: argu[0],
             trunkLength: argu[1]
         });
-        tree.add( new THREE.BoxHelper(tree) );
+        //tree.add( new THREE.BoxHelper(tree) );
         tree.position.set(argu[2], argu[1] / 2, argu[3]);
         tree.lookAt(argu[2], -10, argu[3]);
         scene.add(tree);
     });
+
+    // ground
+    var ground = TileMod.create({
+            w: 200,
+            h: 200,
+            sw: 20,
+            sh: 20
+        });
+    ground.position.set(0, 0, 0);
+    TileMod.setCheckerBoard(ground);
+    scene.add(ground)
 
 
     // SET UP SEQ OBJECT
