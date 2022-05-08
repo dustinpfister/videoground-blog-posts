@@ -34,6 +34,26 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
 
+    // OBJECTS
+    var group = new THREE.Group();
+    var i = 0, len = 20;
+    while(i < len){
+        var mesh = new THREE.Mesh(
+            new THREE.SphereGeometry(0.25, 30, 30), 
+            new THREE.MeshNormalMaterial());
+        var r = Math.PI * 2 * (i / len);
+        mesh.position.set(
+            Math.cos(r) * 3,
+            Math.sin( Math.PI * 8 * (i / len) ) * 0.25,
+            Math.sin(r) * 3
+        );
+        group.add(mesh);
+        i += 1;
+    }
+    scene.add(group);
+
+
+
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
@@ -71,7 +91,17 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8 - 2 * partPer, 1 + 5 * partPer, -6 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(6, 6, -6);
                     camera.lookAt(0, 0, 0);
                 }
             }
