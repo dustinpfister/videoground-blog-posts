@@ -13,7 +13,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#afafaf', '#008f8f');
+    grid.material.linewidth = 3;
     scene.add( grid );
  
     // TEXT CUBE
@@ -54,6 +55,8 @@ VIDEO.init = function(sm, scene, camera){
 
     // BOX HELPER
     var boxHelper = new THREE.BoxHelper(group.children[0]);
+    boxHelper.material.linewidth = 6;
+console.log(boxHelper)
     scene.add(boxHelper);
 
 
