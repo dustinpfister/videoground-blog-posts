@@ -56,7 +56,6 @@ VIDEO.init = function(sm, scene, camera){
     // BOX HELPER
     var boxHelper = new THREE.BoxHelper(group.children[0]);
     boxHelper.material.linewidth = 6;
-console.log(boxHelper)
     scene.add(boxHelper);
 
 
@@ -76,6 +75,8 @@ console.log(boxHelper)
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // box helper
+                    boxHelper.setFromObject(group.children[0]);
                 }
             },
             {
@@ -90,6 +91,8 @@ console.log(boxHelper)
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // box helper
+                    boxHelper.setFromObject(group.children[0]);
                 }
             },
             // sq1 - 
@@ -100,6 +103,8 @@ console.log(boxHelper)
                     // camera
                     camera.position.set(8 - 3 * partPer, 1 + 1 * partPer, -5 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // box helper
+                    boxHelper.setFromObject(group.children[0]);
                 }
             },
             // sq2 - 
@@ -110,6 +115,21 @@ console.log(boxHelper)
                     // camera
                     camera.position.set(5, 2, -5);
                     camera.lookAt(0, 0, 0);
+                    // box helper
+                    boxHelper.setFromObject(group.children[0]);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(5, 2, -5);
+                    camera.lookAt(0, 0, 0);
+                    // box helper
+                    var len = group.children.length; 
+                    boxHelper.setFromObject( group.children[ Math.floor( len * partPer ) ] );
                 }
             }
         ]
