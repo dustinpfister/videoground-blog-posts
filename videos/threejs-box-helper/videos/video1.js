@@ -77,6 +77,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // group
                     group.scale.set(1, 1, 1);
+                    group.rotation.set(0, 0, 0);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -95,6 +96,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // group
                     group.scale.set(1, 1, 1);
+                    group.rotation.set(0, 0, 0);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -109,6 +111,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // group
                     group.scale.set(1, 1, 1);
+                    group.rotation.set(0, 0, 0);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -123,6 +126,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // group
                     group.scale.set(1, 1, 1);
+                    group.rotation.set(0, 0, 0);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -137,6 +141,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                     // group
                     group.scale.set(1, 1, 1);
+                    group.rotation.set(0, 0, 0);
                     // box helper
                     var len = group.children.length; 
                     boxHelper.setFromObject( group.children[ Math.floor( len * partPer ) ] );
@@ -153,6 +158,7 @@ VIDEO.init = function(sm, scene, camera){
                     // group
                     var s = 1 - 0.75 * partPer;
                     group.scale.set(s, s, s);
+                    group.rotation.set(Math.PI * 0.25 * partPer, Math.PI * 0.5 * partPer, 0);
                     // box helper 
                     boxHelper.setFromObject( group );
                 }
