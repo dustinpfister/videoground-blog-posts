@@ -40,14 +40,15 @@ VIDEO.init = function(sm, scene, camera){
     var i = 0, len = 20;
     while(i < len){
         var mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(0.25, 30, 30), 
+            new THREE.ConeGeometry(0.25, 2.5 - 2.0 * (i / len), 30, 30), 
             new THREE.MeshNormalMaterial());
         var r = Math.PI * 2 * (i / len);
         mesh.position.set(
             Math.cos(r) * 3,
-            Math.sin( Math.PI * 8 * (i / len) ) * 0.25,
+            Math.sin( Math.PI * 8 * (i / len) ) * 0.35,
             Math.sin(r) * 3
         );
+        mesh.rotation.x = Math.PI / 180 * -20 + Math.PI / 180 * 40 * (i / len);
         group.add(mesh);
         i += 1;
     }
