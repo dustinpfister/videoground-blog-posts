@@ -75,6 +75,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    group.scale.set(1, 1, 1);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -91,6 +93,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    group.scale.set(1, 1, 1);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -103,6 +107,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 - 3 * partPer, 1 + 1 * partPer, -5 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    group.scale.set(1, 1, 1);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -115,6 +121,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(5, 2, -5);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    group.scale.set(1, 1, 1);
                     // box helper
                     boxHelper.setFromObject(group.children[0]);
                 }
@@ -127,6 +135,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(5, 2, -5);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    group.scale.set(1, 1, 1);
                     // box helper
                     var len = group.children.length; 
                     boxHelper.setFromObject( group.children[ Math.floor( len * partPer ) ] );
@@ -140,6 +150,9 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(5, 2, -5);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    var s = 1 - 0.75 * partPer;
+                    group.scale.set(s, s, s);
                     // box helper 
                     boxHelper.setFromObject( group );
                 }
