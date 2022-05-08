@@ -2,22 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-examples-tree-sphere-world
-* (done) start video folder and a video1 file
-* (done) export to raw video file
-
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-box-helper
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-* (done) export to raw video file
-
-* () create final video file
-* () upload to youtube// video1 for threejs-arrow-helper
-
 ### () - video1 for threejs-buffer-geometry
 * () start video folder and a video1 file
 * () start with an example from the post
@@ -144,6 +128,20 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/08/2022 ) - video1 for threejs-examples-tree-sphere-world
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 05/08/2022 ) - video1 for threejs-box-helper
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
 
 ### ( done 05/07/2022 ) - video1 for threejs-examples-tree-sphere
 * (done) start video folder and a video1 file
