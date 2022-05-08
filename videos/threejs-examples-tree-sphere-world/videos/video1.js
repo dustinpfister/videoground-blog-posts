@@ -142,7 +142,7 @@ var MATERIALS_TREE = {
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(10, 1 + 9 * partPer, 9 * partPer);
+                    camera.position.set(10 + 2 * partPer, 1 + 4 * partPer, 12 * partPer);
                     camera.lookAt(0, 0, 0);
                     // worlds
                     WorldMod.update(world, secs);
@@ -156,8 +156,22 @@ var MATERIALS_TREE = {
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(10, 10, 10);
+                    camera.position.set(12, 5, 12);
                     camera.lookAt(0, 0, 0);
+                    // worlds
+                    WorldMod.update(world, secs);
+                    WorldMod.update(world2, secs);
+                    WorldMod.update(world3, secs);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.50,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(12 + 12 * partPer, 5, 12 - 24 * partPer);
+                    camera.lookAt(0, 0, -12 * partPer);
                     // worlds
                     WorldMod.update(world, secs);
                     WorldMod.update(world2, secs);
