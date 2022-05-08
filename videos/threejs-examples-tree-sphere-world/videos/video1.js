@@ -4,7 +4,10 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   '../js/canvas.js',
+   '../js/tree-sphere.js',
+   '../js/world.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -32,6 +35,65 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+// WORLDS
+var MATERIALS_TREE = {
+        sphere: new THREE.MeshStandardMaterial({
+            //color: 0x00ff80,
+            map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 32, 32, 150),
+            side: THREE.DoubleSide
+        }),
+        trunk: new THREE.MeshStandardMaterial({
+            color: 0xffaf80,
+            map: canvasTextureMod.randomGrid(['r1', 'r1', '64'], 32, 32, 150),
+            side: THREE.DoubleSide
+        })
+    };
+    var MATERIALS_LIGHTS = {
+        sun: new THREE.MeshStandardMaterial({
+            emissive: 'white',
+            emissiveMap: canvasTextureMod.randomGrid(['r1', 'r1', '0'])
+        }),
+        moon: new THREE.MeshStandardMaterial({
+            emissive: 'white',
+            emissiveMap: canvasTextureMod.randomGrid(['0', 'r1', 'ri'])
+        })
+    };
+    var MATERIALS_GROUND = {
+        grass: new THREE.MeshStandardMaterial({
+            color: 'white',
+            map: canvasTextureMod.randomGrid(['0', 'r1', '64'], 128, 125, 200),
+        })
+    };
+
+
+var worldOptions = {
+        MATERIALS_GROUND: MATERIALS_GROUND,
+        MATERIALS_TREE: MATERIALS_TREE,
+        MATERIALS_LIGHTS: MATERIALS_LIGHTS,
+        lightsDPSY: 20,
+        lightsDPSZ: 5,
+        worldRotation: 5
+    };
+    var world = WorldMod.create(worldOptions);
+    scene.add(world);
+ 
+    // world2
+    worldOptions.worldRotation = 65;
+    worldOptions.lightsDPSY = 75;
+    worldOptions.lightsDPSZ = 25;
+    var world2 = WorldMod.create(worldOptions);
+    world2.position.set(-28, -3, -5);
+    scene.add(world2);
+ 
+    // world3
+    worldOptions.worldRotation = 1;
+    worldOptions.lightsDPSX = 25;
+    worldOptions.lightsDPSY = 25;
+    worldOptions.lightsDPSZ = 0;
+    var world3 = WorldMod.create(worldOptions);
+    world3.position.set(-15, -20, -50);
+    scene.add(world3);
 
 
     // SET UP SEQ OBJECT
