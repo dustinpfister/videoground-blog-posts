@@ -52,6 +52,10 @@ VIDEO.init = function(sm, scene, camera){
     }
     scene.add(group);
 
+    // BOX HELPER
+    var boxHelper = new THREE.BoxHelper(group.children[0]);
+    scene.add(boxHelper);
+
 
 
     // SET UP SEQ OBJECT
@@ -91,7 +95,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8 - 2 * partPer, 1 + 5 * partPer, -6 * partPer);
+                    camera.position.set(8 - 3 * partPer, 1 + 1 * partPer, -5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -101,7 +105,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(6, 6, -6);
+                    camera.position.set(5, 2, -5);
                     camera.lookAt(0, 0, 0);
                 }
             }
