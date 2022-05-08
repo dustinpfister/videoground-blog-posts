@@ -16,8 +16,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -67,7 +67,7 @@ var MATERIALS_TREE = {
     };
 
 
-var worldOptions = {
+    var worldOptions = {
         MATERIALS_GROUND: MATERIALS_GROUND,
         MATERIALS_TREE: MATERIALS_TREE,
         MATERIALS_LIGHTS: MATERIALS_LIGHTS,
@@ -96,6 +96,7 @@ var worldOptions = {
     scene.add(world3);
 
 
+    var secs = 1 / 30;
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
         sm: sm,
@@ -106,11 +107,15 @@ var worldOptions = {
                 update: function(sm, scene, camera, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(8, 0.8, 0);
                     textCube.material.opacity = 1.0;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // worlds
+                    WorldMod.update(world, secs);
+                    WorldMod.update(world2, secs);
+                    WorldMod.update(world3, secs);
                 }
             },
             {
@@ -119,12 +124,16 @@ var worldOptions = {
                 update: function(sm, scene, camera, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(8, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                     // camera
-                    camera.position.set(8, 1, 0);
+                    camera.position.set(10, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // worlds
+                    WorldMod.update(world, secs);
+                    WorldMod.update(world2, secs);
+                    WorldMod.update(world3, secs);
                 }
             },
             // sq1 - 
@@ -133,8 +142,26 @@ var worldOptions = {
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(10, 1 + 9 * partPer, 9 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // worlds
+                    WorldMod.update(world, secs);
+                    WorldMod.update(world2, secs);
+                    WorldMod.update(world3, secs);
+                }
+            },
+            // sq2 - 
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(10, 10, 10);
+                    camera.lookAt(0, 0, 0);
+                    // worlds
+                    WorldMod.update(world, secs);
+                    WorldMod.update(world2, secs);
+                    WorldMod.update(world3, secs);
                 }
             }
         ]
@@ -145,7 +172,7 @@ var worldOptions = {
 VIDEO.update = function(sm, scene, camera, per, bias){
     var textCube = scene.userData.textCube;
     textCube.rotation.y = 0;
-    textCube.position.set(6, 0.8, 0);
+    textCube.position.set(8, 0.8, 0);
     textCube.visible = false;
     textCube.material.transparent = true;
     textCube.material.opacity = 0.0;
