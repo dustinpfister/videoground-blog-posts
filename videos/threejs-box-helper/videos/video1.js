@@ -131,6 +131,18 @@ VIDEO.init = function(sm, scene, camera){
                     var len = group.children.length; 
                     boxHelper.setFromObject( group.children[ Math.floor( len * partPer ) ] );
                 }
+            },
+            // sq4 - box helper with group 
+            {
+                per: 0.75,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(5, 2, -5);
+                    camera.lookAt(0, 0, 0);
+                    // box helper 
+                    boxHelper.setFromObject( group );
+                }
             }
         ]
     });
