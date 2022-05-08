@@ -11,9 +11,10 @@
 * () embed in post
 
 ### () - video1 for threejs-box-helper
-* () start video folder and a video1 file
-* () start with an example from the post
-* () export to raw video file
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) export to raw video file
+
 * () create final video file
 * () upload to youtube// video1 for threejs-arrow-helper
 
