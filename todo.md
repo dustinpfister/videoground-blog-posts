@@ -2,6 +2,27 @@
 
 <!-- Whats next -->
 
+### () - threejs-camera-move
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - threejs-color
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - threejs-directional-light
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-buffer-geometry
 * () start video folder and a video1 file
 * () start with an example from the post
@@ -51,22 +72,11 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - threejs-buffer-geometry-rotation
 
-### () - video1 for threejs-buffer-geometry
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - threejs-camera-move
-
 ### () - threejs-camera-perspective
 
 ### () - threejs-camera
 
 ### () - threejs-clock
-
-### () - threejs-color
 
 ### () - threejs-cone
 
@@ -77,8 +87,6 @@ let material = new THREE.MeshStandardMaterial({
 ### () - threejs-data-texture
 
 ### () - threejs-depth-material
-
-### () - threejs-directional-light
 
 ### () - threejs-edges-geometry
 
