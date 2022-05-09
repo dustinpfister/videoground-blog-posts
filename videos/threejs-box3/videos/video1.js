@@ -36,7 +36,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // GROUP OF MESH OBJECTS
     var group = new THREE.Group();
-    var i = 0, len = 10;
+    var i = 0, len = 8;
     while(i < len){
         var mesh = new THREE.Mesh(
             new THREE.BoxGeometry(1,1,1), 
@@ -115,7 +115,58 @@ VIDEO.init = function(sm, scene, camera){
                     group.children[0].visible = true;
                     group.children[0].scale.copy(s);
                 }
+            },
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 6, 6);
+                    camera.lookAt(0, 0, 0);
+                    // group
+                    groupDefault();
+                    var s = new THREE.Vector3();
+                    box3.getSize(s);
+                    group.children.forEach(function(mesh, i, arr){
+                        var len = arr.length;
+                        var xPer = Math.random();
+                        var zPer = Math.random();
+                        var yPer = Math.random();
+                        var x = box3.min.x + (box3.max.x - box3.min.x) * xPer + 0.5;
+                        var z = box3.min.z + (box3.max.z - box3.min.z) * zPer + 0.5;
+                        var y = box3.min.y + (box3.max.y - box3.min.y) * yPer + 0.5;
+                        mesh.visible = true;
+                        mesh.position.set(x, 0, z);
+                    });
+                }
             }
+            // sq2 - 
+/*
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 6, 6);
+                    camera.lookAt(0, 0, 0);
+                    // group
+                    groupDefault();
+                    var s = new THREE.Vector3();
+                    box3.getSize(s);
+                    group.children.forEach(function(mesh, i, arr){
+                        var len = arr.length;
+                        var xPer = (i % 2) / 2;
+                        var zPer = Math.floor(i / ) / 4;
+                        var yPer = Math.floor(i / 4) / 2;
+                        var x = box3.min.x + (box3.max.x - box3.min.x) * xPer + 0.5;
+                        var z = box3.min.z + (box3.max.z - box3.min.z) * zPer + 0.5;
+                        var y = box3.min.y + (box3.max.y - box3.min.y) * yPer + 0.5;
+                        mesh.visible = true;
+                        mesh.position.set(x, 0, z);
+                    });
+                }
+            }
+*/
         ]
     });
 };

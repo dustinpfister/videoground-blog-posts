@@ -9,9 +9,9 @@
 * () use the box3 helper with a single instance of a box3
 * () have a collection of 10 mesh objects
 
-* have a seq that has to do with scaling a single mesh object inside of the box3
+* (done) have a seq that has to do with scaling a single mesh object inside of the box3
 * have a seq where seeded random is used to position objects inside the box3
-* have a seq where div is used to position mesh obejcts in box3
+
 
 * () export to raw video file
 * () create final video file
