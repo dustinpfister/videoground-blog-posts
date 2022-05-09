@@ -2,33 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-box3
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-* (done) use the box3 helper with a single instance of a box3
-* (done) have a collection of 10 mesh objects
-* (done) have a seq that has to do with scaling a single mesh object inside of the box3
-* (done) have a seq where random is used to position objects inside the box3
-* (done) export to raw video file
-
-* (done) create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-spotlights
-* (done) start video folder and a video1 file
-* (done) start with an example from the post
-
-* (done) seq1 in which the target position changes
-* (done) seq2 in which intensity and other values change
-* (done) seq3 in which the helper will show up
-* (done) seq4 in which distance and angle will change with helper visiable
-
-* (done) export to raw video file
-* (done) create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-buffer-geometry
 * () start video folder and a video1 file
 * () start with an example from the post
@@ -155,6 +128,30 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/29/2022 ) - video1 for threejs-box3
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) use the box3 helper with a single instance of a box3
+* (done) have a collection of 10 mesh objects
+* (done) have a seq that has to do with scaling a single mesh object inside of the box3
+* (done) have a seq where random is used to position objects inside the box3
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 05/09/2022 ) - video1 for threejs-spotlights
+* (done) start video folder and a video1 file
+* (done) start with an example from the post
+* (done) seq1 in which the target position changes
+* (done) seq2 in which intensity and other values change
+* (done) seq3 in which the helper will show up
+* (done) seq4 in which distance and angle will change with helper visiable
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/08/2022 ) - video1 for threejs-examples-tree-sphere-world
 * (done) start video folder and a video1 file
