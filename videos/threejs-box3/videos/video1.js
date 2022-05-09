@@ -121,7 +121,7 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    camera.position.set(0, 6, 6);
+                    camera.position.set(8 - 2 * partPer, 6, 6 * partPer);
                     camera.lookAt(0, 0, 0);
                     // group
                     groupDefault();
@@ -131,12 +131,12 @@ VIDEO.init = function(sm, scene, camera){
                         var len = arr.length;
                         var xPer = Math.random();
                         var zPer = Math.random();
-                        var yPer = Math.random();
-                        var x = box3.min.x + (box3.max.x - box3.min.x) * xPer + 0.5;
-                        var z = box3.min.z + (box3.max.z - box3.min.z) * zPer + 0.5;
-                        var y = box3.min.y + (box3.max.y - box3.min.y) * yPer + 0.5;
+                        var yPer = partBias;
+                        var x = 0.5 + box3.min.x + (box3.max.x - box3.min.x - 1.0) * xPer;
+                        var y = 0.5 + box3.min.y + (box3.max.y - box3.min.y - 1.0) * yPer;
+                        var z = 0.5 + box3.min.z + (box3.max.z - box3.min.z - 1.0) * zPer;
                         mesh.visible = true;
-                        mesh.position.set(x, 0, z);
+                        mesh.position.set(x, y, z);
                     });
                 }
             }
