@@ -6,7 +6,8 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences.js',
    '../../../js/datatex.js',
-   '../../../js/tile-index.js'
+   '../../../js/tile-index.js',
+   '../js/tree_sphere.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -73,6 +74,15 @@ VIDEO.init = function(sm, scene, camera){
     var spotTarget = new THREE.Object3D(); // spotlight target
     spotLight.target = spotTarget; // set spotLight target for spotLight
     scene.add(spotTarget); // add spotLight target to the scene
+
+    // OBJECTS
+    var tree = TreeSphereMod.create({
+        trunkLength: 1,
+        sphereSize: 0.5
+    });
+    tree.position.y = 0.5;
+    tree.rotation.x = Math.PI * 0.5;
+    scene.add(tree)
 
 
     // SET UP SEQ OBJECT
@@ -205,7 +215,7 @@ VIDEO.init = function(sm, scene, camera){
                     spotLightHelper.update();
                     sphMaterial.opacity = 1;
                     // camera
-                    camera.position.set(12, 6, -12);
+                    camera.position.set(12, 6, -12 + 24 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
