@@ -11,7 +11,7 @@
 * (done) have a seq where random is used to position objects inside the box3
 * (done) export to raw video file
 
-* () create final video file
+* (done) create final video file
 * () upload to youtube
 * () embed in post
 
@@ -24,8 +24,8 @@
 * (done) seq3 in which the helper will show up
 * (done) seq4 in which distance and angle will change with helper visiable
 
-* () export to raw video file
-* () create final video file
+* (done) export to raw video file
+* (done) create final video file
 * () upload to youtube
 * () embed in post
 
