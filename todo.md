@@ -43,12 +43,46 @@ let material = new THREE.MeshStandardMaterial({
 
 <!-- FROM A-Z YEP -->
 
-### () - video1 for threejs-geometry
+### () - threejs-buffer-geometry-attributes-normals
+
+### () - threejs-buffer-geometry-compute-vertex-normals
+
+### () - threejs-buffer-geometry-loader
+
+### () - threejs-buffer-geometry-rotation
+
+### () - video1 for threejs-buffer-geometry
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
+
+### () - threejs-camera-move
+
+### () - threejs-camera-perspective
+
+### () - threejs-camera
+
+### () - threejs-clock
+
+### () - threejs-color
+
+### () - threejs-cone
+
+### () - threejs-cube-texture
+
+### () - threejs-dae-collada-loader
+
+### () - threejs-data-texture
+
+### () - threejs-depth-material
+
+### () - threejs-directional-light
+
+### () - threejs-edges-geometry
+
+### () - threejs-emissive-map
 
 ### () - video1 for threejs-materials
 * () start video folder and a video1 file
