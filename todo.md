@@ -19,7 +19,7 @@
 * (done) start video folder and a video1 file
 * (done) start with an example from the post
 
-* () seq1 in which the target position changes
+* (done) seq1 in which the target position changes
 * () seq2 in which intensity and other values change
 * () seq3 in which the helper will show up
 * () seq4 in which distance and angle will change with helper visiable

@@ -79,6 +79,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.material.opacity = 1.0;
                     // target
                     spotTarget.position.set(0, 0, 0);
+                    // spotlight
+                    spotLight.position.set(0, 8, 0);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -95,6 +97,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.material.opacity = 1.0 - partPer;
                     // target
                     spotTarget.position.set(0, 0, 0);
+                    // spotlight
+                    spotLight.position.set(0, 8, 0);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -106,10 +110,12 @@ VIDEO.init = function(sm, scene, camera){
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // target
-                    var r = Math.PI * 2 * partPer;
-                    var x = Math.cos(r) * 8 * partBias;
-                    var z = Math.sin(r) * 8 * partBias;
+                    var r = Math.PI * 4 * partPer;
+                    var x = Math.cos(r) * 5 * partBias;
+                    var z = Math.sin(r) * 5 * partBias;
                     spotTarget.position.set(x, 0, z);
+                    // spotlight
+                    spotLight.position.set(0, 8, -16 * partBias);
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, - 8 * partPer);
                     camera.lookAt(0, 0, 0);
