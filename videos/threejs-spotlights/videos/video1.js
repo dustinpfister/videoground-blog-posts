@@ -58,6 +58,10 @@ VIDEO.init = function(sm, scene, camera){
     // SPOTLIGHT HELPER
     // ---------- ----------
     var spotLightHelper = new THREE.SpotLightHelper(spotLight);
+    var sphMaterial = spotLightHelper.children[0].material;
+    sphMaterial.linewidth = 6;
+    sphMaterial.transparent = true;
+    sphMaterial.opacity = 0.0;
     spotLight.add(spotLightHelper);
 
      // ---------- ----------
@@ -88,8 +92,11 @@ VIDEO.init = function(sm, scene, camera){
                     // spotlight
                     spotLight.position.set(0, 8, 0);
                     spotLight.intensity = 1;
+                    spotLight.distance = 30;
+                    spotLight.angle = angle = Math.PI * 0.05;
                     // helper
                     spotLightHelper.update();
+                    sphMaterial.opacity = 0.0;
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -109,8 +116,11 @@ VIDEO.init = function(sm, scene, camera){
                     // spotlight
                     spotLight.position.set(0, 8, 0);
                     spotLight.intensity = 1;
+                    spotLight.distance = 30;
+                    spotLight.angle = angle = Math.PI * 0.05;
                     // helper
                     spotLightHelper.update();
+                    sphMaterial.opacity = 0.0;
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -129,8 +139,11 @@ VIDEO.init = function(sm, scene, camera){
                     // spotlight
                     spotLight.position.set(0, 8, -16 * partBias);
                     spotLight.intensity = 1;
+                    spotLight.distance = 30;
+                    spotLight.angle = angle = Math.PI * 0.05;
                     // helper
                     spotLightHelper.update();
+                    sphMaterial.opacity = 0.0;
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, - 8 * partPer);
                     camera.lookAt(0, 0, 0);
@@ -146,14 +159,17 @@ VIDEO.init = function(sm, scene, camera){
                     // spotlight
                     spotLight.position.set(0, 8 + 10 * partPer, 0);
                     spotLight.intensity = 1 - 1 * partBias;
+                    spotLight.distance = 30;
+                    spotLight.angle = angle = Math.PI * 0.05;
                     // helper
                     spotLightHelper.update();
+                    sphMaterial.opacity = 0.0;
                     // camera
                     camera.position.set(8 + 4 * partPer, 6, -8 - 4 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq3 - 
+            // sq3 - Spot light helper becomes visible
             {
                 per: 0.55,
                 init: function(sm){},
@@ -161,10 +177,13 @@ VIDEO.init = function(sm, scene, camera){
                     // target
                     spotTarget.position.set(0, 0, 0);
                     // spotlight
-                    spotLight.position.set(0, 18 - 2 * partPer, 0);
+                    spotLight.position.set(0, 18 - 16 * partPer, 0);
                     spotLight.intensity = 1;
+                    spotLight.distance = 30 - 27 * partPer;
+                    spotLight.angle = angle = Math.PI * 0.05;
                     // helper
                     spotLightHelper.update();
+                    sphMaterial.opacity = partPer;
                     // camera
                     camera.position.set(12, 6, -12);
                     camera.lookAt(0, 0, 0);
