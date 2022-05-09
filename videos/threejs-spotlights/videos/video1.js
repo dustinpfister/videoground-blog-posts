@@ -77,6 +77,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     textCube.material.opacity = 1.0;
+                    // target
+                    spotTarget.position.set(0, 0, 0);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -91,18 +93,25 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
+                    // target
+                    spotTarget.position.set(0, 0, 0);
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - target moves
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
+                    // target
+                    var r = Math.PI * 2 * partPer;
+                    var x = Math.cos(r) * 8 * partBias;
+                    var z = Math.sin(r) * 8 * partBias;
+                    spotTarget.position.set(x, 0, z);
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 1 + 5 * partPer, - 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
