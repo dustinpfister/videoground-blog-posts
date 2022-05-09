@@ -54,6 +54,12 @@ VIDEO.init = function(sm, scene, camera){
     spotLight.position.set(0, 8, 0);
     scene.add(spotLight);
 
+    // ---------- ----------
+    // SPOTLIGHT HELPER
+    // ---------- ----------
+    var spotLightHelper = new THREE.SpotLightHelper(spotLight);
+    spotLight.add(spotLightHelper);
+
      // ---------- ----------
     // AMBIENTLIGHT
     // ---------- ----------   
@@ -81,6 +87,9 @@ VIDEO.init = function(sm, scene, camera){
                     spotTarget.position.set(0, 0, 0);
                     // spotlight
                     spotLight.position.set(0, 8, 0);
+                    spotLight.intensity = 1;
+                    // helper
+                    spotLightHelper.update();
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -99,6 +108,9 @@ VIDEO.init = function(sm, scene, camera){
                     spotTarget.position.set(0, 0, 0);
                     // spotlight
                     spotLight.position.set(0, 8, 0);
+                    spotLight.intensity = 1;
+                    // helper
+                    spotLightHelper.update();
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
@@ -116,8 +128,45 @@ VIDEO.init = function(sm, scene, camera){
                     spotTarget.position.set(x, 0, z);
                     // spotlight
                     spotLight.position.set(0, 8, -16 * partBias);
+                    spotLight.intensity = 1;
+                    // helper
+                    spotLightHelper.update();
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, - 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - intensity
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // target
+                    spotTarget.position.set(0, 0, 0);
+                    // spotlight
+                    spotLight.position.set(0, 8 + 10 * partPer, 0);
+                    spotLight.intensity = 1 - 1 * partBias;
+                    // helper
+                    spotLightHelper.update();
+                    // camera
+                    camera.position.set(8 + 4 * partPer, 6, -8 - 4 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq3 - 
+            {
+                per: 0.55,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // target
+                    spotTarget.position.set(0, 0, 0);
+                    // spotlight
+                    spotLight.position.set(0, 18 - 2 * partPer, 0);
+                    spotLight.intensity = 1;
+                    // helper
+                    spotLightHelper.update();
+                    // camera
+                    camera.position.set(12, 6, -12);
                     camera.lookAt(0, 0, 0);
                 }
             }
