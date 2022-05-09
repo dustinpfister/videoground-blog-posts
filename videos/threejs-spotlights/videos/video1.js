@@ -188,6 +188,26 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(12, 6, -12);
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            // sq4 - 
+            {
+                per: 0.65,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // target
+                    spotTarget.position.set(2 * partPer, 0, 0);
+                    // spotlight
+                    spotLight.position.set(0, 2, -2 * partPer);
+                    spotLight.intensity = 1;
+                    spotLight.distance = 3 + 3 * partPer;
+                    spotLight.angle = angle = Math.PI * (0.05 + 0.2 * partPer);
+                    // helper
+                    spotLightHelper.update();
+                    sphMaterial.opacity = 1;
+                    // camera
+                    camera.position.set(12, 6, -12);
+                    camera.lookAt(0, 0, 0);
+                }
             }
         ]
     });

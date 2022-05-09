@@ -21,8 +21,8 @@
 
 * (done) seq1 in which the target position changes
 * (done) seq2 in which intensity and other values change
-* () seq3 in which the helper will show up
-* () seq4 in which distance and angle will change with helper visiable
+* (done) seq3 in which the helper will show up
+* (done) seq4 in which distance and angle will change with helper visiable
 
 * () export to raw video file
 * () create final video file
