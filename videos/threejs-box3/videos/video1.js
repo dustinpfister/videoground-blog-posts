@@ -34,6 +34,36 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // GROUP OF MESH OBJECTS
+    var group = new THREE.Group();
+    var i = 0, len = 10;
+    while(i < len){
+        var mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1,1,1), 
+            new THREE.MeshNormalMaterial());
+        group.add(mesh);
+        i +=1;
+    }
+    scene.add(group);
+
+    // BOX3 and HELPER
+    var box3 = new THREE.Box3();
+    box3.setFromCenterAndSize(
+        new THREE.Vector3( 0, 0, 0 ), 
+        new THREE.Vector3( 4, 4, 4 ) );
+    var box3Helper = new THREE.Box3Helper( box3, 0xffff00 );
+    box3Helper.material.linewidth = 6;
+    scene.add(box3Helper);
+
+    // 
+    var groupDefault = function(){
+        group.children.forEach(function(mesh){
+            mesh.visible = false;
+            mesh.position.set(0, 0, 0);
+            mesh.scale.set(1, 1, 1);
+        });
+        group.children[0].visible = true;
+    };
 
     // SET UP SEQ OBJECT
     sm.seq = Sequences.create({
@@ -50,6 +80,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    groupDefault();
                 }
             },
             {
@@ -64,6 +96,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    groupDefault();
                 }
             },
             // sq1 - 
@@ -74,6 +108,11 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, 0);
                     camera.lookAt(0, 0, 0);
+                    // group
+                    groupDefault();
+                    var s = new THREE.Vector3();
+                    box3.getSize(s);
+                    group.children[0].scale.copy(s);
                 }
             }
         ]
