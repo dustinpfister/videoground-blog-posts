@@ -62,7 +62,6 @@ VIDEO.init = function(sm, scene, camera){
             mesh.position.set(0, 0, 0);
             mesh.scale.set(1, 1, 1);
         });
-        group.children[0].visible = true;
     };
 
     // SET UP SEQ OBJECT
@@ -100,7 +99,7 @@ VIDEO.init = function(sm, scene, camera){
                     groupDefault();
                 }
             },
-            // sq1 - 
+            // sq1 - scale up and down one mesh in the box
             {
                 per: 0.15,
                 init: function(sm){},
@@ -112,6 +111,8 @@ VIDEO.init = function(sm, scene, camera){
                     groupDefault();
                     var s = new THREE.Vector3();
                     box3.getSize(s);
+                    s.multiplyScalar(partBias);
+                    group.children[0].visible = true;
                     group.children[0].scale.copy(s);
                 }
             }
