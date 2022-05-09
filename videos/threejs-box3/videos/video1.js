@@ -55,13 +55,22 @@ VIDEO.init = function(sm, scene, camera){
     box3Helper.material.linewidth = 6;
     scene.add(box3Helper);
 
-    // 
+    // default values for group children
     var groupDefault = function(){
         group.children.forEach(function(mesh){
             mesh.visible = false;
             mesh.position.set(0, 0, 0);
             mesh.scale.set(1, 1, 1);
         });
+    };
+
+    // get box position vector
+    var getBoxPosVector = function(xPer, yPer, zPer){
+        var v = new THREE.Vector3();
+        v.x = 0.5 + box3.min.x + (box3.max.x - box3.min.x - 1.0) * xPer;
+        v.y = 0.5 + box3.min.y + (box3.max.y - box3.min.y - 1.0) * yPer;
+        v.z = 0.5 + box3.min.z + (box3.max.z - box3.min.z - 1.0) * zPer;
+        return v;
     };
 
     // SET UP SEQ OBJECT
@@ -128,15 +137,8 @@ VIDEO.init = function(sm, scene, camera){
                     var s = new THREE.Vector3();
                     box3.getSize(s);
                     group.children.forEach(function(mesh, i, arr){
-                        var len = arr.length;
-                        var xPer = Math.random();
-                        var zPer = Math.random();
-                        var yPer = partBias;
-                        var x = 0.5 + box3.min.x + (box3.max.x - box3.min.x - 1.0) * xPer;
-                        var y = 0.5 + box3.min.y + (box3.max.y - box3.min.y - 1.0) * yPer;
-                        var z = 0.5 + box3.min.z + (box3.max.z - box3.min.z - 1.0) * zPer;
+                        mesh.position.copy( getBoxPosVector(Math.random(), partBias, Math.random()) );
                         mesh.visible = true;
-                        mesh.position.set(x, y, z);
                     });
                 }
             }
