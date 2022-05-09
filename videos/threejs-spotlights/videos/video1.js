@@ -4,7 +4,9 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   '../../../js/datatex.js',
+   '../../../js/tile-index.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -13,9 +15,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -33,6 +35,34 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+
+    var plane = TileMod.create();
+    scene.add(plane);
+
+
+    // ---------- ----------
+    // SPOTLIGHT
+    // ---------- ----------
+    var color = new THREE.Color('white'),
+    intensity = 1,
+    distance = 30,
+    angle = Math.PI * 0.05,
+    penumbra = 0.25,
+    decay = 0.5;
+    var spotLight = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
+    spotLight.position.set(0, 8, 0);
+    scene.add(spotLight);
+
+     // ---------- ----------
+    // AMBIENTLIGHT
+    // ---------- ----------   
+    scene.add( new THREE.AmbientLight(0xffffff, 0.07));
+
+    // TARGET
+    var spotTarget = new THREE.Object3D(); // spotlight target
+    spotLight.target = spotTarget; // set spotLight target for spotLight
+    scene.add(spotTarget); // add spotLight target to the scene
 
 
     // SET UP SEQ OBJECT
