@@ -170,7 +170,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     // guy moving
     var guy1 = scene.userData.guy1;
     guy1.walk(per, 8);
-    guy1.group.position.z = -5 + 10 * per;
+    guy1.group.position.z = -20 + 40 * per;
 
     // sequences
     Sequences.update(sm.seq, sm);

@@ -2,18 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-camera-move
-* (done) start video folder and a video1 file
-
-* () have the guy walking
-* () have an object grid with the two tree models
-* () just have a few sequnces in which the camera is moving around
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-color
 * () start video folder and a video1 file
 * () export to raw video file
@@ -176,7 +164,17 @@ let material = new THREE.MeshStandardMaterial({
 
 <!-- DONE -->
 
-### ( done 05/29/2022 ) - video1 for threejs-box3
+### ( done 05/10/2022 ) - threejs-camera-move
+* (done) start video folder and a video1 file
+* (done) have the guy walking
+* (done) have an object grid with the two tree models
+* (done) just have a few sequnces in which the camera is moving around
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 05/09/2022 ) - video1 for threejs-box3
 * (done) start video folder and a video1 file
 * (done) start with an example from the post
 * (done) use the box3 helper with a single instance of a box3
