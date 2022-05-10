@@ -5,7 +5,9 @@
 ### () - threejs-camera-move
 * (done) start video folder and a video1 file
 
-
+* () have the guy walking
+* () have an object grid with the two tree models
+* () just have a few sequnces in which the camera is moving around
 
 * () export to raw video file
 * () create final video file

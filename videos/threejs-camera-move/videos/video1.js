@@ -4,18 +4,16 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences.js',
+   '../../../js/datatex.js',
+   '../../../js/tile-index.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#008a8a');
 
-    // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -33,6 +31,23 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // light
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 1, 1);
+    scene.add(dl);
+
+    // ground
+
+    var ground = TileMod.create({
+            w: 200,
+            h: 200,
+            sw: 20,
+            sh: 20
+        });
+    ground.position.set(0, -5, 0);
+    TileMod.setCheckerBoard(ground);
+    scene.add(ground)
 
 
     // SET UP SEQ OBJECT
