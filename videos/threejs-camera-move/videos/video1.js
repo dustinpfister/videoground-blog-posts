@@ -128,8 +128,6 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
                     camera.position.set(-12, 12, 12);
-
-                    var v = new THREE.Vector3(0, 10, 7);
                     camera.lookAt( guy1.group.position );
                 }
             },
@@ -142,21 +140,17 @@ VIDEO.init = function(sm, scene, camera){
                     var vpos = new THREE.Vector3(-12, 12, 12);
                     var vposNew = guy1.group.position.clone().add( new THREE.Vector3(3, 3, 3) );
                     camera.position.copy( vpos.clone().lerp(vposNew , partPer ) )
-
-                    var v = new THREE.Vector3(0, 10, 7);
                     camera.lookAt( guy1.group.position );
                 }
             },
-            // sq6 - following guy2
+            // sq6 - following guy1
             {
-                per: 0.75,
+                per: 0.65,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // camera
-                    var vpos = guy1.group.position.clone().add( new THREE.Vector3(3, 3, 3) );
+                    var vpos = guy1.group.position.clone().add( new THREE.Vector3(3, 3 - 2 * partPer, 3 - 6 * partPer) );
                     camera.position.copy( vpos )
-
-                    var v = new THREE.Vector3(0, 10, 7);
                     camera.lookAt( guy1.group.position );
                 }
             }
