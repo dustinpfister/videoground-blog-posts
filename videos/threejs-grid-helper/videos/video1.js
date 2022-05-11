@@ -40,8 +40,19 @@ VIDEO.init = function(sm, scene, camera){
     }
     scene.add(helpers);
 
-    var helpersDefault = function(helper){
+    var helpersDefault = function(helper, i, arr){
         helper.scale.set(0, 0, 0);
+        helper.rotation.set(0, 0, 0);
+        helper.material.color = new THREE.Color('lime');
+        if(i === 1){
+            helper.rotation.x = Math.PI * 0.5;
+            helper.material.color = new THREE.Color('blue');
+        }
+        if(i === 2){
+            helper.rotation.z = Math.PI * 0.5;
+
+            helper.material.color = new THREE.Color('red');
+        }
     };
 
     // SET UP SEQ OBJECT
@@ -57,8 +68,8 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.position.set(6, 0.8, 0);
                     textCube.material.opacity = 1.0;
                     // helpers
-                    helpers.children.forEach(function(helper){
-                        helpersDefault(helper);
+                    helpers.children.forEach(function(helper, i, arr){
+                        helpersDefault(helper, i, arr);
                     });
                     // camera
                     camera.position.set(8, 1, 0);
@@ -75,27 +86,64 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                     // helpers
-                    helpers.children.forEach(function(helper){
-                        helpersDefault(helper);
+                    helpers.children.forEach(function(helper, i, arr){
+                        helpersDefault(helper, i, arr);
                     });
                     // camera
                     camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
+            // sq1 - scale up one
             {
                 per: 0.15,
                 init: function(sm){},
                 update: function(sm, scene, camera, partPer, partBias){
                     // helpers
-                    helpers.children.forEach(function(helper){
-                        helpersDefault(helper);
+                    helpers.children.forEach(function(helper, i, arr){
+                        helpersDefault(helper, i, arr);
                     });
-var s = partPer;
-helpers.children[0].scale.set(s, s, s);
+                    var s = partPer;
+                    helpers.children[0].scale.set(s, s, s);
                     // camera
                     camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq2 - scale up two more
+            {
+                per: 0.25,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // helpers
+                    helpers.children.forEach(function(helper, i, arr){
+                        helpersDefault(helper, i, arr);
+                        var s = partPer;
+                        helper.scale.set(s, s, s);
+                    });
+                    var s = 1;
+                    helpers.children[0].scale.set(s, s, s);
+                    // camera
+                    camera.position.set(8, 6 + 2 * partPer, 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq3 - move camera
+            {
+                per: 0.35,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // helpers
+                    helpers.children.forEach(function(helper, i, arr){
+                        helpersDefault(helper, i, arr);
+                        var s = 1;
+                        helper.scale.set(1, 1, 1);
+                    });
+                    // camera
+                    var vOld = new THREE.Vector3(8, 8, 8);
+                    var vNew = new THREE.Vector3(-8, -8, 8 );
+                    camera.position.copy(vOld).lerp(vNew, partPer)
+
                     camera.lookAt(0, 0, 0);
                 }
             }
