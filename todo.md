@@ -3,7 +3,12 @@
 <!-- Whats next -->
 
 ### () - threejs-grid-helper
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
+
+* () s1 open with a grid helper scaling up from 0,0,0 that is 10 by 10 with custom color and line width
+* () s2 scale up another grid helper but for the other two axis
+* () s3 change color of lines
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
