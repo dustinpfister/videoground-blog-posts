@@ -146,6 +146,27 @@ VIDEO.init = function(sm, scene, camera){
 
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            // sq4 - change line color, and move camera
+            {
+                per: 0.55,
+                init: function(sm){},
+                update: function(sm, scene, camera, partPer, partBias){
+                    // helpers
+                    helpers.children.forEach(function(helper, i, arr){
+                        helpersDefault(helper, i, arr);
+                        var s = 1;
+                        helper.scale.set(1, 1, 1);
+                        var colors = ['lime', 'red', 'blue'];
+                        helper.material.color = new THREE.Color(colors[ Math.floor(colors.length * THREE.MathUtils.seededRandom()) ]);
+                    });
+                    // camera
+                    var vOld = new THREE.Vector3(-8, -8, 8);
+                    var vNew = new THREE.Vector3(-16, -10, -20 );
+                    camera.position.copy(vOld).lerp(vNew, partPer)
+
+                    camera.lookAt(0, 0, 0);
+                }
             }
         ]
     });
