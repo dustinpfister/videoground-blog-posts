@@ -4,11 +4,11 @@
 
 ### () - threejs-grid-helper
 * (done) start video folder and a video1 file
-
 * (done) s1 open with a grid helper scaling up from 0,0,0 that is 10 by 10 with custom color and line width
 * (done) s2 scale up another two grid helpers but for the other two axis
 * (done) s3 move camera
-* () s4 change color of lines and move camera
+* (done) s4 change color of lines and move camera
+* (done) add some mesh objects
 
 * () export to raw video file
 * () create final video file

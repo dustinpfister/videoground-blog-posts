@@ -29,6 +29,30 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // MESH OBJECTS
+    var mesh1 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh1);
+
+    var mesh2 = new THREE.Mesh(
+        new THREE.ConeGeometry(0.5, 3, 30, 30),
+        new THREE.MeshNormalMaterial());
+    mesh2.position.set(2, 0, 3);
+    scene.add(mesh2);
+
+    var mesh3 = new THREE.Mesh(
+        new THREE.SphereGeometry(0.5, 30, 30),
+        new THREE.MeshNormalMaterial());
+    mesh3.position.set(-3, 3, 0);
+    scene.add(mesh3);
+
+    var mesh4 = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.5, 0.5, 2, 30, 30),
+        new THREE.MeshNormalMaterial());
+    mesh4.position.set(-3, -3, 0);
+    scene.add(mesh4);
+
     // GRID HELPERS
     var i = 0, len = 3,
     helpers = new THREE.Group();
