@@ -84,7 +84,9 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // textcube
-                    seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+                    if(seq.partFrame < seq.partFrameMax){
+                        seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+                    }
                     // camera
                     camera.lookAt(0, 0, 0);
                 }
@@ -101,6 +103,8 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
 
+    console.log('frameMax for main seq: ' + seq.frameMax);
+    sm.frameMax = seq.frameMax;
 
 };
 
