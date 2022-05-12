@@ -4,7 +4,7 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/sequences-hooks-r0.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -34,61 +34,80 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
-
-    // SET UP SEQ OBJECT
-    sm.seq = Sequences.create({
-        sm: sm,
-        part : [
+    // A SEQ FOR TEXT CUBE
+    var seq_textcube = seqHooks.create({
+        setPerValues: false,
+        fps: 30,
+        beforeObjects: function(seq){
+            var textCube = scene.userData.textCube;
+            textCube.rotation.y = 0;
+            textCube.position.set(6, 0.8, 0);
+            textCube.visible = false;
+            textCube.material.transparent = true;
+            textCube.material.opacity = 0.0;
+        },
+        objects: [
             {
                 per: 0,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
+                update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     textCube.material.opacity = 1.0;
-                    // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
                 }
             },
             {
-                per: 0.10,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
+                per: 0.75,
+                update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
+                }
+            }
+        ]
+    });
+
+    // A MAIN SEQ OBJECT
+    var seq = scene.userData.seq = seqHooks.create({
+        fps: 30,
+        beforeObjects: function(seq){
+            textCube.visible = false;
+            camera.position.set(8, 1, 0);
+        },
+        afterObjects: function(seq){
+        },
+        objects: [
+            {
+                per: 0,
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // textcube
+                    seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     // camera
-                    camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
             {
-                per: 0.15,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
+                per: 0,
+                secs: 7,
+                update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
         ]
     });
+
+
 };
 
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
-    var textCube = scene.userData.textCube;
-    textCube.rotation.y = 0;
-    textCube.position.set(6, 0.8, 0);
-    textCube.visible = false;
-    textCube.material.transparent = true;
-    textCube.material.opacity = 0.0;
-    // sequences
-    Sequences.update(sm.seq, sm);
+    var seq = scene.userData.seq;
+    seqHooks.setFrame(seq, sm.frame, sm.frameMax);
+
 };
 
