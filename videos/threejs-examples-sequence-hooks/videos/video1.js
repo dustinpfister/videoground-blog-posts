@@ -69,18 +69,86 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
 
+    // MESH Objects
+    var mesh1 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh1);
+    var mesh2 = new THREE.Mesh(
+        new THREE.SphereGeometry(0.5, 30, 30),
+        new THREE.MeshNormalMaterial());
+    scene.add(mesh2);
+    // seq object for mesh1 that scales the mesh
+    var seq_mesh1_scale = seqHooks.create({
+        setPerValues: false,
+        beforeObjects: function(seq){
+            mesh1.scale.set(1, 1, 1);
+        },
+        objects: [
+            {
+                per: 0,
+                update: function(seq, partPer, partBias){
+                    var s = 1 + 2 * partPer;
+                    mesh1.scale.set(s, s, s);
+                }
+            },
+            {
+                per: 0.15,
+                update: function(seq, partPer, partBias){
+                    mesh1.scale.set(3, 3, 3);                    
+                }
+            },
+            {
+                per: 0.25,
+                update: function(seq, partPer, partBias){
+                    var s = 3 - 2 * partPer;
+                    mesh1.scale.set(s, s, s);                    
+                }
+            }
+        ]
+    });
+    // seq object for mesh1 that rotates the mesh
+    var seq_mesh1_rotate = seqHooks.create({
+        setPerValues: false,
+        beforeObjects: function(seq){
+            mesh1.scale.set(1, 1, 1);
+            mesh1.rotation.set(0, 0, 0);
+            mesh1.rotation.y = Math.PI * 4 * seq.per;
+        },
+        objects: [
+            {
+                per: 0,
+                update: function(seq, partPer, partBias){
+                    mesh1.rotation.x = Math.PI * 1.5;
+                }
+            },
+            {
+                per: 0.5,
+                update: function(seq, partPer, partBias){
+                    mesh1.rotation.x = Math.PI;
+                }
+            }
+        ]
+    });
+
     // A MAIN SEQ OBJECT
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
+
+            var r = Math.PI * 2 * seq.per;
+            var x = Math.cos(r) * 4;
+            var z = Math.sin(r) * 4;
+            mesh2.position.set(x, 0, z);
+
             camera.position.set(8, 1, 0);
+
         },
         afterObjects: function(seq){
         },
         objects: [
             {
-                per: 0,
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // textcube
@@ -90,14 +158,27 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                per: 0,
                 secs: 7,
                 update: function(seq, partPer, partBias){
+                    // seq_mesh1
+                    seqHooks.setFrame(seq_mesh1_scale, seq.partFrame, seq.partFrameMax);
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            {
+                secs: 7,
+                update: function(seq, partPer, partBias){
+                    // seq_mesh1
+                    seqHooks.setFrame(seq_mesh1_rotate, seq.partFrame, seq.partFrameMax);
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
             }
+
+                    
         ]
     });
 
