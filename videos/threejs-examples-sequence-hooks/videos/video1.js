@@ -136,18 +136,14 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
-
             // mesh 1
             mesh1.scale.set(1, 1, 1);
             mesh1.rotation.set(0, 0, 0);
-
             var r = Math.PI * 2 * seq.per;
             var x = Math.cos(r) * 4;
             var z = Math.sin(r) * 4;
             mesh2.position.set(x, 0, z);
-
             camera.position.set(8, 1, 0);
-
         },
         afterObjects: function(seq){
         },
@@ -176,7 +172,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // seq_mesh1
                     seqHooks.setFrame(seq_mesh1_rotate, seq.partFrame, seq.partFrameMax);
@@ -184,12 +180,22 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
-            }
-
-                    
+            },
+            {
+                secs: 15,
+                update: function(seq, partPer, partBias){
+                    // seq_mesh1
+                    seqHooks.setFrame(seq_mesh1_rotate, seq.partFrame, seq.partFrameMax);
+                    // camera
+                    camera.position.set(8 - 16 * partPer, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            }         
         ]
     });
 
+    console.log('frameMax for main seq: ' + seq.frameMax);
+    sm.frameMax = seq.frameMax;
 
 };
 
@@ -197,6 +203,5 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var seq = scene.userData.seq;
     seqHooks.setFrame(seq, sm.frame, sm.frameMax);
-
 };
 
