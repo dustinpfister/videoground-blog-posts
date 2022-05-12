@@ -4,12 +4,9 @@
 
 ### () - threejs-examples-sequence-hooks
 * (done) start video folder and a video1 file
-* () start with demo from post
-* () add addtional mesh obejects
-* () switch to standard material, and add light
-
-* () export to raw video file
-* () create final video file
+* (done) start with demo from post
+* (done) export to raw video file
+* (done) create final video file
 * () upload to youtube
 * () embed in post
 

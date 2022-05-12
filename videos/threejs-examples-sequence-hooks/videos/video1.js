@@ -95,8 +95,7 @@ VIDEO.init = function(sm, scene, camera){
             {
                 per: 0.15,
                 update: function(seq, partPer, partBias){
-                    mesh1.scale.set(3, 3, 3);
-                    console.log('yeah')                
+                    mesh1.scale.set(3, 3, 3);              
                 }
             },
             {
