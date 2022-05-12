@@ -2,18 +2,17 @@
 
 <!-- Whats next -->
 
-### () - threejs-grid-helper
-* (done) start video folder and a video1 file
-* (done) s1 open with a grid helper scaling up from 0,0,0 that is 10 by 10 with custom color and line width
-* (done) s2 scale up another two grid helpers but for the other two axis
-* (done) s3 move camera
-* (done) s4 change color of lines and move camera
-* (done) add some mesh objects
+### () - threejs-examples-sequence-hooks
+* () start video folder and a video1 file
+* () start with demo from post
+* () add addtional mesh obejects
+* () switch to standard material, and add light
 
 * () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
+
 
 ### () - threejs-color
 * () start video folder and a video1 file
@@ -176,6 +175,18 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/11/2022 ) - threejs-grid-helper
+* (done) start video folder and a video1 file
+* (done) s1 open with a grid helper scaling up from 0,0,0 that is 10 by 10 with custom color and line width
+* (done) s2 scale up another two grid helpers but for the other two axis
+* (done) s3 move camera
+* (done) s4 change color of lines and move camera
+* (done) add some mesh objects
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/10/2022 ) - threejs-camera-move
 * (done) start video folder and a video1 file
