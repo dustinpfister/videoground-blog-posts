@@ -3,7 +3,7 @@
 <!-- Whats next -->
 
 ### () - threejs-examples-sequence-hooks
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () start with demo from post
 * () add addtional mesh obejects
 * () switch to standard material, and add light

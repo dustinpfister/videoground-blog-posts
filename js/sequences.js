@@ -1,10 +1,9 @@
+// first sequences module made for this collection of posts
 var Sequences = (function () {
     
     var api = {};
 
     var create = {};
-
-
 
     api.create = function(opt){
         opt = opt || {};
