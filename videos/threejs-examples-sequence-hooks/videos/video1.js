@@ -82,7 +82,7 @@ VIDEO.init = function(sm, scene, camera){
     var seq_mesh1_scale = seqHooks.create({
         setPerValues: false,
         beforeObjects: function(seq){
-            mesh1.scale.set(1, 1, 1);
+            //mesh1.scale.set(1, 1, 1);
         },
         objects: [
             {
@@ -95,7 +95,8 @@ VIDEO.init = function(sm, scene, camera){
             {
                 per: 0.15,
                 update: function(seq, partPer, partBias){
-                    mesh1.scale.set(3, 3, 3);                    
+                    mesh1.scale.set(3, 3, 3);
+                    console.log('yeah')                
                 }
             },
             {
@@ -111,7 +112,6 @@ VIDEO.init = function(sm, scene, camera){
     var seq_mesh1_rotate = seqHooks.create({
         setPerValues: false,
         beforeObjects: function(seq){
-            mesh1.scale.set(1, 1, 1);
             mesh1.rotation.set(0, 0, 0);
             mesh1.rotation.y = Math.PI * 4 * seq.per;
         },
@@ -137,6 +137,10 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
 
+            // mesh 1
+            mesh1.scale.set(1, 1, 1);
+            mesh1.rotation.set(0, 0, 0);
+
             var r = Math.PI * 2 * seq.per;
             var x = Math.cos(r) * 4;
             var z = Math.sin(r) * 4;
@@ -152,7 +156,9 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // textcube
-                    seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+                    if(seq.partFrame != seq.partFrameMax){
+                        seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+                    }
                     // camera
                     camera.lookAt(0, 0, 0);
                 }
@@ -161,7 +167,9 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // seq_mesh1
-                    seqHooks.setFrame(seq_mesh1_scale, seq.partFrame, seq.partFrameMax);
+                    if(seq.partFrame != seq.partFrameMax){
+                        seqHooks.setFrame(seq_mesh1_scale, seq.partFrame, seq.partFrameMax);
+                    }
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
