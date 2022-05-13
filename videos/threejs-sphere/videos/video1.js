@@ -106,14 +106,11 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
 
-            setMeshPos(sphere2, 360 * seq.per, 0, 1.1);
-
         },
         afterObjects: function(seq){
         },
         objects: [
             {
-                per: 0,
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // textcube
@@ -122,15 +119,28 @@ VIDEO.init = function(sm, scene, camera){
                     }
                     // camera
                     camera.lookAt(0, 0, 0);
+                    // sphere2 positon
+                    setMeshPos(sphere2, 360 * seq.per, 0, 1.1);
                 }
             },
             {
-                per: 0,
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 6 * partPer, 2 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // sphere2 positon
+                    setMeshPos(sphere2, 360 * seq.per, 0, 1.1);
+                }
+            },
+            {
+                secs: 20,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(2, 2, 2);
+                    camera.lookAt(0, 0, 0);
+                    // sphere2 positon
+                    setMeshPos(sphere2, 360 * 4 * seq.per, 0, 1.1);
                 }
             }
         ]
