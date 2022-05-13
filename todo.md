@@ -2,16 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-sphere
-* (done) start video folder and a video1 file
-* (done) start with example from post
-* (done) Array of materials for main sphere
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-color
 * () start video folder and a video1 file
 * () export to raw video file
@@ -173,6 +163,15 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/13/2022 ) - threejs-sphere
+* (done) start video folder and a video1 file
+* (done) start with example from post
+* (done) Array of materials for main sphere
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/12/2022 ) - threejs-examples-sequence-hooks
 * (done) start video folder and a video1 file
