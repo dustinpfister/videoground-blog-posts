@@ -2,14 +2,12 @@
 
 <!-- Whats next -->
 
-### () - threejs-examples-sequence-hooks
-* (done) start video folder and a video1 file
-* (done) start with demo from post
-* (done) export to raw video file
-* (done) create final video file
+### () - threejs-sphere
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
-
 
 ### () - threejs-color
 * () start video folder and a video1 file
@@ -172,6 +170,14 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/12/2022 ) - threejs-examples-sequence-hooks
+* (done) start video folder and a video1 file
+* (done) start with demo from post
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/11/2022 ) - threejs-grid-helper
 * (done) start video folder and a video1 file
