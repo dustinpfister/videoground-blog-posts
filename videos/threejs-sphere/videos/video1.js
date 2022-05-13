@@ -78,7 +78,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(new THREE.AmbientLight(0xafafaf, 0.25));
 
     // ---------- ----------
-    // MESH OBJECTS USING SPHERE GEOMERTY
+    // SPHERE MESH OBJECT WITH ARRAY OF MATERIALS
     // ---------- ----------
     var geometry = new THREE.SphereGeometry(1, 15, 15);
     var position = geometry.attributes.position,
@@ -88,15 +88,11 @@ VIDEO.init = function(sm, scene, camera){
     i = 0;
     // looking at the state of things here
     len = 1259;
-    console.log(len)
-    console.log(geometry);
-    console.log(position);
     while (i < len) {
         mi = i / 3 % 4;
         geometry.addGroup(i, 3, mi);
         i += 3;
     }
-
     var sphere = new THREE.Mesh(geometry, [
         new THREE.MeshPhongMaterial({
             color: 0x880000,
@@ -116,7 +112,12 @@ VIDEO.init = function(sm, scene, camera){
         })
     ]);
     scene.add(sphere);
-    var sphere2 = new THREE.Mesh(new THREE.SphereGeometry(0.1, 30,30), new THREE.MeshStandardMaterial({color: 0xafafaf}));
+    // ---------- ----------
+    // ADDITIONAL SPHERE MESH OBJECTS
+    // ---------- ----------
+    var sphere2 = new THREE.Mesh(
+        new THREE.SphereGeometry(0.25, 30,30),
+        new THREE.MeshStandardMaterial({color: 0xafafaf}));
     scene.add(sphere2);
 
     // ---------- ----------
@@ -126,7 +127,7 @@ VIDEO.init = function(sm, scene, camera){
     var setMeshPos = function(mesh, deg1, deg2, vecLength){
         deg1 = deg1 === undefined ? 0 : deg1;
         deh2 = deg2 === undefined ? 0 : deg2;
-        vecLength = vecLength === undefined ? 1.1: vecLength;
+        vecLength = vecLength === undefined ? 1.25: vecLength;
         var homeVec = new THREE.Vector3(vecLength, 0, 0);
         var a = THREE.MathUtils.degToRad(deg1),
         b = THREE.MathUtils.degToRad(deg2);
@@ -154,7 +155,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.lookAt(0, 0, 0);
                     // sphere2 positon
-                    setMeshPos(sphere2, 360 * seq.per, 0, 1.1);
+                    setMeshPos(sphere2, 360 * seq.per, 0, 1.25);
                 }
             },
             {
@@ -164,7 +165,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(8 - 6 * partPer, 2 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
                     // sphere2 positon
-                    setMeshPos(sphere2, 360 * seq.per, 0, 1.1);
+                    setMeshPos(sphere2, 360 * seq.per, 0, 1.25);
                 }
             },
             {
@@ -174,7 +175,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(2, 2, 2);
                     camera.lookAt(0, 0, 0);
                     // sphere2 positon
-                    setMeshPos(sphere2, 360 * 4 * seq.per, 0, 1.1);
+                    setMeshPos(sphere2, 360 * 4 * seq.per, 0, 1.25);
                 }
             }
         ]
