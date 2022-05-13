@@ -80,9 +80,43 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // MESH OBJECTS USING SPHERE GEOMERTY
     // ---------- ----------
-    var sphere = new THREE.Mesh(new THREE.SphereGeometry(1, 30,30), new THREE.MeshStandardMaterial());
+    var geometry = new THREE.SphereGeometry(1, 15, 15);
+    var position = geometry.attributes.position,
+    //len = position.array.length * 2, //!!! this is not a good way to get len it would seem
+    len = Math.floor(position.count * 5), // this seems to work for now, but I should still look into this more
+    mi = 0,
+    i = 0;
+    // looking at the state of things here
+    len = 1259;
+    console.log(len)
+    console.log(geometry);
+    console.log(position);
+    while (i < len) {
+        mi = i / 3 % 4;
+        geometry.addGroup(i, 3, mi);
+        i += 3;
+    }
+
+    var sphere = new THREE.Mesh(geometry, [
+        new THREE.MeshPhongMaterial({
+            color: 0x880000,
+            emissive: 0x181818
+        }),
+        new THREE.MeshPhongMaterial({
+            color: 0x00ff00,
+            emissive: 0x1f1f1f
+        }),
+        new THREE.MeshPhongMaterial({
+            color: 0x008800,
+            emissive: 0x181818
+        }),
+        new THREE.MeshPhongMaterial({
+            color: 0xff0000,
+            emissive: 0x1f1f1f
+        })
+    ]);
     scene.add(sphere);
-    var sphere2 = new THREE.Mesh(new THREE.SphereGeometry(0.1, 30,30), new THREE.MeshStandardMaterial({color: 0xff0000}));
+    var sphere2 = new THREE.Mesh(new THREE.SphereGeometry(0.1, 30,30), new THREE.MeshStandardMaterial({color: 0xafafaf}));
     scene.add(sphere2);
 
     // ---------- ----------
