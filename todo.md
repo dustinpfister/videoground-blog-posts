@@ -5,8 +5,7 @@
 ### () - threejs-sphere
 * (done) start video folder and a video1 file
 * (done) start with example from post
-* () more than one sphere to move
-* texture for main sphere and others
+* (done) Array of materials for main sphere
 
 * () export to raw video file
 * () create final video file

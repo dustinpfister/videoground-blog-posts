@@ -13,7 +13,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#afaf00');
     grid.material.linewidth = 3;
     scene.add( grid );
  
@@ -117,7 +117,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     var sphere2 = new THREE.Mesh(
         new THREE.SphereGeometry(0.25, 30,30),
-        new THREE.MeshStandardMaterial({color: 0xafafaf}));
+        new THREE.MeshStandardMaterial({color: 0x00ffff}));
     scene.add(sphere2);
 
     // ---------- ----------
@@ -155,27 +155,57 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.lookAt(0, 0, 0);
                     // sphere2 positon
-                    setMeshPos(sphere2, 360 * seq.per, 0, 1.25);
+                    setMeshPos(sphere2, 360 * partPer, 0, 1.25);
                 }
             },
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8 - 6 * partPer, 2 * partPer, 2 * partPer);
+                    camera.position.set(8 - 6 * partPer, 1 + 1 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
                     // sphere2 positon
-                    setMeshPos(sphere2, 360 * seq.per, 0, 1.25);
+                    setMeshPos(sphere2, 360 * partPer, 45 * partPer, 1.25);
                 }
             },
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(2, 2, 2);
                     camera.lookAt(0, 0, 0);
                     // sphere2 positon
-                    setMeshPos(sphere2, 360 * 4 * seq.per, 0, 1.25);
+                    setMeshPos(sphere2, 0, 45 - 90 * partPer, 1.25);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(2 + 2 * partPer, 2, 2 + 2 * partPer);
+                    camera.lookAt(0, 0, 0);
+                    // sphere2 positon
+                    setMeshPos(sphere2, 360 - 90 * partPer, -45 + 45 * partPer, 1.25);
+                }
+            },
+            {
+                secs: 7,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(4 + 4 * partPer, 2, 4);
+                    camera.lookAt(0, 0, 0);
+                    // sphere2 positon
+                    setMeshPos(sphere2, 270, 0, 1.25 + 3 * partPer);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 2, 4);
+                    camera.lookAt(0, 0, 0);
+                    // sphere2 positon
+                    setMeshPos(sphere2, 270, 360 * partPer, 4.25 - 3 * partBias);
                 }
             }
         ]
