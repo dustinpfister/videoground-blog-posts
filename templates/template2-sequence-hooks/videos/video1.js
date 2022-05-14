@@ -80,7 +80,6 @@ VIDEO.init = function(sm, scene, camera){
         },
         objects: [
             {
-                per: 0,
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // textcube
@@ -92,11 +91,18 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                per: 0,
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 20,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
