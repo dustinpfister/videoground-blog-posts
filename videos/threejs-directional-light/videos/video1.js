@@ -34,6 +34,17 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // DL
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    scene.add(dl)
+
+    // MESH OBJECT
+    var mesh1 = new THREE.Mesh(
+        new THREE.SphereGeometry(3, 30, 30),
+        new THREE.MeshStandardMaterial({color: 0xff0000})
+    );
+    scene.add(mesh1);
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -86,23 +97,44 @@ VIDEO.init = function(sm, scene, camera){
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
+                    // dl
+                    dl.position.set(0, 1, 0);
+                    dl.intensity = 1;
                     // camera
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
+                    // dl
+                    dl.position.set(0, 1, 0);
+                    dl.intensity = 1;
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 2 * partPer, 1 + 5 * partPer, 6 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 3,
                 update: function(seq, partPer, partBias){
+                    // dl
+                    dl.position.set(0, 1, 0);
+                    dl.intensity = 1;
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(6, 6, 6);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 22,
+                update: function(seq, partPer, partBias){
+                    // dl
+                    dl.position.set(0, 1 - 2 * partPer, 1 * partPer);
+                    dl.intensity = 1 - 0.9 * partPer
+                    // camera
+                    var s = 6 - 2 * partPer;
+                    camera.position.set(s, s, s);
                     camera.lookAt(0, 0, 0);
                 }
             }
