@@ -10,11 +10,12 @@
 
 * () have ambiant light, a point light, and directional light
 
-* () main sq1 : have ambient light start at 0 and go up to 1
-* () main sq2 : have ambient light go back down to 0.1 
-* () main sq3 : have intesnity of directional light go up from 0 to 1
-* () main sq4 : have directional light to back down to zero, and bring point light intesnity up to 1
-* () main sq5 : have point light move around
+* (done) main sq1 : have ambient light start at 0 and go up to 1
+* (done) main sq2 : have ambient light go back down to 0.1 
+* (done) main sq3 : have intesnity of directional light go up from 0 to 1
+* () main sq4 : directional light posiiton change
+* () main sq5 : have directional light to back down to zero, and bring point light intesnity up to 1
+* () main sq6 : have point light move around
 
 * () export to raw video file
 * () create final video file

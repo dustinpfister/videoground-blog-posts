@@ -37,6 +37,8 @@ VIDEO.init = function(sm, scene, camera){
     // LIGHTS
     var ambient = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambient);
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    scene.add(dl);
 
     // MESH OBJECTS
     var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}));
@@ -83,6 +85,8 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             ambient.intensity = 0.1;
+            dl.intensity = 0;
+            dl.position.set(0, 1, 0);
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -102,7 +106,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            {   // sg1 - ambient light goes from 0 to 1
+            {   // sq1 - ambient light goes from 0 to 1
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // light
@@ -112,11 +116,45 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            {
-                secs: 20,
+            {   // sq2 - ambient light goes back down to 0.1
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // light
                     ambient.intensity = 1 - 0.9 * partPer;
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {   // sq3 - dl intensity goes up
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // light
+                    dl.intensity = partPer;
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {   // sq4 - dl posiiton change
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // light
+                    dl.intensity = 1;
+                    var r = Math.PI * 6 * partPer;
+                    var x = Math.cos(r) * 3 * partBias,
+                    z = Math.sin(r) * 3 * partBias
+                    dl.position.set(x, 1, z);
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {   // sq45- dl intensity back down, point light up
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // light
+                    dl.intensity = 1 - partPer;
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
