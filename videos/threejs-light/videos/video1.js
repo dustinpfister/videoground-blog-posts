@@ -55,12 +55,13 @@ VIDEO.init = function(sm, scene, camera){
     // MESH OBJECTS
     var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}) );
     scene.add(cube);
-    var i = 0, len = 3;
+    var i = 0, len = 10;
     while(i < len){
         var tor = new THREE.Mesh( new THREE.TorusGeometry(), new THREE.MeshStandardMaterial({color: 0xffffff}) );
-        var per = i / len,
+        var per = (i + 1) / len,
         r = Math.PI * 2 * per;
-        tor.position.set(Math.cos(r) * 2, 0, Math.sin(r) * 2);
+        tor.position.set(Math.cos(r) * 4, 0, Math.sin(r) * 4);
+        tor.rotation.y = r * -1 ;
         scene.add(tor);
         i += 1;
     }
