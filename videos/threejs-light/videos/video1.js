@@ -41,12 +41,13 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
     var pl = new THREE.PointLight(0xffffff, 1);
     scene.add(pl);
+    pl.add( new THREE.PointLightHelper(pl) );
 
     // POINT LIGHT HELPER
     var setPointLightPos = function(per){
         var r = Math.PI * 2 * per;
-        var x = Math.cos(r) * 4,
-        z = Math.sin(r) * 4;
+        var x = Math.cos(r) * 2,
+        z = Math.sin(r) * 2;
         pl.position.set(x, 0, z);   
     };
 
