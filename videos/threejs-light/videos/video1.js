@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../../../js/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -52,12 +53,19 @@ VIDEO.init = function(sm, scene, camera){
         pl.position.set(x, 0, z);   
     };
 
+    // TEXTURE
+    var texture1 = datatex.seededRandom(16, 16, 1, 1, 1, [175, 255]);
+
     // MESH OBJECTS
-    var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}) );
+    var cube = new THREE.Mesh(
+        new THREE.BoxGeometry(2,2,2), 
+        new THREE.MeshStandardMaterial( {color: 0xffffff, map: texture1} ) );
     scene.add(cube);
     var i = 0, len = 10;
     while(i < len){
-        var tor = new THREE.Mesh( new THREE.TorusGeometry(1, 0.25, 32, 24), new THREE.MeshStandardMaterial({color: 0xffffff}) );
+        var tor = new THREE.Mesh( 
+            new THREE.TorusGeometry(1, 0.25, 32, 24), 
+            new THREE.MeshStandardMaterial( {color: 0xffffff, map: texture1} ) );
         var per = (i + 1) / len,
         r = Math.PI * 2 * per;
         tor.position.set(Math.cos(r) * 4, 0, Math.sin(r) * 4);
