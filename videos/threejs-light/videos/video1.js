@@ -39,6 +39,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(ambient);
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     scene.add(dl);
+    var pl = new THREE.PointLight(0xffffff, 1);
+    scene.add(pl);
 
     // MESH OBJECTS
     var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}));
@@ -87,6 +89,8 @@ VIDEO.init = function(sm, scene, camera){
             ambient.intensity = 0.1;
             dl.intensity = 0;
             dl.position.set(0, 1, 0);
+            pl.intensity = 0;
+            pl.position.set(4, 0, 0);
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -150,11 +154,26 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            {   // sq45- dl intensity back down, point light up
+            {   // sq5 - dl intensity back down, point light up
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // light
                     dl.intensity = 1 - partPer;
+                    pl.intensity = partPer;
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {   // sq6 - move pl
+                secs: 6,
+                update: function(seq, partPer, partBias){
+                    // light
+                    pl.intensity = 1;
+                    var r = Math.PI * 2 * partPer;
+                    var x = Math.cos(r) * 4,
+                    z = Math.sin(r) * 4;
+                    pl.position.set(x, 0, z);                    
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
