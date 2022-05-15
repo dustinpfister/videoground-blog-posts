@@ -10,10 +10,8 @@
 * (done) main sq3 : have intesnity of directional light go up from 0 to 1
 * (done) main sq4 : directional light posiiton change
 * (done) main sq5 : have directional light to back down to zero, and bring point light intesnity up to 1
-* () main sq6 : have point light move around
-
-
-* () have a single cube in the center with its own seq object
+* (done) main sq6 : have point light move around
+* (done) have a single cube in the center with its own seq object
 * () have a a few fixed tourus mesh objects
 
 

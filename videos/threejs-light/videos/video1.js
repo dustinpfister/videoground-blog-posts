@@ -55,7 +55,6 @@ VIDEO.init = function(sm, scene, camera){
     var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}));
     scene.add(cube);
 
-
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -91,6 +90,29 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
 
+   // A SEQ FOR CUBE MESH
+    var seq_cube = seqHooks.create({
+        setPerValues: false,
+        fps: 30,
+        beforeObjects: function(seq){
+            cube.rotation.set(0, 0, 0);
+        },
+        objects: [
+            {
+                per: 0,
+                update: function(seq, partPer, partBias){
+                    cube.rotation.set(0, Math.PI * 4 * partPer, 0);
+                }
+            },
+            {
+                per: 0.5,
+                update: function(seq, partPer, partBias){
+                    cube.rotation.set(0, Math.PI * 4 * partPer, Math.PI * 2 * partPer,);
+                }
+            }
+        ]
+    });
+
     // A MAIN SEQ OBJECT
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
@@ -102,6 +124,9 @@ VIDEO.init = function(sm, scene, camera){
             //pl.position.set(4, 0, 0);
             setPointLightPos(0);
             textCube.visible = false;
+            
+            seqHooks.setFrame(seq_cube, seq.frame, seq.frameMax);
+            
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
