@@ -12,7 +12,7 @@
 * (done) main sq5 : have directional light to back down to zero, and bring point light intesnity up to 1
 * (done) main sq6 : have point light move around
 * (done) have a single cube in the center with its own seq object
-* () have a a few fixed tourus mesh objects
+* (done) have a a few fixed torus mesh objects
 
 
 * () export to raw video file

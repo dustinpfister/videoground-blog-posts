@@ -57,7 +57,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(cube);
     var i = 0, len = 10;
     while(i < len){
-        var tor = new THREE.Mesh( new THREE.TorusGeometry(), new THREE.MeshStandardMaterial({color: 0xffffff}) );
+        var tor = new THREE.Mesh( new THREE.TorusGeometry(1, 0.25, 32, 24), new THREE.MeshStandardMaterial({color: 0xffffff}) );
         var per = (i + 1) / len,
         r = Math.PI * 2 * per;
         tor.position.set(Math.cos(r) * 4, 0, Math.sin(r) * 4);
