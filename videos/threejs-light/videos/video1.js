@@ -41,19 +41,29 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
     var pl = new THREE.PointLight(0xffffff, 1);
     scene.add(pl);
-    pl.add( new THREE.PointLightHelper(pl) );
+    scene.add( new THREE.PointLightHelper(pl, 0.5) );
+
 
     // POINT LIGHT HELPER
     var setPointLightPos = function(per){
         var r = Math.PI * 2 * per;
-        var x = Math.cos(r) * 2,
-        z = Math.sin(r) * 2;
+        var x = Math.cos(r) * 4,
+        z = Math.sin(r) * 4;
         pl.position.set(x, 0, z);   
     };
 
     // MESH OBJECTS
-    var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}));
+    var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}) );
     scene.add(cube);
+    var i = 0, len = 3;
+    while(i < len){
+        var tor = new THREE.Mesh( new THREE.TorusGeometry(), new THREE.MeshStandardMaterial({color: 0xffffff}) );
+        var per = i / len,
+        r = Math.PI * 2 * per;
+        tor.position.set(Math.cos(r) * 2, 0, Math.sin(r) * 2);
+        scene.add(tor);
+        i += 1;
+    }
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -121,7 +131,6 @@ VIDEO.init = function(sm, scene, camera){
             dl.intensity = 0;
             dl.position.set(0, 1, 0);
             pl.intensity = 0;
-            //pl.position.set(4, 0, 0);
             setPointLightPos(0);
             textCube.visible = false;
             
