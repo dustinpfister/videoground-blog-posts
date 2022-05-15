@@ -34,6 +34,14 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // LIGHTS
+    var ambient = new THREE.AmbientLight(0xffffff, 1);
+
+    // MESH OBJECTS
+    var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}));
+    scene.add(cube);
+
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
