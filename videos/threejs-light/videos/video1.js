@@ -36,6 +36,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // LIGHTS
     var ambient = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(ambient);
 
     // MESH OBJECTS
     var cube = new THREE.Mesh(new THREE.BoxGeometry(2,2,2), new THREE.MeshStandardMaterial({color: 0xffffff}));
@@ -81,6 +82,7 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+            ambient.intensity = 0.1;
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -94,13 +96,17 @@ VIDEO.init = function(sm, scene, camera){
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
+                    // light
+                    ambient.intensity = 0;
                     // camera
                     camera.lookAt(0, 0, 0);
                 }
             },
-            {
+            {   // sg1 - ambient light goes from 0 to 1
                 secs: 7,
                 update: function(seq, partPer, partBias){
+                    // light
+                    ambient.intensity = partPer;
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
@@ -109,6 +115,8 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
+                    // light
+                    ambient.intensity = 1 - 0.9 * partPer;
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
