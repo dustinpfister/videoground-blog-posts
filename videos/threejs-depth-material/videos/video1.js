@@ -34,11 +34,28 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // single mesh in center
     var mesh1 = new THREE.Mesh(
         new THREE.SphereGeometry(2, 30, 30),
         new THREE.MeshDepthMaterial()
     );
     scene.add(mesh1);
+
+    var group = new THREE.Group();
+    var i = 0, len = 7;
+    while(i < len){
+        var mesh = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshDepthMaterial()
+        );
+        var r = Math.PI * 2 * (i / len),
+        x = Math.cos(r) * 3,
+        z = Math.sin(r) * 3;
+        mesh.position.set(x, 0, z);
+        group.add(mesh);
+        i += 1;
+    }
+    scene.add(group);
 
     
     var cameraAdjust = function(near, far){
@@ -129,26 +146,26 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
-                    cameraAdjust(0.1 + 2.9 * partPer, 100 - 40 * partPer);
+                    cameraAdjust(0.1 + 2.4 * partPer, 100 - 40 * partPer);
                 }
             },
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var s = 8 - 5 * partPer;
+                    var s = 8 - 4 * partPer;
                     camera.position.set(s, s, s);
                     camera.lookAt(0, 0, 0);
-                    cameraAdjust(3, 60);
+                    cameraAdjust(2.5, 60);
                 }
             },
             {
                 secs: 8,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(3, 3, 3);
+                    camera.position.set(4, 4 - 2 * partPer, 4);
                     camera.lookAt(0, 0, 0);
-                    cameraAdjust(3, 60);
+                    cameraAdjust(2.5 - 2 * partPer, 60);
                 }
             }
         ]
