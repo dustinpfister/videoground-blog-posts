@@ -2,19 +2,8 @@
 
 <!-- Whats next -->
 
-### () - threejs-light
-* (done) start video folder and a video1 file
-* (done) have ambiant light, a point light, and directional light
-* (done) main sq1 : have ambient light start at 0 and go up to 1
-* (done) main sq2 : have ambient light go back down to 0.1 
-* (done) main sq3 : have intesnity of directional light go up from 0 to 1
-* (done) main sq4 : directional light posiiton change
-* (done) main sq5 : have directional light to back down to zero, and bring point light intesnity up to 1
-* (done) main sq6 : have point light move around
-* (done) have a single cube in the center with its own seq object
-* (done) have a a few fixed torus mesh objects
-
-
+### () - threejs-depth-material
+* () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -96,8 +85,6 @@ let material = new THREE.MeshStandardMaterial({
 ### () - threejs-dae-collada-loader
 
 ### () - threejs-data-texture
-
-### () - threejs-depth-material
 
 ### () - threejs-edges-geometry
 
@@ -181,6 +168,22 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/15/2022 ) - threejs-light
+* (done) start video folder and a video1 file
+* (done) have ambiant light, a point light, and directional light
+* (done) main sq1 : have ambient light start at 0 and go up to 1
+* (done) main sq2 : have ambient light go back down to 0.1 
+* (done) main sq3 : have intesnity of directional light go up from 0 to 1
+* (done) main sq4 : directional light posiiton change
+* (done) main sq5 : have directional light to back down to zero, and bring point light intesnity up to 1
+* (done) main sq6 : have point light move around
+* (done) have a single cube in the center with its own seq object
+* (done) have a a few fixed torus mesh objects
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/14/2022 ) - threejs-directional-light
 * (done) start video folder and a video1 file
