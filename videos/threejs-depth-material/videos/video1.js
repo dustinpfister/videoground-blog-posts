@@ -34,6 +34,20 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    var mesh1 = new THREE.Mesh(
+        new THREE.SphereGeometry(2, 30, 30),
+        new THREE.MeshDepthMaterial()
+    );
+    scene.add(mesh1);
+
+    
+    var cameraAdjust = function(near, far){
+        camera.near = near;
+        camera.far = far;
+        camera.updateProjectionMatrix();
+    };
+
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -88,22 +102,53 @@ VIDEO.init = function(sm, scene, camera){
                     }
                     // camera
                     camera.lookAt(0, 0, 0);
+                    cameraAdjust(0.1, 100);
+                }
+            },
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                    cameraAdjust(0.1, 100);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                    cameraAdjust(0.1, 100);
                 }
             },
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
+                    cameraAdjust(0.1 + 2.9 * partPer, 100 - 40 * partPer);
                 }
             },
             {
-                secs: 20,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    var s = 8 - 5 * partPer;
+                    camera.position.set(s, s, s);
                     camera.lookAt(0, 0, 0);
+                    cameraAdjust(3, 60);
+                }
+            },
+            {
+                secs: 8,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(3, 3, 3);
+                    camera.lookAt(0, 0, 0);
+                    cameraAdjust(3, 60);
                 }
             }
         ]
