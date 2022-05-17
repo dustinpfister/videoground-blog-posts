@@ -53,13 +53,31 @@ VIDEO.init = function(sm, scene, camera){
     cone2.position.set(3, 1, 3);
     scene.add(cone2);
 
-    // cone2 - segment settings
+    // cone3 - half cone
     var cone3 = new THREE.Mesh(new THREE.ConeGeometry(1.0, 4, 60, 20, false, Math.PI, Math.PI * 1.0), new THREE.MeshStandardMaterial({
             color: 0x00ff00,
             side: THREE.DoubleSide
         }));
     cone3.position.set(-3, 2, 3);
     scene.add(cone3);
+
+    // cone4 - rotation
+    var cone4 = new THREE.Mesh(
+        new THREE.ConeGeometry(1.0, 4, 60, 60), 
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            side: THREE.DoubleSide
+        }));
+    cone4.geometry.rotateX(Math.PI * 0.5)
+    cone4.position.set(-5, 0.5, -5);
+    scene.add(cone4);
+
+    // cube1 - object that cone4 looks at
+    var cube1 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1), 
+        new THREE.MeshNormalMaterial());
+    scene.add(cube1);
+
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -102,6 +120,12 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+            // cube1
+            var r = Math.PI * 6 * seq.per,
+            x = -5 + Math.cos(r) * 4,
+            z = -5 + Math.sin(r) * 4;
+            cube1.position.set(x, 0, z);
+            cone4.lookAt(cube1.position);
         },
         afterObjects: function(seq){
         },
