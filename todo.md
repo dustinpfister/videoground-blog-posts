@@ -2,8 +2,8 @@
 
 <!-- Whats next -->
 
-### () - threejs-depth-material
-* (done) start video folder and a video1 file
+### () - threejs-cone
+* () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -77,8 +77,6 @@ let material = new THREE.MeshStandardMaterial({
 ### () - threejs-camera
 
 ### () - threejs-clock
-
-### () - threejs-cone
 
 ### () - threejs-cube-texture
 
@@ -168,6 +166,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( 05/16/2022 ) - threejs-depth-material
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/15/2022 ) - threejs-light
 * (done) start video folder and a video1 file
