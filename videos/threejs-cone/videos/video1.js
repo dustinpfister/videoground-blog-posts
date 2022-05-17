@@ -152,17 +152,8 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
-                    
+            // cube1 seq            
             seqHooks.setFrame(seq_cube1, seq.frame, seq.frameMax);
-                    
-/*
-            // cube1
-            var r = Math.PI * 6 * seq.per,
-            x = -5 + Math.cos(r) * 4,
-            z = -5 + Math.sin(r) * 4;
-            cube1.position.set(x, 0, z);
-            cone4.lookAt(cube1.position);
-*/
         },
         afterObjects: function(seq){
         },
@@ -187,10 +178,34 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 16 * partPer, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-8 - 8 * partPer, 8, 8 - 24 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-16 + 6 * partPer, 8, -16 + 6 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
