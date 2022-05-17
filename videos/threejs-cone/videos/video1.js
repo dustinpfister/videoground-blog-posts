@@ -114,18 +114,55 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
 
+
+    var seq_cube1 = seqHooks.create({
+        setPerValues: false,
+        fps: 30,
+        afterObjects: function(seq){
+            cone4.lookAt(cube1.position); 
+        },
+        objects: [
+            {
+                per: 0,
+                update: function(seq, partPer, partBias){
+                    // cube1
+                    var r = Math.PI * 6 * partPer,
+                    x = -5 + Math.cos(r) * 4,
+                    z = -5 + Math.sin(r) * 4;
+                    cube1.position.set(x, 0, z);       
+                }
+            },
+            {
+                per: 0.5,
+                update: function(seq, partPer, partBias){
+                    // cube1
+                    var r = Math.PI * 12 * partPer,
+                    x = -5 + Math.cos(r) * 4,
+                    y = Math.sin(r) * 5 * partBias,
+                    z = -5 + Math.sin(r) * 4;
+                    cube1.position.set(x, y, z);                      
+                }
+            }
+        ]
+    });
+
     // A MAIN SEQ OBJECT
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+                    
+            seqHooks.setFrame(seq_cube1, seq.frame, seq.frameMax);
+                    
+/*
             // cube1
             var r = Math.PI * 6 * seq.per,
             x = -5 + Math.cos(r) * 4,
             z = -5 + Math.sin(r) * 4;
             cube1.position.set(x, 0, z);
             cone4.lookAt(cube1.position);
+*/
         },
         afterObjects: function(seq){
         },
