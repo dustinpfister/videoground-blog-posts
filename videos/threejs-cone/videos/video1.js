@@ -34,6 +34,17 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // light
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 3, 2);
+    scene.add(dl);
+
+    // cone1 - basic example
+    var cone1 = new THREE.Mesh(new THREE.ConeGeometry(1, 7), new THREE.MeshStandardMaterial({
+            color: 0x00ff00
+        }));
+    scene.add(cone1);
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
