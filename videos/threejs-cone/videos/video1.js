@@ -40,10 +40,26 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
 
     // cone1 - basic example
-    var cone1 = new THREE.Mesh(new THREE.ConeGeometry(1, 7), new THREE.MeshStandardMaterial({
+    var cone1 = new THREE.Mesh(new THREE.ConeGeometry(1, 3), new THREE.MeshStandardMaterial({
             color: 0x00ff00
         }));
+    cone1.position.y = 1.5;
     scene.add(cone1);
+
+    // cone2 - segment settings
+    var cone2 = new THREE.Mesh(new THREE.ConeGeometry(0.5, 2, 60, 20), new THREE.MeshStandardMaterial({
+            color: 0x00ff00
+        }));
+    cone2.position.set(3, 1, 3);
+    scene.add(cone2);
+
+    // cone2 - segment settings
+    var cone3 = new THREE.Mesh(new THREE.ConeGeometry(1.0, 4, 60, 20, false, Math.PI, Math.PI * 1.0), new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            side: THREE.DoubleSide
+        }));
+    cone3.position.set(-3, 2, 3);
+    scene.add(cone3);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
