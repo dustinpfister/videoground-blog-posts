@@ -105,16 +105,18 @@ VIDEO.init = function(sm, scene, camera){
     var meshObjectsEffect = function(per){
         var radius = 5 - 2.5 * per,
         s = 1 - 0.50 * per,
-        len = 
+        len = meshObjects.children.length;
         meshObjects.children.forEach(function(mesh, i){
-            var y = 0,
-            r = Math.PI * 2 / meshObjects.children.length * i,
+            var mPer = i / len,
+            y = 0,
+            r = Math.PI * 2 / len * i,
             x = Math.cos(r) * radius,
             z = Math.sin(r) * radius;
             mesh.position.set(x, y, z);
-            mesh.scale.set(s, s, s);
+            mesh.scale.set(s, s + s * 8 * mPer * per, s);
             mesh.lookAt(0, 0, 0);
         });
+        meshObjects.rotation.y = -Math.PI * 8 * per;
     };
 
 
