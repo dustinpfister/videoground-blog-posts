@@ -92,7 +92,6 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // MESH OBJECTS
     //******** **********
-
     var i = 0, len = 15;
     var meshObjects = new THREE.Group();
     while(i < len){
@@ -101,6 +100,25 @@ VIDEO.init = function(sm, scene, camera){
         i += 1;
     };
     scene.add(meshObjects);
+
+    //******** **********
+    // Point Lights
+    //******** **********
+
+    var createPL = function(color){
+        var pl = new THREE.PointLight(color, 1);
+        pl.add( 
+            new THREE.Mesh( 
+                new THREE.SphereGeometry( 0.25, 30, 30 ), 
+                new THREE.MeshBasicMaterial({color: color})
+            )
+        );
+        return pl;
+    };
+
+    var pl = createPL(0xffffff);
+    scene.add(pl);
+
 
     var meshObjectsEffect = function(per){
         var radius = 5 - 2.5 * per,
