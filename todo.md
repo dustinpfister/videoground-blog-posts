@@ -2,6 +2,20 @@
 
 <!-- Whats next -->
 
+### () - threejs-object3d
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - threejs-vector3-lerp
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-color
 * () start video folder and a video1 file
 * () export to raw video file
