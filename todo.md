@@ -4,6 +4,17 @@
 
 ### () - threejs-object3d
 * () start video folder and a video1 file
+
+* () have a point light and point light helper
+* () have a THREE.Line instance use proro-lines-circles-two r135 demo for a Line object in the video
+* () have a THREE.Group instance that is a group of cube geometries
+
+* () seq object for line
+* () seq object for group
+
+* () main seq1 - camera moves to 10, 10, 10
+* () main seq2 - move camera t0 -10, 10, 10
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
