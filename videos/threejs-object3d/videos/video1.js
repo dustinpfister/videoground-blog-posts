@@ -34,60 +34,89 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
-//******** **********
-// LINES
-//******** **********
+    //******** **********
+    // LINES
+    //******** **********
 
-// just create one circle for a set of circles that form a sphere like shape
-// createSphereCirclePoints(maxRadius, circleCount, circleIndex, pointsPerCircle)
-var createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, pointsPerCircle, randomDelta){
-    var points = [];
-    var sPer = circleIndex / circleCount;
-    var radius = Math.sin( Math.PI * 1.0 * sPer ) * maxRadius;
-    var y = Math.cos( Math.PI * 1.0 * sPer ) * maxRadius;
-    var i = 0;
-    // buch points for the current circle
-    while(i < pointsPerCircle){
-        // might want to subtract 1 or 0 for this cPer expression
-        var cPer =  i / (pointsPerCircle - 1);
-        var radian = Math.PI * 2 * cPer;
-        var v = new THREE.Vector3();
-        v.x = Math.cos(radian) * radius;
-        v.y = y;
-        v.z = Math.sin(radian) * radius;
-        var a = v.clone().normalize().multiplyScalar( maxRadius - randomDelta * THREE.MathUtils.seededRandom() );
-        // other cool ideas with deltas
-        //var a = v.clone().normalize().multiplyScalar( 1 + maxRadius * (i / (perCircle - 1)) );
-        //var a = v.clone().normalize().multiplyScalar( (maxRadius * (cPer * 1.25 + sPer * 5)) * 0.25 );
-        points.push(a);
-        i += 1;
-    }
-    return points;
-};
+    // just create one circle for a set of circles that form a sphere like shape
+    // createSphereCirclePoints(maxRadius, circleCount, circleIndex, pointsPerCircle)
+    var createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, pointsPerCircle, randomDelta){
+        var points = [];
+        var sPer = circleIndex / circleCount;
+        var radius = Math.sin( Math.PI * 1.0 * sPer ) * maxRadius;
+        var y = Math.cos( Math.PI * 1.0 * sPer ) * maxRadius;
+        var i = 0;
+        // buch points for the current circle
+        while(i < pointsPerCircle){
+            // might want to subtract 1 or 0 for this cPer expression
+            var cPer =  i / (pointsPerCircle - 1);
+            var radian = Math.PI * 2 * cPer;
+            var v = new THREE.Vector3();
+            v.x = Math.cos(radian) * radius;
+            v.y = y;
+            v.z = Math.sin(radian) * radius;
+            var a = v.clone().normalize().multiplyScalar( maxRadius - randomDelta * THREE.MathUtils.seededRandom() );
+            // other cool ideas with deltas
+            //var a = v.clone().normalize().multiplyScalar( 1 + maxRadius * (i / (perCircle - 1)) );
+            //var a = v.clone().normalize().multiplyScalar( (maxRadius * (cPer * 1.25 + sPer * 5)) * 0.25 );
+            points.push(a);
+            i += 1;
+        }
+        return points;
+    };
 
-var createSphereLines = function(maxRadius, circleCount, pointsPerCircle, randomDelta, colors){
-    colors = colors || [0xff0000,0x00ff00,0x0000ff]
-    var lines = new THREE.Group();
-    var i = 1;
-    while(i < circleCount + 1){
-        var p = createSphereCirclePoints(maxRadius, circleCount + 1, i, pointsPerCircle, randomDelta);
-        var geometry = new THREE.BufferGeometry().setFromPoints( p);
-        var line = scene.userData.line = new THREE.Line(
-            geometry,
-            new THREE.LineBasicMaterial({
-                color: colors[i % colors.length],
-                linewidth: 4
-            })
-        );
-        lines.add(line);
+    var createSphereLines = function(maxRadius, circleCount, pointsPerCircle, randomDelta, colors){
+        colors = colors || [0xff0000,0x00ff00,0x0000ff]
+        var lines = new THREE.Group();
+        var i = 1;
+        while(i < circleCount + 1){
+            var p = createSphereCirclePoints(maxRadius, circleCount + 1, i, pointsPerCircle, randomDelta);
+            var geometry = new THREE.BufferGeometry().setFromPoints( p);
+            var line = scene.userData.line = new THREE.Line(
+                geometry,
+                new THREE.LineBasicMaterial({
+                    color: colors[i % colors.length],
+                    linewidth: 4
+                })
+            );
+            lines.add(line);
+            i += 1;
+        };
+        return lines;
+    };
+
+    // single sphere lines group
+    var sphereLines = createSphereLines(2, 20, 50, 0.5, [0x00ffff, 0x008800, 0x008888, 0x00ff00]);
+    scene.add(sphereLines);
+
+    //******** **********
+    // MESH OBJECTS
+    //******** **********
+
+    var i = 0, len = 15;
+    var meshObjects = new THREE.Group();
+    while(i < len){
+        var mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({color: 0xffffff}))
+        meshObjects.add(mesh);
         i += 1;
     };
-    return lines;
-};
+    scene.add(meshObjects);
 
+    var meshObjectsEffect = function(per){
+        var radius = 5 - 2.5 * per,
+        s = 1 - 0.50 * per,
+        len = 
+        meshObjects.children.forEach(function(mesh, i){
+            var y = 0,
+            r = Math.PI * 2 / meshObjects.children.length * i,
+            x = Math.cos(r) * radius,
+            z = Math.sin(r) * radius;
+            mesh.position.set(x, y, z);
+            mesh.scale.set(s, s, s);
+            mesh.lookAt(0, 0, 0);
+        });
+    };
 
-var sphereLines = createSphereLines(2, 20, 50, 0.5, [0x00ffff, 0x008800, 0x008888, 0x00ff00]);
-scene.add(sphereLines);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -134,6 +163,8 @@ scene.add(sphereLines);
             sphereLines.rotation.set( 0, 0, 0);
             sphereLines.position.set( 0, 0, 0);
             grid.scale.set(1, 1, 1);
+            // mesh objects effect
+            meshObjectsEffect(seq.per);
         },
         afterObjects: function(seq){
         },
