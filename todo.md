@@ -2,16 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-object3d
-* (done) start video folder and a video1 file
-* (done) have a THREE.Line instance use proro-lines-circles-two r135 demo for a Line object in the video
-
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-vector3-lerp
 * () start video folder and a video1 file
 * () export to raw video file
@@ -176,6 +166,14 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/18/2022 ) - threejs-object3d
+* (done) start video folder and a video1 file
+* (done) have a THREE.Line instance use proro-lines-circles-two r135 demo for a Line object in the video
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/17/2022 ) - threejs-cone
 * (done) start video folder and a video1 file
