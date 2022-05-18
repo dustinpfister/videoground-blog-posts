@@ -10,7 +10,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color(0.5, 0.5, 0.5);
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -116,8 +116,19 @@ VIDEO.init = function(sm, scene, camera){
         return pl;
     };
 
+    // center white pl
     var pl = createPL(0xffffff);
     scene.add(pl);
+
+    var plGroup = new THREE.Group();
+    [0xff0000, 0xff00ff, 0x00ff00, 0xffff00, 0x0000ff].forEach(function(color, i, arr){
+        var per = i / arr.length;
+        var r = Math.PI * 2 * per;
+        var light = createPL(color);
+        light.position.set( Math.cos(r) * 6, 0, Math.sin(r) * 6 );
+        plGroup.add(light);
+    });
+    scene.add(plGroup);
 
 
     var meshObjectsEffect = function(per){
@@ -185,6 +196,12 @@ VIDEO.init = function(sm, scene, camera){
             grid.scale.set(1, 1, 1);
             // mesh objects effect
             meshObjectsEffect(seq.per);
+            // plGroup
+            plGroup.rotation.x = Math.PI * 8 * seq.per;
+            plGroup.rotation.z = Math.PI * 16 * seq.per;
+            // background
+            var a = 0.5 - 0.5 * seq.per;
+            scene.background = new THREE.Color(a, a, a);
         },
         afterObjects: function(seq){
         },
