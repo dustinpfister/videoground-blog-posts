@@ -34,6 +34,61 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+//******** **********
+// LINES
+//******** **********
+
+// just create one circle for a set of circles that form a sphere like shape
+// createSphereCirclePoints(maxRadius, circleCount, circleIndex, pointsPerCircle)
+var createSphereCirclePoints = function(maxRadius, circleCount, circleIndex, pointsPerCircle, randomDelta){
+    var points = [];
+    var sPer = circleIndex / circleCount;
+    var radius = Math.sin( Math.PI * 1.0 * sPer ) * maxRadius;
+    var y = Math.cos( Math.PI * 1.0 * sPer ) * maxRadius;
+    var i = 0;
+    // buch points for the current circle
+    while(i < pointsPerCircle){
+        // might want to subtract 1 or 0 for this cPer expression
+        var cPer =  i / (pointsPerCircle - 1);
+        var radian = Math.PI * 2 * cPer;
+        var v = new THREE.Vector3();
+        v.x = Math.cos(radian) * radius;
+        v.y = y;
+        v.z = Math.sin(radian) * radius;
+        var a = v.clone().normalize().multiplyScalar( maxRadius - randomDelta * THREE.MathUtils.seededRandom() );
+        // other cool ideas with deltas
+        //var a = v.clone().normalize().multiplyScalar( 1 + maxRadius * (i / (perCircle - 1)) );
+        //var a = v.clone().normalize().multiplyScalar( (maxRadius * (cPer * 1.25 + sPer * 5)) * 0.25 );
+        points.push(a);
+        i += 1;
+    }
+    return points;
+};
+
+var createSphereLines = function(maxRadius, circleCount, pointsPerCircle, randomDelta, colors){
+    colors = colors || [0xff0000,0x00ff00,0x0000ff]
+    var lines = new THREE.Group();
+    var i = 1;
+    while(i < circleCount + 1){
+        var p = createSphereCirclePoints(maxRadius, circleCount + 1, i, pointsPerCircle, randomDelta);
+        var geometry = new THREE.BufferGeometry().setFromPoints( p);
+        var line = scene.userData.line = new THREE.Line(
+            geometry,
+            new THREE.LineBasicMaterial({
+                color: colors[i % colors.length],
+                linewidth: 4
+            })
+        );
+        lines.add(line);
+        i += 1;
+    };
+    return lines;
+};
+
+
+var sphereLines = createSphereLines(2, 20, 50, 0.5, [0x00ffff, 0x008800, 0x008888, 0x00ff00]);
+scene.add(sphereLines);
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -75,6 +130,10 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+            sphereLines.scale.set(1, 1, 1);
+            sphereLines.rotation.set( 0, 0, 0);
+            sphereLines.position.set( 0, 0, 0);
+            grid.scale.set(1, 1, 1);
         },
         afterObjects: function(seq){
         },
@@ -90,19 +149,46 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            {
-                secs: 7,
+            { // seq1 move to 10, 10, 10
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 + 2 * partPer, 1 + 9 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            {
-                secs: 20,
+            { // seq2 - rest at 10, 10, 10
+                secs: 4,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(10, 10, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            { // seq3 - rest at 10, 10, 10, scale up sphere lines, scale down grid
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // circleLines and grid
+                    var s = 1 + 2 * partPer
+                    sphereLines.scale.set(s, s, s);
+                    var s = 1 - partPer;
+                    grid.scale.set(s, s, s);
+                    // camera
+                    camera.position.set(10 - 20 * partPer, 10, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            { // seq4 - 
+                secs: 15,
+                update: function(seq, partPer, partBias){
+                    // circleLines and grid
+                    sphereLines.rotation.y = Math.PI * 6 * partPer;
+                    sphereLines.position.set( 0, 3 * Math.cos(Math.PI * 8 * partPer) * partBias, 0);
+                    var s = 3 - 2 * partBias;
+                    sphereLines.scale.set(s, 3, s);
+                    grid.scale.set(0, 0, 0);
+                    // camera
+                    camera.position.set(-10, 10, 10);
                     camera.lookAt(0, 0, 0);
                 }
             }
