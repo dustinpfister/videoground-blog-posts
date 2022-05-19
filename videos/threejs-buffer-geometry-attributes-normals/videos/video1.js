@@ -40,12 +40,33 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.BoxGeometry(2, 2, 2),
         new THREE.MeshNormalMaterial()
     );
-    scene.add(cube)
+    scene.add(cube);
 
     // CUBE VERTEX NORMALS HELPER
     var cube_helper = new THREE.VertexNormalsHelper( cube, 2, 0x00ff00, 1 );
     cube_helper.material.linewidth = 6;
     scene.add(cube_helper);
+
+    console.log(cube.geometry)
+
+
+    var posArray = [
+        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0},
+        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0},
+        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0},
+        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0}
+    ];
+
+
+    // normal mutaion helper
+    var setNormal = function (mesh, normalIndex, v) {
+        var geometry = mesh.geometry;
+        var normal = geometry.getAttribute('normal');
+        normal.array[normalIndex * 3] = v.x;
+        normal.array[normalIndex* 3 + 1] = v.y;
+        normal.array[normalIndex * 3 + 2] = v.z;
+        normal.needsUpdate = true;
+    };
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -88,6 +109,9 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+            // defaults for normals
+            setNormal(cube, posArray[0].normalIndex, posArray[0].vHome );
+            cube_helper.update();
         },
         afterObjects: function(seq){
         },
@@ -114,6 +138,10 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
+                    // lerping points
+                    var v1 = posArray[0].vHome.clone().lerp( new THREE.Vector3(-1, 0, 1), partPer);
+                    setNormal(cube, posArray[0].normalIndex, v1);
+                    cube_helper.update();                
                     // camera
                     camera.position.set(5, 5, 4);
                     camera.lookAt(0, 0, 0);
