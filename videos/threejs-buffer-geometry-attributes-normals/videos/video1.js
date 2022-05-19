@@ -51,10 +51,10 @@ VIDEO.init = function(sm, scene, camera){
 
 
     var posArray = [
-        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0},
-        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0},
-        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0},
-        {vHome: new THREE.Vector3(1, 0, 0), normalIndex: 0}
+        { vHome: new THREE.Vector3(1, 0, 0), vNew: new THREE.Vector3(-1, 0, 1), normalIndex: 0},
+        { vHome: new THREE.Vector3(1, 0, 0), vNew: new THREE.Vector3(-1, 0, 1), normalIndex: 1},
+        { vHome: new THREE.Vector3(1, 0, 0), vNew: new THREE.Vector3(-1, 0, 1), normalIndex: 2},
+        { vHome: new THREE.Vector3(1, 0, 0), vNew: new THREE.Vector3(-1, 0, 1), normalIndex: 3}
     ];
 
 
@@ -139,7 +139,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // lerping points
-                    var v1 = posArray[0].vHome.clone().lerp( new THREE.Vector3(-1, 0, 1), partPer);
+                    var v1 = posArray[0].vHome.clone().lerp( posArray[0].vNew, partPer);
                     setNormal(cube, posArray[0].normalIndex, v1);
                     cube_helper.update();                
                     // camera
