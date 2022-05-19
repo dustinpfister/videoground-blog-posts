@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../../../js/r135-files/VertexNormalsHelper.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -33,6 +34,17 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // CUBE AND HELPERS
+    var cube = new THREE.Mesh(
+        new THREE.BoxGeometry(2, 2, 2),
+        new THREE.MeshNormalMaterial()
+    );
+    scene.add(cube)
+
+    // CUBE VERTEX NORMALS HELPER
+    var cube_helper = new THREE.VertexNormalsHelper( cube, 2, 0x00ff00, 1 );
+    scene.add(cube_helper);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
