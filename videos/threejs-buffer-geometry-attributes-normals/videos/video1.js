@@ -138,7 +138,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 20,
+                secs: 25,
                 update: function(seq, partPer, partBias){
                     // lerping points
                     posArray.forEach(function(posObj){
