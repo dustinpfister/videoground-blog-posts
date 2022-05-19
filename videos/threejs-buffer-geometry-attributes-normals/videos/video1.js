@@ -14,7 +14,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#8a8a8a', '#008a8a');
     grid.material.linewidth = 3;
     scene.add( grid );
  
@@ -44,6 +44,8 @@ VIDEO.init = function(sm, scene, camera){
 
     // CUBE VERTEX NORMALS HELPER
     var cube_helper = new THREE.VertexNormalsHelper( cube, 2, 0x00ff00, 1 );
+cube_helper.material.linewidth = 6;
+console.log(cube_helper.material)
     scene.add(cube_helper);
 
     // A SEQ FOR TEXT CUBE
