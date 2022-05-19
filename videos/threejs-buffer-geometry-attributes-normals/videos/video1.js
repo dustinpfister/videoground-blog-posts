@@ -44,8 +44,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // CUBE VERTEX NORMALS HELPER
     var cube_helper = new THREE.VertexNormalsHelper( cube, 2, 0x00ff00, 1 );
-cube_helper.material.linewidth = 6;
-console.log(cube_helper.material)
+    cube_helper.material.linewidth = 6;
     scene.add(cube_helper);
 
     // A SEQ FOR TEXT CUBE
@@ -105,10 +104,10 @@ console.log(cube_helper.material)
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 3 * partPer, 1 + 4 * partPer, 4 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -116,7 +115,7 @@ console.log(cube_helper.material)
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(5, 5, 4);
                     camera.lookAt(0, 0, 0);
                 }
             }
