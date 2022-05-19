@@ -147,7 +147,7 @@ VIDEO.init = function(sm, scene, camera){
                     });
                     cube_helper.update();                
                     // camera
-                    camera.position.set(5, 5, 4);
+                    camera.position.set(5 - 2 * partPer, 5 - 2 * partPer, 4 - 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
