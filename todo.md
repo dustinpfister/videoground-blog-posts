@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - threejs-buffer-geometry-attributes-normals
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-vector3-lerp
 * () start video folder and a video1 file
 * () export to raw video file
@@ -63,8 +70,6 @@ let material = new THREE.MeshStandardMaterial({
 * () embed in post
 
 <!-- FROM A-Z YEP -->
-
-### () - threejs-buffer-geometry-attributes-normals
 
 ### () - threejs-buffer-geometry-compute-vertex-normals
 
