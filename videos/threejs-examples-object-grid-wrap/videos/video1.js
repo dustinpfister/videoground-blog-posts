@@ -5,13 +5,14 @@ VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
+   '../../../js/datatex.js',
    '../js/object-grid-wrap.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#cfcfcf');
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -47,16 +48,18 @@ var tw = 20,
 th = 20,
 space = 1.25;
 // source objects
+var textureRND1 = datatex.seededRandom(32, 32, 1, 1, 1, [32, 128]);
+var textureRND2 = datatex.seededRandom(32, 32, 1, 1, 1, [180, 240]);
 var mkBox = function(color, h){
     var box = new THREE.Group();
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry( 1, h, 0.25 + 0.25),
-        new THREE.MeshStandardMaterial({ color: color}) );
+        new THREE.MeshStandardMaterial({ color: color, map: textureRND2}) );
     mesh.position.y = h / 2;
     mesh.rotation.y = Math.PI / 180 * 20 * -1;
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
-        new THREE.MeshStandardMaterial({ color: 0xffffff}) );
+        new THREE.MeshStandardMaterial({ color: 0x00ff00, map: textureRND1}) );
     ground.position.y = 0.05 * -1;
     box.add(mesh)  
     box.add(ground);
