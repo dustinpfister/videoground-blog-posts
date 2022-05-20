@@ -38,7 +38,7 @@ VIDEO.init = function(sm, scene, camera){
 // LIGHT
 //******** **********
 var dl = new THREE.DirectionalLight(0xffffff, 1);
-dl.position.set(-2, 1, 3);
+dl.position.set(8, 10, -4);
 scene.add(dl);
 //******** **********
 // GRID OPTIONS
