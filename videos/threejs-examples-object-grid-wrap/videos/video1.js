@@ -126,10 +126,42 @@ scene.add(grid);
         ]
     });
 
+
+/*
+    var seq_grid_wrap = seqHooks.create({
+        setPerValues: false,
+        fps: 30,
+        beforeObjects: function(seq){
+
+
+            
+        },
+        objects: [
+            {
+                per: 0,
+                update: function(seq, partPer, partBias){
+                    
+                }
+            },
+            {
+                per: 0.75,
+                update: function(seq, partPer, partBias){
+                    
+                }
+            }
+        ]
+    });
+*/
+
     // A MAIN SEQ OBJECT
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+            //seqHooks.setFrame(seq_grid_wrap, seq.frame, seq.frameMax);
+
+            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
+            ObjectGridWrap.update(grid);
+
             textCube.visible = false;
             camera.position.set(8, 5, 0);
         },
