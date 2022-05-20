@@ -12,7 +12,9 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#cfcfcf');
+    var bgColor = new THREE.Color('#cfcfcf');
+    scene.background = bgColor;
+    scene.fog = new THREE.FogExp2(bgColor, 0.005);
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -162,8 +164,10 @@ scene.add(grid);
         beforeObjects: function(seq){
             //seqHooks.setFrame(seq_grid_wrap, seq.frame, seq.frameMax);
 
-            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
+            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.5 );
             ObjectGridWrap.update(grid);
+
+            scene.fog.density = 0;
 
             textCube.visible = false;
             camera.position.set(8, 5, 0);
@@ -193,6 +197,9 @@ scene.add(grid);
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
+
+                    scene.fog.density = 0.25 * partBias;
+
                     // camera
                     camera.position.set(8, 5, 0);
                     camera.lookAt(0, 1, 0);
