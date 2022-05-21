@@ -118,7 +118,12 @@ scene.add(grid);
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
+
+            ObjectGridWrap.setPos(grid, 1 - seq.per, 0 );
+            ObjectGridWrap.update(grid);
+
             camera.position.set(8, 1, 0);
+            camera.lookAt(0, 0, 0);
         },
         afterObjects: function(seq){
         },
@@ -130,24 +135,16 @@ scene.add(grid);
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
-                    // camera
-                    camera.lookAt(0, 0, 0);
                 }
             },
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.lookAt(0, 0, 0);
                 }
             },
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(8, 8, 8);
-                    camera.lookAt(0, 0, 0);
                 }
             }
         ]
