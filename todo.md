@@ -2,12 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-plane
-* (done) start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - threejs-vector3-lerp
 * () start video folder and a video1 file
@@ -171,6 +165,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/21/2022 ) - threejs-plane
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/20/2022 ) - threejs-examples-object-grid-wrap
 * (done) start video folder and a video1 file
