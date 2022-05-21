@@ -14,11 +14,6 @@ VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
-
-    // GRID
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -43,13 +38,13 @@ VIDEO.init = function(sm, scene, camera){
 //******** **********
 // GRID OPTIONS WITH TILE INDEX
 //******** **********
-var tw = 20,
-th = 20,
-space = 1.25;
+var tw = 6,
+th = 6,
+space = 3.1;
 // source objects
 
 
-    var ground = TileMod.create({w: 1, h: 1, sw: 2, sh: 2});
+    var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2});
     TileMod.setCheckerBoard(ground)
     //scene.add(ground);
 
@@ -123,9 +118,9 @@ scene.add(grid);
             ObjectGridWrap.update(grid);
 
             camera.position.set(8, 1, 0);
-            camera.lookAt(0, 0, 0);
         },
         afterObjects: function(seq){
+            camera.lookAt(0, 0, 0);
         },
         objects: [
             {
@@ -140,11 +135,13 @@ scene.add(grid);
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
+                    camera.position.set(8, 1, -2 * partPer);
                 }
             },
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
+                    camera.position.set(8, 1, -2 + 4 * partPer);
                 }
             }
         ]

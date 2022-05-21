@@ -93,8 +93,17 @@ var ObjectGridWrap = (function(){
         obj_root.traverse(function(obj){
             // any object with a material
             if(obj.material){
-                obj.material.transparent = true;
-                obj.material.opacity = alpha;
+                //obj.material.transparent = true;
+                //obj.material.opacity = alpha;
+                if(obj.material instanceof Array){
+                    obj.material.forEach(function(m){
+                        m.transparent = true;
+                        m.opacity = alpha;
+                    });
+                }else{
+                    obj.material.transparent = true;
+                    obj.material.opacity = alpha;
+                }
             }
         });
     };
