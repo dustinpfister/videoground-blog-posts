@@ -6,7 +6,8 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
-   '../../../js/tile-index.js'
+   '../../../js/tile-index.js',
+   '../js/object-grid-wrap.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -39,10 +40,43 @@ VIDEO.init = function(sm, scene, camera){
     var dl = new THREE.DirectionalLight();
     scene.add(dl);
 
+//******** **********
+// GRID OPTIONS WITH TILE INDEX
+//******** **********
+var tw = 20,
+th = 20,
+space = 1.25;
+// source objects
 
-    var ground = TileMod.create({w: 4, h: 4, sw: 2, sh: 2});
+
+    var ground = TileMod.create({w: 1, h: 1, sw: 2, sh: 2});
     TileMod.setCheckerBoard(ground)
-    scene.add(ground);
+    //scene.add(ground);
+
+var array_source_objects = [
+    ground
+];
+var array_oi = [],
+len = tw * th, i = 0;
+while(i < len){
+    array_oi.push( Math.floor( array_source_objects.length * THREE.MathUtils.seededRandom() ) );
+    i += 1;
+}
+//******** **********
+// CREATE GRID
+//******** **********
+var grid = ObjectGridWrap.create({
+    space: space,
+    tw: tw,
+    th: th,
+    aOpacity: 1.25,
+    sourceObjects: array_source_objects,
+    objectIndices: array_oi
+});
+scene.add(grid);
+
+
+
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({

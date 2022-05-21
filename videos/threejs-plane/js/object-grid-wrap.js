@@ -1,5 +1,6 @@
 //******** **********
-// ObjectGridWrap module - from threejs-examples-object-grid-wrap - r0
+// ObjectGridWrap module - based off of threejs-examples-object-grid-wrap r0
+// MADE CHANGES SO IT WILL WORK WITH AN ARRAY OF MATERIALS
 //******** **********
 var ObjectGridWrap = (function(){
     // public API
@@ -15,7 +16,13 @@ var ObjectGridWrap = (function(){
         var obj_root = opt.sourceObjects[objectIndex].clone();
         obj_root.traverse(function(obj){
             if(obj.material){
-                obj.material = obj.material.clone();
+                if(obj.material instanceof Array){
+                    obj.material = obj.material.map(function(m){
+                        return m.clone();
+                    });
+                }else{
+                    obj.material = obj.material.clone();
+                }
             }
         });
         return obj_root;
