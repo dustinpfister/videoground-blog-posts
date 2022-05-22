@@ -108,8 +108,10 @@ plane2.position.set(-0.6, 0.01, 0);
 scene.add(plane2);
 // USING THE THREE.VertexNormalsHelper method
 const helper1 = new THREE.VertexNormalsHelper(plane1, 2, 0x00ff00, 1);
+helper1.material.linewidth = 4;
 scene.add(helper1);
 const helper2 = new THREE.VertexNormalsHelper(plane2, 2, 0x00ffff, 1);
+helper2.material.linewidth = 4;
 scene.add(helper2);
 
 

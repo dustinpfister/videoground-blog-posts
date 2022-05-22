@@ -4,7 +4,7 @@
 
 ### () - threejs-buffer-geometry-compute-vertex-normals
 * (done) start video folder and a video1 file
-* () export to raw video file
+* (done) export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
