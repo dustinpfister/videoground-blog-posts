@@ -80,8 +80,8 @@ scene.add(pl);
 //******** **********
 // GRID OPTIONS WITH TILE INDEX
 //******** **********
-var tw = 6,
-th = 6,
+var tw = 12,
+th = 12,
 space = 3.1;
 // source objects
     var textureRND1 = datatex.seededRandom(40, 40, 0, 1, 0, [150, 180]);
@@ -183,7 +183,7 @@ scene.add(grid);
             CubeGroupMod.setCubes(cubes3, seq.frame, seq.frameMax);
 
             // object grid
-            ObjectGridWrap.setPos(grid, 1 - seq.per, 0 );
+            ObjectGridWrap.setPos(grid, 1 - 2 * seq.per, 0 );
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
