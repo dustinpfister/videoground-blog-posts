@@ -41,8 +41,9 @@ VIDEO.init = function(sm, scene, camera){
 //******** **********
 // LIGHT
 //******** **********
+
 var dl = new THREE.DirectionalLight(0xafafaf, 1);
-dl.position.set(1, 1, 1);
+dl.position.set(1, 3, 2);
 scene.add(dl);
 
 
