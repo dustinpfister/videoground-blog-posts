@@ -97,7 +97,7 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            CubeGroupMod.update(cubes3, 1 / 200);
+            CubeGroupMod.setCubes(cubes3, seq.frame, seq.frameMax);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);

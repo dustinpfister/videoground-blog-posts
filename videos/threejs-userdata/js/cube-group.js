@@ -64,7 +64,7 @@
     };
  
 
-    var setCubes = function(cubes, frame, maxFrame){
+    var setCubes = api.setCubes = function(cubes, frame, maxFrame){
         var gud = cubes.userData;
 
         gud.frame = frame === undefined ? gud.frame: frame;
