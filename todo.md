@@ -3,7 +3,16 @@
 <!-- Whats next -->
 
 ### () - threejs-userdata
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
+
+* () make use of what was workd out for s2-groups example in the post
+* () have a collection of these cube groups (say maybe 3)
+* () have a seq object for this cube group collection
+
+* () use the new object-grid-wrap module just for the sake of making the video a little more intertesing
+* () add props for each userdata object of each mesh in the object grid that will be used over the span of video
+* () have a seq object for the object grid 
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
