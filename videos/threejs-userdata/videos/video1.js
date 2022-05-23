@@ -96,6 +96,9 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+            CubeGroupMod.update(cubes3, 1 / 200);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
