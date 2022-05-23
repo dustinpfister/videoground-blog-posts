@@ -8,11 +8,14 @@
         });
     };
  
+    var textureRND1 = datatex.seededRandom(8, 8, 1, 1, 1, [130, 250]);
     // create a single cube mesh
     var createCube = function (rotationCounts, position) {
         var cube = new THREE.Mesh(
                 new THREE.BoxGeometry(1, 1, 1),
-                new THREE.MeshNormalMaterial());
+                new THREE.MeshPhongMaterial({
+                    map: textureRND1
+                }));
         // USER DATA OBJECT FOR A SINGLE CUBE
         var ud = cube.userData;
         ud.rotationCounts = rotationCounts || [0, 0, 0];
