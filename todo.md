@@ -8,8 +8,8 @@
 * (done) work out some camera angles 
 * (done) brigher colors
 
-* () export to raw video file
-* () create final video file
+* (done) export to raw video file
+* (done) create final video file
 * () upload to youtube
 * () embed in post
 
