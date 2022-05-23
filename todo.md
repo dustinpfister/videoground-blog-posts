@@ -2,9 +2,9 @@
 
 <!-- Whats next -->
 
-### () - threejs-buffer-geometry-compute-vertex-normals
-* (done) start video folder and a video1 file
-* (done) export to raw video file
+### () - threejs-userdata
+* () start video folder and a video1 file
+* () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
@@ -17,13 +17,6 @@
 * () embed in post
 
 ### () - threejs-color
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - threejs-directional-light
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -169,6 +162,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/22/2022 ) - threejs-buffer-geometry-compute-vertex-normals
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/21/2022 ) - threejs-plane
 * (done) start video folder and a video1 file
