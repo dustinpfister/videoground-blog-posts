@@ -4,7 +4,6 @@
 
 ### () - threejs-userdata
 * (done) start video folder and a video1 file
-
 * (done) just have the grid object grid and a single cube group
 
 * () work out some camera angles 

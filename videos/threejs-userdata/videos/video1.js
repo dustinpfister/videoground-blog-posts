@@ -183,16 +183,24 @@ scene.add(grid);
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 2 * partPer, 1 + 5 * partPer, 6 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 10,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(6, 6, 6);
+                    camera.lookAt(0, 1.5 * partPer, 0);
+                }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(6 - 12 * partPer, 6, 6);
+                    camera.lookAt(0, 1.5, 0);
                 }
             }
         ]
