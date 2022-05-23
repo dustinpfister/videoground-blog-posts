@@ -5,6 +5,8 @@ VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
+   '../../../js/datatex.js',
+   '../../../js/tile-index.js',
    '../js/object-grid-wrap.js',
    '../js/cube-group.js'
 ];
@@ -15,9 +17,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -36,7 +38,17 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
-    // CUBE GROUPS
+//******** **********
+// LIGHT
+//******** **********
+var dl = new THREE.DirectionalLight(0xafafaf, 1);
+dl.position.set(1, 1, 1);
+scene.add(dl);
+
+
+//******** **********
+// CUBE GROUPS
+//******** **********
     var cubes3 = CubeGroupMod.create({
        anglesA:[180, 270, 90, 0],
        yDelta: 1.25,
@@ -54,8 +66,46 @@ VIDEO.init = function(sm, scene, camera){
           [0, 0, 1]
        ]
     });
+
+    cubes3.position.y = 2;
+
     scene.add(cubes3);
 
+
+//******** **********
+// GRID OPTIONS WITH TILE INDEX
+//******** **********
+var tw = 6,
+th = 6,
+space = 3.1;
+// source objects
+
+
+    var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2});
+    TileMod.setCheckerBoard(ground)
+    //scene.add(ground);
+
+var array_source_objects = [
+    ground
+];
+var array_oi = [],
+len = tw * th, i = 0;
+while(i < len){
+    array_oi.push( Math.floor( array_source_objects.length * THREE.MathUtils.seededRandom() ) );
+    i += 1;
+}
+//******** **********
+// CREATE GRID
+//******** **********
+var grid = ObjectGridWrap.create({
+    space: space,
+    tw: tw,
+    th: th,
+    aOpacity: 1.25,
+    sourceObjects: array_source_objects,
+    objectIndices: array_oi
+});
+scene.add(grid);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -98,6 +148,10 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
 
             CubeGroupMod.setCubes(cubes3, seq.frame, seq.frameMax);
+
+            // object grid
+            ObjectGridWrap.setPos(grid, 1 - seq.per, 0 );
+            ObjectGridWrap.update(grid);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
