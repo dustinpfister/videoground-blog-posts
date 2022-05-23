@@ -51,7 +51,7 @@ scene.add(dl);
 //******** **********
     var cubes3 = CubeGroupMod.create({
        anglesA:[180, 270, 90, 0],
-       yDelta: 1.25,
+       yDelta: 0.25,
        xzDelta: 0.75,
        maxFrame: 60,
        fps: 30,
@@ -79,14 +79,22 @@ var tw = 6,
 th = 6,
 space = 3.1;
 // source objects
+var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2});
+TileMod.setCheckerBoard(ground);
 
-
-    var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2});
-    TileMod.setCheckerBoard(ground)
-    //scene.add(ground);
+var ground2 = ground.clone();
+var cone = new THREE.Mesh( 
+    new THREE.ConeGeometry(0.5, 1, 30, 30),
+    new THREE.MeshStandardMaterial({
+        color: new THREE.Color('green')
+    }));
+cone.geometry.rotateX(1.57);
+cone.position.z = 0.5;
+ground2.add(cone);
 
 var array_source_objects = [
-    ground
+    ground, // 0 - just ground
+    ground2 // 1 - ground with cone
 ];
 var array_oi = [],
 len = tw * th, i = 0;
