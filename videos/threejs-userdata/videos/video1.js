@@ -4,7 +4,9 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../js/object-grid-wrap.js',
+   '../js/cube-group.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -33,6 +35,27 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // CUBE GROUPS
+    var cubes3 = CubeGroupMod.create({
+       anglesA:[180, 270, 90, 0],
+       yDelta: 1.25,
+       xzDelta: 0.75,
+       maxFrame: 60,
+       fps: 30,
+       cubeRotations: [
+          [0, 0, 1],
+          [0, 1, 0],
+          [0, 1, 1],
+          [1, 0, 0],
+          [1, 0, 1],
+          [1, 1, 0],
+          [1, 1, 1],
+          [0, 0, 1]
+       ]
+    });
+    scene.add(cubes3);
+
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
