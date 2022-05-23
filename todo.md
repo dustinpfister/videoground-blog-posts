@@ -2,17 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-userdata
-* (done) start video folder and a video1 file
-* (done) just have the grid object grid and a single cube group
-* (done) work out some camera angles 
-* (done) brigher colors
-
-* (done) export to raw video file
-* (done) create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-vector3-lerp
 * () start video folder and a video1 file
 * () export to raw video file
@@ -107,9 +96,6 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
-
-<!-- THREEJS-EXAMPLES -->
-
 ### () - video1 for threejs-examples
 
 ### () - video1 for threejs-examples-biplane-group
@@ -166,6 +152,16 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/23/2022 ) - threejs-userdata
+* (done) start video folder and a video1 file
+* (done) just have the grid object grid and a single cube group
+* (done) work out some camera angles 
+* (done) brigher colors
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/22/2022 ) - threejs-buffer-geometry-compute-vertex-normals
 * (done) start video folder and a video1 file
