@@ -14,7 +14,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -80,14 +80,34 @@ var tw = 6,
 th = 6,
 space = 3.1;
 // source objects
-var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2});
+    var textureRND1 = datatex.seededRandom(40, 40, 0, 1, 0, [150, 180]);
+    var textureRND2 = datatex.seededRandom(40, 40, 0, 1, 0.5, [200, 255]);
+
+    var MATERIALS = [
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            map: textureRND1,
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.75,
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            map: textureRND2,
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.2,
+            side: THREE.DoubleSide
+        })
+    ];
+var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2, materials: MATERIALS});
 TileMod.setCheckerBoard(ground);
 
 var ground2 = ground.clone();
 var cone = new THREE.Mesh( 
     new THREE.ConeGeometry(0.5, 1, 30, 30),
     new THREE.MeshStandardMaterial({
-        color: new THREE.Color('green')
+        color: new THREE.Color('white'),
+        map: textureRND2
     }));
 cone.geometry.rotateX(1.57);
 cone.position.z = 0.5;
