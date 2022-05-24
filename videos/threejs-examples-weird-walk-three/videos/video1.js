@@ -43,7 +43,7 @@ VIDEO.init = function(sm, scene, camera){
     // LIGHT
     //******** **********
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
+    dl.position.set(-2, 1, 3);
     scene.add(dl);
 
     //******** **********
@@ -178,7 +178,7 @@ scene.add(ww3_1);
         ObjectGridWrap.update(grid);
 
         ww3_1.userData.legs.rotation.x = -Math.PI * 4 * seq.per;
-        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 20;
+        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 15;
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
@@ -198,19 +198,43 @@ scene.add(ww3_1);
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, 2 * partPer, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(8 - 20 * partPer, 8, 8);
+                    camera.lookAt(0, 2, 0);
+                }
+            },
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-12, 8, 8 - 16 * partPer);
+                    camera.lookAt(0, 2, 0);
+                }
+            },
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-12, 8 - 4 * partPer, -8 - 2 * partPer);
+                    camera.lookAt(0, 2, 0);
+                }
+            },
+            {
+                secs: 22,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-12, 4, -10);
+                    camera.lookAt(0, 2 - 0.5 * partPer, 0);
                 }
             }
         ]
