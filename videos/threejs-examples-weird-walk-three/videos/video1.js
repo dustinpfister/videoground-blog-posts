@@ -13,7 +13,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#000000');
+    scene.background = new THREE.Color('#afafaf');
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -47,6 +47,8 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
     scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
+var textureRND1 = datatex.seededRandom(20,20,1,1,1, [128, 255]);
+
     //******** **********
     // TEXTURES
     //******** **********
@@ -62,7 +64,7 @@ space = 3;
 var mkGround = function(){
     var ground = new THREE.Mesh(
         new THREE.BoxGeometry( space, 0.1, space),
-        new THREE.MeshStandardMaterial({ color: 0xffffff}) );
+        new THREE.MeshStandardMaterial({ color: 0x8a8a8a, map: textureRND1}) );
     ground.position.y = 0.05 * -1;
     return ground;
 };
@@ -71,7 +73,7 @@ var mkBox = function(color, h){
     var a = space * 0.5;
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry( a, h, a),
-        new THREE.MeshStandardMaterial({ color: color}) );
+        new THREE.MeshStandardMaterial({ color: color, map: textureRND1}) );
     mesh.position.y = h / 2;
     //mesh.rotation.y = Math.PI / 180 * 20 * -1;
     var ground = mkGround();
@@ -124,7 +126,10 @@ scene.add(grid);
 //******** **********
 // WERID WALK THREE
 //******** **********
-var m = new THREE.MeshStandardMaterial();
+var m = new THREE.MeshStandardMaterial({
+   color: new THREE.Color(1, 0, 1),
+   map: textureRND1
+});
 var ww3_1 = WeirdWalk.create({
    materials: {
        foot: m,
@@ -186,7 +191,10 @@ scene.add(ww3_1);
         ObjectGridWrap.update(grid);
 
         ww3_1.userData.legs.rotation.x = -Math.PI * 4 * seq.per;
-        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 15;
+        ww3_1.userData.legs.rotation.z = Math.PI / 180 * 20;
+
+
+m.color = new THREE.Color(1 - 0.5 * seq.per , seq.per, 0);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
@@ -238,7 +246,7 @@ scene.add(ww3_1);
                 }
             },
             {
-                secs: 22,
+                secs: 19,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-12, 4, -10);
