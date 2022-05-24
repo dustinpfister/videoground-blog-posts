@@ -123,7 +123,14 @@ scene.add(grid);
 //******** **********
 // WERID WALK THREE
 //******** **********
-var ww3_1 = WeirdWalk.create();
+var m = new THREE.MeshStandardMaterial();
+var ww3_1 = WeirdWalk.create({
+   materials: {
+       foot: m,
+       calf: m,
+       center: m
+   }
+});
 var s = 0.5;
 ww3_1.scale.set(s, s, s);
 ww3_1.position.set(-7, 2.7, -3);
