@@ -2,13 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-examples-weird-walk-three
-* (done) start video folder and a video1 file
-* (done) export to raw video file
-* (done) create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-vector3-lerp
 * () start video folder and a video1 file
 * () export to raw video file
@@ -159,6 +152,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 05/24/2022 ) - threejs-examples-weird-walk-three
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/23/2022 ) - threejs-userdata
 * (done) start video folder and a video1 file
@@ -565,6 +565,11 @@ let material = new THREE.MeshStandardMaterial({
 * (done) finish video1
 * (done) upload video1 to youtube
 * (done) embed video1 into threejs-fog blog post
+
+
+
+
+
 
 ## ( done 03/11/2022 ) - lines feature, edge effect in canvas-text-cube.js;
 * (done) have a lines option for drawing custom text to a text cube
