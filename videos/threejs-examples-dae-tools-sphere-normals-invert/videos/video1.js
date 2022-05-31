@@ -203,7 +203,7 @@ scene.add(grid);
         fps: 30,
         beforeObjects: function(seq){
 
-            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
+            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
@@ -224,19 +224,19 @@ scene.add(grid);
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(8 - 8 * partPer, 1 + 2 * partPer, 0);
+                    camera.lookAt(0, 3 * partPer, 10 * partPer);
                 }
             },
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(0, 3, 0);
+                    camera.lookAt(0, 3, 10);
                 }
             }
         ]
