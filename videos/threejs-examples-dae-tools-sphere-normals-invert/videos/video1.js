@@ -42,21 +42,24 @@ VIDEO.init = function(sm, scene, camera){
         return group;
 
     };
-
-    console.log(VIDEO)
-
     var group = createGroup(VIDEO.daeResults, 0);
     scene.add(group);
+    var mesh = group.children[0];
+    var sourceMaterial = mesh.material;
+    var newMaterial = new THREE.MeshBasicMaterial({
+        map: sourceMaterial.map
+    });
+    mesh.material = newMaterial;
 
-var mesh = group.children[0];
-
-        var sourceMaterial = mesh.material;
-        var newMaterial = new THREE.MeshBasicMaterial({
-            map: sourceMaterial.map
-        });
-        mesh.material = newMaterial;
-
-
+    //******** **********
+    // BASE GROUND MESH
+    //******** **********
+    var baseGround = new THREE.Mesh( new THREE.BoxGeometry(1, 0.1, 1), new THREE.MeshPhongMaterial({
+         color: 0x00ff00
+    }));
+    baseGround.position.y = -0.125;
+    baseGround.scale.set(60, 1, 60);
+    scene.add(baseGround);
 
     //******** **********
     // TEXT CUBE
