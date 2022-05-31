@@ -12,6 +12,7 @@ VIDEO.scripts = [
    '../../../js/datatex.js',
    '../../../js/object-grid-wrap-r1.js',
    '../../../js/tile-index.js',
+   '../js/biplane.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -28,9 +29,13 @@ VIDEO.init = function(sm, scene, camera){
 // LIGHT
 //******** **********
 
-var dl = new THREE.DirectionalLight(0xffffff, 1);
+var dl = new THREE.DirectionalLight(0xffffff, 0.25);
 dl.position.set(2, 3, 1);
 scene.add(dl);
+
+var pl = new THREE.PointLight(0xffffff, 0.75);
+pl.position.set(0, 10, 0);
+scene.add(pl);
 
 //var pl = new THREE.PointLight(0xffffff, 1);
 //scene.add(pl);
@@ -72,6 +77,15 @@ scene.add(dl);
     baseGround.position.y = -0.125;
     baseGround.scale.set(60, 1, 60);
     scene.add(baseGround);
+
+
+    //******** **********
+    // BIPLANE
+    //******** **********
+    var bp = scene.userData.bp = Biplane.create();
+    bp.scale.set(0.25, 0.25, 0.25);
+    bp.position.set(10, 4, 0)
+    scene.add(bp);
 
     //******** **********
     // TEXT CUBE
@@ -174,6 +188,8 @@ scene.add(grid);
             textCube.visible = false;
             textCube.material.transparent = true;
             textCube.material.opacity = 0.0;
+
+
         },
         objects: [
             {
@@ -208,6 +224,15 @@ scene.add(grid);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+
+    Biplane.update(bp, seq.per);
+
+    var r = Math.PI * 1 + Math.PI * 4 * seq.per,
+    x = Math.cos(r) * 15,
+    z = Math.sin(r) * 15;
+    bp.position.set(x, 2, z);
+    bp.lookAt( Math.cos(r + 0.25) * 15, 2.0, Math.sin(r + 0.25) * 15 );
+
         },
         afterObjects: function(seq){
         },
