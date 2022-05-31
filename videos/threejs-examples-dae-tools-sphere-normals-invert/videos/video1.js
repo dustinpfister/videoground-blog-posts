@@ -10,7 +10,8 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
-   '../../../js/object-grid-wrap-r1.js'
+   '../../../js/object-grid-wrap-r1.js',
+   '../../../js/tile-index.js',
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -19,9 +20,20 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
+
+//******** **********
+// LIGHT
+//******** **********
+
+var dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(2, 3, 1);
+scene.add(dl);
+
+//var pl = new THREE.PointLight(0xffffff, 1);
+//scene.add(pl);
 
     //******** **********
     // INVRETED SPHERE
@@ -80,74 +92,76 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
-    //******** **********
-    // LIGHT
-    //******** **********
-    var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
-    scene.add(dl);
 
     //******** **********
     // TEXTURES
     //******** **********
     var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
 
-    //******** **********
-    // GRID OPTIONS
-    //******** **********
-    var tw = 9,
-    th = 9,
-    space = 1.5;
-    // source objects
-    var mkBox = function(color, h){
-        var box = new THREE.Group();
-        var a = space * 0.95;
-        var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry( a, h, a),
-            new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1 }) );
-        mesh.position.y = h / 2;
-        //mesh.rotation.y = Math.PI / 180 * 20 * -1;
-        var ground = new THREE.Mesh(
-            new THREE.BoxGeometry( space, 0.1, space),
-            new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture_rnd1}) );
-        ground.position.y = 0.05 * -1;
-        box.add(mesh)  
-        box.add(ground);
-        return box;
-    };
-    var array_source_objects = [
-        mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 10.00),
-        mkBox(0xffff00, 4.50),
-        mkBox(0x00ff00, 1.50)
+//******** **********
+// GRID OPTIONS WITH TILE INDEX
+//******** **********
+var tw = 8,
+th = 8,
+space = 3.1;
+// source objects
+    var textureRND1 = datatex.seededRandom(40, 40, 0, 1, 0, [150, 180]);
+    var textureRND2 = datatex.seededRandom(40, 40, 0, 1, 0.5, [200, 255]);
+
+    var MATERIALS = [
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            map: textureRND1,
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.75,
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            map: textureRND2,
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.2,
+            side: THREE.DoubleSide
+        })
     ];
+var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2, materials: MATERIALS});
+TileMod.setCheckerBoard(ground);
 
-    var array_oi = [
-        0,0,0,0,0,3,3,0,0,
-        0,0,0,0,3,2,3,0,0,
-        0,0,0,3,2,3,3,0,0,
-        0,0,3,2,2,2,3,0,0,
-        0,3,2,2,1,2,3,0,0,
-        3,2,3,2,2,2,2,3,0,
-        0,3,0,3,3,3,2,3,0,
-        0,0,0,0,0,0,3,3,0,
-        0,0,0,0,0,0,0,0,0
-    ]
-    //******** **********
-    // CREATE GRID
-    //******** **********
-    var grid = ObjectGridWrap.create({
-        space: space,
-        tw: tw,
-        th: th,
-        //aOpacity: 1.25,
-        dAdjust: 1.25,
-        effects: ['opacity', 'scale', 'rotationB'],
-        sourceObjects: array_source_objects,
-        objectIndices: array_oi
-    });
-    scene.add(grid);
+var ground2 = ground.clone();
+var cone = new THREE.Mesh( 
+    new THREE.ConeGeometry(0.5, 1, 30, 30),
+    new THREE.MeshStandardMaterial({
+        color: new THREE.Color('white'),
+        map: textureRND2
+    }));
+cone.geometry.rotateX(1.57);
+cone.position.z = 0.5;
+ground2.add(cone);
 
+var array_source_objects = [
+    ground, // 0 - just ground
+    ground2 // 1 - ground with cone
+];
+var array_oi = [],
+len = tw * th, i = 0;
+while(i < len){
+    array_oi.push( Math.floor( array_source_objects.length * THREE.MathUtils.seededRandom() ) );
+    i += 1;
+}
+//******** **********
+// CREATE GRID
+//******** **********
+var grid = ObjectGridWrap.create({
+    space: space,
+    tw: tw,
+    th: th,
+    dAdjust: 1.25,
+    effects: ['opacity'],
+    sourceObjects: array_source_objects,
+    objectIndices: array_oi
+});
+grid.scale.set(2, 1, 2)
+scene.add(grid);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
