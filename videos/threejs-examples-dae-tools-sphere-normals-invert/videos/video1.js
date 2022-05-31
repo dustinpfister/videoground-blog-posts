@@ -232,11 +232,65 @@ scene.add(grid);
                 }
             },
             {
-                secs: 20,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(0, 3, 0);
-                    camera.lookAt(0, 3, 10);
+
+                    var v_old = new THREE.Vector3(0, 3, 10),
+                    v_new = new THREE.Vector3(10, 6, 0);
+                    camera.lookAt(v_old.clone().lerp(v_new, partPer));
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 3, 0);
+
+                    var v_old = new THREE.Vector3(10, 6, 0),
+                    v_new = new THREE.Vector3(0, 6, -10);
+                    camera.lookAt(v_old.clone().lerp(v_new, partPer));
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 3, 0);
+
+                    var v_old = new THREE.Vector3(0, 6, -10),
+                    v_new = new THREE.Vector3(0, 6, -1);
+                    camera.lookAt(v_old.clone().lerp(v_new, partPer));
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 3, 0);
+
+                    var v_old = new THREE.Vector3(0, 6, -1),
+                    v_new = new THREE.Vector3(-10, 3, -1);
+                    camera.lookAt(v_old.clone().lerp(v_new, partPer));
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 3, -10 * partPer);
+
+                    camera.lookAt(-10, 3, -1);
+                }
+            },
+            {
+                secs: 9,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(0, 3, -10);
+
+                    camera.lookAt(-10 + 10 * partPer, 3, -1);
                 }
             }
         ]
