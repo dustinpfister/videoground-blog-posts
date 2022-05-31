@@ -1,5 +1,9 @@
 // video1 for threejs-examples-dae-tools-sphere-normals-invert
  
+VIDEO.daePaths = [
+  '../../../dae/sphere-normal-invert/sphere-normal-invert.dae'
+];
+
 // scripts
 VIDEO.scripts = [
    '../../../js/canvas.js',
@@ -18,6 +22,41 @@ VIDEO.init = function(sm, scene, camera){
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
     scene.add( grid );
+
+    //******** **********
+    // INVRETED SPHERE
+    //******** **********
+    var createGroup = function(daeObjects, index){
+        //var result = typeof what === 'object' ? what : daeObjects.results[what];
+        var result = daeObjects[index];
+
+        var group = new THREE.Group();
+        // copy mesh objects only
+        result.scene.children.forEach(function(obj){
+            if(obj.type === 'Mesh'){
+                group.add(obj.clone());
+            }
+        });
+        // copy result.scene rotation to group
+        group.rotation.copy(result.scene.rotation);
+        return group;
+
+    };
+
+    console.log(VIDEO)
+
+    var group = createGroup(VIDEO.daeResults, 0);
+    scene.add(group);
+
+var mesh = group.children[0];
+
+        var sourceMaterial = mesh.material;
+        var newMaterial = new THREE.MeshBasicMaterial({
+            map: sourceMaterial.map
+        });
+        mesh.material = newMaterial;
+
+
 
     //******** **********
     // TEXT CUBE
