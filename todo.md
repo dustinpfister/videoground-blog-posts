@@ -2,13 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-examples-dae-tools-sphere-normals-invert
-* (done) start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-vector3-lerp
 * () start video folder and a video1 file
 * () export to raw video file
@@ -159,6 +152,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( 05/31/2022 ) - threejs-examples-dae-tools-sphere-normals-invert
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 05/24/2022 ) - threejs-examples-weird-walk-three
 * (done) start video folder and a video1 file
