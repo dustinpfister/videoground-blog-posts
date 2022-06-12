@@ -37,6 +37,16 @@ VIDEO.init = function(sm, scene, camera){
 
 
     // opt1 is plain sphere
+    var opt0 = { 
+        maxRadius: 30, pointsPerCircle: 40, circleCount: 60, linewidth: 8,
+        colors: [ 0x606060, 0x505050, 0x404040  ]
+    }
+    var g0 = LinesSphereCircles.create(opt0);
+    g0.position.set(0, 0, 0)
+    scene.add(g0);
+
+
+    // opt1 is plain sphere
     var opt1 = { 
         maxRadius: 4, pointsPerCircle: 20, linewidth: 8,
         forOpt: function(opt, per, bias, frame, frameMax){
@@ -131,6 +141,8 @@ scene.add(g3);
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
+
+g0.rotation.x = Math.PI * 0.5 * seq.per;
 
             LinesSphereCircles.setByFrame(g1, seq.frame, seq.frameMax, opt1);
             //LinesSphereCircles.setByFrame(g2, seq.frame, seq.frameMax, opt2);
