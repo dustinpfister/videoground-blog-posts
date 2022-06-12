@@ -35,7 +35,17 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
-    var g1 = LinesSphereCircles.create({ maxRadius: 4, pointsPerCircle: 20, linewidth: 8 });
+
+    // opt1 is plain sphere
+    var opt1 = { 
+        maxRadius: 4, pointsPerCircle: 20, linewidth: 8,
+        forOpt: function(opt, per, bias, frame, frameMax){
+           //var a = per * 6 % 1,
+           //b = 1 - Math.abs(0.5 - a) / 0.5;
+           //opt.r1 = 3 * b;
+        }
+    }
+    var g1 = LinesSphereCircles.create(opt1);
     g1.position.set(-10, -2, 0)
     scene.add(g1);
 
@@ -65,6 +75,21 @@ var opt3 = {
 };
 var g3 = LinesSphereCircles.create(opt3);
 scene.add(g3);
+
+
+    // g4 is plain sphere but with r1 changes over time
+    var opt4 = { 
+        maxRadius: 4, pointsPerCircle: 20, linewidth: 8,
+        forOpt: function(opt, per, bias, frame, frameMax){
+           var a = per * 6 % 1,
+           b = 1 - Math.abs(0.5 - a) / 0.5;
+           opt.r1 = 1 * b;
+        }
+    }
+    var g4 = LinesSphereCircles.create(opt4);
+    g4.position.set(-10, -2, -10)
+    scene.add(g4);
+
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -107,12 +132,14 @@ scene.add(g3);
         beforeObjects: function(seq){
             textCube.visible = false;
 
+            LinesSphereCircles.setByFrame(g1, seq.frame, seq.frameMax, opt1);
 
             //LinesSphereCircles.setByFrame(g2, seq.frame, seq.frameMax, opt2);
-
             g2.rotation.y = Math.PI * 4 * seq.per;
 
             LinesSphereCircles.setByFrame(g3, seq.frame, seq.frameMax, opt3);
+
+            LinesSphereCircles.setByFrame(g4, seq.frame, seq.frameMax, opt4);
 
             camera.position.set(8, 1, 0);
         },
