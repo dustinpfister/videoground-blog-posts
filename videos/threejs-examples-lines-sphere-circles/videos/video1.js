@@ -40,9 +40,9 @@ VIDEO.init = function(sm, scene, camera){
     var opt1 = { 
         maxRadius: 4, pointsPerCircle: 20, linewidth: 8,
         forOpt: function(opt, per, bias, frame, frameMax){
-           //var a = per * 6 % 1,
-           //b = 1 - Math.abs(0.5 - a) / 0.5;
-           //opt.r1 = 3 * b;
+           var a = per * 10 % 1,
+           b = 1 - Math.abs(0.5 - a) / 0.5;
+           opt.maxRadius = 3 + 1 * b;
         }
     }
     var g1 = LinesSphereCircles.create(opt1);
