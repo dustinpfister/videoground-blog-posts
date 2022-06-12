@@ -36,22 +36,26 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
     var g1 = LinesSphereCircles.create({ maxRadius: 4, pointsPerCircle: 20, linewidth: 8 });
-    g1.position.set(-10,0,0)
+    g1.position.set(-10, -2, 0)
     scene.add(g1);
 
 
 // seeded random
-var g2 = LinesSphereCircles.create({ maxRadius: 8, forPoint: 'seededRandom' });
-g2.position.set(-5,-2,-25)
+var opt2 = { 
+    maxRadius: 8, 
+    forPoint: 'seededRandom', 
+    linewidth: 8}
+var g2 = LinesSphereCircles.create(opt2);
+g2.position.set(-5,-10,-25)
 scene.add(g2);
 
 // seashell
-var opt = {
+var opt3 = {
     circleCount: 20,
     maxRadius: 4,
     pointsPerCircle: 30,
     colors: [0x004444, 0x00ffff],
-    linewidth: 4,
+    linewidth: 8,
     forPoint: 'seaShell',
     forOpt: function(opt, per, bias, frame, frameMax){
         var a = per * 6 % 1,
@@ -59,7 +63,7 @@ var opt = {
         opt.minRadius = 1 + 3 * b;
     }
 };
-var g3 = LinesSphereCircles.create(opt);
+var g3 = LinesSphereCircles.create(opt3);
 scene.add(g3);
 
     // A SEQ FOR TEXT CUBE
@@ -104,7 +108,11 @@ scene.add(g3);
             textCube.visible = false;
 
 
-            LinesSphereCircles.setByFrame(g3, seq.frame, seq.frameMax, opt);
+            //LinesSphereCircles.setByFrame(g2, seq.frame, seq.frameMax, opt2);
+
+            g2.rotation.y = Math.PI * 4 * seq.per;
+
+            LinesSphereCircles.setByFrame(g3, seq.frame, seq.frameMax, opt3);
 
             camera.position.set(8, 1, 0);
         },
@@ -126,7 +134,7 @@ scene.add(g3);
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8, 1 + 4 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -134,7 +142,7 @@ scene.add(g3);
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(8, 5, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
