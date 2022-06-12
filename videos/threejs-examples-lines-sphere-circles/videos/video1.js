@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../js/lines-sphere-circles-r1.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -33,6 +34,10 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    var g1 = LinesSphereCircles.create({ maxRadius: 4, pointsPerCircle: 20, linewidth: 8 });
+    g1.position.set(-10,0,0)
+    scene.add(g1);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
