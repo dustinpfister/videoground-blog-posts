@@ -14,9 +14,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -38,6 +38,29 @@ VIDEO.init = function(sm, scene, camera){
     var g1 = LinesSphereCircles.create({ maxRadius: 4, pointsPerCircle: 20, linewidth: 8 });
     g1.position.set(-10,0,0)
     scene.add(g1);
+
+
+// seeded random
+var g2 = LinesSphereCircles.create({ maxRadius: 8, forPoint: 'seededRandom' });
+g2.position.set(-5,-2,-25)
+scene.add(g2);
+
+// seashell
+var opt = {
+    circleCount: 20,
+    maxRadius: 4,
+    pointsPerCircle: 30,
+    colors: [0x004444, 0x00ffff],
+    linewidth: 4,
+    forPoint: 'seaShell',
+    forOpt: function(opt, per, bias, frame, frameMax){
+        var a = per * 6 % 1,
+        b = 1 - Math.abs(0.5 - a) / 0.5;
+        opt.minRadius = 1 + 3 * b;
+    }
+};
+var g3 = LinesSphereCircles.create(opt);
+scene.add(g3);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -79,6 +102,10 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
+
+
+            LinesSphereCircles.setByFrame(g3, seq.frame, seq.frameMax, opt);
+
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
