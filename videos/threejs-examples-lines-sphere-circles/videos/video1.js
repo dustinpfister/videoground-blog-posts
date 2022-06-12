@@ -133,12 +133,9 @@ scene.add(g3);
             textCube.visible = false;
 
             LinesSphereCircles.setByFrame(g1, seq.frame, seq.frameMax, opt1);
-
             //LinesSphereCircles.setByFrame(g2, seq.frame, seq.frameMax, opt2);
             g2.rotation.y = Math.PI * 4 * seq.per;
-
             LinesSphereCircles.setByFrame(g3, seq.frame, seq.frameMax, opt3);
-
             LinesSphereCircles.setByFrame(g4, seq.frame, seq.frameMax, opt4);
 
             camera.position.set(8, 1, 0);
@@ -166,10 +163,22 @@ scene.add(g3);
                 }
             },
             {
-                secs: 20,
+                secs: 10,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 5, 8);
+                    var v1 = new THREE.Vector3(8, 5, 8),
+                    v2 = new THREE.Vector3(-20, -5, 20);
+                    camera.position.copy(v1).lerp(v2, partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(-20, -5, 20),
+                    v2 = new THREE.Vector3(-30, 0, 0);
+                    camera.position.copy(v1).lerp(v2, partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
