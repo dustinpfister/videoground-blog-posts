@@ -39,6 +39,27 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
 // line groups
+
+
+// the 'sphereCircles' type base off my other lines example
+var lg0 = LineGroup.create('sphereCircles', { 
+    lineCount: 60,
+    forLineStyle: function(m, i){
+       m.linewidth = 8;
+       m.color = new THREE.Color( '#ffffff' );
+       m.transparent = true;
+       m.opacity = 0.25;
+    }
+ });
+lg0.position.set(0, 0, 0);
+lg0.rotation.x = Math.PI * 0.5;
+LineGroup.set(lg0, 5, 10, {
+    maxRadius: 30
+});
+scene.add(lg0);
+
+
+
 // built in 'tri' type
 var lg1Base = {
     homeVectors: [
