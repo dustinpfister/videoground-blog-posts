@@ -7,7 +7,8 @@ VIDEO.scripts = [
     '../../../js/sequences-hooks-r1.js',
     '../js/line-group-r0.js',
     '../js/line-group-circle-stack-r0.js',
-    '../js/line-group-sphere-circles-r0.js'
+    '../js/line-group-sphere-circles-r0.js',
+    '../js/line-group-sin-grid-r1.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -16,9 +17,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -66,6 +67,33 @@ var lg3 = LineGroup.create('sphereCircles', { } );
 lg3.position.set(-5, 0, 5);
 scene.add(lg3);
 
+// sin grid
+var lgOpt = {};
+var lgBaseDataSinGrid = {
+    waveHeight: 3,
+    simpleWave: false,
+    waveCount: 4,
+    radianOffsetLoops: 8,
+    sizeWidth: 8,
+    sizeHeight: 8
+};
+var lg4 = LineGroup.create('sinGrid', lgOpt);
+lg4.position.set(0, -1, 0);
+lg4.rotation.y = Math.PI * 0.0;
+scene.add(lg4);
+var lg5 = LineGroup.create('sinGrid', lgOpt);
+lg5.position.set(0, -1, 0);
+lg5.rotation.y = Math.PI * 0.5;
+scene.add(lg5);
+var lg6 = LineGroup.create('sinGrid', lgOpt);
+lg6.position.set(0, -1, 0);
+lg6.rotation.y = Math.PI * 1.0;
+scene.add(lg6);
+var lg7 = LineGroup.create('sinGrid', lgOpt);
+lg7.position.set(0, -1, 0);
+lg7.rotation.y = Math.PI * 1.5;
+scene.add(lg7);
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -107,9 +135,14 @@ scene.add(lg3);
         beforeObjects: function(seq){
             textCube.visible = false;
 
-        LineGroup.set(lg1, seq.frame, seq.frameMax, lg1Base);
-        LineGroup.set(lg2, seq.frame, seq.frameMax, {});
-        LineGroup.set(lg3, seq.frame, seq.frameMax, {});
+            LineGroup.set(lg1, seq.frame, seq.frameMax, lg1Base);
+            LineGroup.set(lg2, seq.frame, seq.frameMax, {});
+            LineGroup.set(lg3, seq.frame, seq.frameMax, {});
+
+            LineGroup.set(lg4, seq.frame, seq.frameMax, lgBaseDataSinGrid);
+            LineGroup.set(lg5, seq.frame, seq.frameMax, lgBaseDataSinGrid);
+            LineGroup.set(lg6, seq.frame, seq.frameMax, lgBaseDataSinGrid);
+            LineGroup.set(lg7, seq.frame, seq.frameMax, lgBaseDataSinGrid);
 
             camera.position.set(8, 1, 0);
         },
@@ -131,7 +164,9 @@ scene.add(lg3);
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    vOld = new THREE.Vector3(8, 1, 0),
+                    vNew = new THREE.Vector3(10, 10, 10);
+                    camera.position.copy(vOld).lerp(vNew, partPer)
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -139,7 +174,7 @@ scene.add(lg3);
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(10, 10, 10);
                     camera.lookAt(0, 0, 0);
                 }
             }
