@@ -169,7 +169,7 @@ scene.add(lg7);
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     vOld = new THREE.Vector3(8, 1, 0),
@@ -179,10 +179,20 @@ scene.add(lg7);
                 }
             },
             {
-                secs: 20,
+                secs: 4,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(10, 10, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 20,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    vOld = new THREE.Vector3(10, 10, 10),
+                    vNew = new THREE.Vector3(-10, 10, 20);
+                    camera.position.copy(vOld).lerp(vNew, partPer)
                     camera.lookAt(0, 0, 0);
                 }
             }
