@@ -4,8 +4,10 @@
 
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
+* (done) use new sin-grid plug in for the video
 
-* () use one or more lineGroups to create a background for the video
+* () sphere background
+* () move obejcts and not just the camera
 
 * () export to raw video file
 * () create final video file
