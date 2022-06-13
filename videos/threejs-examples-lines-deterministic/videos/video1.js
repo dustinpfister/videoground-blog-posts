@@ -68,7 +68,15 @@ lg3.position.set(-5, 0, 5);
 scene.add(lg3);
 
 // sin grid
-var lgOpt = {};
+var lgOpt = {
+    forLineStyle: function(m, i){
+       m.linewidth = 6;
+       var arr = ['#00ffff']
+       m.color = new THREE.Color( arr[ i % arr.length] );
+       m.transparent = true;
+       m.opacity = 0.5;
+    }
+};
 var lgBaseDataSinGrid = {
     waveHeight: 3,
     simpleWave: false,
