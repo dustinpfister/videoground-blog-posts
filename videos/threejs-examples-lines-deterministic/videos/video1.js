@@ -54,9 +54,16 @@ var lg1Base = {
     rBase: 0,
     rDelta: 2
 };
-var lg1 = LineGroup.create();
-lg1.position.set(3, 0, 0);
-lg1.scale.set(0.5, 0.5, 0.5)
+var lg1 = LineGroup.create('tri', {
+    forLineStyle: function(m, i){
+       m.linewidth = 8;
+       m.color = new THREE.Color( '#00ff00' );
+       m.transparent = true;
+       m.opacity = 1;
+    }
+});
+lg1.position.set(-3, 0, 0);
+//lg1.scale.set(1.5, 1.5, 1.5);
 scene.add(lg1);
 // the 'circleStack' type
 var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
@@ -175,7 +182,7 @@ scene.add(lg7);
                     vOld = new THREE.Vector3(8, 1, 0),
                     vNew = new THREE.Vector3(10, 10, 10);
                     camera.position.copy(vOld).lerp(vNew, partPer)
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(-3 * partPer, 0, 0);
                 }
             },
             {
@@ -183,7 +190,7 @@ scene.add(lg7);
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(10, 10, 10);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(-3, 0, 0);
                 }
             },
             {
@@ -193,7 +200,7 @@ scene.add(lg7);
                     vOld = new THREE.Vector3(10, 10, 10),
                     vNew = new THREE.Vector3(-10, 10, 20);
                     camera.position.copy(vOld).lerp(vNew, partPer)
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(-3, 0, 0);
                 }
             }
         ]
