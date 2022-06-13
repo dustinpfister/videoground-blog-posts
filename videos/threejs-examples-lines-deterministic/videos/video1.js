@@ -2,9 +2,12 @@
  
 // scripts
 VIDEO.scripts = [
-   '../../../js/canvas.js',
-   '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+    '../../../js/canvas.js',
+    '../../../js/canvas-text-cube.js',
+    '../../../js/sequences-hooks-r1.js',
+    '../js/line-group-r0.js',
+    '../js/line-group-circle-stack-r0.js',
+    '../js/line-group-sphere-circles-r0.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -33,6 +36,35 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+// line groups
+// built in 'tri' type
+var lg1Base = {
+    homeVectors: [
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 0, 0)
+    ], 
+    lerpVectors: [
+        new THREE.Vector3(-5, 0, -5),
+        new THREE.Vector3(-5, 0, 5),
+        new THREE.Vector3(5, 0, 0)
+    ],
+    rBase: 0,
+    rDelta: 2
+};
+var lg1 = LineGroup.create();
+lg1.position.set(3, 0, 0);
+lg1.scale.set(0.5, 0.5, 0.5)
+scene.add(lg1);
+// the 'circleStack' type
+var lg2 = LineGroup.create('circleStack', { lineCount: 20 } );
+lg2.position.set(-5, 0, -5);
+scene.add(lg2);
+// the 'sphereCircles' type base off my other lines example
+var lg3 = LineGroup.create('sphereCircles', { } );
+lg3.position.set(-5, 0, 5);
+scene.add(lg3);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -74,6 +106,11 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
+
+        LineGroup.set(lg1, seq.frame, seq.frameMax, lg1Base);
+        LineGroup.set(lg2, seq.frame, seq.frameMax, {});
+        LineGroup.set(lg3, seq.frame, seq.frameMax, {});
+
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
