@@ -5,7 +5,7 @@
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 
-
+* () use one or more lineGroups to create a background for the video
 
 * () export to raw video file
 * () create final video file
