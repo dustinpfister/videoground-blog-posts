@@ -112,9 +112,12 @@ scene.add( mesh );
         fps: 30,
         beforeObjects: function(seq){
 
-                    let path = new CustomSinCurve( 0.25 + 0.75 * seq.bias, 0.25, 4 );
-                    let geo = new THREE.TubeGeometry( path, tubularSegments, radius, radialSegments, false );
-                    mesh.geometry.copy(geo);
+            let per = seq.per * 4 % 1;
+            let bias = 1 - Math.abs(0.5 - per) / 0.5;
+
+            let path = new CustomSinCurve( 0.25 + 0.75 * bias, 0.25, 4 );
+            let geo = new THREE.TubeGeometry( path, tubularSegments, radius, radialSegments, false );
+            mesh.geometry.copy(geo);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
