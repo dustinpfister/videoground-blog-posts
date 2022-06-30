@@ -137,10 +137,18 @@ scene.add( mesh );
                 }
             },
             {
-                secs: 27,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 20,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 16 * partPer, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
