@@ -39,6 +39,37 @@ VIDEO.init = function(sm, scene, camera){
     dl.position.set(1, 3, 2);
     scene.add(dl);
 
+//******** **********
+// CURVE CLASS
+//******** **********
+class CustomSinCurve extends THREE.Curve {
+    constructor( a = 0.5, b = 0.25, scale = 1 ) {
+        super();
+        this.scale = scale;
+        this.a = a;
+        this.b = b;
+    }
+    getPoint( t, optionalTarget = new THREE.Vector3() ) {
+        let tx = t * 3 - 1.5,
+        ty = Math.sin( 20 * Math.PI * t ) * (this.a * t),
+        tz = Math.cos( 20 * Math.PI * t ) * (this.b * t);
+        return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
+    }
+};
+//******** **********
+// MESH
+//******** **********
+let path = new CustomSinCurve( ),
+tubularSegments = 800,
+radius = 0.25,
+radialSegments = 20;
+// creating a tube geometry with path and additional arguments
+let mesh = new THREE.Mesh( 
+    new THREE.TubeGeometry( path, tubularSegments, radius, radialSegments, false ), 
+    new THREE.MeshStandardMaterial( { color: 0xff0000, side: THREE.DoubleSide })
+);
+scene.add( mesh );
+
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -80,6 +111,11 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+                    let path = new CustomSinCurve( 0.25 + 0.75 * seq.bias, 0.25, 4 );
+                    let geo = new THREE.TubeGeometry( path, tubularSegments, radius, radialSegments, false );
+                    mesh.geometry.copy(geo);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
