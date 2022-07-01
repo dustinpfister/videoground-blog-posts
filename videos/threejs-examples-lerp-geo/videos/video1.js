@@ -44,8 +44,12 @@ VIDEO.init = function(sm, scene, camera){
     // GEO AND MESH
     var g0 = new THREE.ConeGeometry(1, 1, 20, 18);
     var g1 = new THREE.SphereGeometry(1, 20, 20);
+    //var g2 = new THREE.TorusGeometry(1, 0.25, 20, 20);
+    //var g3 = new THREE.PlaneGeometry(1, 1, 20, 20);
     console.log( g0.getAttribute('position').count ); // trying to get simular counts
     console.log( g1.getAttribute('position').count );
+    //console.log( g2.getAttribute('position').count );
+    //console.log( g3.getAttribute('position').count );
     var mesh = new THREE.Mesh(g0.clone(), new THREE.MeshStandardMaterial({ side: THREE.DoubleSide}));
     scene.add(mesh);
     mesh.scale.set(3, 3, 3);
@@ -116,18 +120,38 @@ VIDEO.init = function(sm, scene, camera){
                     // lerp geo
                     lerpGeo(mesh.geometry, g0, g1, partPer);
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(8 - 1 * partPer, 1 + 6 * partPer, 7 * partPer);
+                    camera.lookAt(0, 1 * partPer, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // lerp geo
                     lerpGeo(mesh.geometry, g1, g0, partPer);
                     // camera
-                    camera.position.set(8, 8, 8);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(7, 7, 7);
+                    camera.lookAt(0, 1, 0);
+                }
+            },
+            {
+                secs: 7,
+                update: function(seq, partPer, partBias){
+                    // lerp geo
+                    lerpGeo(mesh.geometry, g0, g1, partPer);
+                    // camera
+                    camera.position.set(7, 7, 7);
+                    camera.lookAt(0, 1, 0);
+                }
+            },
+            {
+                secs: 7,
+                update: function(seq, partPer, partBias){
+                    // lerp geo
+                    lerpGeo(mesh.geometry, g1, g0, partBias);
+                    // camera
+                    camera.position.set(7, 7, 7 - 16 * partPer);
+                    camera.lookAt(0, 1, 0);
                 }
             }
         ]
