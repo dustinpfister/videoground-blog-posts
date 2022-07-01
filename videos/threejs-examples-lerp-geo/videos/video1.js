@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   './lerp-geo-r0.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -33,6 +34,23 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, 3);
+    scene.add(dl);
+    scene.add( new THREE.AmbientLight(0xafafaf, 0.25) );
+
+    // GEO AND MESH
+    var g0 = new THREE.ConeGeometry(1, 1, 20, 18);
+    var g1 = new THREE.SphereGeometry(1, 20, 20);
+    console.log( g0.getAttribute('position').count ); // trying to get simular counts
+    console.log( g1.getAttribute('position').count );
+    var mesh = new THREE.Mesh(g0.clone(), new THREE.MeshStandardMaterial({ side: THREE.DoubleSide}));
+    scene.add(mesh);
+    mesh.scale.set(3, 3, 3);
+    mesh.position.set(0, 1.5, 0);
+
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -86,6 +104,8 @@ VIDEO.init = function(sm, scene, camera){
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
+                    // lerp geo
+                    lerpGeo(mesh.geometry, g0, g1, 0);
                     // camera
                     camera.lookAt(0, 0, 0);
                 }
@@ -93,6 +113,8 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
+                    // lerp geo
+                    lerpGeo(mesh.geometry, g0, g1, partPer);
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
@@ -101,6 +123,8 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
+                    // lerp geo
+                    lerpGeo(mesh.geometry, g1, g0, partPer);
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
