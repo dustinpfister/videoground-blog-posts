@@ -103,6 +103,8 @@ VIDEO.init = function(sm, scene, camera){
     var nose = rScene.getObjectByName('nose');
     scene.add(nose);
 
+    nose.scale.set(1.5, 2, 1.5);
+
     // mouth objects
     rScene = VIDEO.daeResults[0].scene;
     var m0 = rScene.getObjectByName('mouth-0');
@@ -159,6 +161,7 @@ VIDEO.init = function(sm, scene, camera){
         afterObjects: function(seq){
         },
         objects: [
+            // s0 - text cube seq
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -170,19 +173,30 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // s1 - move camera to look at werid face
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 7 * partPer, 1, 2 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // s2 - look at face
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(1, 1, 2);
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // s3 - camera moves
             {
-                secs: 20,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(1 - 2 * partPer, 1, 2);
                     camera.lookAt(0, 0, 0);
                 }
             }
