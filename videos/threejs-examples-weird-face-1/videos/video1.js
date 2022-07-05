@@ -15,9 +15,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
 
     //******** **********
     // TEXT CUBE
@@ -48,48 +48,26 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // TEXTURES
     //******** **********
-    var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
+    //var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
 
     //******** **********
     // GRID OPTIONS
     //******** **********
-    var tw = 9,
-    th = 9,
-    space = 1.5;
-    // source objects
-    var mkBox = function(color, h){
-        var box = new THREE.Group();
-        var a = space * 0.95;
-        var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry( a, h, a),
-            new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1 }) );
-        mesh.position.y = h / 2;
-        //mesh.rotation.y = Math.PI / 180 * 20 * -1;
-        var ground = new THREE.Mesh(
-            new THREE.BoxGeometry( space, 0.1, space),
-            new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture_rnd1}) );
-        ground.position.y = 0.05 * -1;
-        box.add(mesh)  
-        box.add(ground);
-        return box;
-    };
+    var tw = 8,
+    th = 8,
+    space = 5.1;
     var array_source_objects = [
-        mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 10.00),
-        mkBox(0xffff00, 4.50),
-        mkBox(0x00ff00, 1.50)
+        new THREE.Mesh( new THREE.BoxGeometry(5, 1, 5), new THREE.MeshNormalMaterial() )
     ];
-
     var array_oi = [
-        0,0,0,0,0,3,3,0,0,
-        0,0,0,0,3,2,3,0,0,
-        0,0,0,3,2,3,3,0,0,
-        0,0,3,2,2,2,3,0,0,
-        0,3,2,2,1,2,3,0,0,
-        3,2,3,2,2,2,2,3,0,
-        0,3,0,3,3,3,2,3,0,
-        0,0,0,0,0,0,3,3,0,
-        0,0,0,0,0,0,0,0,0
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0
     ]
     //******** **********
     // CREATE GRID
@@ -105,6 +83,7 @@ VIDEO.init = function(sm, scene, camera){
         objectIndices: array_oi
     });
     scene.add(grid);
+    grid.position.y = -5;
 
 
     // A SEQ FOR TEXT CUBE
