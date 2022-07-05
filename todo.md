@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - threejs-examples-werid-face-1
+* (done) start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * (done) use new sin-grid plug in for the video
