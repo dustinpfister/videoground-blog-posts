@@ -161,6 +161,9 @@ VIDEO.init = function(sm, scene, camera){
 
             weirdFace.setMouth(nose, 0, m0, m1);
 
+            weirdFace.setEye(nose, 1, 0, 0, 1);
+            weirdFace.setEye(nose, 2, 0, 0, 1);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -179,31 +182,46 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s1 - move camera to look at werid face
+            // s1 - move camera to look at werid face, eyes move to a = -10
             {
                 secs: 2,
                 update: function(seq, partPer, partBias){
+
+
+                    weirdFace.setEye(nose, 1, -0.1 * partPer, 0, 1);
+                    weirdFace.setEye(nose, 2, -0.1 * partPer, 0, 1);
+
                     // camera
                     camera.position.set(8 - 7 * partPer, 1 - 0.25 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s2 - look at face
+            // s2 - look at face, eyes move back and forth
             {
-                secs: 7,
+                secs: 4,
                 update: function(seq, partPer, partBias){
+
+                    var eBias = weirdFace.getBias(partPer, 4);
+                    var a = -0.1 + 0.2 * eBias;
+                    weirdFace.setEye(nose, 1, a, 0, 1);
+                    weirdFace.setEye(nose, 2, a, 0, 1);
+
                     // camera
                     camera.position.set(1, 0.75, 2);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s3 - camera moves
+            // s3 - camera moves, weird face says 'I have no anwsers'
             {
-                secs: 7,
+                secs: 4,
                 update: function(seq, partPer, partBias){
 
-        var mBias = weirdFace.getBias(partPer, 16);
-        weirdFace.setMouth(nose, mBias, m0, m1);
+                    var a = -0.1 + 0.1 * partPer;
+                    weirdFace.setEye(nose, 1, a, 0, 1);
+                    weirdFace.setEye(nose, 2, a, 0, 1);
+
+                    var mBias = weirdFace.getBias(partPer, 16);
+                    weirdFace.setMouth(nose, mBias, m0, m1);
 
                     // camera
                     camera.position.set(1 - 2 * partPer, 0.75, 2);
