@@ -90,7 +90,7 @@ VIDEO.init = function(sm, scene, camera){
         objectIndices: array_oi
     });
     scene.add(grid);
-    grid.position.y = -5;
+    grid.position.y = -1.5;
 
 
     //******** **********
