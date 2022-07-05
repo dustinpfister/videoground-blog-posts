@@ -184,7 +184,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             // s1 - move camera to look at werid face, eyes move to a = -10
             {
-                secs: 2,
+                secs: 4,
                 update: function(seq, partPer, partBias){
 
 
@@ -225,6 +225,56 @@ VIDEO.init = function(sm, scene, camera){
 
                     // camera
                     camera.position.set(1 - 2 * partPer, 0.75, 2);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // s4 - pause
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+
+                    // camera
+                    camera.position.set(-1, 0.75, 2);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // s5 - camera moves, weird face says 'I have only questions'
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+
+                    var mBias = weirdFace.getBias(partPer, 16);
+                    weirdFace.setMouth(nose, mBias, m0, m1);
+
+                    // camera
+                    camera.position.set(-1 + 2 * partPer, 0.75, 2);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // s6 - eyes get bigger
+            {
+                secs: 6,
+                update: function(seq, partPer, partBias){
+
+                    var s = 1 + 1 * partPer;
+                    weirdFace.setEye(nose, 1, 0, 0, s);
+                    weirdFace.setEye(nose, 2, 0, 0, s);
+
+                    // camera
+                    camera.position.set(1, 0.75, 2);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // s7 - zoom out
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+
+                    weirdFace.setEye(nose, 1, 0, 0, 2);
+                    weirdFace.setEye(nose, 2, 0, 0, 2);
+
+                    // camera
+                    camera.position.set(1 + 9 * partPer, 0.75 + 8.25 * partPer, 2 + 7 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
