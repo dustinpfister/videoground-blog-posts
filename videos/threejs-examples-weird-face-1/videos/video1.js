@@ -78,7 +78,7 @@ VIDEO.init = function(sm, scene, camera){
         th: th,
         //aOpacity: 1.25,
         dAdjust: 1.25,
-        effects: ['opacity', 'scale', 'rotationB'],
+        effects: ['opacity', 'scale'],
         sourceObjects: array_source_objects,
         objectIndices: array_oi
     });
@@ -126,7 +126,7 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
+            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
