@@ -8,6 +8,13 @@ VIDEO.scripts = [
    '../../../js/datatex.js',
    '../../../js/object-grid-wrap-r1.js'
 ];
+
+
+VIDEO.daePaths = [
+    '../../../dae/weird-face-1/weird-face-1c.dae',
+    '../../../dae/weird-face-1/mouths-1c.dae'
+];
+
 // init
 VIDEO.init = function(sm, scene, camera){
  
@@ -86,7 +93,24 @@ VIDEO.init = function(sm, scene, camera){
     grid.position.y = -5;
 
 
+    //******** **********
+    // WERID FACE SET UP
+    //******** **********
+
+    console.log(VIDEO)
+
+    var rScene = VIDEO.daeResults[1].scene;
+    var nose = rScene.getObjectByName('nose');
+    scene.add(nose);
+
+    // mouth objects
+    rScene = VIDEO.daeResults[0].scene;
+    var m0 = rScene.getObjectByName('mouth-0');
+    var m1 = rScene.getObjectByName('mouth-1');
+
+    //******** **********
     // A SEQ FOR TEXT CUBE
+    //******** **********
     var seq_textcube = seqHooks.create({
         setPerValues: false,
         fps: 30,
