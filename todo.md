@@ -2,13 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-examples-lerp-geo
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * (done) use new sin-grid plug in for the video
@@ -171,6 +164,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 07/02/2022 ) - threejs-examples-lerp-geo
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 06/30/2022 ) - threejs-curve
 * (done) start video folder and a video1 file

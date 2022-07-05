@@ -115,7 +115,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 6,
                 update: function(seq, partPer, partBias){
                     // lerp geo
                     lerpGeo(mesh.geometry, g0, g1, partPer);
