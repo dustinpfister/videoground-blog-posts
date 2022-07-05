@@ -6,7 +6,9 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
-   '../../../js/object-grid-wrap-r1.js'
+   '../../../js/object-grid-wrap-r1.js',
+   './lerp-geo.js',
+   './weird-face.js'
 ];
 
 
@@ -99,6 +101,7 @@ VIDEO.init = function(sm, scene, camera){
 
     console.log(VIDEO)
 
+
     var rScene = VIDEO.daeResults[1].scene;
     var nose = rScene.getObjectByName('nose');
     scene.add(nose);
@@ -109,6 +112,7 @@ VIDEO.init = function(sm, scene, camera){
     rScene = VIDEO.daeResults[0].scene;
     var m0 = rScene.getObjectByName('mouth-0');
     var m1 = rScene.getObjectByName('mouth-1');
+
 
     //******** **********
     // A SEQ FOR TEXT CUBE
@@ -155,6 +159,8 @@ VIDEO.init = function(sm, scene, camera){
             ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
             ObjectGridWrap.update(grid);
 
+            weirdFace.setMouth(nose, 0, m0, m1);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -178,7 +184,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8 - 7 * partPer, 1, 2 * partPer);
+                    camera.position.set(8 - 7 * partPer, 1 - 0.25 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -187,7 +193,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(1, 1, 2);
+                    camera.position.set(1, 0.75, 2);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -195,8 +201,12 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
+
+        var mBias = weirdFace.getBias(partPer, 16);
+        weirdFace.setMouth(nose, mBias, m0, m1);
+
                     // camera
-                    camera.position.set(1 - 2 * partPer, 1, 2);
+                    camera.position.set(1 - 2 * partPer, 0.75, 2);
                     camera.lookAt(0, 0, 0);
                 }
             }
