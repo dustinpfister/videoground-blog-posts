@@ -170,7 +170,7 @@ VIDEO.init = function(sm, scene, camera){
         afterObjects: function(seq){
         },
         objects: [
-            // s0 - text cube seq
+            // s0 - 0 secs - text cube seq
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -182,7 +182,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s1 - move camera to look at werid face, eyes move to a = -10
+            // s1 - 3 secs - move camera to look at werid face, eyes move to a = -10
             {
                 secs: 4,
                 update: function(seq, partPer, partBias){
@@ -196,7 +196,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s2 - look at face, eyes move back and forth
+            // s2 - 7 secs - look at face, eyes move back and forth
             {
                 secs: 4,
                 update: function(seq, partPer, partBias){
@@ -211,7 +211,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s3 - camera moves, weird face says 'I have no anwsers'
+            // s3 - 11 secs - camera moves, weird face says 'I have no anwsers'
             {
                 secs: 4,
                 update: function(seq, partPer, partBias){
@@ -228,7 +228,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s4 - pause
+            // s4 - 15 secs - pause
             {
                 secs: 2,
                 update: function(seq, partPer, partBias){
@@ -238,7 +238,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s5 - camera moves, weird face says 'I have only questions'
+            // s5 - 17 secs - camera moves, weird face says 'I have only questions'
             {
                 secs: 4,
                 update: function(seq, partPer, partBias){
@@ -251,7 +251,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s6 - eyes get bigger
+            // s6 - 21 secs - eyes get bigger
             {
                 secs: 6,
                 update: function(seq, partPer, partBias){
@@ -265,7 +265,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // s7 - zoom out
+            // s7 - 27 secs - zoom out
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
