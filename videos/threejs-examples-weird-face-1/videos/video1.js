@@ -38,7 +38,7 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['Werid face 1', 64, 17, 14, 'white'],
+            ['Weird face 1', 64, 17, 14, 'white'],
             ['threejs example', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
             ['( r135 07/05/2022 )', 64, 70, 12, 'gray'],
