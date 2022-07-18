@@ -14,7 +14,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#008a8a');
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -45,6 +45,7 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(2, 1, 3);
+    scene.add( new THREE.AmbientLight(0xffffff, 0.2))
     scene.add(dl);
 
 
@@ -183,7 +184,7 @@ var mkMeshFunctions = [
         fps: 30,
         beforeObjects: function(seq){
 
-            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
+            ObjectGridWrap.setPos(grid, ( 1 - seq.per ) * 2, 0 );
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
@@ -204,18 +205,51 @@ var mkMeshFunctions = [
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 5 + 3 * partPer, 8 * partPer);
+                    camera.position.set(8 + 2 * partPer, 5 + 5 * partPer, 10 * partPer);
                     camera.lookAt(0, 5 - 5 * partPer, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(10, 10, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(10 + 5 * partPer, 10 + 5 * partPer, 10 - 25 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(15, 15, -15);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(15 - 30 * partPer, 15, -15);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 9,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var a = 15 + 10 * partPer;
+                    camera.position.set(a * -1, a, a * -1);
                     camera.lookAt(0, 0, 0);
                 }
             }
