@@ -2,8 +2,8 @@
 
 <!-- Whats next -->
 
-### () - threejs-examples-werid-face-1
-* (done) start video folder and a video1 file
+### () - threejs-examples-object-grid-wrap-land
+* () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -171,6 +171,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 07/06/2022 ) - threejs-examples-werid-face-1
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (dobe) embed in post
 
 ### ( done 07/02/2022 ) - threejs-examples-lerp-geo
 * (done) start video folder and a video1 file
