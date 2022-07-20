@@ -9,8 +9,7 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
  
-    // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -33,6 +32,85 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, 4)
+    scene.add(dl);
+
+
+    //******** **********
+    // DATA TEXTURE HELPER
+    //******** **********
+    // create data texture method
+    let createDataTexture = function(opt){
+        opt = opt || {};
+        opt.width = opt.width === undefined ? 16: opt.width; 
+        opt.height = opt.height === undefined ? 16: opt.height;
+        // default for pix method
+        opt.forPix = opt.forPix || function(color, x, y, i, opt){
+            let v = Math.floor( THREE.MathUtils.seededRandom() * 255 );
+            color.setRGB(v, v, v);
+            return color;
+        };
+        let size = opt.width * opt.height;
+        let data = new Uint8Array( 4 * size );
+        for ( let i = 0; i < size; i ++ ) {
+            let stride = i * 4,
+            x = i % opt.width,
+            y = Math.floor(i / opt.width),
+            color = opt.forPix( new THREE.Color(), x, y, i, opt);
+            data[ stride ] = color.r;
+            data[ stride + 1 ] = color.g;
+            data[ stride + 2 ] = color.b;
+            data[ stride + 3 ] = 255;
+        }
+        let texture = new THREE.DataTexture( data, opt.width, opt.height );
+        texture.needsUpdate = true;
+        return texture;
+    };
+
+    //******** **********
+    // THREE.COLOR
+    //******** **********
+
+   // will be using THREE.Color to set and update FOG and background
+   var bgColor = new THREE.Color('#2a2a2a');
+   scene.background = bgColor;
+   scene.fog = new THREE.Fog(bgColor, 1.0, 17);
+
+   // I will want a number of mesh objects
+    var randomColor = function () {
+        var r = Math.random(),
+        g = Math.random(),
+        b = Math.random();
+        return new THREE.Color(r, g, b);
+    };
+    var randomPosition = function () {
+        var x = -5 + 10 * Math.random(),
+        y = -1 + 2 * Math.random(),
+        z = 5 + Math.random() * 10 * -1;
+        return new THREE.Vector3(x, y, z);
+    };
+
+    // creating a group of mesh object with random colors
+    var group = new THREE.Group();
+    var i = 0,
+    len = 35,
+    s = 0.75;
+    while (i < len) {
+        var box = new THREE.Mesh(
+            new THREE.BoxGeometry(s, s, s),
+            new THREE.MeshStandardMaterial({
+                color: randomColor()
+                //emissiveIntensity: 0.8,
+                //emissive: randomColor()
+            }));
+        box.position.copy(randomPosition());
+        group.add(box);
+        i += 1;
+    }
+    scene.add(group);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
