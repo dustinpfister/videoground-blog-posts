@@ -90,7 +90,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // will be using THREE.Color to set and update FOG and background
     var bgColor = new THREE.Color('#ffffff');
-    var i = 20, bgColors = [];
+    var i = 30, bgColors = [];
     while(i--){
         bgColors.push(randomColor())
     }
