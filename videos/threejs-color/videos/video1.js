@@ -75,7 +75,7 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
 
    // will be using THREE.Color to set and update FOG and background
-   var bgColor = new THREE.Color('#2a2a2a');
+   var bgColor = new THREE.Color('#ffffff');
    scene.background = bgColor;
    scene.fog = new THREE.Fog(bgColor, 1.0, 17);
 
@@ -153,10 +153,14 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+            bgColor = new THREE.Color(1, 1, 1);
+            group.rotation.y = Math.PI * 4 * seq.per;
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
+             scene.background = bgColor;
+             scene.fog = new THREE.Fog(bgColor, 1.0, 17);
         },
         objects: [
             {
@@ -171,18 +175,29 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // mutate bgColor
             {
-                secs: 20,
+                secs: 14,
                 update: function(seq, partPer, partBias){
+                    bgColor = randomColor();
                     // camera
                     camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var s = 8 - 16 * partPer;
+                    camera.position.set(s, s, s);
                     camera.lookAt(0, 0, 0);
                 }
             }
