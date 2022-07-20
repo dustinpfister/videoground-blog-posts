@@ -74,11 +74,6 @@ VIDEO.init = function(sm, scene, camera){
     // THREE.COLOR
     //******** **********
 
-   // will be using THREE.Color to set and update FOG and background
-   var bgColor = new THREE.Color('#ffffff');
-   scene.background = bgColor;
-   scene.fog = new THREE.Fog(bgColor, 1.0, 17);
-
    // I will want a number of mesh objects
     var randomColor = function () {
         var r = Math.random(),
@@ -92,6 +87,17 @@ VIDEO.init = function(sm, scene, camera){
         z = 5 + Math.random() * 10 * -1;
         return new THREE.Vector3(x, y, z);
     };
+
+    // will be using THREE.Color to set and update FOG and background
+    var bgColor = new THREE.Color('#ffffff');
+    var i = 20, bgColors = [];
+    while(i--){
+        bgColors.push(randomColor())
+    }
+    scene.background = bgColor;
+    scene.fog = new THREE.Fog(bgColor, 1.0, 17);
+
+
 
     // creating a group of mesh object with random colors
     var group = new THREE.Group();
@@ -186,7 +192,7 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 14,
                 update: function(seq, partPer, partBias){
-                    bgColor = randomColor();
+                    bgColor = bgColors[ Math.floor(bgColors.length * partPer) ]
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
