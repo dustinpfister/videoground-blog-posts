@@ -192,7 +192,7 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 14,
                 update: function(seq, partPer, partBias){
-                    bgColor = bgColors[ Math.floor(bgColors.length * partPer) ]
+                    bgColor = bgColors[ Math.floor(bgColors.length * partPer) ];
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
@@ -201,6 +201,10 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 10,
                 update: function(seq, partPer, partBias){
+
+                    var c = 1 - partPer;
+                    bgColor = new THREE.Color(c, c, c);
+
                     // camera
                     var s = 8 - 16 * partPer;
                     camera.position.set(s, s, s);
