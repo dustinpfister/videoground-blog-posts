@@ -102,11 +102,13 @@ VIDEO.init = function(sm, scene, camera){
         var box = new THREE.Mesh(
             new THREE.BoxGeometry(s, s, s),
             new THREE.MeshStandardMaterial({
-                color: randomColor()
+                color: randomColor(),
+                map: createDataTexture()
                 //emissiveIntensity: 0.8,
                 //emissive: randomColor()
             }));
         box.position.copy(randomPosition());
+        box.rotation.copy( ( new THREE.Euler() ).setFromVector3( randomPosition() ) )
         group.add(box);
         i += 1;
     }
