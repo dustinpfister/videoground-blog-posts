@@ -2,8 +2,15 @@
 
 <!-- Whats next -->
 
-### () - threejs-examples-object-grid-wrap-land
-* (done) start video folder and a video1 file
+### () - threejs-color
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-examples-biplane-group
+* () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -12,23 +19,14 @@
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * (done) use new sin-grid plug in for the video
-
 * () sphere background
 * () move obejcts and not just the camera
-
 * () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
 
 ### () - threejs-vector3-lerp
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - threejs-color
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -117,13 +115,6 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples
 
-### () - video1 for threejs-examples-biplane-group
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples-build-a-box
 * () start video folder and a video1 file
 * () export to raw video file
@@ -171,6 +162,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 07/19/2022 ) - threejs-examples-object-grid-wrap-land
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 07/06/2022 ) - threejs-examples-werid-face-1
 * (done) start video folder and a video1 file
