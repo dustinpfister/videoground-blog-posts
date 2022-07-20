@@ -2,12 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-color
-* (done) start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-examples-biplane-group
 * () start video folder and a video1 file
@@ -162,6 +156,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 07/20/2022 ) - threejs-color
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 07/19/2022 ) - threejs-examples-object-grid-wrap-land
 * (done) start video folder and a video1 file
