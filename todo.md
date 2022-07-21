@@ -2,7 +2,7 @@
 
 <!-- Whats next -->
 
-### () - threejs-examples-screen-shake
+### () - threejs-examples-scene-shake
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
