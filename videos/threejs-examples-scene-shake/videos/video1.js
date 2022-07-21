@@ -6,7 +6,8 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
-   '../../../js/object-grid-wrap-r1.js',
+   '../../../js/object-grid-wrap-r2.js',
+   '../../../js/object-grid-wrap-r2-effects-opacity2.js',
    '../js/shake.js'
 ];
 // init
@@ -65,7 +66,7 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     var tw = 9,
     th = 9,
-    space = 1.5;
+    space = 1.0;
     // source objects
     var mkBox = function(color, h){
         var box = new THREE.Group();
@@ -85,9 +86,9 @@ VIDEO.init = function(sm, scene, camera){
     };
     var array_source_objects = [
         mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 10.00),
-        mkBox(0xffff00, 4.50),
-        mkBox(0x00ff00, 1.50)
+        mkBox(0xff0000, 4.00),
+        mkBox(0xffff00, 2.50),
+        mkBox(0x00ff00, 1.25)
     ];
 
     var array_oi = [
@@ -108,9 +109,8 @@ VIDEO.init = function(sm, scene, camera){
         space: space,
         tw: tw,
         th: th,
-        //aOpacity: 1.25,
-        dAdjust: 1.25,
-        effects: ['opacity', 'scale', 'rotationB'],
+        //dAdjust: 1.25,
+        effects: ['opacity2'],
         sourceObjects: array_source_objects,
         objectIndices: array_oi
     });
