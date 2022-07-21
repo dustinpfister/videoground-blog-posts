@@ -6,7 +6,8 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
-   '../../../js/object-grid-wrap-r1.js'
+   '../../../js/object-grid-wrap-r1.js',
+   '../js/shake.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -49,6 +50,15 @@ VIDEO.init = function(sm, scene, camera){
     // TEXTURES
     //******** **********
     var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
+
+
+    // shake object
+    var shake = ShakeMod.create({
+        obj: scene,
+        posRange: [0.25, 0.5],
+        degRange: [5, 20],
+        active: true
+    });
 
     //******** **********
     // GRID OPTIONS
@@ -147,6 +157,9 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
+            // default shake intesnity to 0
+            shake.intensity = 0;
+
             ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
             ObjectGridWrap.update(grid);
 
@@ -154,6 +167,10 @@ VIDEO.init = function(sm, scene, camera){
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
+
+            // update shake
+            ShakeMod.update(shake);
+
         },
         objects: [
             {
@@ -173,6 +190,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // low intesity
+                    shake.intensity = 0.5 * partBias;
                 }
             },
             {
@@ -181,6 +200,8 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
+                    // higher intesnity
+                    shake.intensity = 1.0 * partBias;
                 }
             }
         ]
