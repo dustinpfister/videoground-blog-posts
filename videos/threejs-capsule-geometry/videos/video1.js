@@ -34,6 +34,13 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+//******** **********
+// LIGHT
+//******** **********
+var dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(-3, 6, 0).normalize();
+scene.add(dl);
+scene.add( new THREE.AmbientLight(0xffffff, 0.03));
 
 //******** **********
 // HELPERS
@@ -196,19 +203,35 @@ scene.add( g1 );
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 16 * partPer, 1 + 7 * partPer, 1 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(-8 - 8 * partPer, 8, 1 + 15 * partPer);
                     camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-16, 8, 16);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 19,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-16 + 6 * partPer, 8, 16 - 6 * partPer);
+                    camera.lookAt(0, 1.8 * partPer, 0);
                 }
             }
         ]
