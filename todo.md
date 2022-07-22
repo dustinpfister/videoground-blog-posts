@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - video1 for threejs-capsule-geometry
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-examples-biplane-group
 * () start video folder and a video1 file
 * () export to raw video file
