@@ -32,7 +32,7 @@ VIDEO.init = function(sm, scene, camera){
             ['templae3', 64, 17, 14, 'white'],
             ['', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
-            ['( r135 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });

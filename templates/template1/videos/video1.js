@@ -28,7 +28,7 @@ VIDEO.init = function(sm, scene, camera){
             ['Templae Video', 64, 17, 14, 'white'],
             ['please update', 64, 32, 14, 'white'],
             ['this text', 64, 47, 14, 'white'],
-            ['( r135 mm/dd/yyyy )', 64, 70, 12, 'gray'],
+            ['( r140 mm/dd/yyyy )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
