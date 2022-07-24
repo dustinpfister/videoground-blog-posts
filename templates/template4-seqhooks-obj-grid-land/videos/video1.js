@@ -1,5 +1,7 @@
 // video1 for template4-seqhooks-obj-grid-land
+//******** **********
 // scripts
+//******** **********
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
@@ -8,17 +10,14 @@ VIDEO.scripts = [
    '../../../js/object-grid-wrap-r2-with-opacity2.js',
    '../../../js/object-grid-wrap-r2-land.js'
 ];
-// init
+//******** **********
+// init methods of video
+//******** **********
 VIDEO.init = function(sm, scene, camera){
- 
+    //******** **********
     // BACKGROUND
+    //******** **********
     scene.background = new THREE.Color('#008a8a');
-
-    // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
-
     //******** **********
     // TEXT CUBE
     //******** **********
@@ -37,7 +36,6 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
-
     //******** **********
     // LIGHT
     //******** **********
@@ -45,10 +43,8 @@ VIDEO.init = function(sm, scene, camera){
     dl.position.set(2, 1, 3);
     scene.add( new THREE.AmbientLight(0xffffff, 0.2))
     scene.add(dl);
-
-
 //******** **********
-// GRID
+// GRID WRAP LAND
 //******** **********
 var grid = ObjectGridWrapLand.create({
     tw: 14,
@@ -88,12 +84,11 @@ var grid = ObjectGridWrapLand.create({
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ]
 });
-
 grid.scale.set(1, 1, 1);
 ObjectGridWrapLand.setDataTextures(grid)
 scene.add(grid);
 //******** **********
-// ADDING CHILD MESH OBJECTS
+// ADDING CHILD MESH OBJECTS FOR GRID WRAP LAND
 //******** **********
 var mkCone = function(height){
     return new THREE.Mesh(
@@ -140,10 +135,9 @@ var mkMeshFunctions = [
         ObjectGridWrapLand.addAt(grid, mesh, x, y);
     }
 });
-    
-
-
+    //******** **********
     // A SEQ FOR TEXT CUBE
+    //******** **********
     var seq_textcube = seqHooks.create({
         setPerValues: false,
         fps: 30,
@@ -177,15 +171,14 @@ var mkMeshFunctions = [
             }
         ]
     });
-
+    //******** **********
     // A MAIN SEQ OBJECT
+    //******** **********
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
-
             ObjectGridWrap.setPos(grid, ( 1 - seq.per ) * 2, 0 );
             ObjectGridWrap.update(grid);
-
             textCube.visible = false;
             camera.position.set(8, 5, 0);
         },
@@ -212,58 +205,22 @@ var mkMeshFunctions = [
                 }
             },
             {
-                secs: 3,
+                secs: 24,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(10, 10, 10);
                     camera.lookAt(0, 0, 0);
                 }
-            },
-            {
-                secs: 4,
-                update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(10 + 5 * partPer, 10 + 5 * partPer, 10 - 25 * partPer);
-                    camera.lookAt(0, 0, 0);
-                }
-            },
-            {
-                secs: 4,
-                update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(15, 15, -15);
-                    camera.lookAt(0, 0, 0);
-                }
-            },
-            {
-                secs: 4,
-                update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(15 - 30 * partPer, 15, -15);
-                    camera.lookAt(0, 0, 0);
-                }
-            },
-            {
-                secs: 9,
-                update: function(seq, partPer, partBias){
-                    // camera
-                    var a = 15 + 10 * partPer;
-                    camera.position.set(a * -1, a, a * -1);
-                    camera.lookAt(0, 0, 0);
-                }
             }
         ]
     });
-
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
-
 };
-
+//******** **********
 // update method for the video
+//******** **********
 VIDEO.update = function(sm, scene, camera, per, bias){
     var seq = scene.userData.seq;
     seqHooks.setFrame(seq, sm.frame, sm.frameMax);
-
 };
-
