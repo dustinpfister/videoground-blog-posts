@@ -5,8 +5,7 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
-   '../../../js/object-grid-wrap-r2.js',
-   '../../../js/object-grid-wrap-r2-effects-opacity2.js',
+   '../../../js/object-grid-wrap-r2-with-opacity2.js',
    '../../../js/object-grid-wrap-r2-land.js'
 ];
 // init
