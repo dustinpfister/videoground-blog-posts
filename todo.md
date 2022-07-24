@@ -3,7 +3,13 @@
 <!-- Whats next -->
 
 ### () - video1 for threejs-examples-biplane-group
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
+
+* () add biplane group module for video
+* () have camera open at location 10, 10, 10, and also move textcube as needed
+* () have at least 3 or more biplane groups
+* () many camera angles moving around the mian biplane group at center
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
