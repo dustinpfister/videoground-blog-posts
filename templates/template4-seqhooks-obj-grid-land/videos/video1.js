@@ -43,98 +43,98 @@ VIDEO.init = function(sm, scene, camera){
     dl.position.set(2, 1, 3);
     scene.add( new THREE.AmbientLight(0xffffff, 0.2))
     scene.add(dl);
-//******** **********
-// GRID WRAP LAND
-//******** **********
-var grid = ObjectGridWrapLand.create({
-    tw: 14,
-    th: 14,
-    crackSize: 0,
-    //effects:[],
-    altitude: [
+    //******** **********
+    // GRID WRAP LAND
+    //******** **********
+    var grid = ObjectGridWrapLand.create({
+        tw: 14,
+        th: 14,
+        crackSize: 0,
+        //effects:[],
+        altitude: [
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,1,1,0,0,0,1,1,1,1,0,
+            0,0,0,1,1,1,0,0,0,1,1,1,1,0,
+            0,0,0,1,1,1,0,0,0,1,1,1,1,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,1,1,1,0,0,0,0,0,0,0,
+            0,1,1,1,1,1,1,0,0,0,0,0,0,0,
+            0,1,2,2,2,1,1,0,0,0,0,0,0,0,
+            0,1,2,2,2,1,1,0,0,0,1,1,1,0,
+            0,1,2,2,2,1,1,0,0,0,1,1,1,0,
+            0,1,1,1,1,1,0,0,0,0,1,1,1,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        ],
+        objectIndices: [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 7, 4, 6, 0, 0, 0, 7, 4, 4, 6, 0,
+            0, 0, 0, 1, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0,
+            0, 0, 0, 8, 2, 5, 0, 0, 0, 8, 2, 2, 5, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 7, 4, 4, 6, 0, 0, 0, 0, 0, 0, 0,
+            0, 7, 4, 9, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0,
+            0, 1, 7, 4, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0,
+            0, 1, 1, 0, 3, 0, 3, 0, 0, 0, 7, 4, 6, 0,
+            0, 1, 8, 2, 5,11, 5, 0, 0, 0, 1, 0, 3, 0,
+            0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 8, 2, 5, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        ]
+    });
+    grid.scale.set(1, 1, 1);
+    ObjectGridWrapLand.setDataTextures(grid)
+    scene.add(grid);
+    //******** **********
+    // ADDING CHILD MESH OBJECTS FOR GRID WRAP LAND
+    //******** **********
+    var mkCone = function(height){
+        return new THREE.Mesh(
+            new THREE.ConeGeometry(0.5, height, 30, 30),
+            new THREE.MeshStandardMaterial({color: new THREE.Color('#00ff88')})
+        );
+    };
+    // can make another system that involves a grid if index values
+    // but with child objects
+    var mkMeshFunctions = [
+        null,
+        function(){
+            return mkCone(2)
+        },
+        function(){
+            return mkCone(3)
+        },
+        function(){
+            return mkCone(4)
+        }
+    ];
+    // object index grid
+    [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,1,1,1,0,0,0,1,1,1,1,0,
-        0,0,0,1,1,1,0,0,0,1,1,1,1,0,
-        0,0,0,1,1,1,0,0,0,1,1,1,1,0,
+        0,0,0,2,0,0,0,0,0,0,0,1,0,0,
+        0,0,1,0,0,0,3,0,0,1,2,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,1,1,1,1,0,0,0,0,0,0,0,
-        0,1,1,1,1,1,1,0,0,0,0,0,0,0,
-        0,1,2,2,2,1,1,0,0,0,0,0,0,0,
-        0,1,2,2,2,1,1,0,0,0,1,1,1,0,
-        0,1,2,2,2,1,1,0,0,0,1,1,1,0,
-        0,1,1,1,1,1,0,0,0,0,1,1,1,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0
-    ],
-    objectIndices: [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 7, 4, 6, 0, 0, 0, 7, 4, 4, 6, 0,
-        0, 0, 0, 1, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0,
-        0, 0, 0, 8, 2, 5, 0, 0, 0, 8, 2, 2, 5, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 7, 4, 4, 6, 0, 0, 0, 0, 0, 0, 0,
-        0, 7, 4, 9, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0,
-        0, 1, 7, 4, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0,
-        0, 1, 1, 0, 3, 0, 3, 0, 0, 0, 7, 4, 6, 0,
-        0, 1, 8, 2, 5,11, 5, 0, 0, 0, 1, 0, 3, 0,
-        0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 8, 2, 5, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    ]
-});
-grid.scale.set(1, 1, 1);
-ObjectGridWrapLand.setDataTextures(grid)
-scene.add(grid);
-//******** **********
-// ADDING CHILD MESH OBJECTS FOR GRID WRAP LAND
-//******** **********
-var mkCone = function(height){
-    return new THREE.Mesh(
-        new THREE.ConeGeometry(0.5, height, 30, 30),
-        new THREE.MeshStandardMaterial({color: new THREE.Color('#00ff88')})
-    );
-};
-// can make another system that involves a grid if index values
-// but with child objects
-var mkMeshFunctions = [
-    null,
-    function(){
-        return mkCone(2)
-    },
-    function(){
-        return mkCone(3)
-    },
-    function(){
-        return mkCone(4)
-    }
-];
-// object index grid
-[
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,2,0,0,0,0,0,0,0,1,0,0,
-    0,0,1,0,0,0,3,0,0,1,2,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,1,0,1,1,0,0,
-    0,0,0,1,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,1,0,1,2,1,0,0,
-    0,0,2,0,0,0,0,0,0,2,0,0,0,0,
-    0,0,0,1,0,0,0,2,1,0,1,1,0,0,
-    0,0,1,0,0,0,0,1,0,1,3,3,0,1,
-    0,1,0,1,0,1,2,0,1,2,1,1,2,0,
-    0,0,0,0,2,0,0,1,0,3,1,1,0,0,
-    0,1,0,1,0,1,0,0,0,1,2,3,1,1,
-    0,0,0,0,0,0,0,0,0,0,1,0,1,0
-].forEach(function(objIndex, i){
-    var mkMesh = mkMeshFunctions[objIndex];
-    if(mkMesh){
-        var mesh = mkMesh(),
-        x = i % grid.userData.tw,
-        y = Math.floor(i / grid.userData.tw)
-        ObjectGridWrapLand.addAt(grid, mesh, x, y);
-    }
-});
+        0,0,0,0,0,0,0,0,1,0,1,1,0,0,
+        0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,1,0,1,2,1,0,0,
+        0,0,2,0,0,0,0,0,0,2,0,0,0,0,
+        0,0,0,1,0,0,0,2,1,0,1,1,0,0,
+        0,0,1,0,0,0,0,1,0,1,3,3,0,1,
+        0,1,0,1,0,1,2,0,1,2,1,1,2,0,
+        0,0,0,0,2,0,0,1,0,3,1,1,0,0,
+        0,1,0,1,0,1,0,0,0,1,2,3,1,1,
+        0,0,0,0,0,0,0,0,0,0,1,0,1,0
+    ].forEach(function(objIndex, i){
+        var mkMesh = mkMeshFunctions[objIndex];
+        if(mkMesh){
+            var mesh = mkMesh(),
+            x = i % grid.userData.tw,
+            y = Math.floor(i / grid.userData.tw)
+            ObjectGridWrapLand.addAt(grid, mesh, x, y);
+        }
+    });
     //******** **********
     // A SEQ FOR TEXT CUBE
     //******** **********
