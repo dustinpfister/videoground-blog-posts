@@ -175,10 +175,13 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             var textCube = scene.userData.textCube;
             textCube.rotation.y = 0;
-            textCube.position.set(6, 5, 0);
+            textCube.position.set(13.85, 13.85, 13.85);
             textCube.visible = false;
             textCube.material.transparent = true;
             textCube.material.opacity = 0.0;
+
+textCube.lookAt(camera.position);
+
         },
         objects: [
             {
@@ -186,7 +189,6 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 5, 0);
                     textCube.material.opacity = 1.0;
                 }
             },
@@ -195,8 +197,8 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 5 + 1 * partPer, 0);
-                    textCube.rotation.y = Math.PI * 2 * partPer;
+                    textCube.position.set(13.85, 13.85 - 1 * partPer, 13.85);
+                    textCube.rotation.y += Math.PI * 0.5 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                 }
             }
