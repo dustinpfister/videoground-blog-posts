@@ -260,7 +260,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             // sq 3 - zoom to group 1
             {
-                secs: 5,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(20, 20, -20);
@@ -281,7 +281,20 @@ VIDEO.init = function(sm, scene, camera){
                     biGroups.children[1].getWorldPosition(v1);
                     camera.position.copy(v1.clone().add( new THREE.Vector3(4, 4, -4) ));
                     
-                    camera.lookAt( v1.clone() );
+                    camera.lookAt( 0, 8.75, 0  );
+                }
+            },
+            // sq 5 - move add point
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3();
+                    biGroups.children[1].getWorldPosition(v1);
+                    camera.position.copy(v1.clone().add( new THREE.Vector3(4 - 8 * partPer, 4 - 4 * partPer, -4) ));
+                    
+
+                    camera.lookAt( 0, 8.75, 0 );
                 }
             }
         ]
