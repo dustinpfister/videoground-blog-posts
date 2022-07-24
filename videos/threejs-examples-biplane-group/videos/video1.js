@@ -179,9 +179,7 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             textCube.material.transparent = true;
             textCube.material.opacity = 0.0;
-
-textCube.lookAt(camera.position);
-
+            textCube.lookAt(camera.position);
         },
         objects: [
             {
@@ -210,35 +208,15 @@ textCube.lookAt(camera.position);
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
-
-
-
-        biGroups.children.forEach(function (biGroup) {
-
-
-biGroup.position.x = 0;
-biGroup.position.y = 7;
-biGroup.userData.pps = 0;
-biGroup.userData.active = true;
-
-            BiplaneGroup.update(biGroup, 1 / 30);
-
-
-/*
-            if (!biGroup.userData.active) {
-                biGroup.position.x = -200;
-                biGroup.userData.pps = 0; //32 + Math.round(64 * Math.random());
+            // update biplanes
+            biGroups.children.forEach(function (biGroup) {
+                biGroup.position.x = 0;
+                biGroup.position.y = 7;
+                biGroup.userData.pps = 0;
                 biGroup.userData.active = true;
-            } else {
-                biGroup.position.x += biGroup.userData.pps * ( 1 / 30);
-                if (biGroup.position.x >= 200) {
-                    biGroup.userData.active = false;
-                }
-            }
-*/
-        });
-
-
+                BiplaneGroup.update(biGroup, 1 / 30);
+            });
+            // update land
             ObjectGridWrap.setPos(grid, ( 1 - seq.per ) * 2, 0 );
             ObjectGridWrap.update(grid);
             textCube.visible = false;
@@ -259,11 +237,37 @@ biGroup.userData.active = true;
                 }
             },
             {
-                secs: 20,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(15, 15, 15);
-                    camera.lookAt(0, 0, 0);
+                    var v1 = new THREE.Vector3(15, 15, 15);
+                    var v2 = new THREE.Vector3(20, 20, 20);
+                    camera.position.copy(v1).lerp(v2, partPer);
+                    camera.lookAt(0, partPer, 0);
+                }
+            },
+            {
+                secs: 15,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(20, 20, 20);
+                    var v2 = new THREE.Vector3(20, 20, -20);
+                    camera.position.copy(v1).lerp(v2, partPer);
+                    camera.lookAt(0, 1, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(20, 20, -20);
+                    var v2 = new THREE.Vector3();
+                    biGroups.children[0].getWorldPosition(v2);
+                    camera.position.copy(v1).lerp(v2, partPer);
+                    
+                    var v1 = new THREE.Vector3(0, 1, 0);
+                    v2 = new THREE.Vector3(0, 0, 0);
+                    camera.lookAt( v1.clone().lerp(v2, partPer) );
                 }
             }
         ]
