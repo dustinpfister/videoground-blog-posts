@@ -269,6 +269,7 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.copy(v1).lerp(v2.add( new THREE.Vector3(4, 4, -4) ), partPer);
                     
                     var v1 = new THREE.Vector3(0, 1, 0);
+                    var v2 = new THREE.Vector3(0, 8.75, 0);
                     camera.lookAt( v1.clone().lerp(v2, partPer) );
                 }
             },
