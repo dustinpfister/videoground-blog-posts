@@ -7,7 +7,7 @@ VIDEO.scripts = [
    '../../../js/datatex.js',
    '../../../js/object-grid-wrap-r2.js',
    '../../../js/object-grid-wrap-r2-effects-opacity2.js',
-   '../js/object-grid-wrap-land.js'
+   '../../../js/object-grid-wrap-r2-land.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
