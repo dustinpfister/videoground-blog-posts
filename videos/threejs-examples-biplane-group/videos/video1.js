@@ -236,8 +236,9 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // sq 1 - just zoom out
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(15, 15, 15);
@@ -246,8 +247,9 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, partPer, 0);
                 }
             },
+            // sq 2 - pan
             {
-                secs: 15,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(20, 20, 20);
@@ -256,18 +258,30 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 1, 0);
                 }
             },
+            // sq 3 - zoom to group 1
             {
                 secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(20, 20, -20);
                     var v2 = new THREE.Vector3();
-                    biGroups.children[0].getWorldPosition(v2);
-                    camera.position.copy(v1).lerp(v2, partPer);
+                    biGroups.children[1].getWorldPosition(v2);
+                    camera.position.copy(v1).lerp(v2.add( new THREE.Vector3(4, 4, -4) ), partPer);
                     
                     var v1 = new THREE.Vector3(0, 1, 0);
-                    v2 = new THREE.Vector3(0, 0, 0);
                     camera.lookAt( v1.clone().lerp(v2, partPer) );
+                }
+            },
+            // sq 4 - hold at group1
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3();
+                    biGroups.children[1].getWorldPosition(v1);
+                    camera.position.copy(v1.clone().add( new THREE.Vector3(4, 4, -4) ));
+                    
+                    camera.lookAt( v1.clone() );
                 }
             }
         ]
