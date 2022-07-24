@@ -8,7 +8,9 @@ VIDEO.scripts = [
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
    '../../../js/object-grid-wrap-r2-with-opacity2.js',
-   '../../../js/object-grid-wrap-r2-land.js'
+   '../../../js/object-grid-wrap-r2-land.js',
+   '../js/biplane.js',
+   '../js/biplane-group.js'
 ];
 //******** **********
 // init methods of video
@@ -47,41 +49,45 @@ VIDEO.init = function(sm, scene, camera){
     // GRID WRAP LAND
     //******** **********
     var grid = ObjectGridWrapLand.create({
-        tw: 14,
-        th: 14,
+        tw: 16,
+        th: 16,
         crackSize: 0,
         //effects:[],
         altitude: [
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,1,1,1,0,0,0,1,1,1,1,0,
-            0,0,0,1,1,1,0,0,0,1,1,1,1,0,
-            0,0,0,1,1,1,0,0,0,1,1,1,1,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,1,1,1,1,0,0,0,0,0,0,0,
-            0,1,1,1,1,1,1,0,0,0,0,0,0,0,
-            0,1,2,2,2,1,1,0,0,0,0,0,0,0,
-            0,1,2,2,2,1,1,0,0,0,1,1,1,0,
-            0,1,2,2,2,1,1,0,0,0,1,1,1,0,
-            0,1,1,1,1,1,0,0,0,0,1,1,1,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,1,1,0,0,0,1,1,1,1,0,0,0,
+            0,0,0,1,1,1,0,0,0,1,1,1,1,0,0,0,
+            0,0,0,1,1,1,0,0,0,1,1,1,1,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,
+            0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
+            0,1,2,2,2,1,1,0,0,0,0,0,0,0,0,0,
+            0,1,2,2,2,1,1,0,0,0,1,1,1,0,0,0,
+            0,1,2,2,2,1,1,0,0,0,1,1,1,0,0,0,
+            0,1,1,1,1,1,0,0,0,0,1,1,1,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         ],
         objectIndices: [
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 7, 4, 6, 0, 0, 0, 7, 4, 4, 6, 0,
-            0, 0, 0, 1, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0,
-            0, 0, 0, 8, 2, 5, 0, 0, 0, 8, 2, 2, 5, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 7, 4, 4, 6, 0, 0, 0, 0, 0, 0, 0,
-            0, 7, 4, 9, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 7, 4, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 0, 3, 0, 3, 0, 0, 0, 7, 4, 6, 0,
-            0, 1, 8, 2, 5,11, 5, 0, 0, 0, 1, 0, 3, 0,
-            0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 8, 2, 5, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 7, 4, 6, 0, 0, 0, 7, 4, 4, 6, 0, 0, 0,
+            0, 0, 0, 1, 0, 3, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0,
+            0, 0, 0, 8, 2, 5, 0, 0, 0, 8, 2, 2, 5, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 7, 4, 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 7, 4, 9, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 1, 7, 4, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 1, 1, 0, 3, 0, 3, 0, 0, 0, 7, 4, 6, 0, 0, 0,
+            0, 1, 8, 2, 5,11, 5, 0, 0, 0, 1, 0, 3, 0, 0, 0,
+            0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 8, 2, 5, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         ]
     });
     grid.scale.set(1, 1, 1);
@@ -135,6 +141,31 @@ VIDEO.init = function(sm, scene, camera){
             ObjectGridWrapLand.addAt(grid, mesh, x, y);
         }
     });
+
+
+    //******** **********
+    // BIPLANE GROUPS
+    //******** **********
+
+
+    var biGroups = new THREE.Group();
+    scene.add(biGroups);
+    var i = 0,
+    group;
+    while (i < 9) {
+        group = BiplaneGroup.create();
+        group.position.z = -50 + 50 * (i % 3);
+        group.position.y = 50 - 25 * Math.floor(i / 3);
+        group.rotation.y = Math.PI * 0.5;
+        biGroups.add(group);
+        i += 1;
+    }
+    // adjusting scale of main biplane group group
+    biGroups.scale.set(0.25, 0.25, 0.25);
+    // higher alt of main group
+    biGroups.position.y = 7;
+
+
     //******** **********
     // A SEQ FOR TEXT CUBE
     //******** **********
@@ -177,10 +208,39 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+
+
+        biGroups.children.forEach(function (biGroup) {
+
+
+biGroup.position.x = 0;
+biGroup.position.y = 7;
+biGroup.userData.pps = 0;
+biGroup.userData.active = true;
+
+            BiplaneGroup.update(biGroup, 1 / 30);
+
+
+/*
+            if (!biGroup.userData.active) {
+                biGroup.position.x = -200;
+                biGroup.userData.pps = 0; //32 + Math.round(64 * Math.random());
+                biGroup.userData.active = true;
+            } else {
+                biGroup.position.x += biGroup.userData.pps * ( 1 / 30);
+                if (biGroup.position.x >= 200) {
+                    biGroup.userData.active = false;
+                }
+            }
+*/
+        });
+
+
             ObjectGridWrap.setPos(grid, ( 1 - seq.per ) * 2, 0 );
             ObjectGridWrap.update(grid);
             textCube.visible = false;
-            camera.position.set(8, 5, 0);
+            camera.position.set(15, 15, 15);
         },
         afterObjects: function(seq){
         },
@@ -193,22 +253,14 @@ VIDEO.init = function(sm, scene, camera){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
-                    camera.lookAt(0, 5, 0);
+                    camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 3,
+                secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8 + 2 * partPer, 5 + 5 * partPer, 10 * partPer);
-                    camera.lookAt(0, 5 - 5 * partPer, 0);
-                }
-            },
-            {
-                secs: 24,
-                update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(10, 10, 10);
+                    camera.position.set(15, 15, 15);
                     camera.lookAt(0, 0, 0);
                 }
             }
