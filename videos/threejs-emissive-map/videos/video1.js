@@ -159,6 +159,14 @@ VIDEO.init = function(sm, scene, camera){
     grid.userData.minB = 0.25;
     scene.add(grid);
 
+    var setGridemissiveIntensity = function(emissiveIntensity){
+        emissiveIntensity = emissiveIntensity || 0;
+        grid.children.forEach(function(g){
+             g.children.forEach(function(child){
+                 child.material.emissiveIntensity = emissiveIntensity;
+             })
+        });
+    };
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -204,6 +212,7 @@ VIDEO.init = function(sm, scene, camera){
             dl.intensity = 0;
             al.intensity = 0;
 
+            setGridemissiveIntensity(1);
 
             ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
             ObjectGridWrap.update(grid);
@@ -256,13 +265,36 @@ VIDEO.init = function(sm, scene, camera){
             },
             // sq 3 - hold at corner
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(12, 12, 12);
                     camera.lookAt(0, -2, 0);
                 }
-            }
+            },
+            // sq 4 - move camera lower intensity
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+
+                    setGridemissiveIntensity(1 - partPer);
+
+                    // camera
+                    camera.position.set(12 - 24 * partPer, 12, 12);
+                    camera.lookAt(0, -2, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    dl.intensity = 0.35 * partPer;
+                    al.intensity = 0.10 * partPer;
+                    setGridemissiveIntensity(0);
+                    // camera
+                    camera.position.set(-12, 12, 12);
+                    camera.lookAt(0, -2, 0);
+                }
+            },
         ]
     });
 
