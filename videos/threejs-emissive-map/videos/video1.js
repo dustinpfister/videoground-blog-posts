@@ -52,41 +52,66 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
     // emmisve map textures
-    var palette = [
-        [0,0,0,255],        // 0 - black
-        [255,255,255,255],  // 1 - white
-        [128,0,0,255],      // 2 - red
-        [255,0,0,255],      // 3 - red
+    var data_square = [
+        3,3,2,1,1,2,3,3,
+        3,2,1,1,1,1,2,3,
+        2,1,0,0,0,0,1,2,
+        1,1,0,0,0,0,1,1,
+        1,1,0,0,0,0,1,1,
+        2,1,0,0,0,0,1,2,
+        3,2,1,1,1,1,2,3,
+        3,3,2,1,1,2,3,3
     ];
     // square
-    var texture_square = datatex.fromPXDATA([
-        3,2,2,2,2,2,2,3,
-        2,0,0,0,0,0,0,2,
-        2,0,0,0,0,0,0,2,
-        2,0,0,0,0,0,0,2,
-        2,0,0,0,0,0,0,2,
-        2,0,0,0,0,0,0,2,
-        2,0,0,0,0,0,0,2,
-        3,2,2,2,2,2,2,3
-    ], 8, palette);
+    var texture_square = datatex.fromPXDATA(data_square, 8, [
+        [0,0,0,255],
+        [32,32,32,255],
+        [64,64,64,255],
+        [128,128,128,255],
+    ]);
+    var texture_square_cyan = datatex.fromPXDATA(data_square, 8, [
+        [0,0,0,255],
+        [0,32,32,255],
+        [0,64,64,255],
+        [0,128,128,255],
+    ]);
+    var texture_square_red = datatex.fromPXDATA(data_square, 8, [
+        [0,0,0,255],
+        [32,0,0,255],
+        [64,0,0,255],
+        [128,0,0,255],
+    ]);
+    var texture_square_green = datatex.fromPXDATA(data_square, 8, [
+        [0,0,0,255],
+        [0,32,0,255],
+        [0,64,0,255],
+        [0,128,0,255],
+    ]);
+    var texture_square_blue = datatex.fromPXDATA(data_square, 8, [
+        [0,0,0,255],
+        [0,0,32,255],
+        [0,0,64,255],
+        [0,0,128,255],
+    ]);
 
     //******** **********
     // GRID OPTIONS
     //******** **********
     var tw = 9,
     th = 9,
-    space = 1.5;
+    space = 2;
     // source objects
-    var mkBox = function(color, h){
+    var mkBox = function(color, h, emmisive_texture){
+        emmisive_texture = emmisive_texture || texture_square;
         var box = new THREE.Group();
-        var a = space * 0.95;
+        var a = space * 0.75;
         var mesh = new THREE.Mesh(
             new THREE.BoxGeometry( a, h, a),
             new THREE.MeshStandardMaterial({ 
                 color: color,
                 map: texture_rnd1,
                 emissive: new THREE.Color('white'),
-                emissiveMap: texture_square,
+                emissiveMap: emmisive_texture,
                 emissiveIntensity: 1}) );
         mesh.position.y = h / 2;
         //mesh.rotation.y = Math.PI / 180 * 20 * -1;
@@ -99,10 +124,10 @@ VIDEO.init = function(sm, scene, camera){
         return box;
     };
     var array_source_objects = [
-        mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 3.00),
-        mkBox(0xffff00, 2.25),
-        mkBox(0x00ff00, 1.00)
+        mkBox(0x00ffff, 0.25, texture_square_cyan),
+        mkBox(0xff0000, 4.75, texture_square_red),
+        mkBox(0x00ff00, 3.50, texture_square_green),
+        mkBox(0x0000ff, 1.25, texture_square_blue)
     ];
 
     var array_oi = [
@@ -215,7 +240,7 @@ VIDEO.init = function(sm, scene, camera){
                     var v2 = new THREE.Vector3(12, 12, 12);
                     //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.position.copy(v1).lerp(v2, partPer);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, -2 * partPer, 0);
                 }
             },
             // s1 2 - lights out
@@ -226,7 +251,7 @@ VIDEO.init = function(sm, scene, camera){
                     al.intensity = 0.25 -  0.25 * partPer;
                     // camera
                     camera.position.set(12, 12, 12);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, -2, 0);
                 }
             },
             // sq 3 - hold at corner
@@ -235,7 +260,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(12, 12, 12);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, -2, 0);
                 }
             }
         ]
