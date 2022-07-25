@@ -51,6 +51,24 @@ VIDEO.init = function(sm, scene, camera){
     // TEXTURES
     //******** **********
     var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
+    // emmisve map textures
+    var palette = [
+        [0,0,0,255],        // 0 - black
+        [255,255,255,255],  // 1 - white
+        [128,0,0,255],      // 2 - red
+        [255,0,0,255],      // 3 - red
+    ];
+    // square
+    var texture_square = datatex.fromPXDATA([
+        3,2,2,2,2,2,2,3,
+        2,0,0,0,0,0,0,2,
+        2,0,0,0,0,0,0,2,
+        2,0,0,0,0,0,0,2,
+        2,0,0,0,0,0,0,2,
+        2,0,0,0,0,0,0,2,
+        2,0,0,0,0,0,0,2,
+        3,2,2,2,2,2,2,3
+    ], 8, palette);
 
     //******** **********
     // GRID OPTIONS
@@ -64,7 +82,12 @@ VIDEO.init = function(sm, scene, camera){
         var a = space * 0.95;
         var mesh = new THREE.Mesh(
             new THREE.BoxGeometry( a, h, a),
-            new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1 }) );
+            new THREE.MeshStandardMaterial({ 
+                color: color,
+                map: texture_rnd1,
+                emissive: new THREE.Color('white'),
+                emissiveMap: texture_square,
+                emissiveIntensity: 1}) );
         mesh.position.y = h / 2;
         //mesh.rotation.y = Math.PI / 180 * 20 * -1;
         var ground = new THREE.Mesh(
