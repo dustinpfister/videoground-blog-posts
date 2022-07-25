@@ -17,7 +17,9 @@
 * () embed in post
 
 ### () - video1 for threejs-emissive-map
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
+* () use just data textures to create textures for emissive maps
+
 * () upload to youtube
 * () embed in post
 

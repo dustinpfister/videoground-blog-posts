@@ -41,9 +41,11 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // LIGHT
     //******** **********
-    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    var dl = new THREE.DirectionalLight(0xffffff, 0);
     dl.position.set(2, 1, 3);
     scene.add(dl);
+    var al = new THREE.AmbientLight(0xffffff, 0);
+    scene.add(al);
 
     //******** **********
     // TEXTURES
@@ -75,9 +77,9 @@ VIDEO.init = function(sm, scene, camera){
     };
     var array_source_objects = [
         mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 6.00),
-        mkBox(0xffff00, 3.50),
-        mkBox(0x00ff00, 1.50)
+        mkBox(0xff0000, 3.00),
+        mkBox(0xffff00, 2.25),
+        mkBox(0x00ff00, 1.00)
     ];
 
     var array_oi = [
@@ -150,6 +152,11 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
+            // defualt light intensity for al and dl is 0
+            dl.intensity = 0;
+            al.intensity = 0;
+
+
             ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
             ObjectGridWrap.update(grid);
 
@@ -159,9 +166,13 @@ VIDEO.init = function(sm, scene, camera){
         afterObjects: function(seq){
         },
         objects: [
+            // sq 0 - text cube
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
+                    // start out with light intensity high for directional and ambient light
+                    dl.intensity = 1;
+                    al.intensity = 0.25;
                     // textcube
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
@@ -170,9 +181,12 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // sq 1 - fast move to corver
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
+                    dl.intensity = 1;
+                    al.intensity = 0.25;
                     // camera
                     var v1 = new THREE.Vector3(8, 1, 0);
                     var v2 = new THREE.Vector3(12, 12, 12);
@@ -181,6 +195,18 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // s1 2 - lights out
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    dl.intensity = 1 - partPer;
+                    al.intensity = 0.25 -  0.25 * partPer;
+                    // camera
+                    camera.position.set(12, 12, 12);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq 3 - hold at corner
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
