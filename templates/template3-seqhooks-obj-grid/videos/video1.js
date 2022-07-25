@@ -6,7 +6,7 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube.js',
    '../../../js/sequences-hooks-r1.js',
    '../../../js/datatex.js',
-   '../../../js/object-grid-wrap-r1.js'
+   '../../../js/object-grid-wrap-r2-with-opacity2.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -29,7 +29,7 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['templae3', 64, 17, 14, 'white'],
+            ['template3', 64, 17, 14, 'white'],
             ['', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
             ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
@@ -100,10 +100,13 @@ VIDEO.init = function(sm, scene, camera){
         th: th,
         //aOpacity: 1.25,
         dAdjust: 1.25,
-        effects: ['opacity', 'scale', 'rotationB'],
+        effects: ['opacity2', 'scale', 'rotationB'],
         sourceObjects: array_source_objects,
         objectIndices: array_oi
     });
+    // minB value can be used to adjust min distance for opacity drop off
+    // when it comes to using the opacity2 effect
+    grid.userData.minB = 0.25;
     scene.add(grid);
 
 

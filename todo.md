@@ -7,12 +7,12 @@
 
 * (done) add biplane group module for video
 * (done) have camera open at location 15, 15, 15
-* () also move textcube as needed
-* () have at least 3 or more biplane groups
-* () many camera angles moving around the mian biplane group at center
+* (done) also move textcube as needed
+* (done) have at least 3 or more biplane groups
+* (done) many camera angles moving around the mian biplane group at center
+* (done) export to raw video file
+* (done) create final video file
 
-* () export to raw video file
-* () create final video file
 * () upload to youtube
 * () embed in post
 
