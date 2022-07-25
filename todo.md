@@ -16,6 +16,11 @@
 * () upload to youtube
 * () embed in post
 
+### () - video1 for threejs-emissive-map
+* () start video folder and a video1 file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * (done) use new sin-grid plug in for the video
@@ -98,11 +103,6 @@ let material = new THREE.MeshStandardMaterial({
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-emissive-map
-* () start video folder and a video1 file
 * () upload to youtube
 * () embed in post
 
