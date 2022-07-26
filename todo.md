@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - video1 for threejs-examples-position-things-to-sphere-surface
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-examples-biplane-group
 * (done) start video folder and a video1 file
 
@@ -12,13 +19,6 @@
 * (done) many camera angles moving around the mian biplane group at center
 * (done) export to raw video file
 * (done) create final video file
-
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-emissive-map
-* (done) start video folder and a video1 file
-* () use just data textures to create textures for emissive maps
 
 * () upload to youtube
 * () embed in post
@@ -99,8 +99,6 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - threejs-edges-geometry
 
-### () - threejs-emissive-map
-
 ### () - video1 for threejs-materials
 * () start video folder and a video1 file
 * () export to raw video file
@@ -140,7 +138,6 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-menus
 
-### () - video1 for threejs-examples-position-things-to-sphere-surface
 
 ### () - video1 for threejs-examples-scene-shake
 * () start video folder and a video1 file
@@ -164,6 +161,12 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( 07/25/2022 ) - video1 for threejs-emissive-map
+* (done) start video folder and a video1 file
+* (done) use just data textures to create textures for emissive maps
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 07/22/2022 ) - video1 for threejs-capsule-geometry
 * (done) start video folder and a video1 file
