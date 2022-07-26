@@ -131,14 +131,6 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - video1 for threejs-examples-menus
 
-
-### () - video1 for threejs-examples-scene-shake
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples-sphere-mutate
 
 ### () - video1 for threejs-examples-tool-source-layer-3d
