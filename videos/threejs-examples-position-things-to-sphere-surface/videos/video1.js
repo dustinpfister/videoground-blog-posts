@@ -57,23 +57,29 @@ VIDEO.init = function(sm, scene, camera){
         return group;
     };
 
+
+    var updateSphereGroup = function(group, per, update){
+        var box = group.userData.box,
+        sphere = group.userData.sphere;
+        // call update method that should return a pos object with lat, long, and alt props
+        var pos = update(per, group, box, sphere);
+        pos = pos || {};
+        pos.lat === undefined ? 0 : pos.lat;
+        pos.long === undefined ? 0 : pos.long;
+        pos.alt === undefined ? 0 : pos.alt;
+        // call position to Sphere
+        SphereWrap.positionToSphere(sphere, box, pos.lat, pos.long, pos.alt);
+        if(pos.lookAt){
+            // using lookAt method to set box rotation
+            box.lookAt(sphere.position);
+        }
+    };
+
     //******** **********
     // OBJECTS
     //******** **********
     var g1 = createSphereGroup();
     scene.add(g1);
-/*
-    var sphere1 = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 30, 30),
-        new THREE.MeshNormalMaterial({wireframe: true})
-    );
-    scene.add(sphere1);
-    var box1 =  new THREE.Mesh(
-        new THREE.BoxGeometry(0.5, 0.5, 0.5),
-        new THREE.MeshNormalMaterial()
-    );
-    scene.add(box1);
-*/
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -116,6 +122,18 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
 
             // position to sphere with g1
+
+updateSphereGroup(g1, seq.per, function(per, group, box, sphere){
+    var b = 1 - Math.abs(0.5 - per) / 0.5;
+    return {
+        lat: 0.75 - 0.5 * b,
+        long: per * 4 % 1,
+        alt: 0.25,
+        lookAt: true
+    };
+});
+
+/*
             var box = g1.userData.box,
             sphere = g1.userData.sphere;
             var p = seq.per * 6 % 1,
@@ -123,6 +141,7 @@ VIDEO.init = function(sm, scene, camera){
             SphereWrap.positionToSphere(sphere, box, 0.75 - 0.5 * b, seq.per, 0.25);
             // using lookAt method to set box rotation
             box.lookAt(sphere.position);
+*/
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
