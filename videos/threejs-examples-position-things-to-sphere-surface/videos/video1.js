@@ -37,10 +37,32 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    //******** **********
+    // HELPERS
+    //******** **********
+
+    var createSphereGroup = function(){
+        var group = new THREE.Group();
+        var ud = group.userData;
+        var sphere = ud.sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(1, 30, 30),
+            new THREE.MeshNormalMaterial({wireframe: true})
+        );
+        group.add(sphere);
+        var box = ud.box = new THREE.Mesh(
+            new THREE.BoxGeometry(0.5, 0.5, 0.5),
+            new THREE.MeshNormalMaterial()
+        );
+        group.add(box);
+        return group;
+    };
 
     //******** **********
-    // MESH OBJECTS
+    // OBJECTS
     //******** **********
+    var g1 = createSphereGroup();
+    scene.add(g1);
+/*
     var sphere1 = new THREE.Mesh(
         new THREE.SphereGeometry(1, 30, 30),
         new THREE.MeshNormalMaterial({wireframe: true})
@@ -51,6 +73,7 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.MeshNormalMaterial()
     );
     scene.add(box1);
+*/
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -92,12 +115,14 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            // position to sphere
+            // position to sphere with g1
+            var box = g1.userData.box,
+            sphere = g1.userData.sphere;
             var p = seq.per * 6 % 1,
             b = 1 - Math.abs(0.5 - p) / 0.5;
-            SphereWrap.positionToSphere(sphere1, box1, 0.75 - 0.5 * b, seq.per, 0.25);
+            SphereWrap.positionToSphere(sphere, box, 0.75 - 0.5 * b, seq.per, 0.25);
             // using lookAt method to set box rotation
-            box1.lookAt(sphere1.position);
+            box.lookAt(sphere.position);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
