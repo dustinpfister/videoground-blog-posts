@@ -45,12 +45,12 @@ VIDEO.init = function(sm, scene, camera){
         var group = new THREE.Group();
         var ud = group.userData;
         var sphere = ud.sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 30, 30),
+            new THREE.SphereGeometry(1.75, 30, 30),
             new THREE.MeshNormalMaterial({wireframe: true})
         );
         group.add(sphere);
         var box = ud.box = new THREE.Mesh(
-            new THREE.BoxGeometry(0.5, 0.5, 0.5),
+            new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshNormalMaterial()
         );
         group.add(box);
@@ -70,8 +70,14 @@ VIDEO.init = function(sm, scene, camera){
         // call position to Sphere
         SphereWrap.positionToSphere(sphere, box, pos.lat, pos.long, pos.alt);
         if(pos.lookAt){
-            // using lookAt method to set box rotation
-            box.lookAt(sphere.position);
+            if(pos.lookAt === 1){
+                box.lookAt(sphere.position);
+            }
+            if(pos.lookAt === 2){
+                var v = new THREE.Vector3();
+                sphere.getWorldPosition(v);
+                box.lookAt(v);
+            }
         }
     };
 
@@ -121,27 +127,21 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            // position to sphere with g1
-
-updateSphereGroup(g1, seq.per, function(per, group, box, sphere){
-    var b = 1 - Math.abs(0.5 - per) / 0.5;
-    return {
-        lat: 0.75 - 0.5 * b,
-        long: per * 4 % 1,
-        alt: 0.25,
-        lookAt: true
-    };
-});
-
-/*
-            var box = g1.userData.box,
-            sphere = g1.userData.sphere;
-            var p = seq.per * 6 % 1,
-            b = 1 - Math.abs(0.5 - p) / 0.5;
-            SphereWrap.positionToSphere(sphere, box, 0.75 - 0.5 * b, seq.per, 0.25);
-            // using lookAt method to set box rotation
-            box.lookAt(sphere.position);
-*/
+            // update g1
+            updateSphereGroup(g1, seq.per, function(per, group, box, sphere){
+                var b = 1 - Math.abs(0.5 - per) / 0.5;
+                return {
+                    lat: 0.75 - 0.5 * b,
+                    long: per * 4 % 1,
+                    alt: 0.5,
+                    lookAt: 2
+                };
+            });
+            var r = Math.PI * 2 * seq.per,
+            x = Math.cos(r) * 2,
+            z = Math.sin(r) * 2;
+            g1.position.set(x, 0, z);
+            
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
@@ -165,8 +165,7 @@ updateSphereGroup(g1, seq.per, function(per, group, box, sphere){
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(8, 1, 0);
-                    var v2 = new THREE.Vector3(12, 12, 12);
-                    //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    var v2 = new THREE.Vector3(5, 5, 5);
                     camera.position.copy(v1).lerp(v2, partPer);
                     camera.lookAt(0, 0, 0);
                 }
@@ -175,7 +174,7 @@ updateSphereGroup(g1, seq.per, function(per, group, box, sphere){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(12, 12, 12);
+                    camera.position.set(5, 5, 5);
                     camera.lookAt(0, 0, 0);
                 }
             }
