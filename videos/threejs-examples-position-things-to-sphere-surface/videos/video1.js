@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../js/sphere_wrap.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -35,6 +36,21 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+
+    //******** **********
+    // MESH OBJECTS
+    //******** **********
+    var sphere1 = new THREE.Mesh(
+        new THREE.SphereGeometry(1, 30, 30),
+        new THREE.MeshNormalMaterial({wireframe: true})
+    );
+    scene.add(sphere1);
+    var box1 =  new THREE.Mesh(
+        new THREE.BoxGeometry(0.5, 0.5, 0.5),
+        new THREE.MeshNormalMaterial()
+    );
+    scene.add(box1);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -75,6 +91,14 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+            // position to sphere
+            var p = seq.per * 6 % 1,
+            b = 1 - Math.abs(0.5 - p) / 0.5;
+            SphereWrap.positionToSphere(sphere1, box1, 0.75 - 0.5 * b, seq.per, 0.25);
+            // using lookAt method to set box rotation
+            box1.lookAt(sphere1.position);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
