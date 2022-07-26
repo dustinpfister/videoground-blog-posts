@@ -2,13 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-examples-position-things-to-sphere-surface
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples-biplane-group
 * (done) start video folder and a video1 file
 
@@ -161,6 +154,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 07/26/2022 ) - video1 for threejs-examples-position-things-to-sphere-surface
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( 07/25/2022 ) - video1 for threejs-emissive-map
 * (done) start video folder and a video1 file
