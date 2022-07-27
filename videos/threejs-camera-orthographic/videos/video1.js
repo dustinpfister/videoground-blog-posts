@@ -122,7 +122,7 @@ VIDEO.init = function(sm, scene, camera){
                     sm.camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - move to 5, 5, 5
+            // sq1 - move to 5, 4, 5
             {
                 secs: 1,
                 update: function(seq, partPer, partBias){
@@ -134,9 +134,9 @@ VIDEO.init = function(sm, scene, camera){
                     sm.camera.lookAt(0, 0, 0);
                 }
             },
-            // sq2 - swith between cameras
+            // sq2 - swith between cameras at fixed 5, 4, 5 location
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     var len = sm.cams.length;
@@ -144,7 +144,31 @@ VIDEO.init = function(sm, scene, camera){
                     sm.camera.position.set(5, 4, 5);
                     sm.camera.lookAt(0, 0, 0);
                 }
-            }
+            },
+            // sq3 - move to -5, 4, 5
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(5, 4, 5);
+                    var v2 = new THREE.Vector3(-5, 4, 5);
+                    sm.camera = sm.cams[1];
+                    sm.camera.position.copy(v1).lerp(v2, partPer);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq3 - move to -5, 4, -5
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(-5, 4, 5);
+                    var v2 = new THREE.Vector3(-5, 4, -5);
+                    sm.camera = sm.cams[1];
+                    sm.camera.position.copy(v1).lerp(v2, partPer);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            },
         ]
     });
 
