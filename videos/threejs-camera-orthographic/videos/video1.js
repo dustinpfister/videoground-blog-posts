@@ -147,7 +147,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var len = sm.cams.length;
-                    sm.camera = sm.cams[ Math.floor( partPer * len * 4 % len) ];
+                    sm.camera = sm.cams[ Math.floor( partPer * len * 4.5 % len) ];
                     sm.camera.position.set(5, 4, 5);
                     sm.camera.lookAt(0, 0, 0);
                 }
