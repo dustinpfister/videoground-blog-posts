@@ -4,18 +4,31 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js',
-   'cube-stack.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../../../js/datatex.js',
+   '../../../js/object-grid-wrap-r2-with-opacity2.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
  
+
+    sm.cams = [
+        camera,
+        new THREE.OrthographicCamera(-5, 5, 5, -5, 0.1, 100)
+    ];
+ 
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
+
+    // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    grid.material.linewidth = 3;
     scene.add( grid );
- 
+
+    //******** **********
     // TEXT CUBE
+    //******** **********
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
         height: 128,
@@ -26,67 +39,110 @@ VIDEO.init = function(sm, scene, camera){
             ['Orthographic', 64, 17, 14, 'white'],
             ['Camera', 64, 32, 14, 'white'],
             ['in threejs', 64, 47, 14, 'white'],
-            ['( r135 04/30/2022 )', 64, 70, 12, 'gray'],
+            ['( r135 07/27/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
 
+    //******** **********
+    // LIGHT
+    //******** **********
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, 3);
+    scene.add(dl);
 
-    // SET UP SEQ OBJECT
-    sm.seq = Sequences.create({
-        sm: sm,
-        part : [
+    // A SEQ FOR TEXT CUBE
+    var seq_textcube = seqHooks.create({
+        setPerValues: false,
+        fps: 30,
+        beforeObjects: function(seq){
+            var textCube = scene.userData.textCube;
+            textCube.rotation.y = 0;
+            textCube.position.set(6, 0.8, 0);
+            textCube.visible = false;
+            textCube.material.transparent = true;
+            textCube.material.opacity = 0.0;
+        },
+        objects: [
             {
                 per: 0,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
+                update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8, 0);
                     textCube.material.opacity = 1.0;
-                    // camera
-                    camera.position.set(8, 1, 0);
-                    camera.lookAt(0, 0, 0);
                 }
             },
             {
-                per: 0.10,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
+                per: 0.75,
+                update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
+                }
+            }
+        ]
+    });
+
+    // A MAIN SEQ OBJECT
+    var seq = scene.userData.seq = seqHooks.create({
+        fps: 30,
+        beforeObjects: function(seq){
+
+            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
+            ObjectGridWrap.update(grid);
+
+            textCube.visible = false;
+            camera.position.set(8, 1, 0);
+        },
+        afterObjects: function(seq){
+        },
+        objects: [
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // textcube
+                    if(seq.partFrame < seq.partFrameMax){
+                        seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+                    }
                     // camera
-                    camera.position.set(8, 1, 0);
                     camera.lookAt(0, 0, 0);
                 }
             },
-            // sq1 - 
             {
-                per: 0.15,
-                init: function(sm){},
-                update: function(sm, scene, camera, partPer, partBias){
+                secs: 7,
+                update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 5 * partPer, 0);
+                    var v1 = new THREE.Vector3(8, 1, 0);
+                    var v2 = new THREE.Vector3(12, 12, 12);
+                    //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.copy(v1).lerp(v2, partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 20,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(12, 12, 12);
                     camera.lookAt(0, 0, 0);
                 }
             }
         ]
     });
+
+    console.log('frameMax for main seq: ' + seq.frameMax);
+    sm.frameMax = seq.frameMax;
+
 };
 
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
-    var textCube = scene.userData.textCube;
-    textCube.rotation.y = 0;
-    textCube.position.set(8, 0.8, 0);
-    textCube.visible = false;
-    textCube.material.transparent = true;
-    textCube.material.opacity = 0.0;
-    // sequences
-    Sequences.update(sm.seq, sm);
+    var seq = scene.userData.seq;
+    seqHooks.setFrame(seq, sm.frame, sm.frameMax);
+
 };
 
