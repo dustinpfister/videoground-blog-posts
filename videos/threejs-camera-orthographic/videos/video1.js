@@ -11,12 +11,16 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
  
-
+    // CAMERAS
     sm.cams = [
         camera,
-        new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100)
+        new THREE.OrthographicCamera(-8, 8, 4, -4, 0.1, 100)
     ];
  
+    // STACK
+    var stack = CubeStack.create({gx: 7, gy: 4, boxCount: 35});
+    stack.position.set(0, 0.6, 0)
+    scene.add(stack);
 
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
@@ -124,7 +128,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(8, 1, 0);
-                    var v2 = new THREE.Vector3(5, 5, 5);
+                    var v2 = new THREE.Vector3(5, 4, 5);
                     sm.camera = sm.cams[0];
                     sm.camera.position.copy(v1).lerp(v2, partPer);
                     sm.camera.lookAt(0, 0, 0);
@@ -137,7 +141,7 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     var len = sm.cams.length;
                     sm.camera = sm.cams[ Math.floor( partPer * len * 4 % len) ];
-                    sm.camera.position.set(5, 5, 5);
+                    sm.camera.position.set(5, 4, 5);
                     sm.camera.lookAt(0, 0, 0);
                 }
             }
