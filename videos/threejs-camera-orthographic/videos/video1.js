@@ -104,8 +104,15 @@ VIDEO.init = function(sm, scene, camera){
             // camera defaults 
             sm.camera = sm.cams[0];
 
+            var cam1 = sm.cams[1];
+            cam1.left = -8;
+            cam1.right = 8;
+            cam1.top = 4;
+            cam1.bottom = -4;
+
         },
         afterObjects: function(seq){
+             sm.cams[1].updateProjectionMatrix();
         },
         objects: [
             // sq0 - textcube
@@ -157,7 +164,7 @@ VIDEO.init = function(sm, scene, camera){
                     sm.camera.lookAt(0, 0, 0);
                 }
             },
-            // sq3 - move to -5, 4, -5
+            // sq4 - move to -5, 4, -5
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -169,6 +176,52 @@ VIDEO.init = function(sm, scene, camera){
                     sm.camera.lookAt(0, 0, 0);
                 }
             },
+            // sq5 - move to 5, 0, -5
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(-5, 4, -5);
+                    var v2 = new THREE.Vector3(5, 4, -5);
+                    sm.camera = sm.cams[1];
+                    sm.camera.position.copy(v1).lerp(v2, partPer);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq6 - move to up and down
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(5, 4, -5);
+                    var v2 = new THREE.Vector3(5, -4, -5);
+                    sm.camera = sm.cams[1];
+                    sm.camera.position.copy(v1).lerp(v2, partBias);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq7 - 
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    var cam1 = sm.camera = sm.cams[1];
+                    cam1.left = -8 - 16 * partBias;
+                    cam1.right = 8 + 16 * partBias;
+                    sm.camera.lookAt(5, 4, -5);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            },
+            // sq8 - 
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    var cam1 = sm.camera = sm.cams[1];
+                    cam1.top = 4 + 8 * partBias;
+                    cam1.bottom = -4 - 8 * partBias;
+                    sm.camera.lookAt(5, 4, -5);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            }
         ]
     });
 
