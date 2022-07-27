@@ -14,7 +14,7 @@ VIDEO.init = function(sm, scene, camera){
 
     sm.cams = [
         camera,
-        new THREE.OrthographicCamera(-5, 5, 5, -5, 0.1, 100)
+        new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100)
     ];
  
 
@@ -96,11 +96,15 @@ VIDEO.init = function(sm, scene, camera){
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
-            camera.position.set(8, 1, 0);
+
+            // camera defaults 
+            sm.camera = sm.cams[0];
+
         },
         afterObjects: function(seq){
         },
         objects: [
+            // sq0 - textcube
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -109,26 +113,32 @@ VIDEO.init = function(sm, scene, camera){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
-                    camera.lookAt(0, 0, 0);
+                    sm.camera = sm.cams[0];
+                    sm.camera.position.set(8, 1, 0);
+                    sm.camera.lookAt(0, 0, 0);
                 }
             },
+            // sq1 - move to 5, 5, 5
             {
-                secs: 7,
+                secs: 1,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(8, 1, 0);
-                    var v2 = new THREE.Vector3(12, 12, 12);
-                    //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.position.copy(v1).lerp(v2, partPer);
-                    camera.lookAt(0, 0, 0);
+                    var v2 = new THREE.Vector3(5, 5, 5);
+                    sm.camera = sm.cams[0];
+                    sm.camera.position.copy(v1).lerp(v2, partPer);
+                    sm.camera.lookAt(0, 0, 0);
                 }
             },
+            // sq2 - swith between cameras
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(12, 12, 12);
-                    camera.lookAt(0, 0, 0);
+                    var len = sm.cams.length;
+                    sm.camera = sm.cams[ Math.floor( partPer * len * 4 % len) ];
+                    sm.camera.position.set(5, 5, 5);
+                    sm.camera.lookAt(0, 0, 0);
                 }
             }
         ]
