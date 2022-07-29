@@ -42,7 +42,7 @@ VIDEO.init = function(sm, scene, camera){
                 var v1 = new THREE.Vector3(-5, 0, 0),
                 v2 = new THREE.Vector3(5, 0, 0);
                 var mAlpha = ( mi + 1 ) / mArr.length;
-                var v = apLerp.lerp(v1, v2, mAlpha, { 
+                var v3 = apLerp.lerp(v1, v2, mAlpha, { 
                     getAlpha:  sinGetAlpha,
                     gaParam: {
                         piM: 2,
@@ -50,7 +50,9 @@ VIDEO.init = function(sm, scene, camera){
                         aOffset: 2 * alpha
                     }
                 });
-                m.position.copy(v);
+                var d = v3.distanceTo(new THREE.Vector3( 0, 0, 0) );
+                var v4 = v3.clone().add( new THREE.Vector3(0, 2 - 2 * gAlpha * ( d / (5 * mAlpha) ), 0) );
+                m.position.copy(  v4  );
             });
         });
     };
