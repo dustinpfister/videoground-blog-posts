@@ -6,8 +6,10 @@
 ### () - threejs-examples-aplerp
 * (done) start video folder and a video1 file
 
-* () use r0 of aplerp.js
+* (done) use r0 of aplerp.js
 * () work out a cool looping animation using the sin method demo code
+* () add to vectors also in update method maybe?
+* () see about using apLerp.lerp with camera movement
 
 * () export to raw video file
 * () create final video file
