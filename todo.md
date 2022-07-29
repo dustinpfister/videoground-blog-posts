@@ -4,7 +4,10 @@
 
 
 ### () - threejs-examples-aplerp
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
+
+* () use r0 of aplerp.js
+* () work out a cool looping animation using the sin method demo code
 
 * () export to raw video file
 * () create final video file
