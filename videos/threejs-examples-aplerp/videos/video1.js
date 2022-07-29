@@ -50,6 +50,14 @@ VIDEO.init = function(sm, scene, camera){
         i += 1;
     }
 
+    //******** **********
+    // LIGHT
+    //******** **********
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 3, 1);
+    scene.add(dl);
+
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
