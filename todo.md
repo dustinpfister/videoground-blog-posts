@@ -3,11 +3,9 @@
 <!-- Whats next -->
 
 
-<!-- NEED VIDEOGROUND r4+ done to do this!! -->
-### () - video1 for threejs-camera-orthographic
-* (done) start video folder and a video1 file
-* () base video off of the state of that cube stack animation that switches between the two cameras
-* () A FIX NEEDS TO ME MADE WHERE I CAN CHNAGE WHAT CAMERA IS USED
+### () - threejs-examples-aplerp
+* () start video folder and a video1 file
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -149,6 +147,16 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+<!-- NEED VIDEOGROUND r4+ done to do this!! -->
+### ( done 07/27/2022 ) - video1 for threejs-camera-orthographic
+* (done) start video folder and a video1 file
+* (done) base video off of the state of that cube stack animation that switches between the two cameras
+* (done) A FIX NEEDS TO ME MADE WHERE I CAN CHNAGE WHAT CAMERA IS USED
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 07/26/2022 ) - video1 for threejs-examples-position-things-to-sphere-surface
 * (done) start video folder and a video1 file
