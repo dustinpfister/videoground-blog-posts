@@ -7,8 +7,8 @@
 * (done) start video folder and a video1 file
 
 * (done) use r0 of aplerp.js
-* () work out a cool looping animation using the sin method demo code
-* () add to vectors also in update method maybe?
+* (done) work out a cool looping animation using the sin method demo code
+* (done) add to vectors also in update method maybe?
 * () see about using apLerp.lerp with camera movement
 
 * () export to raw video file

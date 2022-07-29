@@ -69,15 +69,18 @@ VIDEO.init = function(sm, scene, camera){
     var v2 = new THREE.Vector3(5, 0, 0);
     var group = new THREE.Group();
     var i = 0, len = 10;
+    var colors = [0xffffff, 0x00ff00, 0xffff00, 0x00ffff, 0xff4400, 0xff00ff];
     while(i < len){
         var per = i / len;
         var cg = new THREE.Group();
         // how many mesh objects per group
-        var ci = 0, cLen = 15, s = 0.3;
+        var ci = 0, cLen = 15, s = 0.5;
         while(ci < cLen){
             var mesh = new THREE.Mesh(
                 new THREE.BoxGeometry(s, s, s),
-                new THREE.MeshStandardMaterial({ transparent: true }) );
+                new THREE.MeshStandardMaterial({ 
+                    color: colors[ci % colors.length],
+                    transparent: true }) );
             cg.add(mesh);
             ci += 1;
         }
@@ -96,12 +99,14 @@ VIDEO.init = function(sm, scene, camera){
 
 
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#1a1a1a');
 
     // GRID
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    grid.material.linewidth = 3;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.25;
+    scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
