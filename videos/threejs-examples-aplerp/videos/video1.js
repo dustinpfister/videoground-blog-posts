@@ -35,13 +35,21 @@ VIDEO.init = function(sm, scene, camera){
 
     var update = function(group, alpha){
         // for each child group ( ch, gi )
-        group.children.forEach(function(cg, gi ){
+        group.children.forEach(function(cg, gi, gArr ){
+            var gAlpha = ( gi + 1 ) / gArr.length;
             // for each mesh of current child group (m, mi)
-            cg.children.forEach(function(m, mi, arr){
+            cg.children.forEach(function(m, mi, mArr){
                 var v1 = new THREE.Vector3(-5, 0, 0),
                 v2 = new THREE.Vector3(5, 0, 0);
-                var mAlpha = mi / arr.length;
-                var v = apLerp.lerp(v1, v2, mAlpha, { getAlpha:  sinGetAlpha } );
+                var mAlpha = ( mi + 1 ) / mArr.length;
+                var v = apLerp.lerp(v1, v2, mAlpha, { 
+                    getAlpha:  sinGetAlpha,
+                    gaParam: {
+                        piM: 2,
+                        bMulti: 0.2 - 0.199 * gAlpha, 
+                        aOffset: 2 * alpha
+                    }
+                });
                 m.position.copy(v);
             });
         });
@@ -58,7 +66,7 @@ VIDEO.init = function(sm, scene, camera){
         var per = i / len;
         var cg = new THREE.Group();
         // how many mesh objects per group
-        var ci = 0, cLen = 20, s = 0.25;
+        var ci = 0, cLen = 25, s = 0.3;
         while(ci < cLen){
             var mesh = new THREE.Mesh( new THREE.BoxGeometry(s, s, s), new THREE.MeshStandardMaterial({}) );
             cg.add(mesh);
@@ -82,9 +90,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -144,6 +152,9 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+
+            update(group, seq.per);
+
         },
         afterObjects: function(seq){
         },
@@ -163,7 +174,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8 - 3 * partPer, 1 + 4 * partPer, 5 * partPer);
+                    camera.position.set(8 + 2 * partPer, 1 + 6 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -171,7 +182,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 25,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(5, 5, 5);
+                    camera.position.set(10, 7, 10);
                     camera.lookAt(0, 0, 0);
                 }
             }
