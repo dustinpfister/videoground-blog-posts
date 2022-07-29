@@ -160,18 +160,18 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 3 * partPer, 1 + 4 * partPer, 5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 25,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(5, 5, 5);
                     camera.lookAt(0, 0, 0);
                 }
             }
