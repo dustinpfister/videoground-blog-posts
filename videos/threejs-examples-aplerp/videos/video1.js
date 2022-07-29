@@ -4,11 +4,56 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../js/aplerp-r0.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
  
+    //******** **********
+    // MATH.SIN getAlpha Method
+    //******** **********
+    var sinGetAlpha = function(state, param){
+        param.piM = param.piM === undefined ? 2 : param.piM;
+        param.bMulti = param.bMulti=== undefined ? 0.1 : param.bMulti;
+        param.aOffset = param.aOffset=== undefined ? 0.5 : param.aOffset;
+        var r = Math.PI * param.piM * state.p;
+        var b = Math.sin( r );
+        var a = state.p + b * param.bMulti;
+        // apply aOffset
+        a += param.aOffset;
+        a %= 1;
+        // clamp
+        a = a < 0 ? 0 : a;
+        a = a > 1 ? 1 : a;
+        return a;
+    };
+
+    //******** **********
+    // ADD MESH OBJECTS
+    //******** **********
+    var v1 = new THREE.Vector3(-5, 0, 0);
+    var v2 = new THREE.Vector3(5, 0, 0);
+    var i = 0, len = 10;
+    while(i < len){
+        var per = i / len;
+        var group = apLerp.createSpheresGroup({
+                v1: v1,
+                v2: v2,
+                count: 30,
+                include: true,
+                getAlpha: sinGetAlpha,
+                gaParam: {
+                    piM: 2,
+                    bMulti: 0.4 - 0.399 * per,
+                    aOffset: 0.0
+                }
+            });
+        group.position.z = -5 + 10 * per;
+        scene.add(group);
+        i += 1;
+    }
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
