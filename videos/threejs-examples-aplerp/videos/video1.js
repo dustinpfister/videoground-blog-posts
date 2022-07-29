@@ -63,6 +63,25 @@ VIDEO.init = function(sm, scene, camera){
     };
 
     //******** **********
+    // MOVE CAMERA METHOD USING APLERP
+    //******** **********
+    var moveCamera = function(camera, v1Arr, v2Arr, alpha, bMulti){
+        bMulti = bMulti === undefined ? 0.085 : bMulti;
+        alpha = alpha >= 1 ? 0.99 : alpha;
+        var v1 = (new THREE.Vector3()).fromArray(v1Arr);
+        var v2 = (new THREE.Vector3()).fromArray(v2Arr);
+        var v3 = apLerp.lerp(v1, v2, alpha, { 
+            getAlpha:  sinGetAlpha,
+            gaParam: {
+                piM: 2,
+                bMulti: bMulti, 
+                aOffset: 0.0
+            }
+        });
+        camera.position.copy(v3);
+    };
+
+    //******** **********
     // ADD MESH OBJECTS
     //******** **********
     var v1 = new THREE.Vector3(-5, 0, 0);
@@ -188,15 +207,31 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8 + 2 * partPer, 1 + 6 * partPer, 10 * partPer);
+                    moveCamera(camera, [8, 1, 0], [10, 7, 10], partPer, 0.02);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 25,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(10, 7, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    moveCamera(camera, [10, 7, 10], [-5, 0, 10], partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    moveCamera(camera, [-5, 0, 10], [-5, -5, -10], partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }
