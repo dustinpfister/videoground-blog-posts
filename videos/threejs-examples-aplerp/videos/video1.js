@@ -37,19 +37,15 @@ VIDEO.init = function(sm, scene, camera){
     var i = 0, len = 10;
     while(i < len){
         var per = i / len;
-        var group = apLerp.createSpheresGroup({
-                v1: v1,
-                v2: v2,
-                count: 30,
-                include: true,
-                getAlpha: sinGetAlpha,
-                gaParam: {
-                    piM: 2,
-                    bMulti: 0.4 - 0.399 * per,
-                    aOffset: 0.0
-                }
-            });
-        group.position.z = -5 + 10 * per;
+        var group = new THREE.Group();
+        // how many mesh objects per group
+        var ci = 0, cLen = 10, s = 0.5;
+        while(ci < cLen){
+            var mesh = new THREE.Mesh( new THREE.BoxGeometry(s, s, s), new THREE.MeshStandardMaterial({}) );
+            group.add(mesh);
+            ci += 1;
+        }
+        group.position.z = -5 + 10 * per + 0.5;
         scene.add(group);
         i += 1;
     }
