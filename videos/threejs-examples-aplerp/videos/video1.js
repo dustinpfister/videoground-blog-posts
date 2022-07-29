@@ -30,26 +30,46 @@ VIDEO.init = function(sm, scene, camera){
     };
 
     //******** **********
+    // UPDATE METHOD USING APLERP
+    //******** **********
+
+    var update = function(group, alpha){
+        // for each child group ( ch, gi )
+        group.children.forEach(function(cg, gi ){
+            // for each mesh of current child group (m, mi)
+            cg.children.forEach(function(m, mi, arr){
+                var v1 = new THREE.Vector3(-5, 0, 0),
+                v2 = new THREE.Vector3(5, 0, 0);
+                var mAlpha = mi / arr.length;
+                var v = apLerp.lerp(v1, v2, mAlpha, { getAlpha:  sinGetAlpha } );
+                m.position.copy(v);
+            });
+        });
+    };
+
+    //******** **********
     // ADD MESH OBJECTS
     //******** **********
     var v1 = new THREE.Vector3(-5, 0, 0);
     var v2 = new THREE.Vector3(5, 0, 0);
+    var group = new THREE.Group();
     var i = 0, len = 10;
     while(i < len){
         var per = i / len;
-        var group = new THREE.Group();
+        var cg = new THREE.Group();
         // how many mesh objects per group
-        var ci = 0, cLen = 10, s = 0.5;
+        var ci = 0, cLen = 20, s = 0.25;
         while(ci < cLen){
             var mesh = new THREE.Mesh( new THREE.BoxGeometry(s, s, s), new THREE.MeshStandardMaterial({}) );
-            group.add(mesh);
+            cg.add(mesh);
             ci += 1;
         }
-        group.position.z = -5 + 10 * per + 0.5;
-        scene.add(group);
+        cg.position.z = -5 + 10 * per + 0.5;
+        group.add(cg);
         i += 1;
     }
-
+    scene.add(group);
+    update(group, 0);
     //******** **********
     // LIGHT
     //******** **********
