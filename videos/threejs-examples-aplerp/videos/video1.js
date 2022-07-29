@@ -50,9 +50,12 @@ VIDEO.init = function(sm, scene, camera){
                         aOffset: 2 * alpha
                     }
                 });
+                // adding to v3 for addtional effect
                 var d = v3.distanceTo(new THREE.Vector3( 0, 0, 0) );
                 var v4 = v3.clone().add( new THREE.Vector3(0, 2 - 2 * gAlpha * ( d / (5 * mAlpha) ), 0) );
                 m.position.copy(  v4  );
+                // rotation
+                m.rotation.x = Math.PI * 0.5 * gAlpha + Math.PI * 8 * mAlpha * alpha;
             });
         });
     };
@@ -68,7 +71,7 @@ VIDEO.init = function(sm, scene, camera){
         var per = i / len;
         var cg = new THREE.Group();
         // how many mesh objects per group
-        var ci = 0, cLen = 25, s = 0.3;
+        var ci = 0, cLen = 15, s = 0.3;
         while(ci < cLen){
             var mesh = new THREE.Mesh( new THREE.BoxGeometry(s, s, s), new THREE.MeshStandardMaterial({}) );
             cg.add(mesh);
