@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - video1 for threejs-texture-loader
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-cube-texture
 * () start video folder and a video1 file
 * () export to raw video file
@@ -82,13 +89,6 @@ let material = new THREE.MeshStandardMaterial({
 ### () - threejs-edges-geometry
 
 ### () - video1 for threejs-materials
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
