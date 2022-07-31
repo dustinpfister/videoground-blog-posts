@@ -2,31 +2,17 @@
 
 <!-- Whats next -->
 
-
-### () - threejs-examples-aplerp
-* (done) start video folder and a video1 file
-
-* (done) use r0 of aplerp.js
-* (done) work out a cool looping animation using the sin method demo code
-* (done) add to vectors also in update method maybe?
-* () see about using apLerp.lerp with camera movement
-
+### () - threejs-cube-texture
+* () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
 
-### () - video1 for threejs-examples-biplane-group
-* (done) start video folder and a video1 file
-
-* (done) add biplane group module for video
-* (done) have camera open at location 15, 15, 15
-* (done) also move textcube as needed
-* (done) have at least 3 or more biplane groups
-* (done) many camera angles moving around the mian biplane group at center
-* (done) export to raw video file
-* (done) create final video file
-
+### () - threejs-buffer-geometry-loader
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
 * () upload to youtube
 * () embed in post
 
@@ -80,7 +66,6 @@ let material = new THREE.MeshStandardMaterial({
 
 <!-- FROM A-Z YEP -->
 
-### () - threejs-buffer-geometry-loader
 
 ### () - threejs-buffer-geometry-rotation
 
@@ -89,8 +74,6 @@ let material = new THREE.MeshStandardMaterial({
 ### () - threejs-camera
 
 ### () - threejs-clock
-
-### () - threejs-cube-texture
 
 ### () - threejs-dae-collada-loader
 
@@ -152,6 +135,29 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( 07/29/2022 ) - threejs-examples-aplerp
+* (done) start video folder and a video1 file
+* (done) use r0 of aplerp.js
+* (done) work out a cool looping animation using the sin method demo code
+* (done) add to vectors also in update method maybe?
+* (done) see about using apLerp.lerp with camera movement
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( 07/28/2022 ) - video1 for threejs-examples-biplane-group
+* (done) start video folder and a video1 file
+* (done) add biplane group module for video
+* (done) have camera open at location 15, 15, 15
+* (done) also move textcube as needed
+* (done) have at least 3 or more biplane groups
+* (done) many camera angles moving around the mian biplane group at center
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 <!-- NEED VIDEOGROUND r4+ done to do this!! -->
 ### ( done 07/27/2022 ) - video1 for threejs-camera-orthographic
