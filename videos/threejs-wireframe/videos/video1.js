@@ -12,11 +12,44 @@ VIDEO.init = function(sm, scene, camera){
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
+    var materials = [
+        new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true, wireframeLinewidth: 6}),
+        new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, wireframeLinewidth: 6}),
+        new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true, wireframeLinewidth: 6}),
+    ];
+
+
+    scene.overrideMaterial = null; //new THREE.MeshNormalMaterial();
+
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
+    // mesh objects
+    var w = 8, h = 4, d = 3, x = 0, y = 0, z = 0;
+    while(x < w){
+         var y = 0;
+         while(y < h){
+             var z = 0;
+             while(z < d){
+                 var mi = Math.floor( THREE.MathUtils.seededRandom() * materials.length );
+                 var mesh = new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), materials[mi] );
+                 mesh.position.set(
+                     ( ( w / 2 * -1 ) + w * ( x / w ) * 1.4 ), 
+                     ( ( h / 2 * -1 ) + h * ( y / h ) * 1.4 ), 
+                     ( ( d / 2 * -1 ) + d * ( z / d ) * 1.4 ) );
+                 scene.add(mesh);
+                 z += 1;
+             }
+             y += 1;
+         }
+         x += 1;
+    }
+
+    //var mesh = new THREE.Mesh( new THREE.BoxGeometry(4, 4, 4), materials[0] );
+    //scene.add(mesh);
+
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
