@@ -111,7 +111,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 1 * partPer, 1 + 6 * partPer, 7 * partPer);
                     var v1 = new THREE.Vector3();
                     var v2 = mesh1.position.clone();
                     camera.lookAt( v1.clone().lerp(v2, partPer) );
@@ -121,7 +121,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(7, 7, 7);
                     camera.lookAt( mesh1.position );
                 }
             }
