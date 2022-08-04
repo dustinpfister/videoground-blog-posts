@@ -3,7 +3,7 @@
 <!-- Whats next -->
 
 ### () - threejs-buffer-geometry-loader
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 
 * () have a buffer gometry file of that house model that I made
 
