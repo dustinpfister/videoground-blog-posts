@@ -112,6 +112,38 @@ VIDEO.init = function(sm, scene, camera){
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
 
+    // using BUFFER Geometry Loader
+    return new Promise(function(resolve, reject){
+        const loader = new THREE.BufferGeometryLoader();
+        // load a resource
+        loader.load(
+            // resource URL
+             //'json/foo.json',
+             videoAPI.pathJoin(sm.filePath, '../../../json/box-house-1/box-house-1-solid.json'),
+
+             // onLoad callback
+             function ( geometry ) {
+                  resolve(geometry);
+             },
+             // onProgress callback
+             function ( xhr ) {
+                 console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+             },
+             // onError callback
+             function ( err ) {
+                 reject(err)
+             }
+        );
+    }).catch(function(err){
+        console.log(err.message); // failed to fetch message
+        console.log(videoAPI);
+    }).then(function(geometry){
+        console.log('we should have geo');
+        console.log(geometry);
+        var mesh = new THREE.Mesh(geometry);
+        scene.add(mesh);
+    });
+
 };
 
 // update method for the video
