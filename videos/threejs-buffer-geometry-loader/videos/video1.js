@@ -180,7 +180,11 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     var v2 = new THREE.Vector3(1.5 - 0.5 * partPer, 2, 0);
                     camera.position.copy( v2 );
-                    camera.lookAt( mesh1.position );
+                    var v3 = new THREE.Vector3();
+                    v3.x = mesh1.position.x;
+                    v3.y = mesh1.position.y;
+                    v3.z = 5;
+                    camera.lookAt( mesh1.position.clone().lerp(v3, partPer) );
                 }
             }
         ]
