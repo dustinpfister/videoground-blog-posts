@@ -112,7 +112,9 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.lookAt(0, 0, 0);
+                    var v1 = new THREE.Vector3();
+                    var v2 = mesh1.position.clone();
+                    camera.lookAt( v1.clone().lerp(v2, partPer) );
                 }
             },
             {
@@ -120,7 +122,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 8, 8);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt( mesh1.position );
                 }
             }
         ]
@@ -157,8 +159,6 @@ VIDEO.init = function(sm, scene, camera){
         console.log(videoAPI);
  
     }).then(function(geometry){
- 
-        //console.log('demo file loader');
  
         mesh1 = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
         scene.add(mesh1);
