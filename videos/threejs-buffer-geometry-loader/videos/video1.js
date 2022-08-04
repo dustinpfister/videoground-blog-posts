@@ -96,6 +96,7 @@ VIDEO.init = function(sm, scene, camera){
         afterObjects: function(seq){
         },
         objects: [
+            // sq 0 - textcube
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -107,8 +108,9 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // sq 1 - move to 7,7,7 and look at mesh1
             {
-                secs: 2,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8 - 1 * partPer, 1 + 6 * partPer, 7 * partPer);
@@ -117,14 +119,16 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt( v1.clone().lerp(v2, partPer) );
                 }
             },
+            // sq 2 - just look at mesh 1 for a while
             {
-                secs: 5,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(7, 7, 7);
                     camera.lookAt( mesh1.position );
                 }
             },
+            // sq 3 - move in circle around house
             {
                 secs: 5,
                 update: function(seq, partPer, partBias){
@@ -137,9 +141,9 @@ VIDEO.init = function(sm, scene, camera){
                     z = Math.sin(r) * d;
                     camera.position.set(x, 7, z);
                     camera.lookAt( mesh1.position );
-
                 }
             },
+            // sq 4 - rest at 7,7,7 again
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -148,6 +152,37 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt( mesh1.position );
                 }
             },
+            // sq 5 - move in front of door
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(7, 7, 7);
+                    var v2 = new THREE.Vector3(1.5, 2, 7)
+                    camera.position.copy( v1.clone().lerp(v2, partPer) );
+                    camera.lookAt( mesh1.position );
+                }
+            },
+            // sq 6 - move into house
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v2 = new THREE.Vector3(1.5, 2, 7 - 7 * partPer);
+                    camera.position.copy( v2 );
+                    camera.lookAt( mesh1.position );
+                }
+            },
+            // sq 7 - rest in house
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v2 = new THREE.Vector3(1.5 - 0.5 * partPer, 2, 0);
+                    camera.position.copy( v2 );
+                    camera.lookAt( mesh1.position );
+                }
+            }
         ]
     });
 
