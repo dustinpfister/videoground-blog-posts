@@ -108,7 +108,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8 - 1 * partPer, 1 + 6 * partPer, 7 * partPer);
@@ -118,13 +118,36 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(7, 7, 7);
                     camera.lookAt( mesh1.position );
                 }
-            }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v3 = mesh1.position.clone();
+                    v3.y = 7;
+                    var d = camera.position.distanceTo( v3 );
+                    var r = Math.PI * 0.25 + Math.PI * 2 * partPer;
+                    var x = Math.cos(r) * d,
+                    z = Math.sin(r) * d;
+                    camera.position.set(x, 7, z);
+                    camera.lookAt( mesh1.position );
+
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(7, 7, 7);
+                    camera.lookAt( mesh1.position );
+                }
+            },
         ]
     });
 
