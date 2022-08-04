@@ -34,6 +34,13 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(3, 1, 2);
+    scene.add(dl);
+    var al = new THREE.AmbientLight(0xffffff, 0.15);
+    scene.add(al);
+
     // MESH1
     var mesh1; // to be loaded with buffer Geomerty loader at bottom of VIDEO.init
 
@@ -153,7 +160,7 @@ VIDEO.init = function(sm, scene, camera){
  
         //console.log('demo file loader');
  
-        mesh1 = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+        mesh1 = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
         scene.add(mesh1);
  
     });
