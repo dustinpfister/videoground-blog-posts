@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas.js',
    '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/sequences-hooks-r1.js',
+   '../../../js/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -222,7 +223,10 @@ VIDEO.init = function(sm, scene, camera){
  
     }).then(function(geometry){
  
-        mesh1 = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
+        //var texture = datatex.seededRandom();
+        mesh1 = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+        //    map: texture
+        }));
         scene.add(mesh1);
  
     });
