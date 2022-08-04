@@ -17,16 +17,17 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, wireframeLinewidth: 6}),
         new THREE.MeshBasicMaterial({ color: 0x00ffff, wireframe: true, wireframeLinewidth: 6}),
     ];
-
-
-    scene.overrideMaterial = null; //new THREE.MeshNormalMaterial();
-
-    // GRID
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
+    var material_normal = new THREE.MeshNormalMaterial({wireframe: true, wireframeLinewidth: 6});
+    var material_standard = new THREE.MeshStandardMaterial({wireframe: true, wireframeLinewidth: 6});
+    scene.overrideMaterial = null;
  
-    // mesh objects
+
+    // LIGHT ( for standard material )
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, 3);
+    scene.add(dl);
+ 
+    // MESH OBJECTS
     var w = 8, h = 4, d = 3, x = 0, y = 0, z = 0;
     while(x < w){
          var y = 0;
@@ -36,7 +37,7 @@ VIDEO.init = function(sm, scene, camera){
                  var mi = Math.floor( THREE.MathUtils.seededRandom() * materials.length );
                  var mesh = new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), materials[mi] );
                  mesh.position.set(
-                     ( ( w / 2 * -1 ) + w * ( x / w ) * 1.4 ), 
+                     -1 + ( ( w / 2 * -1 ) + w * ( x / w ) * 1.4 ), 
                      ( ( h / 2 * -1 ) + h * ( y / h ) * 1.4 ), 
                      ( ( d / 2 * -1 ) + d * ( z / d ) * 1.4 ) );
                  scene.add(mesh);
@@ -46,9 +47,6 @@ VIDEO.init = function(sm, scene, camera){
          }
          x += 1;
     }
-
-    //var mesh = new THREE.Mesh( new THREE.BoxGeometry(4, 4, 4), materials[0] );
-    //scene.add(mesh);
 
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -106,6 +104,10 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+            scene.overrideMaterial = null;
+            dl.position.set(2, 1, 3);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -130,6 +132,83 @@ VIDEO.init = function(sm, scene, camera){
                     var v1 = new THREE.Vector3(8, 1, 0);
                     var v2 = new THREE.Vector3(10, 10, 10);
                     camera.position.copy( v1.clone().lerp(v2, partPer ) );
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(10, 10, 10);
+                    var v2 = new THREE.Vector3(0, 8, 10);
+                    camera.position.copy( v1.clone().lerp(v2, partPer ) );
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+
+                    scene.overrideMaterial = material_normal;
+
+                    // camera
+                    camera.position.set(0, 8, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+
+                    scene.overrideMaterial = material_normal;
+
+                    // camera
+                    camera.position.set(2 * partBias, 8, 10 - 20 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+
+                    scene.overrideMaterial = material_standard;
+
+                    // camera
+                    camera.position.set(0, 8, -10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+
+                    scene.overrideMaterial = material_standard;
+                    dl.position.set(2 - 4 * partPer, 1, 3 - 6 * partPer)
+
+                    // camera
+                    camera.position.set(0, 8, -10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+
+                    scene.overrideMaterial = null;
+
+                    // camera
+                    camera.position.set(8 * partPer, 8, -10 + 18 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+
+                    scene.overrideMaterial = null;
+
+                    // camera
+                    camera.position.set(8 + 2 * partPer, 8 + 2 * partPer, 8 + 2 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             }

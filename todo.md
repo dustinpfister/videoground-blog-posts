@@ -2,8 +2,11 @@
 
 <!-- Whats next -->
 
-### () - threejs-wireframe
-* (done) start video folder and a video1 file
+### () - threejs-buffer-geometry-loader
+* () start video folder and a video1 file
+
+* () have a buffer gometry file of that house model that I made
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -17,13 +20,6 @@
 * () embed in post
 
 ### () - threejs-cube-texture
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - threejs-buffer-geometry-loader
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -142,6 +138,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 08/03/2022 ) - threejs-wireframe
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( 07/29/2022 ) - threejs-examples-aplerp
 * (done) start video folder and a video1 file
