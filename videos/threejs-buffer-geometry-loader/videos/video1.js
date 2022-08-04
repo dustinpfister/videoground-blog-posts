@@ -34,6 +34,9 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // MESH1
+    var mesh1; // to be loaded with buffer Geomerty loader at bottom of VIDEO.init
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -73,6 +76,13 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+            // defaults for mesh1
+            mesh1.scale.set(0.5, 0.5, 0.5);
+            mesh1.rotation.x = Math.PI * 1.5;
+            mesh1.rotation.z = Math.PI;
+
+            mesh1.position.set(0, 2, 0);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -119,7 +129,7 @@ VIDEO.init = function(sm, scene, camera){
         loader.load(
             // resource URL
              //'json/foo.json',
-             videoAPI.pathJoin(sm.filePath, '../../../json/box-house-1/box-house-1-solid.json'),
+             videoAPI.pathJoin(sm.filePath, '../../../json/box-house-1/box-house-1-solid.json' ),
 
              // onLoad callback
              function ( geometry ) {
@@ -135,15 +145,19 @@ VIDEO.init = function(sm, scene, camera){
              }
         );
     }).catch(function(err){
+ 
         console.log(err.message); // failed to fetch message
         console.log(videoAPI);
+ 
     }).then(function(geometry){
-        console.log('we should have geo');
-        console.log(geometry);
-        var mesh = new THREE.Mesh(geometry);
-        scene.add(mesh);
+ 
+        //console.log('demo file loader');
+ 
+        mesh1 = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+        scene.add(mesh1);
+ 
     });
-
+ 
 };
 
 // update method for the video
