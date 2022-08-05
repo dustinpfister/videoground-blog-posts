@@ -217,15 +217,23 @@ VIDEO.init = function(sm, scene, camera){
                     var v3 = new THREE.Vector3(0, 0, 0);
                     var v4 = mesh3.position.clone();
                     camera.lookAt( v3.clone().lerp(v4, fp));
+                    //console.log(camera.position.x, camera.position.y, camera.position.z);
                 }
             },
             {
                 secs: 4,
                 update: function(seq, partPer, partBias){
-                    var v2 = mesh3.position.clone().add( new THREE.Vector3(-4, 4, -4) );
+                    var v1 = new THREE.Vector3(-4, 4, -4);
+                    var v2 = mesh3.position.clone().add( v1 );
                     // camera
-                    camera.position.copy(v2);
-                    camera.lookAt(mesh3.position.clone());
+                    //camera.position.copy(v2);
+                    //camera.lookAt(mesh3.position.clone());
+
+                    var fp = getFP(seq);
+                    // had to adjust
+                    camera.position.copy( v2.add( new THREE.Vector3(-2.2, 0, -1.2) ) );
+                    cameraKit.circleAround(camera, mesh3.position.clone(), v2, fp, 1.25);
+                    //console.log(camera.position.x, camera.position.y, camera.position.z);
                 }
             }
         ]
