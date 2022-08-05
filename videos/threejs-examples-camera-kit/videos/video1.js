@@ -25,6 +25,29 @@ VIDEO.init = function(sm, scene, camera){
         var fp = f / seq.partFrameMax;
         return fp;
     };
+
+    // ADDING SOME MESH OBJECTS
+    var material = new THREE.MeshNormalMaterial();
+    var mesh1 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        material
+    );
+    scene.add(mesh1);
+
+    var mesh2 = new THREE.Mesh(
+        new THREE.SphereGeometry(1, 20, 20),
+        material
+    );
+    mesh2.position.set(2, 0, 2);
+    scene.add(mesh2);
+
+    var mesh3 = new THREE.Mesh(
+        new THREE.ConeGeometry(0.5, 3, 20, 20),
+        material
+    );
+    mesh3.position.set(-2, 0, -2);
+    scene.add(mesh3);
+
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -146,7 +169,7 @@ VIDEO.init = function(sm, scene, camera){
                     var fp = getFP(seq);
                     // have to do this as a temp fix for r0 of camera kit
                     camera.position.set(-5, 5, -5);
-                    cameraKit.circleAround(camera, vTarget, v1, fp, 0.25);
+                    cameraKit.circleAround(camera, vTarget, v1, fp, 1.25);
                 }
             }
         ]
