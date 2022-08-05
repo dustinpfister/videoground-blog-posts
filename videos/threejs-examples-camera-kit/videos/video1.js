@@ -105,6 +105,12 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+            var b = 1 - Math.abs(0.5 - (seq.per * 4 % 1) ) / 0.5;
+            mesh3.position.y = -3 + 6 * b;
+            mesh3.rotation.x = Math.PI * 4 * seq.per;
+            mesh3.rotation.z = Math.PI * 8 * seq.per;
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
