@@ -3,7 +3,7 @@
 <!-- Whats next -->
 
 ### () - video1 for threejs-examples-camera-kit
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
