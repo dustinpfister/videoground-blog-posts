@@ -70,7 +70,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(6, 0.8 + 1 * partPer, 0.5);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                 }
@@ -144,6 +144,8 @@ VIDEO.init = function(sm, scene, camera){
                     var v1 = new THREE.Vector3(-5, 5, -5);
                     var vTarget = new THREE.Vector3(0, 0, 0);
                     var fp = getFP(seq);
+                    // have to do this as a temp fix for r0 of camera kit
+                    camera.position.set(-5, 5, -5);
                     cameraKit.circleAround(camera, vTarget, v1, fp, 0.25);
                 }
             }
