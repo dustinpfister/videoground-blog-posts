@@ -148,7 +148,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(8, 10, -8);
@@ -210,19 +210,22 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(-10, 10, 10);
-                    var v2 = mesh3.position.clone().add( new THREE.Vector3(4, 4, -4) );
+                    var v2 = mesh3.position.clone().add( new THREE.Vector3(-4, 4, -4) );
                     var fp = getFP(seq);
                     cameraKit.plainLerp(camera, v1, v2, fp);
-                    camera.lookAt(0, 0, 0);
+
+                    var v3 = new THREE.Vector3(0, 0, 0);
+                    var v4 = mesh3.position.clone();
+                    camera.lookAt( v3.clone().lerp(v4, fp));
                 }
             },
             {
-                secs: 3,
+                secs: 4,
                 update: function(seq, partPer, partBias){
-                    var v2 = mesh3.position.clone().add( new THREE.Vector3(4, 4, -4) );
+                    var v2 = mesh3.position.clone().add( new THREE.Vector3(-4, 4, -4) );
                     // camera
                     camera.position.copy(v2);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(mesh3.position.clone());
                 }
             }
         ]
