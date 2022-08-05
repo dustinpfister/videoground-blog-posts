@@ -2,11 +2,8 @@
 
 <!-- Whats next -->
 
-### () - threejs-buffer-geometry-loader
-* (done) start video folder and a video1 file
-
-* () have a buffer gometry file of that house model that I made
-
+### () - video1 for threejs-examples-camera-kit
+* () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -138,6 +135,15 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 08/04/2022 ) - threejs-buffer-geometry-loader
+* (done) start video folder and a video1 file
+* (done) have a buffer gometry file of that house model that I made
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
 
 ### ( done 08/03/2022 ) - threejs-wireframe
 * (done) start video folder and a video1 file
