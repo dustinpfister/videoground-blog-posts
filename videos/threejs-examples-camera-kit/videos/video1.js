@@ -4,7 +4,9 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/aplerp/r0/aplerp.js',
+   '../../../js/camera-kit/r0/camera-kit.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -91,18 +93,20 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    var v1 = new THREE.Vector3(8, 1, 0);
+                    var v2 = new THREE.Vector3(8, 10, -8)
+                    cameraKit.sinLerp(camera, v1, v2, partPer, { bMulti: 0.05 } );
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 10,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(8, 10, -8);
                     camera.lookAt(0, 0, 0);
                 }
             }
