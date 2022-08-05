@@ -19,6 +19,13 @@ VIDEO.init = function(sm, scene, camera){
     grid.material.linewidth = 3;
     scene.add( grid );
  
+    // temp fix for isshue with partPer value
+    var getFP = function(){
+        var f = seq.partFrame >= seq.partFrameMax ? seq.partFrameMax - 1 : seq.partFrame;
+        var fp = f / seq.partFrameMax;
+        return fp;
+    };
+ 
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
@@ -97,16 +104,36 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(8, 1, 0);
-                    var v2 = new THREE.Vector3(8, 10, -8)
-                    cameraKit.sinLerp(camera, v1, v2, partPer, { bMulti: 0.05 } );
+                    var v2 = new THREE.Vector3(8, 10, -8);
+                    var fp = getFP(seq);
+                    cameraKit.sinLerp(camera, v1, v2, fp, { bMulti: 0.05 } );
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 10,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 10, -8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 7,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(8, 10, -8);
+                    var v2 = new THREE.Vector3(-5, 5, -5);
+                    var fp = getFP(seq);
+                    cameraKit.sinLerp(camera, v1, v2, fp, { bMulti: 0.15 } );
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-5, 5, -5);
                     camera.lookAt(0, 0, 0);
                 }
             }
