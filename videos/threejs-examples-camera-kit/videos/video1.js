@@ -2,9 +2,9 @@
  
 // scripts
 VIDEO.scripts = [
-   '../../../js/canvas.js',
-   '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js'
+   '../../../js/canvas/r0/canvas.js',
+   '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
+   '../../../js/sequences-hooks/r1/sequences-hooks.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
