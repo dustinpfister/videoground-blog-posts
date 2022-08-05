@@ -2,11 +2,12 @@
  
 // scripts
 VIDEO.scripts = [
-   '../../../js/canvas.js',
-   '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js',
+   '../../../js/canvas/r0/canvas.js',
+   '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
    '../../../js/datatex.js',
-   '../../../js/object-grid-wrap-r2-with-opacity2.js'
+   '../../../js/object-grid-wrap/r2/object-grid-wrap.js',
+   '../../../js/object-grid-wrap/r2/effects/opacity2.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
