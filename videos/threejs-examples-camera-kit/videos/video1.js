@@ -159,7 +159,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 2,
+                secs: 1,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-5, 5, -5);
@@ -167,7 +167,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 10,
+                secs: 4,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(-5, 5, -5);
@@ -177,7 +177,34 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(-5, 5, -5);
                     cameraKit.circleAround(camera, vTarget, v1, fp, 1.25);
                 }
-            }
+            },
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-5, 5, -5);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(-5, 5, -5);
+                    var v2 = new THREE.Vector3(-10, 10, 10);
+                    var fp = getFP(seq);
+                    cameraKit.sinLerp(camera, v1, v2, fp, { bMulti: 0.25 } );
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-10, 10, 10);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
         ]
     });
 
