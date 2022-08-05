@@ -136,6 +136,16 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.set(-5, 5, -5);
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var v1 = new THREE.Vector3(-5, 5, -5);
+                    var vTarget = new THREE.Vector3(0, 0, 0);
+                    var fp = getFP(seq);
+                    cameraKit.circleAround(camera, vTarget, v1, fp, 0.25);
+                }
             }
         ]
     });
