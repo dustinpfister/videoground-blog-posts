@@ -2,9 +2,9 @@
  
 // scripts
 VIDEO.scripts = [
-   '../../../js/canvas.js',
-   '../../../js/canvas-text-cube.js',
-   '../../../js/sequences.js'
+   '../../../js/canvas/r0/canvas.js',
+   '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
+   '../../../js/sequences/r0/sequences.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -25,7 +25,7 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['Templae Video', 64, 17, 14, 'white'],
+            ['Template Video', 64, 17, 14, 'white'],
             ['please update', 64, 32, 14, 'white'],
             ['this text', 64, 47, 14, 'white'],
             ['( r140 mm/dd/yyyy )', 64, 70, 12, 'gray'],
