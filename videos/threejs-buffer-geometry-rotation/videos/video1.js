@@ -13,7 +13,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#00afaf', '#ffffff');
     grid.material.linewidth = 3;
     scene.add( grid );
  
@@ -48,18 +48,22 @@ VIDEO.init = function(sm, scene, camera){
     mesh2.position.set(1.5, 0, 0);
     scene.add(mesh2);
     // BOX HELPERS
-    var helper1 = new THREE.BoxHelper(mesh1);
-    scene.add(helper1);
-    var helper2 = new THREE.BoxHelper(mesh2);
-    scene.add(helper2);
+    //var helper1 = new THREE.BoxHelper(mesh1);
+    //scene.add(helper1);
+    //var helper2 = new THREE.BoxHelper(mesh2);
+    //scene.add(helper2);
     // CHILD MESH OBEJECTS
+    var childMaterial = new THREE.MeshNormalMaterial({ 
+        transparent: true,
+        opacity: 0.5
+    });
     mesh1.add( new THREE.Mesh(
         new THREE.BoxGeometry(2, 2, 2),
-		new THREE.MeshNormalMaterial()) );
+        childMaterial) );
     mesh2.add( new THREE.Mesh(
         new THREE.BoxGeometry(2, 2, 2),
-		new THREE.MeshNormalMaterial()) );
-		
+        childMaterial) );
+        
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -99,18 +103,18 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
-			
-			var rx = Math.PI * 2 * seq.per,
-			rz = Math.PI * 8 * seq.per;
-			
-			mesh1.geometry.copy( new THREE.ConeGeometry(0.25, 2, 30, 30) );
-			mesh1.geometry.rotateX( rx );
-			mesh1.geometry.rotateZ( rz );
-			helper1.update();
-			
-			mesh2.rotation.set(rx ,0, rz)
-			helper2.update();
-			
+            
+            var rx = Math.PI * 2 * seq.per,
+            rz = Math.PI * 8 * seq.per;
+            
+            mesh1.geometry.copy( new THREE.ConeGeometry(0.25, 2, 30, 30) );
+            mesh1.geometry.rotateX( rx );
+            mesh1.geometry.rotateZ( rz );
+            //helper1.update();
+            
+            mesh2.rotation.set(rx ,0, rz)
+            //helper2.update();
+            
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -137,10 +141,18 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 20,
+                secs: 15,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(4, 4, 4);
+                    camera.position.set(4 - 8 * partPer, 4 - 2 * partPer, 4);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-4, 2, 4);
                     camera.lookAt(0, 0, 0);
                 }
             }
