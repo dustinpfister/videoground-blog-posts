@@ -2,17 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-buffer-geometry-rotation
-* (done) start video folder and a video1 file
-* (done) have two mesh objects that use the cone geometry
-* (done) use the box helper for bolt mesh objects
-* (done) rotate geometry over time with one and the object as a whole with the other
-* (done) try child mesh objects as a way to show difference
-* (done) export to raw video file
-* (done) create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -138,7 +127,18 @@ let material = new THREE.MeshStandardMaterial({
 
 <!-- DONE -->
 
-### ( done 08/12/2022 ) - video1 for threejs-examples-camera-kit
+### ( done 08/08/2022 ) - threejs-buffer-geometry-rotation
+* (done) start video folder and a video1 file
+* (done) have two mesh objects that use the cone geometry
+* (done) use the box helper for bolt mesh objects
+* (done) rotate geometry over time with one and the object as a whole with the other
+* (done) try child mesh objects as a way to show difference
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 08/05/2022 ) - video1 for threejs-examples-camera-kit
 * (done) start video folder and a video1 file
 * (done) export to raw video file
 * (done) create final video file
@@ -152,7 +152,6 @@ let material = new THREE.MeshStandardMaterial({
 * (done) create final video file
 * (done) upload to youtube
 * (done) embed in post
-
 
 ### ( done 08/03/2022 ) - threejs-wireframe
 * (done) start video folder and a video1 file
