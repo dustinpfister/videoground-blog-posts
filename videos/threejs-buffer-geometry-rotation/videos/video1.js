@@ -41,13 +41,17 @@ VIDEO.init = function(sm, scene, camera){
     );
     mesh1.position.set(-1, 0, 0);
     scene.add(mesh1);
- 
     var mesh2 = new THREE.Mesh(
         new THREE.ConeGeometry(0.25, 2, 30, 30),
         new THREE.MeshNormalMaterial()
     );
     mesh2.position.set(1, 0, 0);
     scene.add(mesh2);
+    // BOX HELPERS
+    var helper1 = new THREE.BoxHelper(mesh1);
+    scene.add(helper1);
+    var helper2 = new THREE.BoxHelper(mesh2);
+    scene.add(helper2);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -88,6 +92,18 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+			
+			var rx = Math.PI * 2 * seq.per,
+			rz = Math.PI * 8 * seq.per;
+			
+			mesh1.geometry.copy( new THREE.ConeGeometry(0.25, 2, 30, 30) );
+			mesh1.geometry.rotateX( rx );
+			mesh1.geometry.rotateZ( rz );
+			helper1.update();
+			
+			mesh2.rotation.set(rx ,0, rz)
+			helper2.update();
+			
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -109,7 +125,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 4 * partPer, 1 + 3 * partPer, 4 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -117,7 +133,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(4, 4, 4);
                     camera.lookAt(0, 0, 0);
                 }
             }

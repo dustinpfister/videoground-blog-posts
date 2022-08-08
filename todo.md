@@ -4,6 +4,11 @@
 
 ### () - threejs-buffer-geometry-rotation
 * (done) start video folder and a video1 file
+
+* have two mesh objects that use the cone geometry
+* use the box helper for bolt mesh objects
+* () rotate geometry over time with one and the object as a whole with the other
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
