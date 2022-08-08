@@ -39,20 +39,27 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.ConeGeometry(0.25, 2, 30, 30),
         new THREE.MeshNormalMaterial()
     );
-    mesh1.position.set(-1, 0, 0);
+    mesh1.position.set(-1.5, 0, 0);
     scene.add(mesh1);
     var mesh2 = new THREE.Mesh(
         new THREE.ConeGeometry(0.25, 2, 30, 30),
         new THREE.MeshNormalMaterial()
     );
-    mesh2.position.set(1, 0, 0);
+    mesh2.position.set(1.5, 0, 0);
     scene.add(mesh2);
     // BOX HELPERS
     var helper1 = new THREE.BoxHelper(mesh1);
     scene.add(helper1);
     var helper2 = new THREE.BoxHelper(mesh2);
     scene.add(helper2);
-
+    // CHILD MESH OBEJECTS
+    mesh1.add( new THREE.Mesh(
+        new THREE.BoxGeometry(2, 2, 2),
+		new THREE.MeshNormalMaterial()) );
+    mesh2.add( new THREE.Mesh(
+        new THREE.BoxGeometry(2, 2, 2),
+		new THREE.MeshNormalMaterial()) );
+		
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
