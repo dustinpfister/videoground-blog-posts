@@ -2,6 +2,14 @@
 
 <!-- Whats next -->
 
+### () - video1 for threejs-buffer-geometry
+* () start video folder and a video1 file
+* () start with an example from the post
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -28,14 +36,6 @@
 
 ### () - threejs-vector3-lerp
 * () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - video1 for threejs-buffer-geometry
-* () start video folder and a video1 file
-* () start with an example from the post
 * () export to raw video file
 * () create final video file
 * () upload to youtube
