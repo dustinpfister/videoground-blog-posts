@@ -7,10 +7,9 @@
 * (done) have two mesh objects that use the cone geometry
 * (done) use the box helper for bolt mesh objects
 * (done) rotate geometry over time with one and the object as a whole with the other
-* () try child mesh objects as a way to show difference
-
-* () export to raw video file
-* () create final video file
+* (done) try child mesh objects as a way to show difference
+* (done) export to raw video file
+* (done) create final video file
 * () upload to youtube
 * () embed in post
 
