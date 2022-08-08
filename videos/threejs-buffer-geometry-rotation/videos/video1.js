@@ -34,6 +34,21 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // MESH OBJECTS
+    var mesh1 = new THREE.Mesh(
+        new THREE.ConeGeometry(0.25, 2, 30, 30),
+        new THREE.MeshNormalMaterial()
+    );
+    mesh1.position.set(-1, 0, 0);
+    scene.add(mesh1);
+ 
+    var mesh2 = new THREE.Mesh(
+        new THREE.ConeGeometry(0.25, 2, 30, 30),
+        new THREE.MeshNormalMaterial()
+    );
+    mesh2.position.set(1, 0, 0);
+    scene.add(mesh2);
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
