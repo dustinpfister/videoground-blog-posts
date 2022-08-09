@@ -4,7 +4,9 @@
 
 ### () - video1 for threejs-buffer-geometry
 * () start video folder and a video1 file
-* () start with an example from the post
+
+* () start with an example from the post such as the one on rotation
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
