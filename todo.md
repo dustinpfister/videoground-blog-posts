@@ -3,9 +3,11 @@
 <!-- Whats next -->
 
 ### () - video1 for threejs-buffer-geometry
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
 
-* () start with an example from the post such as the one on rotation
+* () have three triangle mesh objects in the scene for the sake of position, normals and uvs
+* () have a plain geometry that is being mutated over time as a kind of ground in the scene
+* () have mesh objects the outline rotation in the scene
 
 * () export to raw video file
 * () create final video file
