@@ -2,21 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-buffer-geometry
-* (done) start video folder and a video1 file
-
-* (done) have three triangle mesh objects in the scene for the sake of position, normals and uvs
-* (done) have a customTri group
-* (done) rotate each triangle in the customTri Group
-
-* () have a plain geometry that is being mutated over time as a kind of ground in the scene
-* () have mesh objects the outline rotation in the scene
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-camera-move
 * () start video folder and a video1 file
 * () export to raw video file
@@ -140,6 +125,18 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 08/10/2022 ) - video1 for threejs-buffer-geometry
+* (done) start video folder and a video1 file
+* (done) have three triangle mesh objects in the scene for the sake of position, normals and uvs
+* (done) have a customTri group
+* (done) rotate each triangle in the customTri Grou
+* (done) have a plain geometry that is being mutated over time as a kind of ground in the scene
+* (done) have mesh objects the outline rotation in the scene
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 08/08/2022 ) - threejs-buffer-geometry-rotation
 * (done) start video folder and a video1 file
