@@ -39,6 +39,9 @@ VIDEO.init = function(sm, scene, camera){
     // THREE MESH OBJECTS WITH CUSTOM GEOMETRY ( mesh1, mesh2, and mesh3 )
     //******** **********
 
+    var customTri = new THREE.Group();
+    scene.add(customTri);
+
     // mesh1 - position only with basic material
     var geometry1 = new THREE.BufferGeometry();
     var vertices = new Float32Array([
@@ -54,7 +57,7 @@ VIDEO.init = function(sm, scene, camera){
             }));
     mesh1.rotateY(Math.PI * 0.25);
     mesh1.position.x  = -1.00;
-    scene.add(mesh1);
+    customTri.add(mesh1);
 
     // mesh2 - position and normal attributes with normal material
     var geometry2 = new THREE.BufferGeometry();
@@ -74,7 +77,7 @@ VIDEO.init = function(sm, scene, camera){
             }));
     mesh2.rotateY(Math.PI * 0.25);
     mesh2.position.x  = 0.0;
-    scene.add(mesh2);
+    customTri.add(mesh2);
 
     // mesh3 - position, normal, and uv attributes using basic material with data texture for map
     var geometry3 = new THREE.BufferGeometry();
@@ -101,7 +104,7 @@ VIDEO.init = function(sm, scene, camera){
             }));
     mesh3.rotateY(Math.PI * 0.25);
     mesh3.position.x = 1;
-    scene.add(mesh3);
+    customTri.add(mesh3);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
