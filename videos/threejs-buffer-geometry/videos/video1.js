@@ -144,7 +144,9 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.BoxGeometry(2, 2, 2),
         childMaterial) );
 
+    //******** **********
     // UPDATE GEOMETRY DEMO
+    //******** **********
 
     // ADJUST PLANE POINT HELPER
 var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
@@ -170,8 +172,6 @@ scene.add(mesh6);
 // USING THE THREE.VertexNormalsHelper method
 //const helper = new THREE.VertexNormalsHelper( plane, 2, 0x00ff00, 1 );
 //scene.add(helper);
-
-
 var pos = geo6.getAttribute('position');
 var yAdjust = [];
 var i = pos.count;
@@ -179,26 +179,12 @@ while(i--){
     yAdjust.push( -1 + 2 * THREE.MathUtils.seededRandom() );
 }
 var updateGeoDemo = function(per){
-
     var a = per * 8 % 1;
-	var b = 1 - Math.abs(0.5 - a) / 0.5;
-
-	var i = pos.count;
+    var b = 1 - Math.abs(0.5 - a) / 0.5;
+    var i = pos.count;
     while(i--){
-		adjustPlanePoint(geo6, i, yAdjust[i] * b);
+        adjustPlanePoint(geo6, i, yAdjust[i] * b);
     }
-	
-	
-	/*
-	adjustPlanePoint(geo6, 0, 0);
-	adjustPlanePoint(geo6, 1, 0);
-	adjustPlanePoint(geo6, 2, 0);
-	adjustPlanePoint(geo6, 3, 0);
-	adjustPlanePoint(geo6, 4, 0)
-	adjustPlanePoint(geo6, 5, 0)
-	adjustPlanePoint(geo6, 6, 1)
-	*/
-	
 };
 updateGeoDemo(0);
 
