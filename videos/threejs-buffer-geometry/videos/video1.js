@@ -299,6 +299,24 @@ updateGeoDemo(0);
                     camera.lookAt(-1.25, 0, -6);
                 }
             },
+            // sq5 - move to view update demo
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-2, 2, -2 + 2 * partPer);
+                    camera.lookAt(-1.25 + 1.25 * partPer, 0, -6 + 9 * partPer);
+                }
+            },
+            // sq6 - view update demo
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-2, 2, 0);
+                    camera.lookAt(0, 0, 3);
+                }
+            }
         ]
     });
 
