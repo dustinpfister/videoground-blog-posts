@@ -5,7 +5,10 @@
 ### () - video1 for threejs-buffer-geometry
 * (done) start video folder and a video1 file
 
-* () have three triangle mesh objects in the scene for the sake of position, normals and uvs
+* (done) have three triangle mesh objects in the scene for the sake of position, normals and uvs
+* (done) have a customTri group
+* (done) rotate each triangle in the customTri Group
+
 * () have a plain geometry that is being mutated over time as a kind of ground in the scene
 * () have mesh objects the outline rotation in the scene
 

@@ -45,18 +45,19 @@ VIDEO.init = function(sm, scene, camera){
     // mesh1 - position only with basic material
     var geometry1 = new THREE.BufferGeometry();
     var vertices = new Float32Array([
-                -1, 0, 0,
+                0, 0, 0,
                 1, 0, 0,
-                1, 1.25, 0
+                1, 1, 0
             ]);
     geometry1.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    geometry1.translate(-0.5, 0, 0);
     var mesh1 = new THREE.Mesh(
             geometry1,
             new THREE.MeshBasicMaterial({
                 side: THREE.DoubleSide
             }));
     mesh1.rotateY(Math.PI * 0.25);
-    mesh1.position.x  = -1.00;
+    mesh1.position.x  = -1.50;
     customTri.add(mesh1);
 
     // mesh2 - position and normal attributes with normal material
@@ -70,10 +71,11 @@ VIDEO.init = function(sm, scene, camera){
     geometry2.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
     // compute vertex normals
     geometry2.computeVertexNormals();
+    geometry2.translate(-0.5, 0, 0);
     var mesh2 = new THREE.Mesh(
             geometry2,
             new THREE.MeshNormalMaterial({
-                side: THREE.FrontSide
+                side: THREE.DoubleSide
             }));
     mesh2.rotateY(Math.PI * 0.25);
     mesh2.position.x  = 0.0;
@@ -95,15 +97,16 @@ VIDEO.init = function(sm, scene, camera){
                 0, 1, 1, 0.5
             ]);
     geometry3.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+    geometry3.translate(-0.5, 0, 0);
     var texture = datatex.seededRandom(5, 5, 1, 1, 1, [128, 250]);
     var mesh3 = new THREE.Mesh(
             geometry3,
             new THREE.MeshBasicMaterial({
                 map: texture,
-                side: THREE.FrontSide
+                side: THREE.DoubleSide
             }));
     mesh3.rotateY(Math.PI * 0.25);
-    mesh3.position.x = 1;
+    mesh3.position.x = 1.5;
     customTri.add(mesh3);
 
     // A SEQ FOR TEXT CUBE
@@ -145,6 +148,10 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+			// rotate each mesh in customTri group
+			customTri.children.forEach(function(mesh, i){
+				mesh.rotation.y = Math.PI * 2 * 8 * seq.per;
+			});
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
