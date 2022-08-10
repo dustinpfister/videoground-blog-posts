@@ -211,22 +211,42 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // sq1 - move to view basic triangles
             {
-                secs: 7,
+                secs: 1,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8 - 6 * partPer, 1 + 1 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // sq2 - view basic triangles
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(2, 2, 2);
                     camera.lookAt(0, 0, 0);
                 }
-            }
+            },
+            // sq3 - move to view rotation demo
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(2 - 4 * partPer, 2, 2 - 4 * partPer);
+                    camera.lookAt(-1.25, 0, -6 * partPer);
+                }
+            },
+            // sq4 - view rotation demo
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-2, 2, -2);
+                    camera.lookAt(-1.25, 0, -6);
+                }
+            },
         ]
     });
 
