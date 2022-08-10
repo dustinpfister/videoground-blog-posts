@@ -265,7 +265,7 @@ updateGeoDemo(0);
             },
             // sq1 - move to view basic triangles
             {
-                secs: 1,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8 - 6 * partPer, 1 + 1 * partPer, 2 * partPer);
@@ -274,7 +274,7 @@ updateGeoDemo(0);
             },
             // sq2 - view basic triangles
             {
-                secs: 5,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(2, 2, 2);
@@ -283,16 +283,16 @@ updateGeoDemo(0);
             },
             // sq3 - move to view rotation demo
             {
-                secs: 1,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(2 - 4 * partPer, 2, 2 - 4 * partPer);
-                    camera.lookAt(-1.25, 0, -6 * partPer);
+                    camera.lookAt(-1.25 * partPer, 0, -6 * partPer);
                 }
             },
             // sq4 - view rotation demo
             {
-                secs: 5,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-2, 2, -2);
@@ -301,7 +301,7 @@ updateGeoDemo(0);
             },
             // sq5 - move to view update demo
             {
-                secs: 1,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-2, 2, -2 + 2 * partPer);
@@ -310,7 +310,7 @@ updateGeoDemo(0);
             },
             // sq6 - view update demo
             {
-                secs: 5,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-2, 2, 0);
