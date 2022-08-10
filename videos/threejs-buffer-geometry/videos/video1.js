@@ -1,10 +1,11 @@
-// video1 for threejs-examples-sequence-hooks
+// video1 for threejs-buffer-geometry
  
 // scripts
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -33,6 +34,74 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    //******** **********
+    // THREE MESH OBJECTS WITH CUSTOM GEOMETRY ( mesh1, mesh2, and mesh3 )
+    //******** **********
+
+    // mesh1 - position only with basic material
+    var geometry1 = new THREE.BufferGeometry();
+    var vertices = new Float32Array([
+                -1, 0, 0,
+                1, 0, 0,
+                1, 1.25, 0
+            ]);
+    geometry1.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    var mesh1 = new THREE.Mesh(
+            geometry1,
+            new THREE.MeshBasicMaterial({
+                side: THREE.DoubleSide
+            }));
+    mesh1.rotateY(Math.PI * 0.25);
+    mesh1.position.x  = -1.00;
+    scene.add(mesh1);
+
+    // mesh2 - position and normal attributes with normal material
+    var geometry2 = new THREE.BufferGeometry();
+    var vertices = new Float32Array([
+                0,0,0,
+                1,0,0,
+                1,1,0
+            ]);
+    // create position property
+    geometry2.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    // compute vertex normals
+    geometry2.computeVertexNormals();
+    var mesh2 = new THREE.Mesh(
+            geometry2,
+            new THREE.MeshNormalMaterial({
+                side: THREE.FrontSide
+            }));
+    mesh2.rotateY(Math.PI * 0.25);
+    mesh2.position.x  = 0.0;
+    scene.add(mesh2);
+
+    // mesh3 - position, normal, and uv attributes using basic material with data texture for map
+    var geometry3 = new THREE.BufferGeometry();
+    var vertices = new Float32Array([
+                0, 0, 0,
+                1, 0, 0,
+                1, 1, 0
+            ]);
+    // create position property
+    geometry3.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    // compute vertex normals
+    geometry3.computeVertexNormals();
+    // creating a uv
+    var uvs = new Float32Array([
+                0, 1, 1, 0.5
+            ]);
+    geometry3.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+    var texture = datatex.seededRandom(5, 5, 1, 1, 1, [128, 250]);
+    var mesh3 = new THREE.Mesh(
+            geometry3,
+            new THREE.MeshBasicMaterial({
+                map: texture,
+                side: THREE.FrontSide
+            }));
+    mesh3.rotateY(Math.PI * 0.25);
+    mesh3.position.x = 1;
+    scene.add(mesh3);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -94,7 +163,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 6 * partPer, 1 + 1 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -102,7 +171,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(2, 2, 2);
                     camera.lookAt(0, 0, 0);
                 }
             }
