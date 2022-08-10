@@ -109,6 +109,36 @@ VIDEO.init = function(sm, scene, camera){
     mesh3.position.x = 1.5;
     customTri.add(mesh3);
 
+    //******** **********
+    // MESH OBJECTS FOR ROTATION DEMO
+    //******** **********
+    var rotationDemo = new THREE.Group();
+    scene.add(rotationDemo); 
+    rotationDemo.position.set(-1, 0, -7);
+    var mesh4 = new THREE.Mesh(
+        new THREE.ConeGeometry(0.25, 2, 30, 30),
+        new THREE.MeshNormalMaterial()
+    );
+    mesh4.position.set(-1.5, 0, 0);
+    rotationDemo.add(mesh4);
+    var mesh5 = new THREE.Mesh(
+        new THREE.ConeGeometry(0.25, 2, 30, 30),
+        new THREE.MeshNormalMaterial()
+    );
+    mesh5.position.set(1.5, 0, 0);
+    rotationDemo.add(mesh5);
+    // CHILD MESH OBEJECTS
+    var childMaterial = new THREE.MeshNormalMaterial({ 
+        transparent: true,
+        opacity: 0.5
+    });
+    mesh4.add( new THREE.Mesh(
+        new THREE.BoxGeometry(2, 2, 2),
+        childMaterial) );
+    mesh5.add( new THREE.Mesh(
+        new THREE.BoxGeometry(2, 2, 2),
+        childMaterial) );
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -148,10 +178,22 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
-			// rotate each mesh in customTri group
-			customTri.children.forEach(function(mesh, i){
-				mesh.rotation.y = Math.PI * 2 * 8 * seq.per;
-			});
+            // rotate each mesh in customTri group
+            customTri.children.forEach(function(mesh, i){
+                mesh.rotation.y = Math.PI * 2 * 8 * seq.per;
+            });
+
+            // ROTATION OF GEOMETRY COMPARED TO MESH
+            var rx = Math.PI * 2 * seq.per,
+            rz = Math.PI * 8 * seq.per;
+            // USING COPY AND ROTATION METHODS
+            mesh4.geometry.copy( new THREE.ConeGeometry(0.25, 2, 30, 30) );
+            mesh4.geometry.rotateX( rx );
+            mesh4.geometry.rotateZ( rz );
+            // USING OBJECT3D ROTATION PROPERTY OF MESH2 to ROTATE THE MESH OBJECT
+            // RATHER THAN THE GEOMETRY
+            mesh5.rotation.set(rx ,0, rz)
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
