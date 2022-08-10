@@ -13,6 +13,11 @@ VIDEO.init = function(sm, scene, camera){
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+	dl.position.set(3, 2, 1);
+	scene.add(dl);
+
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
@@ -139,6 +144,64 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.BoxGeometry(2, 2, 2),
         childMaterial) );
 
+    // UPDATE GEOMETRY DEMO
+
+    // ADJUST PLANE POINT HELPER
+var adjustPlanePoint = function (geo, vertIndex, yAdjust) {
+    // get position and normal
+    var position = geo.getAttribute('position');
+    var normal = geo.getAttribute('normal');
+    var i = vertIndex * 3;
+    // ADJUSTING POSITION ( Y Only for now )
+    position.array[i + 1] = yAdjust;
+    position.needsUpdate = true;
+    // ADJUSTING NORMALS USING computeVertexNormals method
+    geo.computeVertexNormals();
+};
+
+var geo6 = new THREE.PlaneGeometry(5, 5, 6, 6);
+geo6.rotateX(Math.PI * 1.5);
+    var texture = datatex.seededRandom(20, 20, 1, 1, 1, [128, 250]);
+var mesh6 = new THREE.Mesh(
+        geo6,
+        new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture }));
+mesh6.position.set(0,0,4)
+scene.add(mesh6);
+// USING THE THREE.VertexNormalsHelper method
+//const helper = new THREE.VertexNormalsHelper( plane, 2, 0x00ff00, 1 );
+//scene.add(helper);
+
+
+var pos = geo6.getAttribute('position');
+var yAdjust = [];
+var i = pos.count;
+while(i--){
+    yAdjust.push( -1 + 2 * THREE.MathUtils.seededRandom() );
+}
+var updateGeoDemo = function(per){
+
+    var a = per * 8 % 1;
+	var b = 1 - Math.abs(0.5 - a) / 0.5;
+
+	var i = pos.count;
+    while(i--){
+		adjustPlanePoint(geo6, i, yAdjust[i] * b);
+    }
+	
+	
+	/*
+	adjustPlanePoint(geo6, 0, 0);
+	adjustPlanePoint(geo6, 1, 0);
+	adjustPlanePoint(geo6, 2, 0);
+	adjustPlanePoint(geo6, 3, 0);
+	adjustPlanePoint(geo6, 4, 0)
+	adjustPlanePoint(geo6, 5, 0)
+	adjustPlanePoint(geo6, 6, 1)
+	*/
+	
+};
+updateGeoDemo(0);
+
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -192,7 +255,10 @@ VIDEO.init = function(sm, scene, camera){
             mesh4.geometry.rotateZ( rz );
             // USING OBJECT3D ROTATION PROPERTY OF MESH2 to ROTATE THE MESH OBJECT
             // RATHER THAN THE GEOMETRY
-            mesh5.rotation.set(rx ,0, rz)
+            mesh5.rotation.set(rx ,0, rz);
+			
+			// update demo
+			updateGeoDemo(seq.per);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
