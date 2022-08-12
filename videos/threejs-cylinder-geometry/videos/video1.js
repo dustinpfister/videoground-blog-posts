@@ -54,43 +54,40 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // GRID OPTIONS
     //******** **********
-    var tw = 9,
-    th = 9,
-    space = 1.5;
-    // source objects
-    var mkBox = function(color, h){
-        var box = new THREE.Group();
-        var a = space * 0.95;
-        var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry( a, h, a),
-            new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1 }) );
-        mesh.position.y = h / 2;
-        //mesh.rotation.y = Math.PI / 180 * 20 * -1;
-        var ground = new THREE.Mesh(
-            new THREE.BoxGeometry( space, 0.1, space),
-            new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture_rnd1}) );
-        ground.position.y = 0.05 * -1;
-        box.add(mesh)  
-        box.add(ground);
-        return box;
-    };
+    var tw = 6,
+    th = 6,
+    space = 2.0;
+
     var array_source_objects = [
-        mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 6.00),
-        mkBox(0xffff00, 3.50),
-        mkBox(0x00ff00, 1.50)
+        // solid cylinder
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(0.5, 0.5, 4, 30, 30, false, 0, Math.PI * 2),
+            new THREE.MeshStandardMaterial({color: 0xff0000})
+        ),
+        // no caps and half
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(1.0, 1.0, 2, 30, 30, true, Math.PI, Math.PI),
+            new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, color: 0x00ff00})
+        ),
+        // cone shape
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(0, 0.5, 5, 30, 30, false, 0, Math.PI * 2),
+            new THREE.MeshStandardMaterial({ color: 0x00ffff})
+        ),
+        // cone like shape
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(0.75, 1.5, 3, 30, 30, false, 0, Math.PI * 2),
+            new THREE.MeshStandardMaterial({ color: 0xff00ff})
+        )
     ];
 
     var array_oi = [
-        0,0,0,0,0,3,3,0,0,
-        0,0,0,0,3,2,3,0,0,
-        0,0,0,3,2,3,3,0,0,
-        0,0,3,2,2,2,3,0,0,
-        0,3,2,2,1,2,3,0,0,
-        3,2,3,2,2,2,2,3,0,
-        0,3,0,3,3,3,2,3,0,
-        0,0,0,0,0,0,3,3,0,
-        0,0,0,0,0,0,0,0,0
+        0,1,2,3,4,0,
+        0,1,2,3,4,0,
+        0,1,2,3,4,0,
+        0,1,2,3,4,0,
+        0,1,2,3,4,0,
+        0,1,2,3,4,0,
     ]
     //******** **********
     // CREATE GRID
@@ -99,15 +96,14 @@ VIDEO.init = function(sm, scene, camera){
         space: space,
         tw: tw,
         th: th,
-        //aOpacity: 1.25,
         dAdjust: 1.25,
-        effects: ['opacity2', 'scale', 'rotationB'],
+        effects: ['opacity2'],
         sourceObjects: array_source_objects,
         objectIndices: array_oi
     });
     // minB value can be used to adjust min distance for opacity drop off
     // when it comes to using the opacity2 effect
-    grid.userData.minB = 0.25;
+    grid.userData.minB = 0.35;
     scene.add(grid);
 
 
@@ -118,7 +114,7 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             var textCube = scene.userData.textCube;
             textCube.rotation.y = 0;
-            textCube.position.set(6, 0.8, 0);
+            textCube.position.set(8, 0.8, 0);
             textCube.visible = false;
             textCube.material.transparent = true;
             textCube.material.opacity = 0.0;
@@ -129,7 +125,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(8, 0.8, 0);
                     textCube.material.opacity = 1.0;
                 }
             },
@@ -138,7 +134,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(8, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                 }
@@ -155,7 +151,7 @@ VIDEO.init = function(sm, scene, camera){
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
-            camera.position.set(8, 1, 0);
+            camera.position.set(10, 1, 0);
         },
         afterObjects: function(seq){
         },
@@ -175,7 +171,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var v1 = new THREE.Vector3(8, 1, 0);
+                    var v1 = new THREE.Vector3(10, 1, 0);
                     var v2 = new THREE.Vector3(12, 12, 12);
                     //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.position.copy(v1).lerp(v2, partPer);
