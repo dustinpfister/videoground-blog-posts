@@ -57,45 +57,44 @@ VIDEO.init = function(sm, scene, camera){
     var tw = 5,
     th = 5,
     space = 4.0;
-
     var array_source_objects = [
         // 0 - solid cylinder
         new THREE.Mesh(
             new THREE.CylinderGeometry(0.5, 0.5, 4, 30, 30, false, 0, Math.PI * 2),
-            new THREE.MeshStandardMaterial({color: 0xff0000})
+            new THREE.MeshStandardMaterial({color: 0xff0000, map: texture_rnd1})
         ),
         // 1 - no caps and half
         new THREE.Mesh(
             new THREE.CylinderGeometry(1.0, 1.0, 2, 30, 30, true, Math.PI, Math.PI),
-            new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, color: 0x00ff00})
+            new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, color: 0x00ff00, map: texture_rnd1})
         ),
         // 2 - cone shape
         new THREE.Mesh(
             new THREE.CylinderGeometry(0, 0.5, 5, 30, 30, false, 0, Math.PI * 2),
-            new THREE.MeshStandardMaterial({ color: 0x00ffff})
+            new THREE.MeshStandardMaterial({ color: 0x00ffff, map: texture_rnd1})
         ),
         // 3 -cone like shape
         new THREE.Mesh(
             new THREE.CylinderGeometry(0.75, 1.5, 3, 30, 30, false, 0, Math.PI * 2),
-            new THREE.MeshStandardMaterial({ color: 0xff00ff})
+            new THREE.MeshStandardMaterial({ color: 0xff00ff, map: texture_rnd1})
         ),
         // 4 - 3 sides
         new THREE.Mesh(
             new THREE.CylinderGeometry(0, 1.0, 4, 3, 3, false, 0, Math.PI * 2),
-            new THREE.MeshStandardMaterial({ color: 0xffff00})
+            new THREE.MeshStandardMaterial({ color: 0xffff00, map: texture_rnd1})
         )
     ];
-
     var array_oi = [
         0,1,2,3,4,
         0,1,2,3,4,
         0,1,2,3,4,
         0,1,2,3,4,
         0,1,2,3,4
-    ]
+    ];
 
-
-
+    //******** **********
+    // CUSTOM CYLINDER GIRD EFFECT
+    //******** **********
      ObjectGridWrap.load( {
         EFFECTS : {
             cylinder : function(grid, obj, objData, ud){
@@ -104,11 +103,12 @@ VIDEO.init = function(sm, scene, camera){
                 obj.rotation.y = Math.PI * 2 * objData.b;
 
 
+var s = 0.5 + 1 * objData.b;
+obj.scale.set(s, s, s);
+
             }
         }
     } );
-
-
 
     //******** **********
     // CREATE GRID
