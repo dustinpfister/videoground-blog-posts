@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - threejs-cylinder-geometry
+* (done) start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-camera-move
 * () start video folder and a video1 file
 * () export to raw video file
