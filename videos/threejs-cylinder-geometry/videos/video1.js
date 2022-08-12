@@ -16,9 +16,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
 
     //******** **********
     // TEXT CUBE
@@ -54,41 +54,62 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // GRID OPTIONS
     //******** **********
-    var tw = 6,
-    th = 6,
-    space = 2.0;
+    var tw = 5,
+    th = 5,
+    space = 4.0;
 
     var array_source_objects = [
-        // solid cylinder
+        // 0 - solid cylinder
         new THREE.Mesh(
             new THREE.CylinderGeometry(0.5, 0.5, 4, 30, 30, false, 0, Math.PI * 2),
             new THREE.MeshStandardMaterial({color: 0xff0000})
         ),
-        // no caps and half
+        // 1 - no caps and half
         new THREE.Mesh(
             new THREE.CylinderGeometry(1.0, 1.0, 2, 30, 30, true, Math.PI, Math.PI),
             new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, color: 0x00ff00})
         ),
-        // cone shape
+        // 2 - cone shape
         new THREE.Mesh(
             new THREE.CylinderGeometry(0, 0.5, 5, 30, 30, false, 0, Math.PI * 2),
             new THREE.MeshStandardMaterial({ color: 0x00ffff})
         ),
-        // cone like shape
+        // 3 -cone like shape
         new THREE.Mesh(
             new THREE.CylinderGeometry(0.75, 1.5, 3, 30, 30, false, 0, Math.PI * 2),
             new THREE.MeshStandardMaterial({ color: 0xff00ff})
+        ),
+        // 4 - 3 sides
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(0, 1.0, 4, 3, 3, false, 0, Math.PI * 2),
+            new THREE.MeshStandardMaterial({ color: 0xffff00})
         )
     ];
 
     var array_oi = [
-        0,1,2,3,4,0,
-        0,1,2,3,4,0,
-        0,1,2,3,4,0,
-        0,1,2,3,4,0,
-        0,1,2,3,4,0,
-        0,1,2,3,4,0,
+        0,1,2,3,4,
+        0,1,2,3,4,
+        0,1,2,3,4,
+        0,1,2,3,4,
+        0,1,2,3,4
     ]
+
+
+
+     ObjectGridWrap.load( {
+        EFFECTS : {
+            cylinder : function(grid, obj, objData, ud){
+                
+                obj.rotation.x = Math.PI * 0.5 - Math.PI * objData.b;
+                obj.rotation.y = Math.PI * 2 * objData.b;
+
+
+            }
+        }
+    } );
+
+
+
     //******** **********
     // CREATE GRID
     //******** **********
@@ -97,7 +118,7 @@ VIDEO.init = function(sm, scene, camera){
         tw: tw,
         th: th,
         dAdjust: 1.25,
-        effects: ['opacity2'],
+        effects: ['opacity2', 'cylinder'],
         sourceObjects: array_source_objects,
         objectIndices: array_oi
     });
