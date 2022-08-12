@@ -101,11 +101,8 @@ VIDEO.init = function(sm, scene, camera){
                 
                 obj.rotation.x = Math.PI * 0.5 - Math.PI * objData.b;
                 obj.rotation.y = Math.PI * 2 * objData.b;
-
-
-var s = 0.5 + 1 * objData.b;
-obj.scale.set(s, s, s);
-
+                var s = 0.5 + 1 * objData.b;
+                obj.scale.set(s, s, s);
             }
         }
     } );
@@ -127,6 +124,18 @@ obj.scale.set(s, s, s);
     grid.userData.minB = 0.35;
     scene.add(grid);
 
+
+    //******** **********
+    // SINGLE LINES
+    //******** **********
+
+var line = new THREE.LineSegments(
+    new THREE.EdgesGeometry( new THREE.CylinderGeometry(5, 5, 20, 60, 30, false, 0, Math.PI * 2) ),
+    new THREE.LineBasicMaterial({ linewidth: 6, color: 0xafafaf})
+);
+line.scale.set(4, 4, 4);
+line.rotation.z = Math.PI * 0.5;
+scene.add(line);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -168,6 +177,11 @@ obj.scale.set(s, s, s);
         fps: 30,
         beforeObjects: function(seq){
 
+
+            //line.rotation.x = Math.PI * 2 * 4 * seq.per;
+            line.rotation.y = Math.PI * 2 * 1 * seq.per;
+
+
             ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
             ObjectGridWrap.update(grid);
 
@@ -193,7 +207,7 @@ obj.scale.set(s, s, s);
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(10, 1, 0);
-                    var v2 = new THREE.Vector3(12, 12, 12);
+                    var v2 = new THREE.Vector3(8, 8, 8);
                     //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.position.copy(v1).lerp(v2, partPer);
                     camera.lookAt(0, 0, 0);
@@ -203,7 +217,7 @@ obj.scale.set(s, s, s);
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(12, 12, 12);
+                    camera.position.set(8, 8 - 8 * partPer, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
