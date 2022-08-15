@@ -54,43 +54,25 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // GRID OPTIONS
     //******** **********
-    var tw = 9,
-    th = 9,
+    var tw = 10,
+    th = 10,
     space = 1.5;
-    // source objects
-    var mkBox = function(color, h){
-        var box = new THREE.Group();
-        var a = space * 0.95;
-        var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry( a, h, a),
-            new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1 }) );
-        mesh.position.y = h / 2;
-        //mesh.rotation.y = Math.PI / 180 * 20 * -1;
-        var ground = new THREE.Mesh(
-            new THREE.BoxGeometry( space, 0.1, space),
-            new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture_rnd1}) );
-        ground.position.y = 0.05 * -1;
-        box.add(mesh)  
-        box.add(ground);
-        return box;
-    };
     var array_source_objects = [
-        mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 6.00),
-        mkBox(0xffff00, 3.50),
-        mkBox(0x00ff00, 1.50)
+        new THREE.Mesh( new THREE.SphereGeometry(0.5, 30, 30), new THREE.MeshStandardMaterial({map: texture_rnd1}) )
     ];
 
     var array_oi = [
-        0,0,0,0,0,3,3,0,0,
-        0,0,0,0,3,2,3,0,0,
-        0,0,0,3,2,3,3,0,0,
-        0,0,3,2,2,2,3,0,0,
-        0,3,2,2,1,2,3,0,0,
-        3,2,3,2,2,2,2,3,0,
-        0,3,0,3,3,3,2,3,0,
-        0,0,0,0,0,0,3,3,0,
-        0,0,0,0,0,0,0,0,0
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0
     ]
     //******** **********
     // CREATE GRID
@@ -118,7 +100,7 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             var textCube = scene.userData.textCube;
             textCube.rotation.y = 0;
-            textCube.position.set(6, 0.8, 0);
+            textCube.position.set(8, 0.8, 0);
             textCube.visible = false;
             textCube.material.transparent = true;
             textCube.material.opacity = 0.0;
@@ -129,7 +111,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(8, 0.8, 0);
                     textCube.material.opacity = 1.0;
                 }
             },
@@ -138,7 +120,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(8, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                 }
@@ -155,7 +137,7 @@ VIDEO.init = function(sm, scene, camera){
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
-            camera.position.set(8, 1, 0);
+            camera.position.set(10, 1, 0);
         },
         afterObjects: function(seq){
         },
@@ -175,7 +157,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var v1 = new THREE.Vector3(8, 1, 0);
+                    var v1 = new THREE.Vector3(10, 1, 0);
                     var v2 = new THREE.Vector3(12, 12, 12);
                     //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.position.copy(v1).lerp(v2, partPer);
