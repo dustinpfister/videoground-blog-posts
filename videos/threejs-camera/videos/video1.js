@@ -190,6 +190,7 @@ VIDEO.init = function(sm, scene, camera){
         afterObjects: function(seq){
         },
         objects: [
+            // seq0 - text cube
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -201,8 +202,9 @@ VIDEO.init = function(sm, scene, camera){
                     sm.camera.lookAt(0, 0, 0);
                 }
             },
+            // seq1 - fast move to corner
             {
-                secs: 7,
+                secs: 1,
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(10, 1, 0);
@@ -211,11 +213,30 @@ VIDEO.init = function(sm, scene, camera){
                     sm.camera.lookAt(0, 0, 0);
                 }
             },
+            // seq2 - pan from corner to corner, switching between cam0 and cam1
             {
-                secs: 20,
+                secs: 6,
                 update: function(seq, partPer, partBias){
                     // camera
-                    sm.camera.position.set(9, 9, 9);
+                    sm.camera.position.set(9 - 18 * partPer, 9, 9);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            },
+            // seq3 - cam0 muation of values
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    sm.camera.position.set(-9, 9, 9);
+                    sm.camera.lookAt(0, 0, 0);
+                }
+            },
+            // seq4 - cam1 muation of values
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    sm.camera.position.set(-9, 9, 9);
                     sm.camera.lookAt(0, 0, 0);
                 }
             }
