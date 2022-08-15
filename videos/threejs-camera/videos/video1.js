@@ -13,7 +13,7 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -89,9 +89,9 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     var tw = 10,
     th = 10,
-    space = 1.5;
+    space = 2.0;
     var array_source_objects = [
-        new THREE.Mesh( new THREE.SphereGeometry(0.5, 30, 30), new THREE.MeshStandardMaterial({map: texture_rnd1}) )
+        new THREE.Mesh( new THREE.SphereGeometry(0.75, 30, 30), new THREE.MeshStandardMaterial({map: texture_rnd1}) )
     ];
 
     var array_oi = [
@@ -192,8 +192,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(10, 1, 0);
-                    var v2 = new THREE.Vector3(12, 12, 12);
-                    //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    var v2 = new THREE.Vector3(9, 9, 9);
                     camera.position.copy(v1).lerp(v2, partPer);
                     camera.lookAt(0, 0, 0);
                 }
@@ -202,7 +201,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(12, 12, 12);
+                    camera.position.set(9, 9, 9);
                     camera.lookAt(0, 0, 0);
                 }
             }
