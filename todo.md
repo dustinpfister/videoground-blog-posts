@@ -2,8 +2,15 @@
 
 <!-- Whats next -->
 
-### () - threejs-camera-move
+### () - threejs-camera
 * () start video folder and a video1 file
+
+* () I will want to demo bolth the perspective and orthographic cameras
+* () seq1 : we are just moving and switching between perspective and orthographic
+* () seq2 : we move to a new fixed position
+* () seq3: from this fixed posiotn mutate fewild of video and so foth with perspective camera
+* () seq4: from this fixed posiiton switch to orthographic and mutate relavent values there
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
@@ -67,8 +74,6 @@ let material = new THREE.MeshStandardMaterial({
 
 
 ### () - threejs-camera-perspective
-
-### () - threejs-camera
 
 ### () - threejs-clock
 
