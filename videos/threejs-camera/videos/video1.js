@@ -217,6 +217,13 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 6,
                 update: function(seq, partPer, partBias){
+
+                    var per = seq.partFrame / ( seq.partFrameMax + 3 );
+
+                    var b = per * 4 % 1;
+
+                    sm.camera = sm.cams[ Math.floor(sm.cams.length * b) ];
+
                     // camera
                     sm.camera.position.set(9 - 18 * partPer, 9, 9);
                     sm.camera.lookAt(0, 0, 0);
