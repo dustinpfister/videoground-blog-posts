@@ -167,6 +167,10 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
+            // rotation of group
+            group.rotation.x = Math.PI / 180 * -15 + Math.PI / 180 * 30 * seq.per;
+            group.rotation.y = Math.PI * 4 * seq.per;
+
             ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
             ObjectGridWrap.update(grid);
 
