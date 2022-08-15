@@ -177,6 +177,17 @@ VIDEO.init = function(sm, scene, camera){
             // cam 0 as default
             sm.camera = sm.cams[ 0 ];
 
+
+            // defaults for cam0
+            sm.cams[0].fov = 40;
+            sm.cams[0].aspect = 854 / 480;
+
+            // defaults for cam1
+            sm.cams[1].left = -5;
+            sm.cams[1].right = 5;
+            sm.cams[1].top = 5;
+            sm.cams[1].bottom = -5;
+
             // rotation of group
             group.rotation.x = Math.PI / 180 * -15 + Math.PI / 180 * 30 * seq.per;
             group.rotation.y = Math.PI * 4 * seq.per;
@@ -188,6 +199,10 @@ VIDEO.init = function(sm, scene, camera){
             sm.camera.position.set(10, 1, 0);
         },
         afterObjects: function(seq){
+            // always call update projection matrix for bolth cameras so that value changes 
+            // made in beforeObjects hook as well as current seq take effect
+            sm.cams[0].updateProjectionMatrix();
+            sm.cams[1].updateProjectionMatrix();
         },
         objects: [
             // seq0 - text cube
@@ -233,6 +248,15 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 10,
                 update: function(seq, partPer, partBias){
+
+            var b1 = partPer;
+            var b2 = partPer;
+
+            sm.camera = sm.cams[ 0 ];
+
+            sm.cams[0].fov = 20 + 40 * b1;
+            sm.cams[0].aspect = 854 / (240 + 240 * b2);
+
                     // camera
                     sm.camera.position.set(-9, 9, 9);
                     sm.camera.lookAt(0, 0, 0);
@@ -242,6 +266,16 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 10,
                 update: function(seq, partPer, partBias){
+
+            sm.camera = sm.cams[ 1 ];
+
+            sm.cams[1].left = -5;
+            sm.cams[1].right = 5;
+
+            var s = 1 + 8 * partPer; 
+            sm.cams[1].top = s
+            sm.cams[1].bottom = s * -1;
+
                     // camera
                     sm.camera.position.set(-9, 9, 9);
                     sm.camera.lookAt(0, 0, 0);
