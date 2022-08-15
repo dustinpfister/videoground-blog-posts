@@ -16,9 +16,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
 
     //******** **********
     // TEXT CUBE
@@ -50,6 +50,31 @@ VIDEO.init = function(sm, scene, camera){
     // TEXTURES
     //******** **********
     var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
+
+    //******** **********
+    // Group
+    //******** **********
+    var group = new THREE.Group();
+    var m1 = new THREE.Mesh(
+        new THREE.SphereGeometry(1, 30, 30),
+        new THREE.MeshStandardMaterial({map: texture_rnd1}) );
+    m1.position.set(0, 0, 0);
+    group.add(m1);
+
+    var m2 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshStandardMaterial({color: 0xff0000, map: texture_rnd1}) );
+    m2.position.set(0, 0, 1.5);
+    group.add(m2);
+
+    var m3 = new THREE.Mesh(
+        new THREE.ConeGeometry(0.75, 4, 30, 30),
+        new THREE.MeshStandardMaterial({color: 0x00ff00, map: texture_rnd1}) );
+    m3.rotation.x = Math.PI * 1.5;
+    m3.position.set(0, 0, -2.0);
+    group.add(m3);
+
+    scene.add(group);
 
     //******** **********
     // GRID OPTIONS
@@ -90,6 +115,7 @@ VIDEO.init = function(sm, scene, camera){
     // minB value can be used to adjust min distance for opacity drop off
     // when it comes to using the opacity2 effect
     grid.userData.minB = 0.25;
+    grid.position.y = -2;
     scene.add(grid);
 
 
