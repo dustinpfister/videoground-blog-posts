@@ -57,7 +57,7 @@ VIDEO.init = function(sm, scene, camera){
     var group = new THREE.Group();
     var m1 = new THREE.Mesh(
         new THREE.SphereGeometry(1, 30, 30),
-        new THREE.MeshStandardMaterial({map: texture_rnd1}) );
+        new THREE.MeshStandardMaterial({color: 0xff00ff, map: texture_rnd1}) );
     m1.position.set(0, 0, 0);
     group.add(m1);
 
@@ -74,6 +74,14 @@ VIDEO.init = function(sm, scene, camera){
     m3.position.set(0, 0, -2.0);
     group.add(m3);
 
+    var m4 = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.50, 0.50, 3, 30, 30),
+        new THREE.MeshStandardMaterial({color: 0x00ffff, map: texture_rnd1}) );
+    //m4.rotation.x = Math.PI * 1.5;
+    m4.position.set(0, 1.5, 0);
+    group.add(m4);
+
+    group.scale.set(1.5, 1.5, 1.5);
     scene.add(group);
 
     //******** **********
