@@ -15,6 +15,13 @@ VIDEO.init = function(sm, scene, camera){
     // BACKGROUND
     scene.background = new THREE.Color('#000000');
 
+
+    // cams to work with
+    sm.cams = [
+        new THREE.PerspectiveCamera(40, 854 / 480, 0.1, 1000),
+        new THREE.OrthographicCamera( -5, 5, 2, -2, 1, 1000 )
+    ];
+
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     //grid.material.linewidth = 3;
@@ -167,6 +174,9 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
+            // cam 0 as default
+            sm.camera = sm.cams[ 0 ];
+
             // rotation of group
             group.rotation.x = Math.PI / 180 * -15 + Math.PI / 180 * 30 * seq.per;
             group.rotation.y = Math.PI * 4 * seq.per;
@@ -175,7 +185,7 @@ VIDEO.init = function(sm, scene, camera){
             ObjectGridWrap.update(grid);
 
             textCube.visible = false;
-            camera.position.set(10, 1, 0);
+            sm.camera.position.set(10, 1, 0);
         },
         afterObjects: function(seq){
         },
@@ -188,7 +198,7 @@ VIDEO.init = function(sm, scene, camera){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
-                    camera.lookAt(0, 0, 0);
+                    sm.camera.lookAt(0, 0, 0);
                 }
             },
             {
@@ -197,16 +207,16 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     var v1 = new THREE.Vector3(10, 1, 0);
                     var v2 = new THREE.Vector3(9, 9, 9);
-                    camera.position.copy(v1).lerp(v2, partPer);
-                    camera.lookAt(0, 0, 0);
+                    sm.camera.position.copy(v1).lerp(v2, partPer);
+                    sm.camera.lookAt(0, 0, 0);
                 }
             },
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(9, 9, 9);
-                    camera.lookAt(0, 0, 0);
+                    sm.camera.position.set(9, 9, 9);
+                    sm.camera.lookAt(0, 0, 0);
                 }
             }
         ]
