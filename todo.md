@@ -2,20 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-camera
-* () start video folder and a video1 file
-
-* () I will want to demo bolth the perspective and orthographic cameras
-* () seq1 : we are just moving and switching between perspective and orthographic
-* () seq2 : we move to a new fixed position
-* () seq3: from this fixed posiotn mutate fewild of video and so foth with perspective camera
-* () seq4: from this fixed posiiton switch to orthographic and mutate relavent values there
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -130,6 +116,18 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 08/16/2022 ) - threejs-camera
+* (done) start video folder and a video1 file
+* (done) I will want to demo bolth the perspective and orthographic cameras
+* (done) seq1 : we are just moving and switching between perspective and orthographic
+* (done) seq2 : we move to a new fixed position
+* (done) seq3: from this fixed posiotn mutate fewild of video and so foth with perspective camera
+* (done) seq4: from this fixed posiiton switch to orthographic and mutate relavent values there
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 08/12/2022 ) - threejs-cylinder-geometry
 * (done) start video folder and a video1 file
@@ -704,11 +702,6 @@ let material = new THREE.MeshStandardMaterial({
 * (done) finish video1
 * (done) upload video1 to youtube
 * (done) embed video1 into threejs-fog blog post
-
-
-
-
-
 
 ## ( done 03/11/2022 ) - lines feature, edge effect in canvas-text-cube.js;
 * (done) have a lines option for drawing custom text to a text cube
