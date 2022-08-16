@@ -25,7 +25,7 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['templae2', 64, 17, 14, 'white'],
+            ['template2', 64, 17, 14, 'white'],
             ['', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
             ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
@@ -102,7 +102,8 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    var b = seq.getSinBias(2);
+                    camera.position.set(8, 8 - 16 * b, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
