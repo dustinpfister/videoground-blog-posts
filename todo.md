@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - threejs-camera-perspective
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -57,9 +64,6 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- FROM A-Z YEP -->
-
-
-### () - threejs-camera-perspective
 
 ### () - threejs-clock
 
