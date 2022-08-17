@@ -35,13 +35,18 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(textCube);
 
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, 3);
+    scene.add(dl);
+
     // TEXTURES
-    var tex1 = datatex.seededRandom();
+    var tex1 = datatex.seededRandom(128, 128, 0, 1.0, 0.75, [120, 255]);
 
     // MESH
     var plane = new THREE.Mesh(
         new THREE.PlaneGeometry(20, 20, 1, 1), 
-        new THREE.MeshStandardMaterial({ map: tex1, color: 0x00ff00 }));
+        new THREE.MeshStandardMaterial({ map: tex1, color: 0xffffff }));
     plane.geometry.rotateX(Math.PI * 1.5)
     scene.add(plane);
 
