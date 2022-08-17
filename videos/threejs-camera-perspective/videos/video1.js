@@ -7,8 +7,18 @@ VIDEO.scripts = [
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
    '../../../js/datatex/r0/datatex.js'
 ];
+// dae files
+VIDEO.daePaths = [
+  '../../../dae/land-set-one/land-set-1a.dae'
+];
 // init
 VIDEO.init = function(sm, scene, camera){
+ 
+    console.log(VIDEO)
+    var dscene = VIDEO.daeResults[0].scene;
+    var tree1 = dscene.getObjectByName('tree-1')
+
+    console.log(tree1)
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
