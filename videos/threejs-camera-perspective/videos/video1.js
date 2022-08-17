@@ -17,17 +17,41 @@ VIDEO.init = function(sm, scene, camera){
     // DAE FILE
     var dscene = VIDEO.daeResults[0].scene;
 
-    var tree1 = dscene.getObjectByName('tree-1');
+    var sourceObj = {};
+    var tree1 = sourceObj.tree1 = dscene.getObjectByName('tree-1');
     tree1.geometry.translate(0, 0, 1.9);
     tree1.position.set(0, 0, 0);
     tree1.scale.set(0.5, 0.5, 0.5);
     //scene.add(tree1);
 
-    var tree2 = dscene.getObjectByName('tree-2');
+    var tree2 = sourceObj.tree2 =  dscene.getObjectByName('tree-2');
     tree2.geometry.translate(0, 0, 2.3);
     tree2.position.set(0, 0, 0);
     tree2.scale.set(0.5, 0.5, 0.5);
-    scene.add(tree2);
+    //scene.add(tree2);
+
+    [
+        0,1,2,2,1,0,0,1,
+        0,0,0,0,2,0,0,1,
+        0,1,0,0,0,2,0,1,
+        0,0,2,1,0,0,0,0,
+        0,0,2,2,0,0,0,0,
+        0,1,0,0,0,0,0,1,
+        0,0,0,2,0,1,2,0,
+        0,0,2,0,0,0,0,1
+    ].forEach(function(sourceIndex, i){
+        var x = i % 8,
+        z = Math.floor(i / 8);
+        // sourceIndex of 1 or higher means create a mesh there
+        if(sourceIndex > 0){
+            var mesh = sourceObj['tree' + sourceIndex].clone();
+            mesh.position.set(
+               -8 + x * (16 / 8), 
+               0, 
+               -8 + z * (16 / 8));
+            scene.add(mesh);
+        }
+    });
 
  
     // BACKGROUND
@@ -61,7 +85,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
 
     // TEXTURES
-    var tex1 = datatex.seededRandom(128, 128, 0, 1.0, 0.75, [120, 255]);
+    var tex1 = datatex.seededRandom(128, 128, 1, 1, 1, [120, 255]);
 
     // MESH
     var plane = new THREE.Mesh(
@@ -130,7 +154,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8 - 7 * partPer, 1 - 0.9 * partPer, 0);
+                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -139,7 +163,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var b = seq.getSinBias(2);
-                    camera.position.set(1, 0.1, 0);
+                    camera.position.set(8 - 16 * b, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
