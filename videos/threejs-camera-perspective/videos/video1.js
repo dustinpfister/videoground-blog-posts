@@ -14,13 +14,21 @@ VIDEO.daePaths = [
 // init
 VIDEO.init = function(sm, scene, camera){
  
-    console.log(VIDEO)
+    // DAE FILE
     var dscene = VIDEO.daeResults[0].scene;
+
     var tree1 = dscene.getObjectByName('tree-1');
     tree1.geometry.translate(0, 0, 1.9);
     tree1.position.set(0, 0, 0);
+    tree1.scale.set(0.5, 0.5, 0.5);
+    //scene.add(tree1);
 
-    scene.add(tree1);
+    var tree2 = dscene.getObjectByName('tree-2');
+    tree2.geometry.translate(0, 0, 2.3);
+    tree2.position.set(0, 0, 0);
+    tree2.scale.set(0.5, 0.5, 0.5);
+    scene.add(tree2);
+
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
