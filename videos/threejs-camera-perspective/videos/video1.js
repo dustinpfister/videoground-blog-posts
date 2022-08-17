@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -13,26 +14,36 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
         height: 128,
         lineWidth: 7,
-        lineColor: 'rgba(0,100,128,0.8)',
+        lineColor: 'rgba(0,75,100,0.8)',
         lineCount: 9,
         lines: [
-            ['Perspective Camera', 64, 17, 14, 'white'],
-            ['in', 64, 32, 14, 'white'],
-            ['threejs', 64, 47, 14, 'white'],
-            ['( r140 08/17/2022 )', 64, 70, 12, 'gray'],
+            ['Perspective Camera', 64, 17, 13, 'white'],
+            ['in', 64, 32, 12, 'white'],
+            ['threejs', 64, 47, 12, 'white'],
+            ['( r140 08/17/2022 )', 64, 70, 11, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
+
+    // TEXTURES
+    var tex1 = datatex.seededRandom();
+
+    // MESH
+    var plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(20, 20, 1, 1), 
+        new THREE.MeshStandardMaterial({ map: tex1, color: 0x00ff00 }));
+    plane.geometry.rotateX(Math.PI * 1.5)
+    scene.add(plane);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -103,7 +114,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(8, 8, 8 - 16 * b);
                     camera.lookAt(0, 0, 0);
                 }
             }
