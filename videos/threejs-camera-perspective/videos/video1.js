@@ -19,6 +19,8 @@ VIDEO.init = function(sm, scene, camera){
     var tree1 = dscene.getObjectByName('tree-1')
 
     console.log(tree1)
+
+    scene.add(tree1);
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
