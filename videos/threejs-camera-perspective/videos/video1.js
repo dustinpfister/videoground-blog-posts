@@ -132,6 +132,8 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
+            // camera defaults
+            camera.fov = 40;
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
@@ -175,7 +177,8 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(1);
+                    var b = seq.getSinBias(4);
+                    camera.fov = 40 - 35 * b;
                     camera.position.set(12, 10, 8);
                     camera.lookAt(0, 0, 0);
                 }
