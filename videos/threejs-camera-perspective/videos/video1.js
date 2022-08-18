@@ -135,8 +135,11 @@ VIDEO.init = function(sm, scene, camera){
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
+            // always update projection matrix
+            camera.updateProjectionMatrix();
         },
         objects: [
+            // seq 0 - textcube
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
@@ -148,20 +151,32 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // seq 1 - quick move to corner
             {
-                secs: 7,
+                secs: 1,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8 + 4 * partPer, 1 + 9 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
+            // seq 2 - move back and forth
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
+                    var b = seq.getSinBias(1);
                     camera.position.set(12 - 24 * b, 10, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // seq 3 - fov demo
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var b = seq.getSinBias(1);
+                    camera.position.set(12, 10, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
