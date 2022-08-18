@@ -30,6 +30,7 @@ VIDEO.init = function(sm, scene, camera){
     tree2.scale.set(0.9, 0.9, 0.9);
     //scene.add(tree2);
 
+    var w = 8, h = 8;
     [
         0,1,2,2,1,0,0,1,
         0,0,0,0,2,0,0,1,
@@ -40,15 +41,17 @@ VIDEO.init = function(sm, scene, camera){
         0,0,0,2,0,1,2,0,
         0,0,2,0,0,0,0,1
     ].forEach(function(sourceIndex, i){
-        var x = i % 8,
-        z = Math.floor(i / 8);
+        var x = i % w,
+        z = Math.floor(i / w);
         // sourceIndex of 1 or higher means create a mesh there
         if(sourceIndex > 0){
             var mesh = sourceObj['tree' + sourceIndex].clone();
             mesh.position.set(
-               -8 + x * (16 / 8), 
+               (w * -1) + x * (w * 2 / w), 
                0, 
-               -8 + z * (16 / 8));
+               (h * -1) + z * (h * 2 / h));
+            var s = 0.75 + 0.5 * THREE.MathUtils.seededRandom();
+            mesh.scale.set(s, s, s);
             scene.add(mesh);
         }
     });
