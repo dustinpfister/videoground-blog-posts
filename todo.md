@@ -3,7 +3,15 @@
 <!-- Whats next -->
 
 ### () - threejs-camera-perspective
-* () start video folder and a video1 file
+* (done) start video folder and a video1 file
+
+* () fov demo seq
+* () aspect demo seq
+* () neat far demo seq
+* () camera helper demo seq
+
+* () aspect and vof demo
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
