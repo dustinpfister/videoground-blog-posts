@@ -83,6 +83,8 @@ VIDEO.init = function(sm, scene, camera){
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(2, 1, 3);
     scene.add(dl);
+    var al = new THREE.AmbientLight(0xffffff, 0.25);
+    scene.add(al);
 
     // TEXTURES
     var tex1 = datatex.seededRandom(128, 128, 0, 1, 0.75, [120, 255]);
