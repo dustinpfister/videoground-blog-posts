@@ -54,6 +54,7 @@ VIDEO.init = function(sm, scene, camera){
                (h * -1) + z * (h * 2 / h));
             var s = 0.75 + 0.5 * THREE.MathUtils.seededRandom();
             mesh.scale.set(s, s, s);
+            mesh.rotation.z = Math.PI * 2 * THREE.MathUtils.seededRandom();
             scene.add(mesh);
         }
     });
