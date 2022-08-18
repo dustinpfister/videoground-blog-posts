@@ -16,16 +16,16 @@ VIDEO.init = function(sm, scene, camera){
  
     // DAE FILE
     var dscene = VIDEO.daeResults[0].scene;
-
     var sourceObj = {};
     var tree1 = sourceObj.tree1 = dscene.getObjectByName('tree-1');
+    //tree1.material.emissive = new THREE.Color(1, 1, 1);
+    //tree1.material.emissiveIntensity = 0.2;
     tree1.geometry.scale(1.5, 1.5, 1.5);
     tree1.geometry.translate(0, 0, 2.85);
-
     var tree2 = sourceObj.tree2 =  dscene.getObjectByName('tree-2');
     tree2.geometry.translate(0, 0, 2.3);
-
-
+ 
+    // CLONE DAE MESH OBJECTS AND ADD TO SCENE
     var w = 10, h = 10;
     [
         2,1,2,2,1,1,1,1,1,2,
@@ -54,15 +54,16 @@ VIDEO.init = function(sm, scene, camera){
             scene.add(mesh);
         }
     });
-
+ 
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xdfdfdf, 0.8);
+    dl.position.set(2, 1, 3);
+    scene.add(dl);
+    var al = new THREE.AmbientLight(0xdfdfdf, 0.25);
+    scene.add(al);
  
     // BACKGROUND
     scene.background = new THREE.Color('#00a2a2');
-
-    // GRID
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -80,13 +81,6 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
-
-    // LIGHT
-    var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
-    scene.add(dl);
-    var al = new THREE.AmbientLight(0xffffff, 0.25);
-    scene.add(al);
 
     // TEXTURES
     var tex1 = datatex.seededRandom(128, 128, 0, 1, 0.75, [120, 255]);
