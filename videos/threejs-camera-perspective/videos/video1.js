@@ -21,13 +21,13 @@ VIDEO.init = function(sm, scene, camera){
     var tree1 = sourceObj.tree1 = dscene.getObjectByName('tree-1');
     tree1.geometry.translate(0, 0, 1.9);
     tree1.position.set(0, 0, 0);
-    tree1.scale.set(0.5, 0.5, 0.5);
+    tree1.scale.set(1.5, 1.5, 1.5);
     //scene.add(tree1);
 
     var tree2 = sourceObj.tree2 =  dscene.getObjectByName('tree-2');
     tree2.geometry.translate(0, 0, 2.3);
     tree2.position.set(0, 0, 0);
-    tree2.scale.set(0.5, 0.5, 0.5);
+    tree2.scale.set(0.9, 0.9, 0.9);
     //scene.add(tree2);
 
     [
@@ -55,7 +55,7 @@ VIDEO.init = function(sm, scene, camera){
 
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#00a2a2');
 
     // GRID
     //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -85,7 +85,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
 
     // TEXTURES
-    var tex1 = datatex.seededRandom(128, 128, 1, 1, 1, [120, 255]);
+    var tex1 = datatex.seededRandom(128, 128, 0, 1, 0.75, [120, 255]);
 
     // MESH
     var plane = new THREE.Mesh(
