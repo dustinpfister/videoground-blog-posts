@@ -30,16 +30,18 @@ VIDEO.init = function(sm, scene, camera){
     tree2.scale.set(0.9, 0.9, 0.9);
     //scene.add(tree2);
 
-    var w = 8, h = 8;
+    var w = 10, h = 10;
     [
-        0,1,2,2,1,0,0,1,
-        0,0,0,0,2,0,0,1,
-        0,1,0,0,0,2,0,1,
-        0,0,2,1,0,0,0,0,
-        0,0,2,2,0,0,0,0,
-        0,1,0,0,0,0,0,1,
-        0,0,0,2,0,1,2,0,
-        0,0,2,0,0,0,0,1
+        2,1,2,2,1,1,1,1,1,2,
+        2,0,0,0,2,2,1,1,1,1,
+        0,1,0,0,0,2,2,1,0,0,
+        0,0,2,1,2,0,0,0,0,0,
+        0,0,2,2,0,0,0,0,0,0,
+        0,1,0,0,0,0,0,1,0,0,
+        0,0,0,2,1,1,2,0,2,0,
+        1,0,2,0,0,0,0,1,0,0,
+        2,2,1,0,0,2,0,0,1,2,
+        2,1,2,2,0,0,0,0,1,1
     ].forEach(function(sourceIndex, i){
         var x = i % w,
         z = Math.floor(i / w);
@@ -159,7 +161,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 + 4 * partPer, 1 + 9 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -168,7 +170,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var b = seq.getSinBias(2);
-                    camera.position.set(8 - 16 * b, 8, 8);
+                    camera.position.set(12 - 24 * b, 10, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
