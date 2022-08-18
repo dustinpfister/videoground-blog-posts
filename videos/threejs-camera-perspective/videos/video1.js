@@ -135,6 +135,8 @@ VIDEO.init = function(sm, scene, camera){
             // camera defaults
             camera.fov = 40;
             camera.aspect = 854 / 480;
+            camera.near = 0.1;
+            camera.far = 30;
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
@@ -202,6 +204,28 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     var b = seq.getSinBias(2);
                     camera.aspect = (854 + 427 * 1.5 * b) / (480 - 240 * b);
+                    camera.position.set(12, 10, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // seq 6 - far demo
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var b = seq.getSinBias(2);
+                     camera.far = 30 - 25 * b;
+                    camera.position.set(12, 10, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            // seq 7 - near demo
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var b = seq.getSinBias(2);
+                     camera.near = 0.1 + 24.9 * b;
                     camera.position.set(12, 10, 8);
                     camera.lookAt(0, 0, 0);
                 }

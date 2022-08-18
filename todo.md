@@ -5,8 +5,8 @@
 ### () - threejs-camera-perspective
 * (done) start video folder and a video1 file
 
-* () fov demo seq
-* () aspect demo seq
+* (done) fov demo seq
+* (done) aspect demo seq
 * () neat far demo seq
 * () camera helper demo seq
 
