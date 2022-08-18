@@ -55,6 +55,12 @@ VIDEO.init = function(sm, scene, camera){
         }
     });
  
+    // Camera helper
+    var helperCam = new THREE.PerspectiveCamera();
+    var helper = new THREE.CameraHelper(helperCam);
+    helper.visible = false;
+    scene.add(helper);
+ 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xdfdfdf, 0.8);
     dl.position.set(2, 1, 3);
@@ -138,6 +144,11 @@ VIDEO.init = function(sm, scene, camera){
             camera.near = 0.1;
             camera.far = 30;
             camera.position.set(8, 1, 0);
+            // camera helper defaults
+            helper.visible = false;
+            helper.material.transparent = true;
+            helper.material.linewidth = 6;
+            helper.material.opacity = 0;
         },
         afterObjects: function(seq){
             // always update projection matrix
@@ -177,7 +188,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             // seq 3 - fov demo
             {
-                secs: 5,
+                secs: 4,
                 update: function(seq, partPer, partBias){
                     // camera
                     var b = seq.getSinBias(4);
@@ -225,11 +236,33 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var b = seq.getSinBias(2);
-                     camera.near = 0.1 + 24.9 * b;
+                    camera.near = 0.1 + 24.9 * b;
                     camera.position.set(12, 10, 8);
                     camera.lookAt(0, 0, 0);
                 }
+            },
+            // seq 8 - camera helper
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(12 - 24 * partPer, 10, 8);
+                    camera.lookAt(12 * partPer, 10 * partPer, 8 * partPer);
+                    // helper and helper cam
+                    helper.visible = true;
+                    helper.material.opacity = partPer;
+                    helperCam.fov = camera.fov;
+                    helperCam.aspect = camera.aspect;
+                    helperCam.near = camera.near;
+                    helperCam.far = camera.far;
+                    helperCam.updateProjectionMatrix();
+                    helperCam.position.set(12, 10, 8);
+                    helperCam.lookAt(0, 0, 0);
+
+                }
             }
+
+
         ]
     });
 
