@@ -19,16 +19,12 @@ VIDEO.init = function(sm, scene, camera){
 
     var sourceObj = {};
     var tree1 = sourceObj.tree1 = dscene.getObjectByName('tree-1');
-    tree1.geometry.translate(0, 0, 1.9);
-    tree1.position.set(0, 0, 0);
-    tree1.scale.set(1.5, 1.5, 1.5);
-    //scene.add(tree1);
+    tree1.geometry.scale(1.5, 1.5, 1.5);
+    tree1.geometry.translate(0, 0, 2.85);
 
     var tree2 = sourceObj.tree2 =  dscene.getObjectByName('tree-2');
     tree2.geometry.translate(0, 0, 2.3);
-    tree2.position.set(0, 0, 0);
-    tree2.scale.set(0.9, 0.9, 0.9);
-    //scene.add(tree2);
+
 
     var w = 10, h = 10;
     [
