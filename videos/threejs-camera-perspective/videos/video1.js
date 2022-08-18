@@ -91,12 +91,19 @@ VIDEO.init = function(sm, scene, camera){
     // TEXTURES
     var tex1 = datatex.seededRandom(128, 128, 0, 1, 0.75, [120, 255]);
 
-    // MESH
+    // PLANE MESH
     var plane = new THREE.Mesh(
         new THREE.PlaneGeometry(20, 20, 1, 1), 
         new THREE.MeshStandardMaterial({ map: tex1, color: 0xffffff }));
     plane.geometry.rotateX(Math.PI * 1.5)
     scene.add(plane);
+
+    var sphereMaterial = new THREE.MeshBasicMaterial({wireframe: true, wireframeLinewidth : 6, color: 0x008a8a})
+    var sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(20, 30, 30),
+        sphereMaterial
+    );
+    scene.add(sphere);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({

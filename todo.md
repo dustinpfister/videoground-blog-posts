@@ -8,7 +8,7 @@
 * (done) fov demo seq
 * (done) aspect demo seq
 * (done) near far demo seq
-* () camera helper demo seq
+* (done) camera helper demo seq
 
 * () export to raw video file
 * () create final video file
