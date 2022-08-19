@@ -21,9 +21,9 @@ VIDEO.init = function(sm, scene, camera){
     //tree1.material.emissive = new THREE.Color(1, 1, 1);
     //tree1.material.emissiveIntensity = 0.2;
     tree1.geometry.scale(1.5, 1.5, 1.5);
-    tree1.geometry.translate(0, 0, 2.85);
+    tree1.geometry.translate(0, 2.8, 0);
     var tree2 = sourceObj.tree2 =  dscene.getObjectByName('tree-2');
-    tree2.geometry.translate(0, 0, 2.3);
+    tree2.geometry.translate(0, 1.9, 0);
  
     // CLONE DAE MESH OBJECTS AND ADD TO SCENE
     var w = 10, h = 10;
@@ -50,7 +50,7 @@ VIDEO.init = function(sm, scene, camera){
                (h * -1) + z * (h * 2 / h));
             var s = 0.75 + 0.5 * THREE.MathUtils.seededRandom();
             mesh.scale.set(s, s, s);
-            mesh.rotation.z = Math.PI * 2 * THREE.MathUtils.seededRandom();
+            mesh.rotation.y = Math.PI * 2 * THREE.MathUtils.seededRandom();
             scene.add(mesh);
         }
     });
