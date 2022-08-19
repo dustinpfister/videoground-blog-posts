@@ -2,19 +2,6 @@
 
 <!-- Whats next -->
 
-### () - threejs-camera-perspective
-* (done) start video folder and a video1 file
-
-* (done) fov demo seq
-* (done) aspect demo seq
-* (done) near far demo seq
-* (done) camera helper demo seq
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -79,13 +66,6 @@ let material = new THREE.MeshStandardMaterial({
 
 ### () - threejs-edges-geometry
 
-### () - video1 for threejs-materials
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-examples
 
 ### () - video1 for threejs-examples-build-a-box
@@ -122,10 +102,28 @@ let material = new THREE.MeshStandardMaterial({
 * () upload to youtube
 * () embed in post
 
+### () - video1 for threejs-materials
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 <!--  TRAFFIC -->
 
 
 <!-- DONE -->
+
+### ( done 08/18/2022 ) - threejs-camera-perspective
+* (done) start video folder and a video1 file
+* (done) fov demo seq
+* (done) aspect demo seq
+* (done) near far demo seq
+* (done) camera helper demo seq
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 08/16/2022 ) - threejs-camera
 * (done) start video folder and a video1 file
