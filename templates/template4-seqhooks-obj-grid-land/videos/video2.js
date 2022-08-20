@@ -40,7 +40,7 @@ VIDEO.init = function(sm, scene, camera){
             ['', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
             ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
-            ['video1', 64, 100, 10, 'gray']
+            ['video2', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
@@ -58,7 +58,6 @@ VIDEO.init = function(sm, scene, camera){
         tw: 14,
         th: 14,
         crackSize: 0,
-        //effects:[],
         altitude: [
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,1,1,1,0,0,0,1,1,1,1,0,
@@ -98,26 +97,77 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // ADDING CHILD MESH OBJECTS FOR GRID WRAP LAND
     //******** **********
+
     var mkCone = function(height){
         return new THREE.Mesh(
             new THREE.ConeGeometry(0.5, height, 30, 30),
             new THREE.MeshStandardMaterial({color: new THREE.Color('#00ff88')})
         );
     };
+
+    var dscene = VIDEO.daeResults[0].scene;
+    var sourceObj = {};
+    var tree1 = sourceObj.tree1 = dscene.getObjectByName('tree-1');
+    tree1.geometry.translate(0, -1, 0);
+    //tree1.geometry.scale(1, -0.25, -2.25);
+
+    var box = new THREE.Box3();
+    tree1.geometry.computeBoundingBox();
+    var bb = tree1.geometry.boundingBox
+    console.log(bb.max.x.toFixed(2), bb.max.y.toFixed(2), bb.max.z.toFixed(2));
+
+    var cone1 = mkCone(1);
+    cone1.geometry.computeBoundingBox();
+    var bb = cone1.geometry.boundingBox
+    console.log(bb.max.x.toFixed(2), bb.max.y.toFixed(2), bb.max.z.toFixed(2));
+
+
+    //tree1.geometry.scale(1.5, 1.5, 1.5);
+    //tree1.geometry.translate(0, 2.8, 0);
+
+    var tree2 = sourceObj.tree2 =  dscene.getObjectByName('tree-2');
+    //tree2.geometry.translate(0, 1.7, 0);
+
+    var tree3 = sourceObj.tree3 = dscene.getObjectByName('tree-3');
+    //tree3.geometry.scale(1.1, 1.1, 1.1);
+    //tree3.geometry.translate(0, 3.5, 0);
+
     // can make another system that involves a grid if index values
     // but with child objects
+/*
     var mkMeshFunctions = [
         null,
         function(){
-            return mkCone(2)
-        },
-        function(){
-            return mkCone(3)
-        },
-        function(){
             return mkCone(4)
+        },
+        function(){
+            return mkCone(7)
+        },
+        function(){
+            return mkCone(10)
         }
     ];
+*/
+
+    var mkMeshFunctions = [
+        null,
+        function(){
+            var mesh = tree1.clone();
+            mesh.material = tree1.material.clone();
+            return mesh;
+        },
+        function(){
+            var mesh = tree1.clone();
+            mesh.material = tree1.material.clone();
+            return mesh;
+        },
+        function(){
+            var mesh = tree1.clone();
+            mesh.material = tree1.material.clone();
+            return mesh;
+        }
+    ];
+
     // object index grid
     [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -138,9 +188,11 @@ VIDEO.init = function(sm, scene, camera){
         var mkMesh = mkMeshFunctions[objIndex];
         if(mkMesh){
             var mesh = mkMesh(),
-            x = i % grid.userData.tw,
-            y = Math.floor(i / grid.userData.tw)
+            x = i % grid.userData.tw;
+            y = Math.floor(i / grid.userData.tw);
+            // using add at method
             ObjectGridWrapLand.addAt(grid, mesh, x, y);
+            //mesh.position.y = 0;
         }
     });
     //******** **********
