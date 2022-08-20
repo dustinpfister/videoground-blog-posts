@@ -108,7 +108,7 @@ VIDEO.init = function(sm, scene, camera){
     var dscene = VIDEO.daeResults[0].scene;
     var sourceObj = {};
     var tree1 = sourceObj.tree1 = dscene.getObjectByName('tree-1');
-    tree1.geometry.translate(0, -1, 0);
+    //tree1.geometry.translate(0, -1, 0);
     //tree1.geometry.scale(1, -0.25, -2.25);
 
     var box = new THREE.Box3();
@@ -157,13 +157,13 @@ VIDEO.init = function(sm, scene, camera){
             return mesh;
         },
         function(){
-            var mesh = tree1.clone();
-            mesh.material = tree1.material.clone();
+            var mesh = tree2.clone();
+            mesh.material = tree2.material.clone();
             return mesh;
         },
         function(){
-            var mesh = tree1.clone();
-            mesh.material = tree1.material.clone();
+            var mesh = tree3.clone();
+            mesh.material = tree3.material.clone();
             return mesh;
         }
     ];
@@ -192,7 +192,7 @@ VIDEO.init = function(sm, scene, camera){
             y = Math.floor(i / grid.userData.tw);
             // using add at method
             ObjectGridWrapLand.addAt(grid, mesh, x, y);
-            //mesh.position.y = 0;
+            mesh.position.y = 0;
         }
     });
     //******** **********
