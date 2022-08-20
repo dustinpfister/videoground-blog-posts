@@ -224,7 +224,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 24,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(14, 14, 14);
+                    camera.position.set(14 - 28 * partPer, 14, 14);
                     camera.lookAt(0, 0, 0);
                 }
             }
