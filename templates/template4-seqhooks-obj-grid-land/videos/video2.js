@@ -23,9 +23,10 @@ VIDEO.daePaths = [
 //******** **********
 VIDEO.init = function(sm, scene, camera){
     //******** **********
-    // BACKGROUND
+    // BACKGROUND, FOG
     //******** **********
-    scene.background = new THREE.Color('#008a8a');
+    scene.background = new THREE.Color('#ffffff');
+    scene.fog = new THREE.FogExp2(new THREE.Color('#ffffff'), 0.05);
     //******** **********
     // TEXT CUBE
     //******** **********
