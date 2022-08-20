@@ -108,6 +108,7 @@ VIDEO.init = function(sm, scene, camera){
     var dscene = VIDEO.daeResults[0].scene;
     var sourceObj = {};
     var tree1 = sourceObj.tree1 = dscene.getObjectByName('tree-1');
+    tree1.position.set(0, 0, 0);
     //tree1.geometry.translate(0, -1, 0);
     //tree1.geometry.scale(1, -0.25, -2.25);
 
@@ -126,9 +127,11 @@ VIDEO.init = function(sm, scene, camera){
     //tree1.geometry.translate(0, 2.8, 0);
 
     var tree2 = sourceObj.tree2 =  dscene.getObjectByName('tree-2');
+    tree2.position.set(0, 0, 0);
     //tree2.geometry.translate(0, 1.7, 0);
 
     var tree3 = sourceObj.tree3 = dscene.getObjectByName('tree-3');
+    tree3.position.set(0, 0, 0);
     //tree3.geometry.scale(1.1, 1.1, 1.1);
     //tree3.geometry.translate(0, 3.5, 0);
 
@@ -170,20 +173,20 @@ VIDEO.init = function(sm, scene, camera){
 
     // object index grid
     [
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,2,0,0,0,0,0,0,0,1,0,0,
-        0,0,1,0,0,0,3,0,0,1,2,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,1,0,1,1,0,0,
-        0,0,0,1,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,1,0,1,2,1,0,0,
-        0,0,2,0,0,0,0,0,0,2,0,0,0,0,
+        3,2,0,0,2,0,2,0,0,2,2,0,0,3,
+        2,2,0,2,3,0,0,0,0,2,0,1,0,2,
+        0,0,1,0,0,0,3,0,0,1,2,0,2,2,
+        0,0,0,3,0,0,0,0,0,0,2,2,0,0,
+        0,0,0,0,0,0,0,0,1,2,1,1,2,0,
+        0,0,0,1,0,0,0,0,0,3,2,0,0,0,
+        0,0,0,0,0,0,0,1,3,1,2,1,2,0,
+        0,0,2,0,0,0,0,0,0,2,0,0,3,0,
         0,0,0,1,0,0,0,2,1,0,1,1,0,0,
         0,0,1,0,0,0,0,1,0,1,3,3,0,1,
         0,1,0,1,0,1,2,0,1,2,1,1,2,0,
         0,0,0,0,2,0,0,1,0,3,1,1,0,0,
         0,1,0,1,0,1,0,0,0,1,2,3,1,1,
-        0,0,0,0,0,0,0,0,0,0,1,0,1,0
+        3,0,0,0,0,0,0,0,0,0,1,0,1,3
     ].forEach(function(objIndex, i){
         var mkMesh = mkMeshFunctions[objIndex];
         if(mkMesh){
@@ -192,7 +195,7 @@ VIDEO.init = function(sm, scene, camera){
             y = Math.floor(i / grid.userData.tw);
             // using add at method
             ObjectGridWrapLand.addAt(grid, mesh, x, y);
-            mesh.position.y = 0;
+            //mesh.position.y = 0;
         }
     });
     //******** **********
@@ -260,7 +263,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8 + 2 * partPer, 5 + 5 * partPer, 10 * partPer);
+                    camera.position.set(8 + 6 * partPer, 5 + 9 * partPer, 14 * partPer);
                     camera.lookAt(0, 5 - 5 * partPer, 0);
                 }
             },
@@ -268,7 +271,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 24,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(10, 10, 10);
+                    camera.position.set(14, 14, 14);
                     camera.lookAt(0, 0, 0);
                 }
             }
