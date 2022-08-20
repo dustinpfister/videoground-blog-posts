@@ -16,7 +16,7 @@ VIDEO.scripts = [
 // dae files
 //******** **********
 VIDEO.daePaths = [
-  '../../../dae/land-set-one/land-set-1a.dae'
+  '../../../dae/land-set-one/land-set-1b.dae'
 ];
 //******** **********
 // init methods of video
