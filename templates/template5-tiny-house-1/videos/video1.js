@@ -22,6 +22,13 @@ VIDEO.init = function(sm, scene, camera){
     var sourceObj = {};
     var th1 = sourceObj.tree1 = dscene.getObjectByName('tiny-house-1');
     th1.position.set(0, 0, 0);
+    // remove child 0 if it is there and a LINE
+    var child = th1.children[0];
+    if(child){
+        if(child.type === 'LineSegments'){
+            child.removeFromParent();
+        }
+    }
     scene.add(th1);
 
     //******** **********
