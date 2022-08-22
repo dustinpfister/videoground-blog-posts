@@ -15,6 +15,7 @@ VIDEO.daePaths = [
 // init
 VIDEO.init = function(sm, scene, camera){
  
+
     //******** **********
     // ADDING CHILD MESH OBJECTS FROM DAE FILE
     //******** **********
@@ -22,14 +23,18 @@ VIDEO.init = function(sm, scene, camera){
     var sourceObj = {};
     var th1 = sourceObj.tree1 = dscene.getObjectByName('tiny-house-1');
     th1.position.set(0, 0, 0);
-    // I have to do it this way becuase for some reason there are line segments in the export
-    var daeMaterial = th1.children[1].material;
+    // remove child 0 if it is there and a LINE
+    var child = th1.children[0];
+    if(child){
+        if(child.type === 'LineSegments'){
+            child.removeFromParent();
+        }
+    }
+    var daeMaterial = th1.children[0].material;
     var lambert = new THREE.MeshLambertMaterial({
        map: daeMaterial.map
     });
-    th1.children[1].material = lambert;
-    // loose the line segments
-    th1.children[0].removeFromParent();
+    th1.children[0].material = lambert;
     scene.add(th1);
 
     //******** **********
