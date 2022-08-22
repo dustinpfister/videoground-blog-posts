@@ -30,6 +30,7 @@ VIDEO.init = function(sm, scene, camera){
             child.removeFromParent();
         }
     }
+    // USE THE LAMBERT MATERIAL
     var daeMaterial = th1.children[0].material;
     var lambert = new THREE.MeshLambertMaterial({
        map: daeMaterial.map
@@ -41,9 +42,19 @@ VIDEO.init = function(sm, scene, camera){
     // LIGHT
     //******** **********
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
+    dl.position.set(3, 1, 2);
+
+    var pl = new THREE.PointLight(0xffffff, 1);
+    pl.position.set(0, 10, 0);
+    var helper = new THREE.PointLightHelper(pl);
+    scene.add( helper );
+
+    console.log(pl.position);
+    console.log(helper.position);
+
     scene.add( new THREE.AmbientLight(0xffffff, 0.2))
     scene.add(dl);
+    scene.add(pl);
  
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
