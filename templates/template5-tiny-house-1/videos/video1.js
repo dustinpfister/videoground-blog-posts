@@ -36,12 +36,22 @@ VIDEO.init = function(sm, scene, camera){
     // LIGHT
     //******** **********
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
+    dl.position.set(3, 1, 2);
+
+    var pl = new THREE.PointLight(0xffffff, 0.65);
+    pl.position.set(8, 5, -10);
+    var helper = new THREE.PointLightHelper(pl);
+    scene.add( helper );
+
+    console.log(pl.position);
+    console.log(helper.position);
+
     scene.add( new THREE.AmbientLight(0xffffff, 0.2))
     scene.add(dl);
+    scene.add(pl);
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#00a2a2');
 
     //******** **********
     // PLANE MESH
@@ -214,7 +224,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 1,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(15 - 17 * partPer, 10 - 5 * partPer, -15 + 15 * partPer);
@@ -222,7 +232,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 3,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-2, 5, 0);

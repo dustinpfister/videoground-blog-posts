@@ -231,7 +231,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 1,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(15 - 17 * partPer, 10 - 5 * partPer, -15 + 15 * partPer);
@@ -239,7 +239,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 3,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-2, 5, 0);
