@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js'
 ];
 //******** **********
 // dae files
@@ -39,12 +40,25 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(th1);
 
     //******** **********
+    // PLANE MESH
+    //******** **********
+    var plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(50, 50, 1, 1),
+        new THREE.MeshLambertMaterial({
+            map: datatex.seededRandom(64, 64, 1, 1, 1, [180, 255]),
+            color: new THREE.Color(0, 1, 0)
+        })
+    );
+    plane.geometry.rotateX( Math.PI * 1.5 );
+    scene.add(plane);
+
+    //******** **********
     // LIGHT
     //******** **********
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(3, 1, 2);
 
-    var pl = new THREE.PointLight(0xffffff, 1);
+    var pl = new THREE.PointLight(0xffffff, 0.65);
     pl.position.set(8, 5, -10);
     var helper = new THREE.PointLightHelper(pl);
     scene.add( helper );
@@ -57,12 +71,12 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(pl);
  
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#00a2a2');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
