@@ -45,7 +45,7 @@ VIDEO.init = function(sm, scene, camera){
     dl.position.set(3, 1, 2);
 
     var pl = new THREE.PointLight(0xffffff, 1);
-    pl.position.set(0, 10, 0);
+    pl.position.set(8, 5, -10);
     var helper = new THREE.PointLightHelper(pl);
     scene.add( helper );
 
