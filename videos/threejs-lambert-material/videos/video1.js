@@ -1,4 +1,4 @@
-// video1 for template5-tiny-house-1
+// video1 for threejs-lambert-material
  
 // scripts
 VIDEO.scripts = [
@@ -22,6 +22,14 @@ VIDEO.init = function(sm, scene, camera){
     var sourceObj = {};
     var th1 = sourceObj.tree1 = dscene.getObjectByName('tiny-house-1');
     th1.position.set(0, 0, 0);
+    // I have to do it this way becuase for some reason there are line segments in the export
+    var daeMaterial = th1.children[1].material;
+    var lambert = new THREE.MeshLambertMaterial({
+       map: daeMaterial.map
+    });
+    th1.children[1].material = lambert;
+    // loose the line segments
+    th1.children[0].removeFromParent();
     scene.add(th1);
 
     //******** **********
@@ -48,10 +56,10 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['template5', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
-            ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['The Lambert', 64, 17, 14, 'white'],
+            ['Material in', 64, 32, 14, 'white'],
+            ['threejs', 64, 47, 14, 'white'],
+            ['( r140 08/22/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
