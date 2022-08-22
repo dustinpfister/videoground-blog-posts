@@ -151,7 +151,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 1,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(12 + 3 * partPer, 5, 0);
@@ -159,7 +159,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(15, 5, 0);
@@ -167,7 +167,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 1,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(15, 5 + 10 * partPer, 15 * partPer);
@@ -175,13 +175,78 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(15, 15, 15);
                     camera.lookAt(0, 4, 0);
                 }
-            }
+            },
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(15 - 30 * partPer, 15, 15);
+                    camera.lookAt(0, 4, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-15, 15, 15);
+                    camera.lookAt(0, 4, 0);
+                }
+            },
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-15, 15, 15 - 30 * partPer);
+                    camera.lookAt(0, 4, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-15, 15, -15);
+                    camera.lookAt(0, 4, 0);
+                }
+            },
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-15 + 30 * partPer, 15 - 5 * partPer, -15);
+                    camera.lookAt(0, 4, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(15, 10, -15);
+                    camera.lookAt(0, 4, 0);
+                }
+            },
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(15 - 17 * partPer, 10 - 5 * partPer, -15 + 15 * partPer);
+                    camera.lookAt(5 * partPer, 4, -5 * partPer);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-2, 5, 0);
+                    var b = seq.getBias(2);
+                    camera.lookAt(5, 4, -5 + 10 * b);
+                }
+            },
         ]
     });
 
