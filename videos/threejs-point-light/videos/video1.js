@@ -6,9 +6,20 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
    '../../../js/sequences-hooks/r1/sequences-hooks.js'
 ];
+
+
+VIDEO.daePaths = [
+  '../../../dae/sphere-normal-invert/sphere-normal-invert.dae'
+];
+
 // init
 VIDEO.init = function(sm, scene, camera){
  
+
+    var dscene = VIDEO.daeResults[0].scene;
+    var sourceObj = {};
+    var sphereInvert = sourceObj.sphereInvert = dscene.getObjectByName('sphere-inverted');
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
@@ -16,6 +27,8 @@ VIDEO.init = function(sm, scene, camera){
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
     scene.add( grid );
+ 
+    // SPHERE
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
