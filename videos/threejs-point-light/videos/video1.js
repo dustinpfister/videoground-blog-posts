@@ -36,26 +36,35 @@ VIDEO.init = function(sm, scene, camera){
         return helper;
     };
 
+    // update point light group
+    var updatePointLightGroup = function(plGroup, alpha, dSet){
+        dSet = dSet === undefined ? 1 : dSet;
+        plGroup.children.forEach(function(pl, i, arr){
+            var per = i / arr.length;
+            var bias = 1 - Math.abs(0.5 - per) / 0.5;
+            pl.position.set( (-20 + 20 * (1 - dSet)) + 40 * (per * dSet), 0, 0);
+            pl.intensity = 0.25 + 0.75 * bias
+        });
+        plGroup.children[3].intensity = 0.25;
+    };
+
     // point light group
     var plGroup = new THREE.Group();
     scene.add(plGroup);
     [0xff0000, 0x00ff00, 0x0000ff, 0xafafaf, 0xff00ff, 0x00ffff, 0xffff00].forEach(function(color, i, arr){
-        var per = i / (arr.length - 1);
-        var bias = 1 - Math.abs(0.5 - per) / 0.5;
-        var pl = new THREE.PointLight(color, 0.2 + 0.6 * bias);
-        pl.position.set( -20 + 40 * per, 0, 0);
+        var pl = new THREE.PointLight(color, 0);
         plGroup.add( makePointLightHelper(pl) );
         plGroup.add(pl);
     });
-    plGroup.children[3].intensity = 0.25;
+    updatePointLightGroup(plGroup, 1, 1);
 
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    grid.material.linewidth = 3;
+    scene.add( grid );
  
     // SPHERE
  
@@ -117,6 +126,9 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+
+
+            updatePointLightGroup(plGroup, 1, 0.5 + 2.5 * seq.per);
 
             plGroup.rotation.x = Math.PI / 180 * 45 * seq.per;
             plGroup.rotation.y = Math.PI * 2 * 4 * seq.per;
