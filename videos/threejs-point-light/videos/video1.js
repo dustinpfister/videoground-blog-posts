@@ -171,7 +171,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 + 7 * partPer, 1 + 14 * partPer, 15 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -180,7 +180,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(15, 15 - 30 * b, 15);
                     camera.lookAt(0, 0, 0);
                 }
             }
