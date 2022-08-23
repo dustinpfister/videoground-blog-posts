@@ -2,7 +2,7 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-lambert-material
+### () - video1 for threejs-point-light
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -120,6 +120,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 08/22/2022 ) - video1 for threejs-lambert-material
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 08/18/2022 ) - threejs-camera-perspective
 * (done) start video folder and a video1 file
