@@ -15,7 +15,11 @@ VIDEO.daePaths = [
 
 // init
 VIDEO.init = function(sm, scene, camera){
- 
+
+    //******** **********
+    // SPHERE MESH
+    //******** **********
+
     var dscene = VIDEO.daeResults[0].scene;
     var sourceObj = {};
     var sphereInvert = sourceObj.sphereInvert = dscene.getObjectByName('sphere-inverted');
@@ -24,6 +28,16 @@ VIDEO.init = function(sm, scene, camera){
         color: 0xffffff
     });
     scene.add(sphereInvert);
+
+
+    //******** **********
+    // TORUS MESH
+    //******** **********
+    var torus = new THREE.Mesh(
+        new THREE.TorusGeometry( 5, 3, 16, 100 ), 
+        new THREE.MeshStandardMaterial( { color: 0xffffff } ) );
+    scene.add( torus );
+
 
     //******** **********
     // LIGHT
@@ -42,7 +56,9 @@ VIDEO.init = function(sm, scene, camera){
         plGroup.children.forEach(function(pl, i, arr){
             var per = i / arr.length;
             var bias = 1 - Math.abs(0.5 - per) / 0.5;
-            pl.position.set( (-20 + 20 * (1 - dSet)) + 40 * (per * dSet), 0, 0);
+            var x = -20 + 20 * ( 1 - dSet ) + 40 * (per * dSet);
+            var y = 0;
+            pl.position.set( x, y, 0);
             pl.intensity = 0.25 + 0.75 * bias
         });
         plGroup.children[3].intensity = 0.25;
@@ -62,9 +78,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // SPHERE
  
@@ -128,10 +144,13 @@ VIDEO.init = function(sm, scene, camera){
             camera.position.set(8, 1, 0);
 
 
-            updatePointLightGroup(plGroup, 1, 0.5 + 2.5 * seq.per);
+            updatePointLightGroup(plGroup, 1, 0.5 + 1.5 * seq.per);
 
             plGroup.rotation.x = Math.PI / 180 * 45 * seq.per;
             plGroup.rotation.y = Math.PI * 2 * 4 * seq.per;
+
+
+            torus.rotation.set(0, Math.PI * 0.5, 0);
 
         },
         afterObjects: function(seq){
