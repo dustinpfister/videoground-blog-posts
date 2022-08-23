@@ -22,7 +22,8 @@ VIDEO.init = function(sm, scene, camera){
     var sphereInvert = sourceObj.sphereInvert = dscene.getObjectByName('sphere-inverted');
 
     sphereInvert.material = new THREE.MeshPhongMaterial({
-        map: datatex.seededRandom(128, 128)
+        map: datatex.seededRandom(128, 128),
+        color: 0xffffff
     });
 
     scene.add(sphereInvert);
@@ -38,20 +39,23 @@ VIDEO.init = function(sm, scene, camera){
         return helper;
     };
 
-    // pl-1
-    var pl = new THREE.PointLight(0xcfcfcf, 1.0);
-    pl.position.set(0, 2, 0);
-
-    scene.add( makePointLightHelper(pl) );
-    scene.add(pl);
+    // point light group
+    var plGroup = new THREE.Group();
+    scene.add(plGroup);
+    [0xff0000, 0x00ff00, 0x0000ff].forEach(function(color, i, arr){
+        var pl = new THREE.PointLight(color, 0.5);
+        pl.position.set( -20 + 40 * (i / (arr.length - 1)), 0, 0);
+        plGroup.add( makePointLightHelper(pl) );
+        plGroup.add(pl);
+    });
 
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    grid.material.linewidth = 3;
+    scene.add( grid );
  
     // SPHERE
  
@@ -113,6 +117,9 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+
+            plGroup.rotation.y = Math.PI * 2 * 4 * seq.per;
+
         },
         afterObjects: function(seq){
         },
