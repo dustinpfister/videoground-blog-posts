@@ -4,12 +4,13 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js'
 ];
 
 
 VIDEO.daePaths = [
-  '../../../dae/sphere-normal-invert/sphere-normal-invert.dae'
+  '../../../dae/sphere-normal-invert/sphere-normal-invert-base.dae'
 ];
 
 // init
@@ -20,13 +21,37 @@ VIDEO.init = function(sm, scene, camera){
     var sourceObj = {};
     var sphereInvert = sourceObj.sphereInvert = dscene.getObjectByName('sphere-inverted');
 
+    sphereInvert.material = new THREE.MeshPhongMaterial({
+        map: datatex.seededRandom(128, 128)
+    });
+
+    scene.add(sphereInvert);
+
+    //******** **********
+    // LIGHT
+    //******** **********
+    // custom make point light helper, helper function
+    var makePointLightHelper = function(pl){
+        var helper = new THREE.PointLightHelper(pl);
+        helper.material.wireframeLinewidth = 6;
+        helper.geometry = new THREE.SphereGeometry(0.5, 4, 4);
+        return helper;
+    };
+
+    // pl-1
+    var pl = new THREE.PointLight(0xcfcfcf, 1.0);
+    pl.position.set(0, 2, 0);
+
+    scene.add( makePointLightHelper(pl) );
+    scene.add(pl);
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // SPHERE
  
