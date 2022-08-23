@@ -168,7 +168,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8 + 7 * partPer, 1 + 14 * partPer, 15 * partPer);
@@ -176,11 +176,59 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 20,
+                secs: 10,
                 update: function(seq, partPer, partBias){
                     // camera
                     var b = seq.getSinBias(2);
                     camera.position.set(15, 15 - 30 * b, 15);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 2,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(15, 15, 15);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(15 - 30 * partPer, 15, 15);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 1,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-15, 15 - 15 * partPer, 15 - 15 * partPer);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-15, 0, 0);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-15 + 40 * partPer, 0, 0);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(25 - 5 * partPer, 0, 0);
                     camera.lookAt(0, 0, 0);
                 }
             }
