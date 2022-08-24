@@ -22,13 +22,13 @@ VIDEO.init = function(sm, scene, camera){
             var v = new THREE.Vector3(opt.x, opt.y, opt.z).normalize().multiplyScalar(opt.ul);
             // UNIT LENGTH ( or distance to 0,0,0 ) can be used to 
             // set length attribute of capsule geometry based mesh object
-            var geo = new THREE.CapsuleGeometry( 0.1, v.length(), 30, 30 );
+            var geo = new THREE.CapsuleGeometry( 0.2, v.length(), 30, 30 );
             // translate geometry on y by half the vector length
             // also rotate on x by half of unit length
             geo.translate(0, v.length() / 2, 0);
             geo.rotateX(Math.PI * 0.5);
             // creating mesh object
-            var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.6}));
+            var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.4}));
             // copy vector to position of mesh object
             // and have the mesh look at the origin
             mesh.position.copy(v);
@@ -86,11 +86,13 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(mesh3);
 
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.5;
     scene.add( grid );
  
     // TEXT CUBE
@@ -195,6 +197,40 @@ VIDEO.init = function(sm, scene, camera){
                     setToGroup(groups, mesh1, 0, 0, 0.05 + 0.95 * b);
                     setToGroup(groups, mesh2, 1, 1, 0.05 + 0.95 * partPer);
                     setToGroup(groups, mesh3, 0, 5, 0.50 + 0.5 * b2);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 16 * partPer, 8 - 16 * partPer, 8);
+                    camera.lookAt(0, 0, 0);
+                    setToGroup(groups, mesh1, 0, 0, 0.05 + 0.95 * partPer);
+                    setToGroup(groups, mesh2, 1, 1, 1);
+                    setToGroup(groups, mesh3, 0, 5, 0.5 + 0.5 * partPer);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-8, -8 + 4 * partPer, 8);
+                    camera.lookAt(0, 0, 0);
+                    setToGroup(groups, mesh1, 0, 0, 1);
+                    setToGroup(groups, mesh2, 1, 1, 1);
+                    setToGroup(groups, mesh3, 0, 5, 1);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-8, -4, 8 - 4 * partPer);
+                    camera.lookAt(0, 0, 0);
+                    var b = seq.getSinBias(4);
+                    setToGroup(groups, mesh1, 0, 0, 1 - b);
+                    setToGroup(groups, mesh2, 1, 1, 1 - b);
+                    setToGroup(groups, mesh3, 0, 5, 1 - 0.6 * b);
                 }
             }
         ]
