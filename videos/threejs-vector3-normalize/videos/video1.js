@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -22,13 +23,18 @@ VIDEO.init = function(sm, scene, camera){
             var v = new THREE.Vector3(opt.x, opt.y, opt.z).normalize().multiplyScalar(opt.ul);
             // UNIT LENGTH ( or distance to 0,0,0 ) can be used to 
             // set length attribute of capsule geometry based mesh object
-            var geo = new THREE.CapsuleGeometry( 0.2, v.length(), 30, 30 );
+            var geo = new THREE.CapsuleGeometry( 0.25, v.length(), 10, 30 );
             // translate geometry on y by half the vector length
             // also rotate on x by half of unit length
             geo.translate(0, v.length() / 2, 0);
             geo.rotateX(Math.PI * 0.5);
             // creating mesh object
-            var mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.4}));
+            var mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+                color: 0x00afff,
+                transparent: true, 
+                opacity: 0.6,
+                map: datatex.seededRandom(512, 512, 1, 1, 1, [80, 200])
+            }));
             // copy vector to position of mesh object
             // and have the mesh look at the origin
             mesh.position.copy(v);
@@ -75,7 +81,7 @@ VIDEO.init = function(sm, scene, camera){
     });
     g.position.set(-4, 0, -5);
     groups.add(g);
-    // MESH OBJECT
+    // MESH OBJECTS
     var s = 1.0;
     var mesh1 = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), new THREE.MeshNormalMaterial());
     scene.add(mesh1);
@@ -85,15 +91,33 @@ VIDEO.init = function(sm, scene, camera){
     mesh3.geometry.rotateX(Math.PI * 1.5);
     scene.add(mesh3);
 
+    // SPHERE FOR SOME BACKGROUND
+    var sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(30, 60, 60),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.05,
+            wireframe: true,
+            wireframeLinewidth: 8}));
+    scene.add(sphere);
+
     // BACKGROUND
     scene.background = new THREE.Color('#000000');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#af00af');
+    grid.material.linewidth = 6;
     grid.material.transparent = true;
     grid.material.opacity = 0.5;
     scene.add( grid );
+
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 2, 3);
+    scene.add(dl);
+    var al = new THREE.AmbientLight(0xffffff, 0.35);
+    scene.add(al);
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -153,6 +177,7 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+            sphere.rotation.y = Math.PI / 180 * 90 * seq.per;
         },
         afterObjects: function(seq){
         },
