@@ -177,7 +177,7 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
-            sphere.rotation.y = Math.PI / 180 * 90 * seq.per;
+            sphere.rotation.y = THREE.MathUtils.degToRad(-270 * seq.per);
         },
         afterObjects: function(seq){
         },
@@ -247,7 +247,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 5,
+                secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(-8, -4, 8 - 4 * partPer);
