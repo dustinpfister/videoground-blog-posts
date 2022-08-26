@@ -4,18 +4,38 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/tween-many/r0/tween-many.js'
+];
+//******** **********
+// dae files
+//******** **********
+VIDEO.daePaths = [
+  '../../../dae/many-object-tweening/many-object-tweening-1a.dae'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
  
+    var sourceObjects = tweenMany.createSourceObj(VIDEO.daeResults[0])
+
+    // create mesh
+    var mesh = tweenMany.createMesh(sourceObjects, 'box_3');
+    mesh.scale.set(4, 4, 4);
+    scene.add(mesh);
+    console.log(sourceObjects);
+
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, 4);
+    scene.add(dl);
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -25,9 +45,9 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['Many Object tweening', 64, 17, 14, 'white'],
-            ['threejs example', 64, 32, 14, 'white'],
-            ['', 64, 47, 14, 'white'],
+            ['Many Object ', 64, 17, 14, 'white'],
+            ['Tweening', 64, 32, 14, 'white'],
+            ['threejs example', 64, 47, 14, 'white'],
             ['( r140 08/26/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
