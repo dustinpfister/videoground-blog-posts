@@ -16,13 +16,15 @@ VIDEO.daePaths = [
 // init
 VIDEO.init = function(sm, scene, camera){
  
-    var sourceObjects = tweenMany.createSourceObj(VIDEO.daeResults[0])
+    // create source objects from DAE file
+    var sObj = tweenMany.createSourceObj(VIDEO.daeResults[0])
 
-    // create mesh
-    var mesh = tweenMany.createMesh(sourceObjects, 'box_3');
+    // create mesh from source object
+    var mesh = tweenMany.createMesh(sObj, 'box_3');
     mesh.scale.set(4, 4, 4);
     scene.add(mesh);
-    console.log(sourceObjects);
+
+
 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xffffff, 1);
@@ -95,6 +97,8 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+
+            mesh.rotation.y = Math.PI * 2 * seq.per;
         },
         afterObjects: function(seq){
         },
@@ -108,23 +112,63 @@ VIDEO.init = function(sm, scene, camera){
                     }
                     // camera
                     camera.lookAt(0, 0, 0);
+
+                    tweenMany.tween(mesh.geometry, [
+                        [ sObj.box_1.geometry, sObj.box_3.geometry, partPer ]
+                    ]);
                 }
             },
             {
-                secs: 7,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
+                    tweenMany.tween(mesh.geometry, [
+                        [ sObj.box_3.geometry, sObj.box_2.geometry, partPer ]
+                    ]);
                 }
             },
             {
-                secs: 20,
+                secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
+                    tweenMany.tween(mesh.geometry, [
+                        [ sObj.box_2.geometry, sObj.box_4.geometry, partPer ]
+                    ]);
+                }
+            },
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                    tweenMany.tween(mesh.geometry, [
+                        [ sObj.box_4.geometry, sObj.box_1.geometry, partPer ]
+                    ]);
+                }
+            },
+            {
+                secs: 17,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    //var b = seq.getSinBias(2);
+                    //camera.position.set(8, 8 - 16 * b, 8);
+                    //camera.lookAt(0, 0, 0);
+
+                    var a = 8 - 4 * partPer;
+                    camera.position.set(a, a, a);
+                    camera.lookAt(0, 0, 0);
+
+                    tweenMany.tween(mesh.geometry, [
+                        [ sObj.box_1.geometry, sObj.box_2.geometry, partPer ],
+                        [ sObj.box_1.geometry, sObj.box_3.geometry, seq.getBias(4) ],
+                        [ sObj.box_1.geometry, sObj.box_4.geometry, seq.getBias(16) ]
+                    ]);
+
                 }
             }
         ]
