@@ -7,7 +7,14 @@ VIDEO.scripts = [
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
    '../../../js/datatex/r0/datatex.js',
    '../../../js/object-grid-wrap/r2/object-grid-wrap.js',
+   '../../../js/object-grid-wrap/r2/effects/opacity2.js',
    '../../../js/object-grid-wrap/r2/land/land-r3.js'
+];
+//******** **********
+// dae files
+//******** **********
+VIDEO.daePaths = [
+  '../../../dae/land-set-one/land-set-1c.dae'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -47,15 +54,15 @@ VIDEO.init = function(sm, scene, camera){
     scene.add( new THREE.AmbientLight(0xffffff, 0.2))
     scene.add(dl);
 
-
 //******** **********
-// GRID
+// GRID OPTIONS
 //******** **********
-var grid = ObjectGridWrapLand.create({
+var gridOpt = {
     tw: 14,
     th: 14,
+    space: 1,
     crackSize: 0,
-    //effects:[],
+    effects:['opacity2'],
     altitude: [
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,1,1,1,0,0,0,1,1,1,1,0,
@@ -88,7 +95,12 @@ var grid = ObjectGridWrapLand.create({
         0, 8, 2, 2, 2, 5, 0, 0, 0, 0, 8, 2, 5, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ]
-});
+};
+
+//******** **********
+// GRID
+//******** **********
+var grid = ObjectGridWrapLand.create(gridOpt);
 
 grid.scale.set(1, 1, 1);
 ObjectGridWrapLand.setDataTextures(grid)
