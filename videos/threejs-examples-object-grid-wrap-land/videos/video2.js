@@ -23,9 +23,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#008a8a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
 
     //******** **********
     // TEXT CUBE
@@ -97,63 +97,24 @@ var gridOpt = {
     ]
 };
 
-//******** **********
-// GRID
-//******** **********
-var grid = ObjectGridWrapLand.create(gridOpt);
+    var sObj = ObjectGridWrapLand.createSourceObj(VIDEO.daeResults[0]);
 
-grid.scale.set(1, 1, 1);
-ObjectGridWrapLand.setDataTextures(grid)
-scene.add(grid);
-//******** **********
-// ADDING CHILD MESH OBJECTS
-//******** **********
-var mkCone = function(height){
-    return new THREE.Mesh(
-        new THREE.ConeGeometry(0.5, height, 30, 30),
-        new THREE.MeshStandardMaterial({color: new THREE.Color('#00ff88')})
-    );
-};
-// can make another system that involves a grid if index values
-// but with child objects
-var mkMeshFunctions = [
-    null,
-    function(){
-        return mkCone(2)
-    },
-    function(){
-        return mkCone(3)
-    },
-    function(){
-        return mkCone(4)
-    }
-];
-// object index grid
-[
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,2,0,0,0,0,0,0,0,1,0,0,
-    0,0,1,0,0,0,3,0,0,1,2,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,1,0,1,1,0,0,
-    0,0,0,1,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,1,0,1,2,1,0,0,
-    0,0,2,0,0,0,0,0,0,2,0,0,0,0,
-    0,0,0,1,0,0,0,2,1,0,1,1,0,0,
-    0,0,1,0,0,0,0,1,0,1,3,3,0,1,
-    0,1,0,1,0,1,2,0,1,2,1,1,2,0,
-    0,0,0,0,2,0,0,1,0,3,1,1,0,0,
-    0,1,0,1,0,1,0,0,0,1,2,3,1,1,
-    0,0,0,0,0,0,0,0,0,0,1,0,1,0
-].forEach(function(objIndex, i){
-    var mkMesh = mkMeshFunctions[objIndex];
-    if(mkMesh){
-        var mesh = mkMesh(),
-        x = i % grid.userData.tw,
-        y = Math.floor(i / grid.userData.tw)
-        ObjectGridWrapLand.addAt(grid, mesh, x, y);
-    }
-});
-    
+    gridOpt.sourceObjects = [
+       sObj.land_0,
+       sObj.land_1, sObj.land_1, sObj.land_1, sObj.land_1,
+       sObj.land_2, sObj.land_2, sObj.land_2, sObj.land_2,
+       sObj.land_3, sObj.land_3, sObj.land_3, sObj.land_3
+    ];
+
+    console.log(sObj);
+
+    //******** **********
+    // GRID
+    //******** **********
+    var grid = ObjectGridWrapLand.create(gridOpt);
+    grid.scale.set(1, 1, 1);
+    ObjectGridWrapLand.setDataTextures(grid)
+    scene.add(grid);
 
 
     // A SEQ FOR TEXT CUBE
