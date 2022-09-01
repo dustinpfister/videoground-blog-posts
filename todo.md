@@ -2,7 +2,14 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-examples-many-object-tweening
+### () - video1 for threejs-vector3-clamp
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - video1 for threejs-vector3-distance-to
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -76,23 +83,10 @@ let material = new THREE.MeshStandardMaterial({
 ### () - video1 for threejs-examples
 
 ### () - video1 for threejs-examples-build-a-box
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-examples-clock-basic
-* () start video folder and a video1 file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-examples-dae-tools
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-examples-land-sections
 
@@ -103,23 +97,27 @@ let material = new THREE.MeshStandardMaterial({
 ### () - video1 for threejs-examples-tool-source-layer-3d
 
 ### () - video1 for threejs-examples-weird-walk-guy-two
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-materials
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 <!--  TRAFFIC -->
 
 
 <!-- DONE -->
+
+### ( done 08/31/2022 ) - video2 for threejs-examples-object-grid-wrap-land
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 08/26/2022 ) - video1 for threejs-examples-many-object-tweening
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 08/24/2022 ) - video1 for threejs-vector3-normalize
 * (done) start video folder and a video1 file
