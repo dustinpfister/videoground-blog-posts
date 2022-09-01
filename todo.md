@@ -2,12 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-vector3-clamp
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-vector3-distance-to
 * () start video folder and a video1 file
@@ -104,6 +98,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 09/01/2022 ) - video1 for threejs-vector3-clamp
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 08/31/2022 ) - video2 for threejs-examples-object-grid-wrap-land
 * (done) start video folder and a video1 file
