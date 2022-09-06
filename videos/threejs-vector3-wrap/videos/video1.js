@@ -14,13 +14,14 @@ VIDEO.init = function(sm, scene, camera){
     // HELPERS
     //-------- ----------
     // create group
-    var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize, gitDir) {
-        spread = spread === undefined ? 5 : spread;
+    var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize, color, gitDir) {
         count = count === undefined ? 50 : count;
+        spread = spread === undefined ? 5 : spread;
         ppsMin = ppsMin === undefined ? 0.5 : ppsMin;
         ppsMax = ppsMax === undefined ? 2 : ppsMax;
         meshSize = meshSize === undefined ? 1 : meshSize;
         boundSize = boundSize === undefined ? 4 : boundSize;
+        color = color === undefined ? new THREE.Color(1, 1, 1) : color;
         var group = new THREE.Group();
         var gud = group.userData;
         gud.meshSize = meshSize;
@@ -29,7 +30,8 @@ VIDEO.init = function(sm, scene, camera){
         while (i < count) {
             var mesh = new THREE.Mesh(
                 new THREE.BoxGeometry(gud.meshSize, gud.meshSize, gud.meshSize), 
-                new THREE.MeshNormalMaterial({
+                new THREE.MeshPhongMaterial({
+                    color: color,
                     transparent: true,
                     opacity: 0.60
                 })
@@ -71,6 +73,10 @@ VIDEO.init = function(sm, scene, camera){
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
+    // LIGHT
+    var dl = new THREE.DirectionalLight(0xffffff, 1);
+    scene.add(dl);
+
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
@@ -95,17 +101,21 @@ VIDEO.init = function(sm, scene, camera){
 
     // GROUPS
     // group1 uses default values
-    var group1 = createGroup();
+    var group1 = createGroup(50, 10, 0.5, 2, 1, 10, 0xff0000);
     scene.add(group1);
     // group2 uses custom values
-    var group2 = createGroup(100, 5, 0.125, 0.25, 0.25, 4, () => {
+    var group2 = createGroup(100, 10, 0.125, 0.25, 0.25, 10, 0x00ff00, () => {
         return new THREE.Vector3(
             -5 + 10 * THREE.MathUtils.seededRandom(),
             -5 + 10 * THREE.MathUtils.seededRandom(),
             -5 + 10 * THREE.MathUtils.seededRandom());
     });
-    group2.position.set(-7, 0, 0);
     scene.add(group2);
+    // group2 uses custom values
+    var group3 = createGroup(100, 10, 0.75, 1.0, 0.5, 10, 0x00ffff, () => {
+        return new THREE.Vector3(-1, 0, 0);
+    });
+    scene.add(group3);
 
 
     // A SEQ FOR TEXT CUBE
@@ -148,8 +158,9 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            //updateGroup(group1, secs, seq.bias);
-            //updateGroup(group2, secs, seq.bias);
+            updateGroup(group1, 1 / 30, seq.bias);
+            updateGroup(group2, 1 / 30, seq.bias);
+            updateGroup(group3, 1 / 30, seq.bias);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
@@ -180,8 +191,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
