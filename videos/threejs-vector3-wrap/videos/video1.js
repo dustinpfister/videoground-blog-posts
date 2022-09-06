@@ -71,12 +71,14 @@ VIDEO.init = function(sm, scene, camera){
     };
 
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, -3)
+    dl.position.set(2, 1, -3);
     scene.add(dl);
+    var al = new THREE.AmbientLight(0xffffff, 0.1);
+    scene.add(al);
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
