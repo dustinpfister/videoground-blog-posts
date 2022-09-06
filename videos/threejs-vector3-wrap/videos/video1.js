@@ -33,7 +33,7 @@ VIDEO.init = function(sm, scene, camera){
                 new THREE.MeshPhongMaterial({
                     color: color,
                     transparent: true,
-                    opacity: 0.60
+                    opacity: 0.80
                 })
             );
             // start position
@@ -75,6 +75,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(2, 1, -3)
     scene.add(dl);
 
     // GRID
