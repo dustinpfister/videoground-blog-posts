@@ -63,9 +63,17 @@ VIDEO.init = function(sm, scene, camera){
        var vMax = new THREE.Vector3(b, b, b);
        group.children.forEach(function(mesh){
             var ud = mesh.userData;
+            var d = mesh.position.distanceTo(group.position);
+            var dp = d / bs;
+            dp = dp < 0 ? 0 : dp;
+            dp = dp > 1 ? 1 : dp;
+
             mesh.position.x += ud.dir.x * ud.pps * secs;
             mesh.position.y += ud.dir.y * ud.pps * secs;
             mesh.position.z += ud.dir.z * ud.pps * secs;
+
+            mesh.material.opacity = 1.0 - 0.75 * dp;
+
             wrapVector(
                 mesh.position,
                 vMin,
@@ -189,15 +197,24 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 3 * partPer, 1 + 4 * partPer, 5 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(5, 5, 5);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 15,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    var s = 5 + 5 * partPer;
+                    camera.position.set(s, s, s);
                     camera.lookAt(0, 0, 0);
                 }
             }
