@@ -72,7 +72,7 @@ VIDEO.init = function(sm, scene, camera){
             mesh.position.y += ud.dir.y * ud.pps * secs;
             mesh.position.z += ud.dir.z * ud.pps * secs;
 
-            mesh.material.opacity = 1.0 - 0.75 * dp;
+            mesh.material.opacity = 1.0 - 0.45 * dp;
 
             wrapVector(
                 mesh.position,
@@ -82,13 +82,13 @@ VIDEO.init = function(sm, scene, camera){
     };
 
     // BACKGROUND
-    scene.background = new THREE.Color('#000000');
+    scene.background = new THREE.Color('#2a2a2a');
 
     // LIGHT
     var dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(2, 1, -3);
     scene.add(dl);
-    var al = new THREE.AmbientLight(0xffffff, 0.1);
+    var al = new THREE.AmbientLight(0xffffff, 0.2);
     scene.add(al);
 
     // GRID
