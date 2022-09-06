@@ -5,6 +5,7 @@ VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js',
    './wrap-vector-r0.js'
 ];
 // init
@@ -14,6 +15,7 @@ VIDEO.init = function(sm, scene, camera){
     // HELPERS
     //-------- ----------
     // create group
+    var texture = datatex.seededRandom(4, 4, 1, 1, 1, [64,255]);
     var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize, color, gitDir) {
         count = count === undefined ? 50 : count;
         spread = spread === undefined ? 5 : spread;
@@ -32,6 +34,7 @@ VIDEO.init = function(sm, scene, camera){
                 new THREE.BoxGeometry(gud.meshSize, gud.meshSize, gud.meshSize), 
                 new THREE.MeshPhongMaterial({
                     color: color,
+                    map: texture,
                     transparent: true,
                     opacity: 0.80
                 })
