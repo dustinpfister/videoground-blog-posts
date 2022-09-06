@@ -4,11 +4,70 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   './wrap-vector-r0.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
- 
+
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    // create group
+    var createGroup = function (count, spread, ppsMin, ppsMax, meshSize, boundSize, gitDir) {
+        spread = spread === undefined ? 5 : spread;
+        count = count === undefined ? 50 : count;
+        ppsMin = ppsMin === undefined ? 0.5 : ppsMin;
+        ppsMax = ppsMax === undefined ? 2 : ppsMax;
+        meshSize = meshSize === undefined ? 1 : meshSize;
+        boundSize = boundSize === undefined ? 4 : boundSize;
+        var group = new THREE.Group();
+        var gud = group.userData;
+        gud.meshSize = meshSize;
+        gud.boundSize = boundSize;
+        var i = 0;
+        while (i < count) {
+            var mesh = new THREE.Mesh(
+                new THREE.BoxGeometry(gud.meshSize, gud.meshSize, gud.meshSize), 
+                new THREE.MeshNormalMaterial({
+                    transparent: true,
+                    opacity: 0.60
+                })
+            );
+            // start position
+            mesh.position.x = spread * THREE.MathUtils.seededRandom();
+            mesh.position.y = spread * THREE.MathUtils.seededRandom();
+            mesh.position.z = spread * THREE.MathUtils.seededRandom();
+            // user data values, pps and direction
+            var ud = mesh.userData;
+            ud.pps = ppsMin + (ppsMax - ppsMin) * THREE.MathUtils.seededRandom();
+            ud.dir = gitDir ? gitDir(group, mesh, i) : new THREE.Vector3(0, 1, 0).normalize();
+            group.add(mesh);
+            i += 1;
+        }
+        return group;
+    };
+    // update a group
+    var updateGroup = function (group, secs, bias) {
+       var gud = group.userData;
+       var bs = gud.boundSize / 2;
+       var ms = gud.meshSize / 2;
+       var a = bs * -1 + ms;
+       var b = bs - ms;
+       var vMin = new THREE.Vector3(a, a, a);
+       var vMax = new THREE.Vector3(b, b, b);
+       group.children.forEach(function(mesh){
+            var ud = mesh.userData;
+            mesh.position.x += ud.dir.x * ud.pps * secs;
+            mesh.position.y += ud.dir.y * ud.pps * secs;
+            mesh.position.z += ud.dir.z * ud.pps * secs;
+            wrapVector(
+                mesh.position,
+                vMin,
+                vMax);
+        });
+    };
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
@@ -25,7 +84,7 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['Wrapping Vector3', 64, 17, 14, 'white'],
+            ['Wrap Vector3', 64, 17, 14, 'white'],
             ['Class instances', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
             ['( r140 09/05/2022 )', 64, 70, 12, 'gray'],
@@ -33,6 +92,21 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+    // GROUPS
+    // group1 uses default values
+    var group1 = createGroup();
+    scene.add(group1);
+    // group2 uses custom values
+    var group2 = createGroup(100, 5, 0.125, 0.25, 0.25, 4, () => {
+        return new THREE.Vector3(
+            -5 + 10 * THREE.MathUtils.seededRandom(),
+            -5 + 10 * THREE.MathUtils.seededRandom(),
+            -5 + 10 * THREE.MathUtils.seededRandom());
+    });
+    group2.position.set(-7, 0, 0);
+    scene.add(group2);
+
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -73,6 +147,10 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+            //updateGroup(group1, secs, seq.bias);
+            //updateGroup(group2, secs, seq.bias);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
