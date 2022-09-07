@@ -34,7 +34,10 @@ VIDEO.init = function(sm, scene, camera){
     // opaicty effect using length method which is distance to origin
     let opacityEffect = (group, mesh) =>  {
         let per = 1 - mesh.position.distanceTo( group.position ) / 5;
-        mesh.material.opacity = per;
+        mesh.material.opacity = per * 4;
+        if(per >= 0.25){
+            mesh.material.opacity = 1;
+        }
     };
     // opaicty effect using length method which is distance to origin
     let scaleEffect = (group, mesh) =>  {
@@ -154,7 +157,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(dl);
 
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#008a8a');
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
