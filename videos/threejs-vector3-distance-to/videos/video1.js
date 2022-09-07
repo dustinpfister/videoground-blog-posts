@@ -39,21 +39,22 @@ VIDEO.init = function(sm, scene, camera){
     };
     // rotation effect using the distanceTo method
     let rotationEffect = (group, mesh) =>  {
-        let minDist = 5;
+        let ud = mesh.userData;
+        let minDist = 2.5;
         mesh.lookAt(0, 0, 0);
         group.children.forEach( (child) => {
             if(child != mesh){
                 let d = mesh.position.distanceTo(child.position);
                 if(d < minDist){
                     let p = d / minDist;
-                    let ud = mesh.userData;
                     ud.rp += p;
                     ud.rp %= 1;
                     mesh.rotation.z += Math.PI / 180 * ud.maxDegPerChid * ud.rp;
                 }
             }
         });
-        //mesh.rotation.y += Math.PI / 180 * 25;
+        ud.rpy += 0.05;
+        mesh.rotation.y += Math.PI / 180 * 90 * ud.rpy;
         //mesh.rotation.z += Math.PI / 180 * 25;
     };
     // get a start position by passing two values that are 0 - 1
@@ -78,6 +79,7 @@ VIDEO.init = function(sm, scene, camera){
         ud.alphaDelta = 0.1 + 0.5 * THREE.MathUtils.seededRandom();
         ud.alpha = 0;
         ud.rp = 0;
+        ud.rpy = 0;
         ud.maxDegPerChid = 1 + 5 * THREE.MathUtils.seededRandom();
         ud.b1b2Alpha = THREE.MathUtils.seededRandom();
     };
@@ -125,11 +127,11 @@ mesh.material.transparent = true;
             opacityEffect(group, mesh);
             rotationEffect(group, mesh);
             // tween geo
-            ud.b1b2Alpha += secs;
+            ud.b1b2Alpha += 0.05;
             ud.b1b2Alpha %= 1;
             tweenMany.tween(mesh.geometry, [
-                [ sObj.box_1.geometry, sObj.box_3.geometry, seqHooks.getSinBias(ud.b1b2Alpha, 1, 1) ],
-                [ sObj.box_1.geometry, sObj.box_4.geometry, 1 ]
+                [ sObj.box_1.geometry, sObj.box_3.geometry, seqHooks.getSinBias(ud.b1b2Alpha, 1, 1) ]
+                //[ sObj.box_1.geometry, sObj.box_4.geometry, 1 ]
             ]);
             scaleEffect(group, mesh);
         });
