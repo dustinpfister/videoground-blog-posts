@@ -5,6 +5,7 @@ VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js',
    '../../../js/tween-many/r0/tween-many.js'
 ];
 //******** **********
@@ -15,6 +16,9 @@ VIDEO.daePaths = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+ 
+    // texture
+    let texture1 = datatex.seededRandom(64, 64, 1, 1, 1, [64, 128]);
  
     // create source objects from DAE file
     var sObj = tweenMany.createSourceObj(VIDEO.daeResults[0]);
@@ -90,9 +94,10 @@ VIDEO.init = function(sm, scene, camera){
         let i = 0;
         while(i < count){
             // create mesh object
-let mesh = tweenMany.createMesh(sObj, 'box_3');
-mesh.material = mesh.material.clone();
-mesh.material.transparent = true;
+           let mesh = tweenMany.createMesh(sObj, 'box_3');
+           mesh.material = mesh.material.clone();
+           mesh.material.transparent = true;
+           mesh.material.map = texture1;
 
 //            let mesh = new THREE.Mesh( 
 //                new THREE.BoxGeometry(1,1,1), 
