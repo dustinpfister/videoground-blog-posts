@@ -35,7 +35,7 @@ VIDEO.init = function(sm, scene, camera){
     // opaicty effect using length method which is distance to origin
     let scaleEffect = (group, mesh) =>  {
         let per = mesh.position.distanceTo( group.position ) / 5;
-        mesh.scale.normalize().multiplyScalar(0.5 + 2.5 * per);
+        mesh.scale.normalize().multiplyScalar(0.25 + 3.75 * per);
     };
     // rotation effect using the distanceTo method
     let rotationEffect = (group, mesh) =>  {
@@ -139,7 +139,7 @@ mesh.material.transparent = true;
 
 
 
-   var group1 = createGroup(50);
+   var group1 = createGroup(25);
    scene.add(group1);
 
 
@@ -152,9 +152,9 @@ mesh.material.transparent = true;
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    grid.material.linewidth = 3;
+    scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -245,7 +245,7 @@ mesh.material.transparent = true;
                 secs: 24,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var s = 8 - 5 * partPer;
+                    var s = 8 - 7 * partPer;
                     camera.position.set(s, s, s);
                     camera.lookAt(0, 0, 0);
                 }
