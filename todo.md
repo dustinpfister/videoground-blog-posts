@@ -2,13 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-vector3-distance-to
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -97,6 +90,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 09/07/2022 ) - video1 for threejs-vector3-distance-to
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 09/06/2022 ) - video1 for threejs-vector3-wrap
 * (done) start video folder and a video1 file
