@@ -17,8 +17,10 @@ VIDEO.daePaths = [
 // init
 VIDEO.init = function(sm, scene, camera){
  
+    //let COLORS = [ new THREE.Color(1, 1, 1) ];
+
     // texture
-    let texture1 = datatex.seededRandom(64, 64, 1, 1, 1, [64, 128]);
+    //let texture1 = datatex.seededRandom(64, 64, 1, 1, 1, [64, 128]);
  
     // create source objects from DAE file
     var sObj = tweenMany.createSourceObj(VIDEO.daeResults[0]);
@@ -100,7 +102,8 @@ VIDEO.init = function(sm, scene, camera){
            let mesh = tweenMany.createMesh(sObj, 'box_3');
            mesh.material = mesh.material.clone();
            mesh.material.transparent = true;
-           mesh.material.map = texture1;
+           mesh.material.map = datatex.seededRandom(64, 64, Math.random(), Math.random(), Math.random(), [64, 128]);
+           //mesh.material.color = COLORS[0];
 
 //            let mesh = new THREE.Mesh( 
 //                new THREE.BoxGeometry(1,1,1), 
