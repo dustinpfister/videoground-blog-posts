@@ -35,7 +35,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // opaicty effect using length method which is distance to origin
     let opacityEffect = (group, mesh) =>  {
-        let per = 1 - mesh.position.distanceTo( group.position ) / 5;
+        let per = 1 - mesh.position.distanceTo( group.position ) / 10;
         mesh.material.opacity = per * 4;
         if(per >= 0.25){
             mesh.material.opacity = 1;
@@ -43,8 +43,8 @@ VIDEO.init = function(sm, scene, camera){
     };
     // opaicty effect using length method which is distance to origin
     let scaleEffect = (group, mesh) =>  {
-        let per = mesh.position.distanceTo( group.position ) / 5;
-        mesh.scale.normalize().multiplyScalar(0.25 + 2.75 * per);
+        let per = mesh.position.distanceTo( group.position ) / 10;
+        mesh.scale.normalize().multiplyScalar(0.25 + 4.75 * per);
     };
     // rotation effect using the distanceTo method
     let rotationEffect = (group, mesh) =>  {
@@ -70,7 +70,7 @@ VIDEO.init = function(sm, scene, camera){
     let getStartPosition = (a, b) => {
         a = a === undefined ? 0 : a;
         b = b === undefined ? 0 : b;
-        let pos = new THREE.Vector3( 5, 0, 0);
+        let pos = new THREE.Vector3( 10, 0, 0);
         let e = new THREE.Euler(0, a * Math.PI * 2, b * Math.PI * 2);
         return pos.applyEuler(e);
     };
@@ -163,7 +163,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#00bfaf');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#8a8a8a', '#ffffff');
+    var grid = scene.userData.grid = new THREE.GridHelper(100, 100, '#8a8a8a', '#bfbfbf');
     grid.material.linewidth = 5;
     scene.add( grid );
  
