@@ -242,11 +242,19 @@ mesh.material.transparent = true;
                 }
             },
             {
-                secs: 24,
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8 - 16 * partPer, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 14,
                 update: function(seq, partPer, partBias){
                     // camera
                     var s = 8 - 7 * partPer;
-                    camera.position.set(s, s, s);
+                    camera.position.set(s * -1, s, s);
                     camera.lookAt(0, 0, 0);
                 }
             }
