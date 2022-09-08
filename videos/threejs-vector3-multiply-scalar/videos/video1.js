@@ -5,20 +5,98 @@ VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
-   '../../../js/datatex/r0/datatex.js',
-   '../../../js/object-grid-wrap/r2/object-grid-wrap.js',
-   '../../../js/object-grid-wrap/r2/effects/opacity2.js'
+   '../../../js/datatex/r0/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
- 
-    // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
-
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#afafaf', '#ffffff');
     grid.material.linewidth = 3;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.3;
     scene.add( grid );
+    // BACKGROUND
+    scene.background = new THREE.Color('#000000');
+    //-------- ----------
+    // LIGHT
+    //-------- ----------
+    let dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(-10, 3, -5);
+    scene.add(dl);
+    let al = new THREE.AmbientLight(0xffffff, 0.15);
+    scene.add(al);
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    // set position of mesh based on vector unit length along with a and b values
+    // relative to a standard start position
+    const setByLength = function(mesh, len, a, b, startDir){
+        startDir = startDir || new THREE.Vector3(1, 0, 0);
+        const pi2 = Math.PI * 2,
+        eul = new THREE.Euler(
+            0, 
+            a % 1 * pi2,
+            b % 1 * pi2);
+        // using copy to start at startDir, then applying the Euler. After that normalize and multiplyScalar
+        return mesh.position.copy( startDir ).applyEuler( eul ).normalize().multiplyScalar(len);
+    };
+    // get a bias value
+    const getBias = function(alpha, count){
+        let per = alpha * count % 1;
+        return 1 - Math.abs(0.5 - per) / 0.5;
+    };
+    // update a group
+    //const updateGroup = function(group, gAlpha, alphaAdjust, lenBiasCount, bBiasCount){
+    const updateGroup = function(group, gAlpha, opt){
+        gAlpha = gAlpha === undefined ? 0 : gAlpha; 
+        opt = opt || {};
+        opt.alphaAdjust = opt.alphaAdjust === undefined ? 1 : opt.alphaAdjust;
+        opt.lenBiasCount = opt.lenBiasCount === undefined ? 5 : opt.lenBiasCount;
+        opt.bBiasCount = opt.bBiasCount === undefined ? 5 : opt.bBiasCount;
+        opt.lenRange = opt.lenRange || [3, 8];
+        opt.bRange = opt.bRange || [-0.125, 0.125];
+        let i = 0, count = group.children.length;
+        while(i < count){
+            let mesh = group.children[i];
+            let iAlpha = i / count;
+            let alpha = ( iAlpha + gAlpha ) / opt.alphaAdjust;
+            let len = opt.lenRange[0] + (opt.lenRange[1] - opt.lenRange[0]) * getBias(alpha, opt.lenBiasCount);
+            let a = alpha;
+            let b = opt.bRange[0] + (opt.bRange[1] - opt.bRange[0]) * getBias(alpha, opt.bBiasCount);
+            setByLength(mesh, len, a, b);
+            // next child
+            nextChild = group.children[i + 1];
+            if(i === count - 1){
+               nextChild = group.children[i - 1];
+            }
+            mesh.lookAt(nextChild.position);
+            i += 1;
+        }
+        return group;
+    };
+    // create a group
+    const createGroup = function(count, s){
+        count = count === undefined ? 10 : count;
+        s = s === undefined ? 1 : s;
+        let i = 0;
+        let group = new THREE.Group();
+        while(i < count){
+            let mesh = new THREE.Mesh(
+                new THREE.BoxGeometry(s, s, s),
+                new THREE.MeshPhongMaterial({
+                    color: new THREE.Color(0, 1, 1)
+                }));
+            group.add(mesh);
+            i += 1;
+        }
+        updateGroup(group, 0);
+        return group;
+    };
+    //-------- ----------
+    // OBJECTS
+    //-------- ----------
+    let group1 = createGroup(120, 0.6);
+    scene.add(group1);
 
     //******** **********
     // TEXT CUBE
@@ -40,76 +118,9 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(textCube);
 
     //******** **********
-    // LIGHT
-    //******** **********
-    var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
-    scene.add(dl);
-
-    //******** **********
     // TEXTURES
     //******** **********
     var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
-
-    //******** **********
-    // GRID OPTIONS
-    //******** **********
-    var tw = 9,
-    th = 9,
-    space = 1.5;
-    // source objects
-    var mkBox = function(color, h){
-        var box = new THREE.Group();
-        var a = space * 0.95;
-        var mesh = new THREE.Mesh(
-            new THREE.BoxGeometry( a, h, a),
-            new THREE.MeshStandardMaterial({ color: color, map: texture_rnd1 }) );
-        mesh.position.y = h / 2;
-        //mesh.rotation.y = Math.PI / 180 * 20 * -1;
-        var ground = new THREE.Mesh(
-            new THREE.BoxGeometry( space, 0.1, space),
-            new THREE.MeshStandardMaterial({ color: 0xffffff, map: texture_rnd1}) );
-        ground.position.y = 0.05 * -1;
-        box.add(mesh)  
-        box.add(ground);
-        return box;
-    };
-    var array_source_objects = [
-        mkBox(0x00ffff, 0.25), //new THREE.Object3D(),
-        mkBox(0xff0000, 6.00),
-        mkBox(0xffff00, 3.50),
-        mkBox(0x00ff00, 1.50)
-    ];
-
-    var array_oi = [
-        0,0,0,0,0,3,3,0,0,
-        0,0,0,0,3,2,3,0,0,
-        0,0,0,3,2,3,3,0,0,
-        0,0,3,2,2,2,3,0,0,
-        0,3,2,2,1,2,3,0,0,
-        3,2,3,2,2,2,2,3,0,
-        0,3,0,3,3,3,2,3,0,
-        0,0,0,0,0,0,3,3,0,
-        0,0,0,0,0,0,0,0,0
-    ]
-    //******** **********
-    // CREATE GRID
-    //******** **********
-    var grid = ObjectGridWrap.create({
-        space: space,
-        tw: tw,
-        th: th,
-        //aOpacity: 1.25,
-        dAdjust: 1.25,
-        effects: ['opacity2', 'scale', 'rotationB'],
-        sourceObjects: array_source_objects,
-        objectIndices: array_oi
-    });
-    // minB value can be used to adjust min distance for opacity drop off
-    // when it comes to using the opacity2 effect
-    grid.userData.minB = 0.25;
-    scene.add(grid);
-
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -151,9 +162,6 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, Math.cos(Math.PI * seq.bias) * 0.25 );
-            ObjectGridWrap.update(grid);
-
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -169,6 +177,12 @@ VIDEO.init = function(sm, scene, camera){
                     }
                     // camera
                     camera.lookAt(0, 0, 0);
+
+                    updateGroup(group1, seq.per, {
+                        lenRange: [1, 6],
+                        bRange: [-0.125, 0]
+                    });
+
                 }
             },
             {
@@ -176,18 +190,26 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // camera
                     var v1 = new THREE.Vector3(8, 1, 0);
-                    var v2 = new THREE.Vector3(12, 12, 12);
+                    var v2 = new THREE.Vector3(9, 9, 9);
                     //camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.position.copy(v1).lerp(v2, partPer);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, 1 * partPer, 0);
+                    updateGroup(group1, seq.per, {
+                        lenRange: [1, 6],
+                        bRange: [-0.125, 0]
+                    });
                 }
             },
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(12, 12, 12);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(9, 9, 9);
+                    camera.lookAt(0, 1, 0);
+                    updateGroup(group1, seq.per, {
+                        lenRange: [1, 6],
+                        bRange: [-0.125, 0.2 * seq.getBias(4) ]
+                    });
                 }
             }
         ]
