@@ -23,8 +23,12 @@ VIDEO.init = function(sm, scene, camera){
     let dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(-10, 3, -5);
     scene.add(dl);
-    let al = new THREE.AmbientLight(0xffffff, 0.15);
+    let al = new THREE.AmbientLight(0xffffff, 0.25);
     scene.add(al);
+    //******** **********
+    // TEXTURES
+    //******** **********
+    var texture_rnd1 = datatex.seededRandom(16, 16, 1, 1, 1, [200, 255]);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -81,10 +85,12 @@ VIDEO.init = function(sm, scene, camera){
         let i = 0;
         let group = new THREE.Group();
         while(i < count){
+            let c = 0.5 + 0.5 * Math.random();
             let mesh = new THREE.Mesh(
-                new THREE.BoxGeometry(s, s, s),
+                new THREE.BoxGeometry(s, s, s * 0.5),
                 new THREE.MeshPhongMaterial({
-                    color: new THREE.Color(0, 1, 1)
+                    color: new THREE.Color(0, c, c),
+                    map: texture_rnd1
                 }));
             group.add(mesh);
             i += 1;
@@ -95,7 +101,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // OBJECTS
     //-------- ----------
-    let group1 = createGroup(120, 0.6);
+    let group1 = createGroup(75, 0.85);
     scene.add(group1);
 
     //******** **********
@@ -116,11 +122,6 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
-
-    //******** **********
-    // TEXTURES
-    //******** **********
-    var texture_rnd1 = datatex.seededRandom(40, 40, 1, 1, 1, [0, 255]);
 
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
@@ -179,6 +180,8 @@ VIDEO.init = function(sm, scene, camera){
                     camera.lookAt(0, 0, 0);
 
                     updateGroup(group1, seq.per, {
+                        lenBiasCount: 5,
+                        bBiasCount: 5,
                         lenRange: [1, 6],
                         bRange: [-0.125, 0]
                     });
@@ -195,19 +198,38 @@ VIDEO.init = function(sm, scene, camera){
                     camera.position.copy(v1).lerp(v2, partPer);
                     camera.lookAt(0, 1 * partPer, 0);
                     updateGroup(group1, seq.per, {
+                        lenBiasCount: 5,
+                        bBiasCount: 5,
                         lenRange: [1, 6],
                         bRange: [-0.125, 0]
                     });
                 }
             },
             {
-                secs: 20,
+                secs: 10,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(9, 9, 9);
+                    camera.position.set(9 - 9 * partPer, 9, 9);
                     camera.lookAt(0, 1, 0);
                     updateGroup(group1, seq.per, {
+                        lenBiasCount: 5,
+                        bBiasCount: 5,
                         lenRange: [1, 6],
+                        bRange: [-0.125, 0.2 * seq.getBias(4) ]
+                    });
+                }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    let s = 9 + 2 * partPer;
+                    camera.position.set(0, s, s);
+                    camera.lookAt(0, 1 - partPer, 0);
+                    updateGroup(group1, seq.per, {
+                        lenBiasCount: 5 + 5 * partPer,
+                        bBiasCount: 5 - 3 * partPer,
+                        lenRange: [1 + 2 * partPer, 6 + 2 * partPer],
                         bRange: [-0.125, 0.2 * seq.getBias(4) ]
                     });
                 }
