@@ -10,7 +10,7 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#8a8a8aa', '#000000');
+    var grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#8a8a8a', '#000000');
     grid.material.linewidth = 3;
     grid.material.transparent = true;
     grid.material.opacity = 0.3;
@@ -28,7 +28,7 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // TEXTURES
     //******** **********
-    var texture_rnd1 = datatex.seededRandom(16, 16, 1, 1, 1, [200, 255]);
+    var texture_rnd1 = datatex.seededRandom(8, 8, 1, 1, 1, [200, 255]);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -83,10 +83,11 @@ VIDEO.init = function(sm, scene, camera){
         return new THREE.Color(0, c, c)
     };
     // create a group
-    const createGroup = function(count, s, getColor){
-        getColor = getColor || defaultGetColor;
+    const createGroup = function(count, s, opacity, getColor){
         count = count === undefined ? 10 : count;
         s = s === undefined ? 1 : s;
+        opacity = opacity === undefined ? 1 : opacity;
+        getColor = getColor || defaultGetColor;
         let i = 0;
         let group = new THREE.Group();
         while(i < count){
@@ -94,7 +95,9 @@ VIDEO.init = function(sm, scene, camera){
                 new THREE.BoxGeometry(s, s, s),
                 new THREE.MeshPhongMaterial({
                     color: getColor(),
-                    map: texture_rnd1
+                    map: texture_rnd1,
+                    transparent: true,
+                    opacity: opacity
                 }));
             group.add(mesh);
             i += 1;
@@ -105,17 +108,17 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // OBJECTS
     //-------- ----------
-    let group1 = createGroup(100, 0.85);
+    let group1 = createGroup(100, 0.85, 1);
     scene.add(group1);
 
-    let group2 = createGroup(100, 0.85, function(){
+    let group2 = createGroup(100, 0.85, 0.5, function(){
         let c = 0.5 + 0.5 * Math.random();
         return new THREE.Color(0, c, 0)
     });
     group2.position.set(-10, 0, 0);
     scene.add(group2);
 
-    let group3 = createGroup(100, 0.85, function(){
+    let group3 = createGroup(100, 0.85, 0.5, function(){
         let c = 0.5 + 0.5 * Math.random();
         return new THREE.Color(c, 0, 0)
     });
