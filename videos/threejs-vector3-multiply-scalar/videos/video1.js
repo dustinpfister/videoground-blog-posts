@@ -78,18 +78,22 @@ VIDEO.init = function(sm, scene, camera){
         }
         return group;
     };
+    const defaultGetColor = function(){
+        let c = 0.5 + 0.5 * Math.random();
+        return new THREE.Color(0, c, c)
+    };
     // create a group
-    const createGroup = function(count, s){
+    const createGroup = function(count, s, getColor){
+        getColor = getColor || defaultGetColor;
         count = count === undefined ? 10 : count;
         s = s === undefined ? 1 : s;
         let i = 0;
         let group = new THREE.Group();
         while(i < count){
-            let c = 0.5 + 0.5 * Math.random();
             let mesh = new THREE.Mesh(
                 new THREE.BoxGeometry(s, s, s * 0.5),
                 new THREE.MeshPhongMaterial({
-                    color: new THREE.Color(0, c, c),
+                    color: getColor(),
                     map: texture_rnd1
                 }));
             group.add(mesh);
@@ -103,6 +107,20 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     let group1 = createGroup(75, 0.85);
     scene.add(group1);
+
+    let group2 = createGroup(75, 0.85, function(){
+        let c = 0.5 + 0.5 * Math.random();
+        return new THREE.Color(0, c, 0)
+    });
+    group2.position.set(-10, 0, 0);
+    scene.add(group2);
+
+    let group3 = createGroup(75, 0.85, function(){
+        let c = 0.5 + 0.5 * Math.random();
+        return new THREE.Color(c, 0, 0)
+    });
+    group3.position.set(0, 0, -10);
+    scene.add(group3);
 
     //******** **********
     // TEXT CUBE
@@ -165,6 +183,18 @@ VIDEO.init = function(sm, scene, camera){
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+
+            let s = 1 + 2.5 * seq.per;
+            updateGroup(group2, seq.per, {
+                lenBiasCount: 2 + 6 * seq.per
+            });
+            group2.scale.set(s, s, s);
+
+            updateGroup(group3, seq.per, {
+                bBiasCount: 2 + 6 * seq.per
+            });
+            group3.scale.set(s, s, s);
+
         },
         afterObjects: function(seq){
         },
