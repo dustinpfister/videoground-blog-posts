@@ -2,13 +2,6 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-examples-wrap-module
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -97,6 +90,13 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 09/09/2022 ) - video1 for threejs-examples-wrap-module
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 09/08/2022 ) - video1 for threejs-vector3-multiply-scalar
 * (done) start video folder and a video1 file
