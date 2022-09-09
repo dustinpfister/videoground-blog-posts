@@ -268,9 +268,28 @@ let pi2 = Math.PI * 2,
                 }
             },
             {
-                secs: 15,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     var v1 = group1.position.clone().add(new THREE.Vector3(-2, 1, -10) );
+                    // camera
+                    camera.position.copy(v1)
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    var v1 = group1.position.clone().add(new THREE.Vector3(-2, 1, -10) );
+                    v2 = group2.position.clone().add(new THREE.Vector3(7, 1, 0) );
+                    // camera
+                    camera.position.copy(v1.clone().lerp(v2, partPer))
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    var v1 = group2.position.clone().add(new THREE.Vector3(7, 1, 0) );
                     // camera
                     camera.position.copy(v1)
                     camera.lookAt(0, 0, 0);
