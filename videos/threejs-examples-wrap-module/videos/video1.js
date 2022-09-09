@@ -1,4 +1,4 @@
-// video1 forthreejs-examples-wrap-module
+	// video1 forthreejs-examples-wrap-module
  
 // scripts
 VIDEO.scripts = [
@@ -142,6 +142,13 @@ VIDEO.init = function(sm, scene, camera){
     group2.userData.type = 'wrapVectorLength';
     group2.position.set(5,0,5);
     scene.add(group2);
+
+    var group3 = createGroup(100, 30, 0.25, 1, 0.75, 30, new THREE.Color(1,1,1));
+    group3.userData.type = 'none';
+    group3.position.set(0, 0, 0);
+    scene.add(group3);
+
+
     const mesh1 = makeCone(7, 2);
     scene.add(mesh1);
 
@@ -149,7 +156,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(100, 100, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(40, 40, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
     grid.material.transparent = true;
     grid.material.opacity = 0.25;
@@ -218,10 +225,11 @@ VIDEO.init = function(sm, scene, camera){
 let pi2 = Math.PI * 2,
     eMin = new THREE.Euler(0, pi2 * 0.5 * -1, 0),
     eMax = new THREE.Euler(pi2, pi2 * 0.25, pi2),
-    degPerSec = 45;
+    degPerSec = 180;
 
             updateGroup(group1, secs);
             updateGroup(group2, secs);
+            updateGroup(group3, secs);
             mesh1.rotation.y += Math.PI / 180 * degPerSec * secs;
             wrapMod.wrapEuler(mesh1.rotation, eMin, eMax);
             mesh1.material.opacity = 1 - Math.abs( 0.5 - getWrapAlpha(mesh1.rotation.y, eMin.y, eMax.y) ) / 0.5;
