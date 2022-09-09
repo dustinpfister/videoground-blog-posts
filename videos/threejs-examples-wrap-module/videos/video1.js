@@ -237,10 +237,10 @@ let pi2 = Math.PI * 2,
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 18 * partPer, 1 + 9 * partPer, 10 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -248,8 +248,7 @@ let pi2 = Math.PI * 2,
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(-10, 10, 10);
                     camera.lookAt(0, 0, 0);
                 }
             }

@@ -1,7 +1,7 @@
 /* threejs-wrap.js - r0 - A THREEJS Wrap Module
  *     for the post: https://dustinpfister.github.io/2022/09/09/threejs-examples-wrap-module/
  */
-const wrapMod = (function () {
+var wrapMod = (function () {
     // public API
     const api = {};
     // Wrap method based off of the method from Phaser3 
