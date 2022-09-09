@@ -153,7 +153,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(mesh1);
 
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#1a1a1a');
 
     // GRID
     var grid = scene.userData.grid = new THREE.GridHelper(40, 40, '#ffffff', '#00afaf');
@@ -170,10 +170,10 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['template2', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
+            ['Wrap Module', 64, 17, 14, 'white'],
+            ['threejs example', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['( r140 09/09/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
