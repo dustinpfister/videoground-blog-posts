@@ -5,6 +5,7 @@ VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js',
    '../js/threejs-wrap-r0.js'
 ];
 // init
@@ -30,6 +31,7 @@ VIDEO.init = function(sm, scene, camera){
             new THREE.ConeGeometry(radius, len, 20, 20),
             new THREE.MeshPhongMaterial({
                 color: color,
+                map: datatex.seededRandom(32, 32),
                 transparent: true,
                 opacity: 0.8
             }));
@@ -45,6 +47,7 @@ VIDEO.init = function(sm, scene, camera){
             new THREE.BoxGeometry(size, size, size),
             new THREE.MeshPhongMaterial({
                 color: color,
+                map: datatex.seededRandom(8, 8, 1, 1, 1, [64, 255]),
                 transparent: true,
                 opacity: 0.8
             }));
