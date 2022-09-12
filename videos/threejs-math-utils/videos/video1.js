@@ -28,6 +28,18 @@ VIDEO.init = function(sm, scene, camera){
         1,2,2,2,2,1,
         2,1,1,1,1,2
     ], 6, palette_gray);
+    var texture2 = datatex.fromPXDATA([
+        2,1,1,1,1,1,1,1,1,2,
+        1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,0,0,1,1,1,1,
+        1,1,1,0,0,0,0,1,1,1,
+        1,1,2,3,1,1,3,2,1,1,
+        1,1,1,1,1,1,1,1,1,1,
+        1,1,2,0,1,1,0,2,1,1,
+        1,2,2,0,1,1,0,2,2,1,
+        1,1,1,1,1,1,1,1,1,1,
+        2,1,1,1,1,1,1,1,1,2
+    ], 10, palette_gray);
  
     //-------- ----------
     // LIGHT
@@ -106,7 +118,7 @@ VIDEO.init = function(sm, scene, camera){
     // OBJECTS
     //-------- ----------
     scene.add( new THREE.GridHelper(10, 10) );
-    const group1 = createGroup( 1, new THREE.Color(0,1,0) );
+    const group1 = createGroup( 1, new THREE.Color(0,1,0), texture2 );
     scene.add(group1);
     const group2 = createGroup( 1 );
     group2.position.y = -1.1;
