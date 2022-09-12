@@ -40,13 +40,17 @@ VIDEO.init = function(sm, scene, camera){
         1,1,1,1,1,1,1,1,1,1,
         2,1,1,1,1,1,1,1,1,2
     ], 10, palette_gray);
+    var texture3 = datatex.seededRandom(64, 64, 1, 1, 1, [32, 128]);
  
     //-------- ----------
     // LIGHT
     //-------- ----------
-    const dl = new THREE.DirectionalLight();
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
     dl.position.set(1, 2.5, 5);
     scene.add(dl);
+    const pl = new THREE.PointLight(0xffffff, 1);
+    pl.position.set(-5, 5, 5);
+    scene.add(pl);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -117,8 +121,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // OBJECTS
     //-------- ----------
-    scene.add( new THREE.GridHelper(10, 10) );
-    const group1 = createGroup( 1, new THREE.Color(0,1,0), texture2 );
+    const group1 = createGroup( 1, new THREE.Color(0,1,1), texture2 );
     scene.add(group1);
     const group2 = createGroup( 1 );
     group2.position.y = -1.1;
@@ -126,10 +129,19 @@ VIDEO.init = function(sm, scene, camera){
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
+    var plane = new THREE.Mesh( new THREE.PlaneGeometry(50, 50, 1, 1), new THREE.MeshPhongMaterial({
+        side: THREE.DoubleSide,
+        color: new THREE.Color(0, 1, 0),
+        map: texture3
+    }) );
+    plane.geometry.rotateX(Math.PI * 1.5);
+    plane.position.set(0, -2.5, 0);
+    scene.add(plane);
+
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
