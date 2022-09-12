@@ -49,8 +49,9 @@ VIDEO.init = function(sm, scene, camera){
     dl.position.set(1, 2.5, 5);
     scene.add(dl);
     const pl = new THREE.PointLight(0xffffff, 1);
-    pl.position.set(-5, 5, 5);
     scene.add(pl);
+    const al = new THREE.AmbientLight(0xffffff, 0.2);
+    scene.add(al);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -201,11 +202,15 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
-
+            // update groups
             const secs = 1 / 30;
             updateGroupSmooth(group1, secs);
             updateGroup(group2, secs);
-
+            // point light
+            //const r = Math.PI * 2 * seq.getPer(1),
+            //x = Math.cos(r) * 10,
+            //z = Math.sin(r) * 10;
+            pl.position.set(7, 7, 7);
         },
         afterObjects: function(seq){
         },
