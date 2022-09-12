@@ -9,15 +9,25 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+
+    let palette_gray = [
+        [0,0,0,255],
+        [255,255,255,255],
+        [128,128,128,255],
+        [64,64,64,255]
+    ]
+
     //-------- ---------- 
     // TEXTURES
     //-------- ----------
     var texture1 = datatex.fromPXDATA([
-        1,0,0,1,
-        0,0,0,0,
-        0,0,0,0,
-        1,0,0,1
-    ], 4);
+        2,1,1,1,1,2,
+        1,2,2,2,2,1,
+        1,2,3,3,2,1,
+        1,2,3,3,2,1,
+        1,2,2,2,2,1,
+        2,1,1,1,1,2
+    ], 6, palette_gray);
  
     //-------- ----------
     // LIGHT
@@ -68,9 +78,10 @@ VIDEO.init = function(sm, scene, camera){
         });
     };
     // create a group
-    const createGroup = (size, color) => {
+    const createGroup = (size, color, texture) => {
         size = size === undefined ? 1 : size;
         color = color || new THREE.Color(1, 1, 1);
+        texture = texture || texture1;
         let i = 0;
         const len = 5, group = new THREE.Group();
         while(i < len){
@@ -78,8 +89,9 @@ VIDEO.init = function(sm, scene, camera){
                 new THREE.BoxGeometry(size, size, size),
                 new THREE.MeshPhongMaterial({
                     color: color,
+                    map: texture,
                     transparent: true,
-                    opacity: 0.5
+                    opacity: 1.0
                 }));
             mesh.userData.maxPPS = 1.25 + 1.5 * (i / len);
             const x = 5;
