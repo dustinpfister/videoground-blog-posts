@@ -76,11 +76,11 @@ VIDEO.init = function(sm, scene, camera){
             const mud = mesh.userData;
             // variable pixles per second using THREE.MathUtils.smoothstep and Vector3.distanceTo
             const d = mesh.position.distanceTo( new THREE.Vector3(0, 0, mesh.position.z) );
-            const pps = THREE.MathUtils.smoothstep(d, -2.5, 2.5) * mud.maxPPS;
+            const pps = THREE.MathUtils.smoothstep(d, -5, 5) * mud.maxPPS;
             // stepping posiiton
             mesh.position.x -= pps * secs;
             // wrap
-            mesh.position.x = wrap(mesh.position.x, -5, 5);
+            mesh.position.x = wrap(mesh.position.x, -10, 10);
         });
     };
     // simple update group with fixed pixles per second for sake of something to compare to
@@ -90,7 +90,7 @@ VIDEO.init = function(sm, scene, camera){
             // stepping posiiton
             mesh.position.x -= mud.maxPPS * secs;
             // wrap
-            mesh.position.x = wrap(mesh.position.x, -5, 5);
+            mesh.position.x = wrap(mesh.position.x, -10, 10);
         });
     };
     // create a group
@@ -99,7 +99,7 @@ VIDEO.init = function(sm, scene, camera){
         color = color || new THREE.Color(1, 1, 1);
         texture = texture || texture1;
         let i = 0;
-        const len = 5, group = new THREE.Group();
+        const len = 10, group = new THREE.Group();
         while(i < len){
             const mesh = new THREE.Mesh(
                 new THREE.BoxGeometry(size, size, size),
@@ -109,9 +109,9 @@ VIDEO.init = function(sm, scene, camera){
                     transparent: true,
                     opacity: 1.0
                 }));
-            mesh.userData.maxPPS = 1.25 + 1.5 * (i / len);
-            const x = 5;
-            const z = -4 + 10 * (i / len);
+            mesh.userData.maxPPS = 3 + 5 * (i / len);
+            const x = 10;
+            const z = -12 + 17 * (i / len);
             mesh.position.set(x, 0, z);
             group.add(mesh);
             i += 1;
@@ -121,10 +121,10 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // OBJECTS
     //-------- ----------
-    const group1 = createGroup( 1, new THREE.Color(0,1,1), texture2 );
+    const group1 = createGroup( 1.5, new THREE.Color(0,1,1), texture2 );
     scene.add(group1);
-    const group2 = createGroup( 1 );
-    group2.position.y = -1.1;
+    const group2 = createGroup( 1.5 );
+    group2.position.y = -1.6;
     scene.add(group2);
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
@@ -135,7 +135,7 @@ VIDEO.init = function(sm, scene, camera){
         map: texture3
     }) );
     plane.geometry.rotateX(Math.PI * 1.5);
-    plane.position.set(0, -2.5, 0);
+    plane.position.set(0, -3.2, 0);
     scene.add(plane);
 
     // GRID
