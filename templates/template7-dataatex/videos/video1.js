@@ -14,6 +14,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const texture_rnd1 = datatex.seededRandom(8,8,1,1,1,[ 0, 255]);
     const texture_rnd2 = datatex.seededRandom(32,32,1,1,1,[ 128, 200]);
+    const texture_rnd3 = datatex.seededRandom(256,256,1,1,1,[ 64, 128]);
     // from px data textures
     const pal_gray = [
         [0,0,0,255],
@@ -72,11 +73,23 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // CHILD OBJECTS
     //-------- ----------
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#000000');
+    var grid = scene.userData.grid = new THREE.GridHelper(50, 50, '#ffffff', '#000000');
     grid.material.linewidth = 3;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.25;
     scene.add( grid );
+    // cube mesh 1
     const mesh1 = makeCube(5, texture_square_med);
     scene.add(mesh1);
+    // sphere
+    const sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(30, 30, 30), 
+        new THREE.MeshPhongMaterial({
+           side: THREE.DoubleSide,
+           map: texture_rnd3
+        })
+    );
+    scene.add(sphere);
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
