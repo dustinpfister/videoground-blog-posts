@@ -66,10 +66,15 @@ VIDEO.init = function(sm, scene, camera){
             })
         );
     };
+    const degToRad = (deg) => {
+         return THREE.MathUtils.degToRad(deg);
+    };
     //-------- ----------
     // BACKGROUND
     //-------- ----------
     scene.background = new THREE.Color('#afafaf');
+
+
     //-------- ----------
     // CHILD OBJECTS
     //-------- ----------
@@ -79,8 +84,11 @@ VIDEO.init = function(sm, scene, camera){
     grid.material.opacity = 0.25;
     scene.add( grid );
     // cube mesh 1
-    const mesh1 = makeCube(5, texture_square_med);
+    const mesh1 = makeCube(4, texture_square_med);
     scene.add(mesh1);
+    // cube mesh 2
+    const mesh2 = makeCube(2, texture_square_med);
+    scene.add(mesh2);
     // sphere
     const sphere = new THREE.Mesh(
         new THREE.SphereGeometry(30, 30, 30), 
@@ -90,6 +98,8 @@ VIDEO.init = function(sm, scene, camera){
         })
     );
     scene.add(sphere);
+
+
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -148,9 +158,19 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
-            // mesh1
-            mesh1.rotation.x = Math.PI * 2 * 1 * seq.per;
-            mesh1.rotation.y = Math.PI * 2 * 4 * seq.per;
+
+    const vStart = new THREE.Vector3(0, 0, 1);
+
+        // setting rotation of mesh1
+        mesh1.rotation.x = degToRad(90 * seq.getBias(1, false) );
+        mesh1.rotation.y = degToRad(360) * seq.per;
+        mesh1.rotation.z = 0;
+ 
+        // using the state of the rotation of mesh1 to effect the position of mesh2
+        let radius = 7 - 3 * seq.getSinBias(4, false);
+        mesh2.position.copy(vStart).applyEuler( mesh1.rotation ).normalize().multiplyScalar(radius);
+        mesh2.rotation.set(0, Math.PI * 2 * 8 * seq.per, 0);
+
             // text cube and camera
             textCube.visible = false;
             camera.position.set(8, 1, 0);
