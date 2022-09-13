@@ -79,9 +79,9 @@ VIDEO.init = function(sm, scene, camera){
     // CHILD OBJECTS
     //-------- ----------
     var grid = scene.userData.grid = new THREE.GridHelper(50, 50, '#ffffff', '#000000');
-    grid.material.linewidth = 3;
+    grid.material.linewidth = 4;
     grid.material.transparent = true;
-    grid.material.opacity = 0.25;
+    grid.material.opacity = 0.35;
     scene.add( grid );
     // cube mesh 1
     const mesh1 = makeCube(4, texture_square_med);
@@ -184,12 +184,12 @@ VIDEO.init = function(sm, scene, camera){
         mesh2.position.copy(vStart).applyEuler( mesh1.rotation ).normalize().multiplyScalar(radius);
         mesh2.rotation.set(0, Math.PI * 2 * 8 * seq.per, 0);
 
+        // group1
+        group1.children.forEach((mesh, mi, arr)=>{
+           mesh.rotation.y = Math.PI / 180 * 360 * 16 * ( (mi + 1) / arr.length ) * seq.per;
+        });
 
-group1.children.forEach((mesh, mi, arr)=>{
-
-   mesh.rotation.y = Math.PI / 180 * 360 * 16 * ( (mi + 1) / arr.length ) * seq.per;
-
-});
+sphere.rotation.y = Math.PI * seq.per;
 
             // text cube and camera
             textCube.visible = false;
