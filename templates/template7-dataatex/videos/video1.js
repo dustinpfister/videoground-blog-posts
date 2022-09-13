@@ -14,6 +14,36 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const texture_rnd1 = datatex.seededRandom(8,8,1,1,1,[ 0, 255]);
     const texture_rnd2 = datatex.seededRandom(32,32,1,1,1,[ 128, 200]);
+    // from px data textures
+    const pal_gray = [
+        [0,0,0,255],
+        [255,255,255,255],
+        [25,25,25,255],
+        [50,50,50,255],
+        [75,75,75,255],
+        [100,100,100,255],
+        [125,125,125,255],
+        [150,150,150,255],
+        [175,175,175,255],
+        [200,200,200,255],
+        [225,225,225, 255]
+    ]
+    const texture_square_small = datatex.fromPXDATA([
+        2,2,2,2,
+        2,1,1,2,
+        2,1,1,2,
+        2,2,2,2
+    ], 4, pal_gray);
+    const texture_square_med = datatex.fromPXDATA([
+        0,2,2,0,0,2,2,0,
+        2,3,3,4,4,3,3,2,
+        2,3,4,5,5,4,3,2,
+        0,4,5,1,1,5,4,0,
+        0,4,5,1,1,5,4,0,
+        2,3,4,5,5,4,3,2,
+        2,3,3,4,4,3,3,2,
+        0,2,2,0,0,2,2,0
+    ], 8, pal_gray);
     //-------- ----------
     // LIGHT
     //-------- ----------
@@ -38,14 +68,14 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#000000');
+    scene.background = new THREE.Color('#afafaf');
     //-------- ----------
     // CHILD OBJECTS
     //-------- ----------
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#000000');
     grid.material.linewidth = 3;
     scene.add( grid );
-    const mesh1 = makeCube(5, texture_rnd2);
+    const mesh1 = makeCube(5, texture_square_med);
     scene.add(mesh1);
     //-------- ----------
     // TEXT CUBE
