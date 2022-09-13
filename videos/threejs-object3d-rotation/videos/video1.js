@@ -89,6 +89,19 @@ VIDEO.init = function(sm, scene, camera){
     // cube mesh 2
     const mesh2 = makeCube(2, texture_square_med);
     scene.add(mesh2);
+    // group of mesh
+    const group1 = new THREE.Group();
+    scene.add(group1);
+    let i = 0, len = 10;
+    while(i < len){
+        const mesh = makeCube(1, texture_square_small);
+        mesh.position.set(-15 + 20 * (i / len), 0, 0);
+        group1.add(mesh);
+        i += 1;
+    };
+    group1.position.set(0, 0, -5);
+
+
     // sphere
     const sphere = new THREE.Mesh(
         new THREE.SphereGeometry(30, 30, 30), 
@@ -170,6 +183,13 @@ VIDEO.init = function(sm, scene, camera){
         let radius = 7 - 3 * seq.getSinBias(4, false);
         mesh2.position.copy(vStart).applyEuler( mesh1.rotation ).normalize().multiplyScalar(radius);
         mesh2.rotation.set(0, Math.PI * 2 * 8 * seq.per, 0);
+
+
+group1.children.forEach((mesh, mi, arr)=>{
+
+   mesh.rotation.y = Math.PI / 180 * 360 * 16 * ( (mi + 1) / arr.length ) * seq.per;
+
+});
 
             // text cube and camera
             textCube.visible = false;
