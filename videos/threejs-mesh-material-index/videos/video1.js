@@ -240,10 +240,10 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['template7', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
-            ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['Mesh Objects and', 64, 17, 14, 'white'],
+            ['Material Index', 64, 32, 14, 'white'],
+            ['values of groups', 64, 47, 14, 'white'],
+            ['( r140 09/14/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
@@ -323,11 +323,43 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 25,
+                secs: 5,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(8 - 13 * partPer, 8 - 3 * partPer, 8 - 3 * partPer);
                     camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-5, 5, 5);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-5, 5 - 3.5 * partPer, 5);
+                    camera.lookAt(0, 1.5 * partPer, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(-5 + 5 * partPer, 1.5, 5 - 5 * partPer);
+                    camera.lookAt(1 * partPer, 1.5, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(10 * partPer, 1.5, 0);
+                    camera.lookAt(1, 1.5, 0);
                 }
             }
         ]
