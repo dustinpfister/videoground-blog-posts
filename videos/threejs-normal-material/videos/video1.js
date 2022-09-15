@@ -5,9 +5,9 @@ VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
-   '../../../js/datatex/r0/datatex.js',
-   '../../../js/object-grid-wrap/r2/object-grid-wrap.js',
-   '../../../js/object-grid-wrap/r2/effects/opacity2.js',
+   '../../../js/r140-files/VertexNormalsHelper.js',
+   //'../../../js/object-grid-wrap/r2/object-grid-wrap.js',
+   //'../../../js/object-grid-wrap/r2/effects/opacity2.js',
    './lerp-geo.js',
    './weird-face.js'
 ];
@@ -27,7 +27,6 @@ VIDEO.init = function(sm, scene, camera){
     const toNormalMaterial = (object) => {
         object.traverse((obj) => {
             if(obj.type === 'Mesh'){
-                console.log(obj);
                 obj.material = new THREE.MeshNormalMaterial();
             }
         });
