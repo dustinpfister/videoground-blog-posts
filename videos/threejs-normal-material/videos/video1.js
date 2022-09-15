@@ -27,10 +27,23 @@ VIDEO.init = function(sm, scene, camera){
     const toNormalMaterial = (object) => {
         object.traverse((obj) => {
             if(obj.type === 'Mesh'){
+                // use normal material
                 obj.material = new THREE.MeshNormalMaterial();
+                // add vertex helper
+                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.1, 0x00ff00, 1 );
+                scene.add(helper);
             }
         });
-    }
+    };
+
+    const updateHelpers = (nose) => {
+        nose.traverse((obj) => {
+            if(obj.type === 'Mesh'){
+                obj.userData.helper.update();
+            }
+        });
+    };
+
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -105,14 +118,12 @@ VIDEO.init = function(sm, scene, camera){
     toNormalMaterial(rScene);
     var nose = rScene.getObjectByName('nose');
     scene.add(nose);
-    nose.scale.set(2, 2, 2);
+    nose.scale.set(5, 5, 5);
     // mouth objects
     rScene = VIDEO.daeResults[0].scene;
     var m0 = rScene.getObjectByName('mouth-0');
     var m1 = rScene.getObjectByName('mouth-1');
     
-
-
     //******** **********
     // A SEQ FOR TEXT CUBE
     //******** **********
@@ -162,6 +173,8 @@ VIDEO.init = function(sm, scene, camera){
 
             weirdFace.setEye(nose, 1, 0, 0, 1);
             weirdFace.setEye(nose, 2, 0, 0, 1);
+
+            updateHelpers(nose);
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
