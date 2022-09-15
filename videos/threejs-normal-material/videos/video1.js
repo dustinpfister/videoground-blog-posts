@@ -30,7 +30,7 @@ VIDEO.init = function(sm, scene, camera){
                 // use normal material
                 obj.material = new THREE.MeshNormalMaterial();
                 // add vertex helper
-                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.1, 0x00ff00, 1 );
+                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.05, 0x00ff00, 1 );
                 scene.add(helper);
             }
         });
@@ -182,6 +182,9 @@ VIDEO.init = function(sm, scene, camera){
              var s = 0.5 + 0.5 * sBias;
              weirdFace.setEye(nose, 1, a, 0, s);
              weirdFace.setEye(nose, 2, a, 0, s);
+             // updating mouth
+             var mBias = seq.getSinBias(32, false);
+             weirdFace.setMouth(nose, mBias, m0, m1);
 
             updateHelpers(nose);
 
