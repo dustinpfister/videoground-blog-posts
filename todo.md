@@ -2,6 +2,13 @@
 
 <!-- Whats next -->
 
+### () - video1 for normal-material
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
