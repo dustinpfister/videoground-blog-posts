@@ -118,7 +118,8 @@ VIDEO.init = function(sm, scene, camera){
     toNormalMaterial(rScene);
     var nose = rScene.getObjectByName('nose');
     scene.add(nose);
-    nose.scale.set(5, 5, 5);
+    nose.scale.set(2.25, 2.25, 2.25);
+    nose.position.set(0, 0.1, 0);
     // mouth objects
     rScene = VIDEO.daeResults[0].scene;
     var m0 = rScene.getObjectByName('mouth-0');
@@ -169,10 +170,18 @@ VIDEO.init = function(sm, scene, camera){
             //ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
             //ObjectGridWrap.update(grid);
 
-            weirdFace.setMouth(nose, 0, m0, m1);
+            //weirdFace.setMouth(nose, 0, m0, m1);
 
-            weirdFace.setEye(nose, 1, 0, 0, 1);
-            weirdFace.setEye(nose, 2, 0, 0, 1);
+            //weirdFace.setEye(nose, 1, 0, 0, 1);
+            //weirdFace.setEye(nose, 2, 0, 0, 1);
+
+             // UPDATING EYES
+             var aBias = seq.getSinBias(4, false);
+             var a = -0.1 + 0.2 * aBias;
+             var sBias = seq.getSinBias(2, false);
+             var s = 0.5 + 0.5 * sBias;
+             weirdFace.setEye(nose, 1, a, 0, s);
+             weirdFace.setEye(nose, 2, a, 0, s);
 
             updateHelpers(nose);
 
@@ -200,8 +209,8 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
 
 
-                    weirdFace.setEye(nose, 1, -0.1 * partPer, 0, 1);
-                    weirdFace.setEye(nose, 2, -0.1 * partPer, 0, 1);
+                    //weirdFace.setEye(nose, 1, -0.1 * partPer, 0, 1);
+                    //weirdFace.setEye(nose, 2, -0.1 * partPer, 0, 1);
 
                     // camera
                     camera.position.set(8 - 7 * partPer, 1 - 0.25 * partPer, 2 * partPer);
@@ -213,10 +222,10 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 4,
                 update: function(seq, partPer, partBias){
 
-                    var eBias = weirdFace.getBias(partPer, 4);
-                    var a = -0.1 + 0.2 * eBias;
-                    weirdFace.setEye(nose, 1, a, 0, 1);
-                    weirdFace.setEye(nose, 2, a, 0, 1);
+                    //var eBias = weirdFace.getBias(partPer, 4);
+                    //var a = -0.1 + 0.2 * eBias;
+                    //weirdFace.setEye(nose, 1, a, 0, 1);
+                    //weirdFace.setEye(nose, 2, a, 0, 1);
 
                     // camera
                     camera.position.set(1, 0.75, 2);
@@ -228,12 +237,12 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 4,
                 update: function(seq, partPer, partBias){
 
-                    var a = -0.1 + 0.1 * partPer;
-                    weirdFace.setEye(nose, 1, a, 0, 1);
-                    weirdFace.setEye(nose, 2, a, 0, 1);
+                    //var a = -0.1 + 0.1 * partPer;
+                    //weirdFace.setEye(nose, 1, a, 0, 1);
+                    //weirdFace.setEye(nose, 2, a, 0, 1);
 
-                    var mBias = weirdFace.getBias(partPer, 16);
-                    weirdFace.setMouth(nose, mBias, m0, m1);
+                    //var mBias = weirdFace.getBias(partPer, 16);
+                    //weirdFace.setMouth(nose, mBias, m0, m1);
 
                     // camera
                     camera.position.set(1 - 2 * partPer, 0.75, 2);
@@ -255,8 +264,8 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 4,
                 update: function(seq, partPer, partBias){
 
-                    var mBias = weirdFace.getBias(partPer, 16);
-                    weirdFace.setMouth(nose, mBias, m0, m1);
+                    //var mBias = weirdFace.getBias(partPer, 16);
+                    //weirdFace.setMouth(nose, mBias, m0, m1);
 
                     // camera
                     camera.position.set(-1 + 2 * partPer, 0.75, 2);
@@ -268,9 +277,9 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 6,
                 update: function(seq, partPer, partBias){
 
-                    var s = 1 + 1 * partPer;
-                    weirdFace.setEye(nose, 1, 0, 0, s);
-                    weirdFace.setEye(nose, 2, 0, 0, s);
+                    //var s = 1 + 1 * partPer;
+                    //weirdFace.setEye(nose, 1, 0, 0, s);
+                    //weirdFace.setEye(nose, 2, 0, 0, s);
 
                     // camera
                     camera.position.set(1, 0.75, 2);
@@ -282,8 +291,8 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 3,
                 update: function(seq, partPer, partBias){
 
-                    weirdFace.setEye(nose, 1, 0, 0, 2);
-                    weirdFace.setEye(nose, 2, 0, 0, 2);
+                    //weirdFace.setEye(nose, 1, 0, 0, 2);
+                    //weirdFace.setEye(nose, 2, 0, 0, 2);
 
                     // camera
                     camera.position.set(1 + 9 * partPer, 0.75 + 8.25 * partPer, 2 + 7 * partPer);
