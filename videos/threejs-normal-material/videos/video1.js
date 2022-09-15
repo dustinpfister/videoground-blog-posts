@@ -30,12 +30,47 @@ VIDEO.init = function(sm, scene, camera){
                 // use normal material
                 obj.material = new THREE.MeshNormalMaterial();
                 // add vertex helper
-                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.05, 0x00ff00, 1 );
+                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.025, 0x00ff00, 1 );
                 scene.add(helper);
+                // normals
+                const normal = obj.geometry.getAttribute('normal');
+                obj.userData.normalStart = normal.clone();
+                obj.userData.toArray = normal.array.map((a)=>{
+                    return -2 + 4 * Math.random();
+                });
+                
             }
         });
     };
 
+    // update normals
+    const updateNormals = (nose, alpha) => {
+        nose.traverse((obj) => {
+            if(obj.type === 'Mesh'){
+                const ud = obj.userData;
+                const normalStart = ud.normalStart;
+                const normal = obj.geometry.getAttribute('normal');
+                let i = 0, len = normal.array.length;
+                while(i < len){
+                    const v = new THREE.Vector3(normalStart.array[i], normalStart.array[i + 1], normalStart.array[i + 2]);
+
+                    //v.y = v.y + 3 * alpha;
+                    v.x = v.x + ud.toArray[i] * alpha;
+                    v.y = v.y + ud.toArray[i + 1] * alpha;
+                    v.z = v.z + ud.toArray[i + 2] * alpha;
+
+                    v.normalize();
+
+                    normal.array[i] = v.x;
+                    normal.array[i + 1] = v.y;
+                    normal.array[i + 2] = v.z;
+                    i += 3;
+                }
+                normal.needsUpdate = true;
+            }
+        });
+    };
+    // update helpers
     const updateHelpers = (nose) => {
         nose.traverse((obj) => {
             if(obj.type === 'Mesh'){
@@ -170,21 +205,16 @@ VIDEO.init = function(sm, scene, camera){
             //ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
             //ObjectGridWrap.update(grid);
 
-            //weirdFace.setMouth(nose, 0, m0, m1);
-
-            //weirdFace.setEye(nose, 1, 0, 0, 1);
-            //weirdFace.setEye(nose, 2, 0, 0, 1);
-
              // UPDATING EYES
              var aBias = seq.getSinBias(4, false);
              var a = -0.1 + 0.2 * aBias;
-             var sBias = seq.getSinBias(2, false);
-             var s = 0.5 + 0.5 * sBias;
-             weirdFace.setEye(nose, 1, a, 0, s);
-             weirdFace.setEye(nose, 2, a, 0, s);
+             weirdFace.setEye(nose, 1, a, 0, 1);
+             weirdFace.setEye(nose, 2, a, 0, 1);
              // updating mouth
              var mBias = seq.getSinBias(32, false);
              weirdFace.setMouth(nose, mBias, m0, m1);
+
+updateNormals(nose, seq.per)
 
             updateHelpers(nose);
 
@@ -212,9 +242,6 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
 
 
-                    //weirdFace.setEye(nose, 1, -0.1 * partPer, 0, 1);
-                    //weirdFace.setEye(nose, 2, -0.1 * partPer, 0, 1);
-
                     // camera
                     camera.position.set(8 - 7 * partPer, 1 - 0.25 * partPer, 2 * partPer);
                     camera.lookAt(0, 0, 0);
@@ -225,10 +252,6 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 4,
                 update: function(seq, partPer, partBias){
 
-                    //var eBias = weirdFace.getBias(partPer, 4);
-                    //var a = -0.1 + 0.2 * eBias;
-                    //weirdFace.setEye(nose, 1, a, 0, 1);
-                    //weirdFace.setEye(nose, 2, a, 0, 1);
 
                     // camera
                     camera.position.set(1, 0.75, 2);
@@ -239,13 +262,6 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 4,
                 update: function(seq, partPer, partBias){
-
-                    //var a = -0.1 + 0.1 * partPer;
-                    //weirdFace.setEye(nose, 1, a, 0, 1);
-                    //weirdFace.setEye(nose, 2, a, 0, 1);
-
-                    //var mBias = weirdFace.getBias(partPer, 16);
-                    //weirdFace.setMouth(nose, mBias, m0, m1);
 
                     // camera
                     camera.position.set(1 - 2 * partPer, 0.75, 2);
@@ -267,9 +283,6 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 4,
                 update: function(seq, partPer, partBias){
 
-                    //var mBias = weirdFace.getBias(partPer, 16);
-                    //weirdFace.setMouth(nose, mBias, m0, m1);
-
                     // camera
                     camera.position.set(-1 + 2 * partPer, 0.75, 2);
                     camera.lookAt(0, 0, 0);
@@ -280,10 +293,6 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 6,
                 update: function(seq, partPer, partBias){
 
-                    //var s = 1 + 1 * partPer;
-                    //weirdFace.setEye(nose, 1, 0, 0, s);
-                    //weirdFace.setEye(nose, 2, 0, 0, s);
-
                     // camera
                     camera.position.set(1, 0.75, 2);
                     camera.lookAt(0, 0, 0);
@@ -293,9 +302,6 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
-
-                    //weirdFace.setEye(nose, 1, 0, 0, 2);
-                    //weirdFace.setEye(nose, 2, 0, 0, 2);
 
                     // camera
                     camera.position.set(1 + 9 * partPer, 0.75 + 8.25 * partPer, 2 + 7 * partPer);
