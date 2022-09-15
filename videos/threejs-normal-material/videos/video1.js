@@ -15,7 +15,8 @@ VIDEO.scripts = [
 
 VIDEO.daePaths = [
     '../../../dae/weird-face-1/weird-face-1c.dae',
-    '../../../dae/weird-face-1/mouths-1c.dae'
+    '../../../dae/weird-face-1/mouths-1c.dae',
+    '../../../dae/weird-face-1/sphere-normal-invert.dae'
 ];
 
 // init
@@ -23,17 +24,23 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // HELPERS
     //-------- ----------
-    const toNormalMaterial = (object, range) => {
+    const toNormalMaterial = (object, range, helpers, parent) => {
         range = range || [-2, 2];
+        helpers = helpers === undefined ? true : helpers;
+        parent = parent || object;
         object.traverse((obj) => {
             if(obj.type === 'Mesh'){
                 // use normal material
                 obj.material = new THREE.MeshNormalMaterial({
-                   side: THREE.DoubleSide
+                   side: THREE.DoubleSide,
+                   transparent: true,
+                   opacity: 1
                 });
                 // add vertex helper
-                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.05, 0x00ff00, 1 );
-                scene.add(helper);
+                if(helpers){
+                    const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.05, 0x00ff00, 1 );
+                    parent.add(helper);
+                }
                 // normals
                 const normal = obj.geometry.getAttribute('normal');
                 obj.userData.normalStart = normal.clone();
@@ -71,14 +78,17 @@ VIDEO.init = function(sm, scene, camera){
     const updateHelpers = (nose) => {
         nose.traverse((obj) => {
             if(obj.type === 'Mesh'){
-                obj.userData.helper.update();
+                if(obj.userData.helper){
+                    obj.userData.helper.update();
+                    obj.userData.helper.position.copy(obj.position);
+                }
             }
         });
     };
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#000000');
+    scene.background = new THREE.Color('#ffffff');
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -97,6 +107,45 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+
+
+
+
+
+/*********
+ OBJECT GRID WRAP EFFECT 'normalizer'
+*********/
+(function(){
+    ObjectGridWrap.load( {
+        EFFECTS : {
+            normalizer : function(grid, obj, objData, ud){
+                if(!ud.toArray){
+                    toNormalMaterial(obj, [-0.25, 0.25], false);
+                    ud.f = Math.floor( Math.random() * 100 );
+                }
+                var minB = grid.userData.minB === undefined ? 0.5: grid.userData.minB;
+                let alpha = 1;
+                if(objData.b <= minB){
+                   alpha = objData.b / minB;
+                }
+
+obj.rotation.y = Math.PI * 2 * (ud.f / 100);
+
+                updateNormals(obj, seqHooks.getBias(ud.f , 100, 8));
+                ud.f += 1;
+                ud.f %= 100;
+                // scale
+                obj.scale.set(alpha, alpha, alpha);
+            }
+        }
+    } );
+}());
+
+
+
+
+
+
     //-------- ----------
     // GRID OPTIONS
     //-------- ----------
@@ -104,18 +153,20 @@ VIDEO.init = function(sm, scene, camera){
     th = 8,
     space = 5.1;
     var array_source_objects = [
-        new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial() )
+        new THREE.Mesh( new THREE.BoxGeometry(2, 2, 2), new THREE.MeshNormalMaterial()),
+        new THREE.Mesh( new THREE.SphereGeometry(1, 16, 16), new THREE.MeshNormalMaterial()),
+        new THREE.Mesh( new THREE.ConeGeometry(1, 2, 16, 16), new THREE.MeshNormalMaterial())
     ];
     var array_oi = [
-        0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0
-    ]
+        1,2,0,1,2,0,1,0,
+        0,1,2,0,1,2,0,1,
+        2,0,1,2,0,1,2,0,
+        1,2,0,1,2,0,1,2,
+        0,1,2,0,1,2,0,1,
+        2,0,1,2,0,1,2,0,
+        1,2,0,1,2,0,1,2,
+        0,1,2,0,1,2,0,1
+    ];
     //-------- ----------
     // CREATE GRID
     //-------- ----------
@@ -124,7 +175,7 @@ VIDEO.init = function(sm, scene, camera){
         tw: tw,
         th: th,
         dAdjust: 1.25,
-        effects: ['opacity2'],
+        effects: ['normalizer'],
         sourceObjects: array_source_objects,
         objectIndices: array_oi
     });
@@ -136,7 +187,7 @@ VIDEO.init = function(sm, scene, camera){
     // WERID FACE SET UP
     //-------- ----------
     var rScene = VIDEO.daeResults[1].scene;
-    toNormalMaterial(rScene, [-2, 2]);
+    toNormalMaterial(rScene, [-2, 2], true, scene);
     var nose = rScene.getObjectByName('nose');
     scene.add(nose);
     nose.scale.set(2.25, 2.25, 2.25);
@@ -148,8 +199,15 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // SPHERE
     //-------- ----------
-    const sphere = new THREE.Mesh( new THREE.SphereGeometry(30, 30, 30) );
-    toNormalMaterial(sphere, [-2, 2]);
+
+
+    var rScene = VIDEO.daeResults[2].scene;
+    const sphere = rScene.getObjectByName('Sphere')
+    //const sphere = new THREE.Mesh( new THREE.SphereGeometry(30, 30, 30) );
+
+
+    toNormalMaterial(sphere, [-2, 2], false);
+    sphere.position.set(0,0,0);
     scene.add(sphere)
     //-------- ----------
     // A SEQ FOR TEXT CUBE
@@ -209,6 +267,8 @@ VIDEO.init = function(sm, scene, camera){
             updateNormals(nose, seq.getSinBias(16, false));
             updateNormals(sphere, seq.getSinBias(4, false));
             updateHelpers(nose);
+
+sphere.rotation.x = Math.PI * 2 * seq.per;
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
