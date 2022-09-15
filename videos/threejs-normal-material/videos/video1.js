@@ -6,8 +6,8 @@ VIDEO.scripts = [
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
    '../../../js/r140-files/VertexNormalsHelper.js',
-   //'../../../js/object-grid-wrap/r2/object-grid-wrap.js',
-   //'../../../js/object-grid-wrap/r2/effects/opacity2.js',
+   '../../../js/object-grid-wrap/r2/object-grid-wrap.js',
+   '../../../js/object-grid-wrap/r2/effects/opacity2.js',
    './lerp-geo.js',
    './weird-face.js'
 ];
@@ -24,19 +24,20 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // HELPERS
     //-------- ----------
-    const toNormalMaterial = (object) => {
+    const toNormalMaterial = (object, range) => {
+        range = range || [-2, 2];
         object.traverse((obj) => {
             if(obj.type === 'Mesh'){
                 // use normal material
                 obj.material = new THREE.MeshNormalMaterial();
                 // add vertex helper
-                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.025, 0x00ff00, 1 );
+                const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.05, 0x00ff00, 1 );
                 scene.add(helper);
                 // normals
                 const normal = obj.geometry.getAttribute('normal');
                 obj.userData.normalStart = normal.clone();
                 obj.userData.toArray = normal.array.map((a)=>{
-                    return -2 + 4 * Math.random();
+                    return range[0] + (range[1] - range[0]) * THREE.MathUtils.seededRandom();
                 });
                 
             }
@@ -53,14 +54,10 @@ VIDEO.init = function(sm, scene, camera){
                 let i = 0, len = normal.array.length;
                 while(i < len){
                     const v = new THREE.Vector3(normalStart.array[i], normalStart.array[i + 1], normalStart.array[i + 2]);
-
-                    //v.y = v.y + 3 * alpha;
                     v.x = v.x + ud.toArray[i] * alpha;
                     v.y = v.y + ud.toArray[i + 1] * alpha;
                     v.z = v.z + ud.toArray[i + 2] * alpha;
-
                     v.normalize();
-
                     normal.array[i] = v.x;
                     normal.array[i + 1] = v.y;
                     normal.array[i + 2] = v.z;
@@ -113,12 +110,12 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // GRID OPTIONS
     //******** **********
-/*
+
     var tw = 8,
     th = 8,
     space = 5.1;
     var array_source_objects = [
-        new THREE.Mesh( new THREE.BoxGeometry(4, 1, 4), new THREE.MeshNormalMaterial() )
+        new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial() )
     ];
     var array_oi = [
         0,0,0,0,0,0,0,0,
@@ -144,13 +141,13 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(grid);
     grid.position.y = -1.5;
-*/
+
 
     //******** **********
     // WERID FACE SET UP
     //******** **********
     var rScene = VIDEO.daeResults[1].scene;
-    toNormalMaterial(rScene);
+    toNormalMaterial(rScene, [-2, 2]);
     var nose = rScene.getObjectByName('nose');
     scene.add(nose);
     nose.scale.set(2.25, 2.25, 2.25);
@@ -202,19 +199,19 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            //ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
-            //ObjectGridWrap.update(grid);
+            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
+            ObjectGridWrap.update(grid);
 
-             // UPDATING EYES
-             var aBias = seq.getSinBias(4, false);
-             var a = -0.1 + 0.2 * aBias;
-             weirdFace.setEye(nose, 1, a, 0, 1);
-             weirdFace.setEye(nose, 2, a, 0, 1);
-             // updating mouth
-             var mBias = seq.getSinBias(32, false);
-             weirdFace.setMouth(nose, mBias, m0, m1);
+            // UPDATING EYES
+            var aBias = seq.getSinBias(4, false);
+            var a = -0.1 + 0.2 * aBias;
+            weirdFace.setEye(nose, 1, a, 0, 1);
+            weirdFace.setEye(nose, 2, a, 0, 1);
+            // updating mouth
+            var mBias = seq.getSinBias(32, false);
+            weirdFace.setMouth(nose, mBias, m0, m1);
 
-updateNormals(nose, seq.per)
+            updateNormals(nose, seq.getSinBias(2, false));
 
             updateHelpers(nose);
 
