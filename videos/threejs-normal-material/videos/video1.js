@@ -66,6 +66,7 @@ VIDEO.init = function(sm, scene, camera){
     //******** **********
     // GRID OPTIONS
     //******** **********
+/*
     var tw = 8,
     th = 8,
     space = 5.1;
@@ -96,7 +97,7 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(grid);
     grid.position.y = -1.5;
-
+*/
 
     //******** **********
     // WERID FACE SET UP
@@ -105,7 +106,7 @@ VIDEO.init = function(sm, scene, camera){
     toNormalMaterial(rScene);
     var nose = rScene.getObjectByName('nose');
     scene.add(nose);
-    nose.scale.set(1.5, 2, 1.5);
+    nose.scale.set(2, 2, 2);
     // mouth objects
     rScene = VIDEO.daeResults[0].scene;
     var m0 = rScene.getObjectByName('mouth-0');
@@ -155,8 +156,8 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
-            ObjectGridWrap.update(grid);
+            //ObjectGridWrap.setPos(grid, (1 - seq.per) * 2, 0 );
+            //ObjectGridWrap.update(grid);
 
             weirdFace.setMouth(nose, 0, m0, m1);
 
