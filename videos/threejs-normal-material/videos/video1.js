@@ -20,7 +20,6 @@ VIDEO.daePaths = [
 
 // init
 VIDEO.init = function(sm, scene, camera){
- 
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -29,7 +28,9 @@ VIDEO.init = function(sm, scene, camera){
         object.traverse((obj) => {
             if(obj.type === 'Mesh'){
                 // use normal material
-                obj.material = new THREE.MeshNormalMaterial();
+                obj.material = new THREE.MeshNormalMaterial({
+                   side: THREE.DoubleSide
+                });
                 // add vertex helper
                 const helper = obj.userData.helper = new THREE.VertexNormalsHelper( obj, 0.05, 0x00ff00, 1 );
                 scene.add(helper);
@@ -43,7 +44,6 @@ VIDEO.init = function(sm, scene, camera){
             }
         });
     };
-
     // update normals
     const updateNormals = (nose, alpha) => {
         nose.traverse((obj) => {
@@ -75,12 +75,10 @@ VIDEO.init = function(sm, scene, camera){
             }
         });
     };
-
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
-
+    scene.background = new THREE.Color('#000000');
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -99,18 +97,9 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
-
     //-------- ----------
-    // LIGHT
-    //-------- ----------
-    var dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(2, 1, 3);
-    scene.add(dl);
-
-    //******** **********
     // GRID OPTIONS
-    //******** **********
-
+    //-------- ----------
     var tw = 8,
     th = 8,
     space = 5.1;
@@ -127,9 +116,9 @@ VIDEO.init = function(sm, scene, camera){
         0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0
     ]
-    //******** **********
+    //-------- ----------
     // CREATE GRID
-    //******** **********
+    //-------- ----------
     var grid = ObjectGridWrap.create({
         space: space,
         tw: tw,
@@ -143,9 +132,9 @@ VIDEO.init = function(sm, scene, camera){
     grid.position.y = -1.5;
 
 
-    //******** **********
+    //-------- ----------
     // WERID FACE SET UP
-    //******** **********
+    //-------- ----------
     var rScene = VIDEO.daeResults[1].scene;
     toNormalMaterial(rScene, [-2, 2]);
     var nose = rScene.getObjectByName('nose');
@@ -156,10 +145,15 @@ VIDEO.init = function(sm, scene, camera){
     rScene = VIDEO.daeResults[0].scene;
     var m0 = rScene.getObjectByName('mouth-0');
     var m1 = rScene.getObjectByName('mouth-1');
-    
-    //******** **********
+    //-------- ----------
+    // SPHERE
+    //-------- ----------
+    const sphere = new THREE.Mesh( new THREE.SphereGeometry(30, 30, 30) );
+    toNormalMaterial(sphere, [-2, 2]);
+    scene.add(sphere)
+    //-------- ----------
     // A SEQ FOR TEXT CUBE
-    //******** **********
+    //-------- ----------
     var seq_textcube = seqHooks.create({
         setPerValues: false,
         fps: 30,
@@ -193,8 +187,9 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
-
+    //-------- ----------
     // A MAIN SEQ OBJECT
+    //-------- ----------
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
@@ -211,8 +206,8 @@ VIDEO.init = function(sm, scene, camera){
             var mBias = seq.getSinBias(32, false);
             weirdFace.setMouth(nose, mBias, m0, m1);
 
-            updateNormals(nose, seq.getSinBias(2, false));
-
+            updateNormals(nose, seq.getSinBias(16, false));
+            updateNormals(sphere, seq.getSinBias(4, false));
             updateHelpers(nose);
 
             textCube.visible = false;
@@ -307,10 +302,8 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
-
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
-
 };
 
 // update method for the video
