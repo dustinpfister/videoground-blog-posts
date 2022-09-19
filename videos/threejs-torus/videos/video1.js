@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/canvas/r0/canvas.js',
    '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   '../../../js/datatex/r0/datatex.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -15,6 +16,8 @@ VIDEO.init = function(sm, scene, camera){
 let dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3, 1, 2);
 scene.add(dl);
+let al = new THREE.AmbientLight(0xffffff, 0.15);
+scene.add(al);
 
 //-------- ----------
 // HELPERS
@@ -32,11 +35,12 @@ const createDoughnutChild = (index, len) => {
     const doughnut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshStandardMaterial({
-           color: 0x00ff00,
+           color: 0x00df22,
            transparent: true,
            opacity: 0.8,
            wireframe: true,
-           wireframeLinewidth: 3
+           wireframeLinewidth: 5,
+           map: datatex.seededRandom(256, 128, 1, 1, 1, [128, 255])
         }));
     doughnut.geometry.rotateY(Math.PI * 0.5);
     return doughnut;
@@ -63,6 +67,23 @@ const createDoughnutGroup = () => {
 //-------- ----------
 const group1 = createDoughnutGroup();
 scene.add(group1);
+
+
+//-------- ----------
+// Background Mesh
+//-------- ----------
+const bgMesh = new THREE.Mesh( 
+    new THREE.TorusGeometry(80, 40, 30, 30),
+    new THREE.MeshStandardMaterial({
+       color: 0x004444,
+       side: THREE.DoubleSide,
+       map: datatex.seededRandom(256, 128, 1, 1, 1, [128, 255])
+    })
+);
+bgMesh.geometry.rotateX(Math.PI * 0.5);
+bgMesh.position.set(50, 0, 50);
+scene.add(bgMesh);
+
 
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
