@@ -26,7 +26,7 @@ const createDoughnutChild = (index, len) => {
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
         new THREE.MeshBasicMaterial({
            color: 0xffffff,
-           writeframe: true
+           wireframe: true
         }));
     doughnut.geometry.rotateY(Math.PI * 0.5);
     return doughnut;
