@@ -10,6 +10,13 @@ VIDEO.scripts = [
 VIDEO.init = function(sm, scene, camera){
  
 //-------- ----------
+// Light
+//-------- ----------
+let dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(3, 1, 2);
+scene.add(dl);
+
+//-------- ----------
 // HELPERS
 //-------- ----------
 const MAIN_RADIUS = 8,
@@ -24,9 +31,12 @@ const createDoughnutChild = (index, len) => {
     tubeSegments = 16;
     const doughnut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
-        new THREE.MeshBasicMaterial({
-           color: 0xffffff,
-           wireframe: true
+        new THREE.MeshStandardMaterial({
+           color: 0x00ff00,
+           transparent: true,
+           opacity: 0.8,
+           wireframe: true,
+           wireframeLinewidth: 3
         }));
     doughnut.geometry.rotateY(Math.PI * 0.5);
     return doughnut;
@@ -58,9 +68,9 @@ scene.add(group1);
     scene.background = new THREE.Color('#2a2a2a');
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
