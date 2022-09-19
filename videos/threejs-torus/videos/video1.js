@@ -9,6 +9,56 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
  
+//-------- ----------
+// HELPERS
+//-------- ----------
+const MAIN_RADIUS = 8,
+DOUGHNUT_COUNT = 30;
+// create a DOUGHNUT child for a group
+const createDoughnutChild = (index, len) => {
+    const per = index / len,
+    bias = 1 - Math.abs(per - 0.5) / 0.5,
+    radius = 0.6 + 2.3 * bias,
+    tubeRadius = 0.125 + 0.25 * bias,
+    radialSegments = 32,
+    tubeSegments = 32;
+    const doughnut = new THREE.Points(
+        new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
+        new THREE.PointsMaterial({
+           color: 0xffffff,
+           size: 0.125
+        }));
+    doughnut.geometry.rotateY(Math.PI * 0.5);
+    return doughnut;
+};
+// create a group of DOUGHNUTs
+const createDoughnutGroup = () => {
+    let i = 0;
+    const len = DOUGHNUT_COUNT,
+    group = new THREE.Group();
+    while(i < len){
+        const per = i / len,
+        radian = Math.PI * 2 * per;
+        const doughnut = createDoughnutChild(i, len);
+        doughnut.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
+        doughnut.lookAt(0, 0, 0);
+        group.add(doughnut);
+        i += 1;
+    }
+    return group;
+};
+
+//-------- ----------
+// ADDING GROUP TO SCENE
+//-------- ----------
+const group1 = createDoughnutGroup();
+scene.add(group1);
+
+
+
+
+
+
     // BACKGROUND
     scene.background = new THREE.Color('#2a2a2a');
 
@@ -73,6 +123,10 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+
+
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -102,9 +156,10 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
                     camera.lookAt(0, 0, 0);
+        const radian = Math.PI * 2 * partPer;
+        camera.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
+        camera.lookAt(Math.cos(radian + 0.5) * MAIN_RADIUS, Math.sin(radian) * 0.5, Math.sin(radian - 0.5) * MAIN_RADIUS);
                 }
             }
         ]
