@@ -137,7 +137,7 @@ scene.add(group1);
                 }
             },
             {
-                secs: 7,
+                secs: 4,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
@@ -145,12 +145,22 @@ scene.add(group1);
                 }
             },
             {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    const v1 = new THREE.Vector3(8, 8, 8);
+                    const v2 = new THREE.Vector3(0, 0, 1).normalize().multiplyScalar(MAIN_RADIUS);
+                    // camera
+                    camera.position.copy(v1).lerp(v2, partPer);
+                    let e2 = new THREE.Euler();
+                    e2.y = Math.PI * 2 * partPer - Math.PI / 180 * 5;
+                    let vLookOld = new THREE.Vector3(0, 0, 0);
+                    let vLook = v2.clone().applyEuler(e2).normalize().multiplyScalar(MAIN_RADIUS);
+                    camera.lookAt( vLookOld.clone().lerp(vLook, partPer) );
+                }
+            },
+            {
                 secs: 20,
                 update: function(seq, partPer, partBias){
-                    // camera
-                    camera.lookAt(0, 0, 0);
-                    const radian = Math.PI * 2 * partPer;
-
                     let sv = new THREE.Vector3(0,0,1);
                     let e1 = new THREE.Euler();
                     e1.y = Math.PI * 2 * partPer;
@@ -158,8 +168,6 @@ scene.add(group1);
                     e2.y = Math.PI * 2 * partPer - Math.PI / 180 * 5;
                     camera.position.copy(sv).applyEuler(e1).normalize().multiplyScalar(MAIN_RADIUS);
                     camera.lookAt( sv.clone().applyEuler(e2).normalize().multiplyScalar(MAIN_RADIUS) );
-                    //camera.position.set(Math.cos(radian) * MAIN_RADIUS, 0, Math.sin(radian) * MAIN_RADIUS);
-                    //camera.lookAt(Math.cos(radian + 0.5) * MAIN_RADIUS, Math.sin(radian) * 0.5, Math.sin(radian - 0.5) * MAIN_RADIUS);
                 }
             }
         ]
