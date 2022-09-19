@@ -19,7 +19,7 @@ const createDoughnutChild = (index, len) => {
     const per = index / len,
     bias = 1 - Math.abs(per - 0.5) / 0.5,
     radius = 0.8 + 2.3 * bias,
-    tubeRadius = 0.125 + 0.25 * bias,
+    tubeRadius = 0.25 + 0.25 * bias,
     radialSegments = 16,
     tubeSegments = 16;
     const doughnut = new THREE.Mesh(
@@ -86,7 +86,7 @@ scene.add(group1);
         beforeObjects: function(seq){
             var textCube = scene.userData.textCube;
             textCube.rotation.y = 0;
-            textCube.position.set(6, 0.8, 0);
+            textCube.position.set(6, 2.8, 0);
             textCube.visible = false;
             textCube.material.transparent = true;
             textCube.material.opacity = 0.0;
@@ -97,7 +97,7 @@ scene.add(group1);
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
+                    textCube.position.set(6, 2.8, 0);
                     textCube.material.opacity = 1.0;
                 }
             },
@@ -106,7 +106,7 @@ scene.add(group1);
                 update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(6, 2.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                 }
@@ -120,7 +120,7 @@ scene.add(group1);
         beforeObjects: function(seq){
 
             textCube.visible = false;
-            camera.position.set(8, 1, 0);
+            camera.position.set(8, 3, 0);
         },
         afterObjects: function(seq){
         },
@@ -133,15 +133,15 @@ scene.add(group1);
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(0, 2, 0);
                 }
             },
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.lookAt(0, 0, 0);
+                    camera.position.set(8, 3 + 5 * partPer, 8 * partPer);
+                    camera.lookAt(0, 2, 0);
                 }
             },
             {
@@ -153,7 +153,7 @@ scene.add(group1);
                     camera.position.copy(v1).lerp(v2, partPer);
                     let e2 = new THREE.Euler();
                     e2.y = Math.PI / 180 * 5 * -1;
-                    let vLookOld = new THREE.Vector3(0, 0, 0);
+                    let vLookOld = new THREE.Vector3(0, 2, 0);
                     let vLook = v2.clone().applyEuler(e2).normalize().multiplyScalar(MAIN_RADIUS);
                     camera.lookAt( vLookOld.clone().lerp(vLook, partPer) );
                 }
