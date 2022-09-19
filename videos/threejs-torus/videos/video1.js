@@ -150,20 +150,28 @@ scene.add(group1);
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 3 + 5 * partPer, 8 * partPer);
-                    camera.lookAt(0, 2, 0);
+                    camera.position.set(8 + 12 * partPer, 3 + 2 * partPer, 10 * partPer);
+                    camera.lookAt(0, 2 - 2 * partPer, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(20, 5, 10);
+                    camera.lookAt(0, 0, 0);
                 }
             },
             {
                 secs: 4,
                 update: function(seq, partPer, partBias){
-                    const v1 = new THREE.Vector3(8, 8, 8);
+                    const v1 = new THREE.Vector3(20, 5, 10);
                     const v2 = new THREE.Vector3(0, 0, 1).normalize().multiplyScalar(MAIN_RADIUS);
                     // camera
                     camera.position.copy(v1).lerp(v2, partPer);
                     let e2 = new THREE.Euler();
                     e2.y = Math.PI / 180 * 5 * -1;
-                    let vLookOld = new THREE.Vector3(0, 2, 0);
+                    let vLookOld = new THREE.Vector3(0, 0, 0);
                     let vLook = v2.clone().applyEuler(e2).normalize().multiplyScalar(MAIN_RADIUS);
                     camera.lookAt( vLookOld.clone().lerp(vLook, partPer) );
                 }
