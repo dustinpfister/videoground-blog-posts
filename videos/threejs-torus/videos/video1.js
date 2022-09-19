@@ -20,13 +20,13 @@ const createDoughnutChild = (index, len) => {
     bias = 1 - Math.abs(per - 0.5) / 0.5,
     radius = 0.6 + 2.3 * bias,
     tubeRadius = 0.125 + 0.25 * bias,
-    radialSegments = 32,
-    tubeSegments = 32;
-    const doughnut = new THREE.Points(
+    radialSegments = 16,
+    tubeSegments = 16;
+    const doughnut = new THREE.Mesh(
         new THREE.TorusGeometry(radius, tubeRadius, radialSegments, tubeSegments),
-        new THREE.PointsMaterial({
+        new THREE.MeshBasicMaterial({
            color: 0xffffff,
-           size: 0.125
+           writeframe: true
         }));
     doughnut.geometry.rotateY(Math.PI * 0.5);
     return doughnut;
