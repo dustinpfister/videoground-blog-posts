@@ -198,7 +198,7 @@ scene.add(bgMesh);
                 }
             },
             {
-                secs: 20,
+                secs: 17,
                 update: function(seq, partPer, partBias){
                     let sv = new THREE.Vector3(0,0,1);
                     let e1 = new THREE.Euler();
