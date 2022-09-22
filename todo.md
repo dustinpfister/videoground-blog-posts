@@ -2,7 +2,7 @@
 
 <!-- Whats next -->
 
-### () - video1 for threejs-torus
+### () - threejs-cube-texture
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -10,13 +10,6 @@
 * () embed in post
 
 ### () - video1 for threejs-texture-loader
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-### () - threejs-cube-texture
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -97,6 +90,20 @@ let material = new THREE.MeshStandardMaterial({
 
 
 <!-- DONE -->
+
+### ( done 09/22/2022) - video1 for threejs-points-material
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
+
+### ( done 09/19/2022) - video1 for threejs-torus
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 09/15/2022 ) - video1 for normal-material
 * (done) start video folder and a video1 file
