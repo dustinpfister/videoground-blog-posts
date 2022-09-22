@@ -2,7 +2,7 @@
 
 <!-- Whats next -->
 
-### () - threejs-cube-texture
+### () - video1 for threejs-cube-texture
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
