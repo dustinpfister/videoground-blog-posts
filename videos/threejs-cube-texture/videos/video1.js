@@ -8,14 +8,131 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
- 
+
+    //-------- ----------
+    // HELPER FUNCTIONS
+    //-------- ----------
+    // create a canavs texture
+    const createCanvasTexture = function (draw, size) {
+        const canvas = document.createElement('canvas'),
+        ctx = canvas.getContext('2d');
+        canvas.width = size || 64;
+        canvas.height = size || 64;
+        draw(ctx, canvas);
+        return new THREE.CanvasTexture(canvas);
+    };
+    // get an px index if x and y are known
+    const getIndex = (grid, vx, y) => {
+        const px = THREE.MathUtils.euclideanModulo(vx, grid.w);
+        const py = THREE.MathUtils.euclideanModulo(y, grid.w);
+        const index = py * grid.w + px;
+        return index;
+    };
+    // get Vector2 if index is known but not x and y
+    const getVector2 = (grid, i) => {
+        let pi = THREE.MathUtils.euclideanModulo(i, grid.pxData.length);
+        let pX = pi % grid.w;
+        let pY = Math.floor(pi / grid.w);
+        let v2 = new THREE.Vector2(pX, pY);
+        return v2;
+    };
+    // create a remaped grid
+    const createRemapedGrid = (grid1, r1) => {
+        r1 = r1 === undefined ? Math.floor(grid1.w / 4) : r1;
+        const hw = grid1.w / 2;
+        const vHalf = new THREE.Vector2(hw - 0.5, hw - 0.5);  //!!! May have to adjust this between even and odd
+        const mDist = vHalf.distanceTo( new THREE.Vector2(0, 0) );
+        const grid2 = {
+            w: grid1.w,
+            pxData: grid1.pxData.map((currentColorIndex, i) => {
+                const v2 = getVector2(grid1, i);
+                const dist = v2.distanceTo( vHalf );
+                // dist alpha value, and angle to center
+                const dAlpha = dist / mDist;
+                const a = Math.atan2(v2.y - vHalf.y, v2.x - vHalf.x) + Math.PI;
+                // get another color index from closer to center
+                const x = v2.x + Math.round(Math.cos(a) * r1 * (1 - dAlpha));
+                const y = v2.y + Math.round(Math.sin(a) * r1 * (1 - dAlpha));
+                const refIndex = getIndex(grid1, x, y);
+                //console.log(i, a.toFixed(2), refIndex);
+                //return currentColorIndex;
+                return grid1.pxData[refIndex];
+            }),
+            pal: grid1.pal
+        };
+        return grid2;
+    };
+    // get a canvas texture from the given grid
+    const getTextureFromGrid = (grid, canvasSize) => {
+        canvasSize = canvasSize === undefined ? 64 : canvasSize;
+        return createCanvasTexture((ctx, canvas) => {
+            ctx.fillStyle='white';
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+            let i = 0, len = grid.pxData.length;
+            while(i < len){
+                let pX = i % grid.w;
+                let pY = Math.floor(i / grid.w);
+                let c = grid.pal[ grid.pxData[i] ];
+                let color = new THREE.Color(c[0], c[1], c[2]);
+                ctx.fillStyle = color.getStyle();
+                let pxW = canvas.width / grid.w;
+                let pxH = canvas.height / grid.w;
+                ctx.fillRect(pX * pxW, pY * pxH, pxW, pxH);
+                i += 1;
+            }
+        }, canvasSize);
+    };
+    //-------- ----------
+    // GRID AND RE MAPED GRID
+    //-------- ----------
+    const grid1 = {
+        w: 16,
+        pxData: [
+            0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+            1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,
+            0,3,1,1,1,2,2,1,1,2,2,1,1,1,3,0,
+            0,3,1,4,4,4,4,4,4,4,4,4,4,1,3,0,
+            0,3,1,4,1,1,1,1,1,1,1,1,4,1,3,0,
+            0,3,2,4,1,3,3,3,3,3,3,1,4,2,3,0,
+            0,3,2,4,1,3,1,1,1,1,3,1,4,2,3,0,
+            0,3,1,4,1,3,1,2,2,1,3,1,4,1,3,0,
+            0,3,1,4,1,3,1,2,2,1,3,1,4,1,3,0,
+            0,3,2,4,1,3,1,1,1,1,3,1,4,2,3,0,
+            0,3,2,4,1,3,3,3,3,3,3,1,4,2,3,0,
+            0,3,1,4,1,1,1,1,1,1,1,1,4,1,3,0,
+            0,3,1,4,4,4,4,4,4,4,4,4,4,1,3,0,
+            0,3,1,1,1,2,2,1,1,2,2,1,1,1,3,0,
+            1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,
+            0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+        ],
+        pal: [ [1,1,1], [0,0,0], [0,1,0], [0,0.6,0], [0, 0.3, 0] ]
+    };
+    const grid2 = createRemapedGrid(grid1, 4);
+    //-------- ----------
     // BACKGROUND
-    scene.background = new THREE.Color('#2a2a2a');
+    //-------- ----------
+    const texture =  getTextureFromGrid(grid2, 256);
+    // same texture for all sides
+    cubeTexture = new THREE.CubeTexture(new Array(6).fill(texture.image));
+    cubeTexture.needsUpdate = true;
+    scene.background = cubeTexture;
+    //-------- ----------
+    // SPHERE
+    //-------- ----------
+    const sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(5, 30, 30), 
+        new THREE.MeshBasicMaterial({
+           envMap: texture
+        }) 
+    );
+    scene.add(sphere);
+
+
 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
  
     // TEXT CUBE
     var textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -70,6 +187,16 @@ VIDEO.init = function(sm, scene, camera){
     });
 
     // A MAIN SEQ OBJECT
+
+    const update = (vector_unit_length, a, b) => {
+        const vs = new THREE.Vector3(8, 1, 0);
+        const e = new THREE.Euler();
+        e.y = Math.PI * 2 * a;
+        e.x = Math.PI / 180 * (60 * b);
+        camera.position.copy( vs.clone().normalize().applyEuler(e).multiplyScalar(vector_unit_length) );
+        camera.lookAt(0, 0, 0);
+    };
+
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
@@ -86,25 +213,25 @@ VIDEO.init = function(sm, scene, camera){
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
-                    // camera
-                    camera.lookAt(0, 0, 0);
+                    update(8, 0, 0);
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
-                    // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
-                    camera.lookAt(0, 0, 0);
+                    update(8 + 12 * partPer, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 10,
                 update: function(seq, partPer, partBias){
-                    // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
-                    camera.lookAt(0, 0, 0);
+                    update(20, partPer, 0);
+                }
+            },
+            {
+                secs: 15,
+                update: function(seq, partPer, partBias){
+                    update(20 - 5 * seq.getSinBias(2), partPer * 4, seq.getSinBias(4));
                 }
             }
         ]
