@@ -2,6 +2,21 @@
 
 <!-- Whats next -->
 
+<!--  0 VIDEOS -->
+
+### () - threejs-examples-svg-movement
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - threejs-vector3-apply-euler
+
+### () - threejs-edges-geometry
+
+### () - threejs-examples-dae-tools
+
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
 * () export to raw video file
@@ -26,61 +41,8 @@
 * () upload to youtube
 * () embed in post
 
-<!-- JAVASCRIPT FILES -->
-
-## () -
-
-<!-- DAE FOLDER -->
-
-### () - See about emmisive color?
-* so far it seems like it is not possible to export a material with an emmisve color and intensity
-```
-// I can create a material with an emmisve color like this
-let material = new THREE.MeshStandardMaterial({
-    emmisive: new THREE.Color('red'),
-    emmisiveIntensity : 0.1
-});
-```
-* cube-emmisve-red.dae file for this if I can find a way that is
-
-### () - dae folder geometry groups
-* cube-geo-groups.dae - see about more than one material, and haveing groups for th gemoerty of the cube
-
-
-
-
-<!-- FROM A-Z YEP -->
-
-### () - threejs-clock
-
-### () - threejs-dae-collada-loader
-
-### () - threejs-data-texture
-
-### () - threejs-edges-geometry
-
-### () - video1 for threejs-examples
-
-### () - video1 for threejs-examples-build-a-box
-
-### () - video1 for threejs-examples-clock-basic
-
-### () - video1 for threejs-examples-dae-tools
-
-### () - video1 for threejs-examples-land-sections
-
-### () - video1 for threejs-examples-menus
-
-### () - video1 for threejs-examples-sphere-mutate
-
-### () - video1 for threejs-examples-tool-source-layer-3d
-
-### () - video1 for threejs-examples-weird-walk-guy-two
-
-### () - video1 for threejs-materials
 
 <!--  TRAFFIC -->
-
 
 <!-- DONE -->
 
