@@ -13,10 +13,10 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // LIGHT
     //-------- ----------
-    const dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(3, 2, 1)
+    const dl = new THREE.DirectionalLight(0xffffff, 0.85);
+    dl.position.set(-3, 2, 1)
     scene.add(dl);
-    const al = new THREE.AmbientLight(0xffffff, 0.25);
+    const al = new THREE.AmbientLight(0xffffff, 0.15);
     scene.add(al);
     //-------- ----------
     // HELPERS
@@ -47,7 +47,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(mesh1);
     // sphere
     const sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(40, 10, 10), 
+        new THREE.SphereGeometry(40, 60, 60), 
         new THREE.MeshPhongMaterial({
            side: THREE.DoubleSide,
            color: 0x00afaf
@@ -72,7 +72,9 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
-    // a seq object for textcube
+    //-------- ----------
+    // TEXT CUBE SEQ OBJECT
+    //-------- ----------
     var seq_textcube = seqHooks.create({
         setPerValues: false,
         fps: 30,
@@ -151,7 +153,6 @@ VIDEO.init = function(sm, scene, camera){
     });
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
-
     //-------- ----------
     // SVG LOADER
     //-------- ----------
@@ -164,10 +165,8 @@ VIDEO.init = function(sm, scene, camera){
             videoAPI.pathJoin(sm.filePath, '../svg/movement.svg'),
             // called when the resource is loaded
             function ( data ) {
-
-
+                // SET UP OBJECTS THAT ARE TO BE EFFECTED BY SVGMOVE HERE
                 SVGMove.useObj(data, 'cam1', camera);
-
                 // resolve
                 resolve();
             },
@@ -183,7 +182,6 @@ VIDEO.init = function(sm, scene, camera){
             }
         );
     });
-
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
