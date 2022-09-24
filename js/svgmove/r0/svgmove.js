@@ -1,5 +1,5 @@
 // svgmove.js - r0 - from threejs-examples-svg-movement
-const SVGMove = (function () {
+var SVGMove = (function () {
     //-------- ----------
     // HELPERS
     //-------- ----------
