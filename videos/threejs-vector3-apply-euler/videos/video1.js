@@ -228,7 +228,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     vd = new THREE.Vector3();
                     vlt = new THREE.Vector3(0,0,0)
-                    setGroup(group, 32, 8, vd, vlt, 1 - partPer);
+                    setGroup(group, 24 * partPer, 12, vd, vlt, 1 - partPer);
                     // camera
                     camera.position.set(-8, 8, 8);
                     camera.lookAt(0, 0, 0);
