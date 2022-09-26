@@ -24,10 +24,12 @@ VIDEO.init = function(sm, scene, camera){
         return startVec.applyEuler(e).normalize().multiplyScalar(len);
     };
     // create a cube
-    const createCube = function(pos, size){
+    const CUBE_GEO = new THREE.BoxGeometry(1, 1, 1);
+    const CUBE_MATERIAL = new THREE.MeshNormalMaterial();
+    const createCube = function(pos){
         const cube = new THREE.Mesh(
-            new THREE.BoxGeometry(size, size, size),
-            new THREE.MeshNormalMaterial());
+            CUBE_GEO,
+            CUBE_MATERIAL);
         cube.position.copy( pos || new THREE.Vector3() );
         cube.lookAt(0, 0, 0);
         return cube;
@@ -37,7 +39,7 @@ VIDEO.init = function(sm, scene, camera){
         const group = new THREE.Group();
         let i = 0;
         while(i < len){
-            group.add( createCube(null, 1) );
+            group.add( createCube(null) );
             i += 1;
         }
         return group;
@@ -69,7 +71,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // MESH
     //-------- ----------
-    const group = createGroup(800);
+    const group = createGroup(1600);
     scene.add(group);
 
     const sphere = new THREE.Mesh( 
