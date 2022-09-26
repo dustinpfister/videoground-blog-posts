@@ -69,7 +69,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // MESH
     //-------- ----------
-    const group = createGroup(400);
+    const group = createGroup(800);
     scene.add(group);
 
     const sphere = new THREE.Mesh( 
