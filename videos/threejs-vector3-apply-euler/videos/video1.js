@@ -8,16 +8,80 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
- 
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    // Vector from angles method
+    const vectorFromAngles = function (a, b, len) {
+        a = a === undefined ? 0 : a;
+        b = b === undefined ? 0 : b;
+        len = len === undefined ? 1 : len;
+        const startVec = new THREE.Vector3(1, 0, 0);
+        const e = new THREE.Euler(
+                0,
+                THREE.MathUtils.degToRad(a),
+                THREE.MathUtils.degToRad(-90 + b));
+        return startVec.applyEuler(e).normalize().multiplyScalar(len);
+    };
+    // create a cube
+    const createCube = function(pos, size){
+        const cube = new THREE.Mesh(
+            new THREE.BoxGeometry(size, size, size),
+            new THREE.MeshNormalMaterial());
+        cube.position.copy( pos || new THREE.Vector3() );
+        cube.lookAt(0, 0, 0);
+        return cube;
+    };
+    // create a group
+    const createGroup = (len) => {
+        const group = new THREE.Group();
+        let i = 0;
+        while(i < len){
+            group.add( createCube(null, 1) );
+            i += 1;
+        }
+        return group;
+    };
+    // set a group
+    const setGroup = (group, aCount, unitLength, vd, vlt, alpha) => {
+        aCount = aCount === undefined ? 1 : aCount;
+        unitLength = unitLength === undefined ? 1 : unitLength;
+        vd = vd === undefined ? new THREE.Vector3() : vd;       // vector delta for each object effected by i / len
+        vlt = vlt === undefined ? new THREE.Vector3() : vlt;    // vector to lerp to for each mesh positon
+        alpha = alpha === undefined ? 0 : alpha;
+        let len = group.children.length;
+        let i = 0;
+        while(i < len){
+            const p = i / len;
+            const a = 360 * aCount * p;
+            // using my vector from angles method
+            const v = vectorFromAngles(a, 180 * p, unitLength);
+            // adding another Vector
+            v.add( vd.clone().multiplyScalar(p) );
+            const cube = group.children[i];
+            cube.position.copy(v.lerp(vlt, alpha));
+            cube.lookAt(0, 0, 0);
+            const s = 1 - 0.95 * p;
+            cube.scale.set(s, s, s);
+            i += 1;
+        }
+    };
+    //-------- ----------
+    // MESH
+    //-------- ----------
+    const group = createGroup(400);
+    scene.add(group);
+    //-------- ----------
     // BACKGROUND
+    //-------- ----------
     scene.background = new THREE.Color('#2a2a2a');
- 
     // GRID
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
- 
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
+    //-------- ----------
     // TEXT CUBE
+    //-------- ----------
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
         height: 128,
@@ -86,24 +150,29 @@ VIDEO.init = function(sm, scene, camera){
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
+                    // set group
+                    setGroup(group, 0, 4);
                     // camera
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 7,
+                secs: 5,
                 update: function(seq, partPer, partBias){
+                    // set group
+                    setGroup(group, 8 * partPer, 4);
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 22,
                 update: function(seq, partPer, partBias){
+                    setGroup(group, 8, 4);
                     // camera
                     var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
