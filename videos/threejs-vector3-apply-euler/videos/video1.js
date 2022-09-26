@@ -160,19 +160,71 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 5,
                 update: function(seq, partPer, partBias){
                     // set group
-                    setGroup(group, 8 * partPer, 4);
+                    setGroup(group, 4 * partPer, 4);
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 22,
+                secs: 2,
                 update: function(seq, partPer, partBias){
-                    setGroup(group, 8, 4);
+                    // set group
+                    setGroup(group, 4, 4);
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(8 - 16 * partPer, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 4,
+                update: function(seq, partPer, partBias){
+                    setGroup(group, 4 - 8 * partPer, 4);
+                    // camera
+                    camera.position.set(-8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    vd = new THREE.Vector3(20 * partBias,0, 0);
+                    setGroup(group, -4 + 8 * partPer, 4, vd);
+                    // camera
+                    camera.position.set(-8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    vd = new THREE.Vector3();
+                    vlt = new THREE.Vector3(0,0,0)
+                    setGroup(group, 4, 4, vd, vlt, partPer);
+                    // camera
+                    camera.position.set(-8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    vd = new THREE.Vector3();
+                    vlt = new THREE.Vector3(0,0,0)
+                    setGroup(group, 4, 4, vd, vlt, 1);
+                    // camera
+                    camera.position.set(-8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
+                secs: 3,
+                update: function(seq, partPer, partBias){
+                    vd = new THREE.Vector3();
+                    vlt = new THREE.Vector3(0,0,0)
+                    setGroup(group, 32, 8, vd, vlt, 1 - partPer);
+                    // camera
+                    camera.position.set(-8, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
