@@ -36,11 +36,11 @@ VIDEO.init = function(sm, scene, camera){
             }));
     scene.add(line2);
 
-    // line1 is the box geo
+    // line1 is the Torus geo
     const torusGeo = new THREE.TorusGeometry(4, 2.0, 15, 30);
     torusGeo.rotateX(Math.PI * 0.5);
     const edgeGeoTorus = new THREE.EdgesGeometry(torusGeo);
-    line3 = new THREE.LineSegments(
+    const line3 = new THREE.LineSegments(
             edgeGeoTorus,
             new THREE.LineBasicMaterial({
                 color: new THREE.Color('red'),
@@ -48,10 +48,21 @@ VIDEO.init = function(sm, scene, camera){
             }));
     scene.add(line3);
 
+
+    // line4 is the Torus Knot geo
+    const torusKGeo = new THREE.TorusKnotGeometry(6, 1.75, 100, 8, 2, 3);
+    const edgeGeoTorusK = new THREE.EdgesGeometry(torusKGeo);
+    const line4 = new THREE.LineSegments(
+            edgeGeoTorusK,
+            new THREE.LineBasicMaterial({
+                color: new THREE.Color('lime'),
+                linewidth: 4
+            }));
+    scene.add(line4);
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
     //-------- ----------
     // GRID
     //-------- ----------
@@ -125,6 +136,11 @@ VIDEO.init = function(sm, scene, camera){
             line3.position.set(-10, -2, -2);
             line3.rotation.x = Math.PI * 0.5 * seq.per;
             line3.position.y = -2 - 8 * seq.per;
+            // line4 - torus
+            line4.position.set(-5, -15, -20);
+            line4.rotation.y = Math.PI * 2 * seq.getSinBias(1, false);
+            let s = 30 - 29.5 * seq.per;
+            line4.scale.set(s, s, s);
             // textube, camera
             textCube.visible = false;
             camera.position.set(8, 1, 0);
