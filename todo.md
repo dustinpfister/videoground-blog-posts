@@ -4,13 +4,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-edges-geometry
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-examples-svg-movement
 * () start video folder and a video1 file
 * () export to raw video file
@@ -48,6 +41,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 09/27/2022 ) - threejs-edges-geometry
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 09/26/2022 ) - threejs-vector3-apply-euler
 * (done) start video folder and a video1 file
