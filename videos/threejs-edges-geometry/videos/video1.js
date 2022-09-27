@@ -11,6 +11,8 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // EDGE GEOMETRY CREATED FROM BOX GEOMETRY AND USING WITH THREE.LineSegments
     //-------- ----------
+
+    // line1 is the box geo
     const boxGeo = new THREE.BoxGeometry(5, 5, 5),
     edgeGeo = new THREE.EdgesGeometry(boxGeo),
     line1 = new THREE.LineSegments(
@@ -21,6 +23,7 @@ VIDEO.init = function(sm, scene, camera){
             }));
     scene.add(line1);
 
+    // line2 is a sphere geo
     const sphereGeo = new THREE.SphereGeometry(30, 30, 30),
     edgeGeoSphere = new THREE.EdgesGeometry(sphereGeo),
     line2 = new THREE.LineSegments(
@@ -32,6 +35,18 @@ VIDEO.init = function(sm, scene, camera){
                 opacity: 0.15
             }));
     scene.add(line2);
+
+    // line1 is the box geo
+    const torusGeo = new THREE.TorusGeometry(4, 2.0, 15, 30);
+    torusGeo.rotateX(Math.PI * 0.5);
+    const edgeGeoTorus = new THREE.EdgesGeometry(torusGeo);
+    line3 = new THREE.LineSegments(
+            edgeGeoTorus,
+            new THREE.LineBasicMaterial({
+                color: new THREE.Color('red'),
+                linewidth: 4
+            }));
+    scene.add(line3);
 
     //-------- ----------
     // BACKGROUND
@@ -101,11 +116,15 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
-            // line1
+            // line1 - cube
             line1.rotation.set(0, 0, 0);
-            // line2
+            // line2 - sphere
             line2.rotation.set(0, 0, 0);
             line2.rotation.y = Math.PI * 2 * seq.per;
+            // line3 - torus
+            line3.position.set(-10, -2, -2);
+            line3.rotation.x = Math.PI * 0.5 * seq.per;
+            line3.position.y = -2 - 8 * seq.per;
             // textube, camera
             textCube.visible = false;
             camera.position.set(8, 1, 0);
