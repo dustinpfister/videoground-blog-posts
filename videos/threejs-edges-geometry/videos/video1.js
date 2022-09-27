@@ -11,7 +11,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // EDGE GEOMETRY CREATED FROM BOX GEOMETRY AND USING WITH THREE.LineSegments
     //-------- ----------
-    const boxGeo = new THREE.BoxGeometry(4, 4, 4),
+    const boxGeo = new THREE.BoxGeometry(5, 5, 5),
     edgeGeo = new THREE.EdgesGeometry(boxGeo),
     line1 = new THREE.LineSegments(
             edgeGeo,
@@ -20,6 +20,18 @@ VIDEO.init = function(sm, scene, camera){
                 linewidth: 8
             }));
     scene.add(line1);
+
+    const sphereGeo = new THREE.SphereGeometry(30, 30, 30),
+    edgeGeoSphere = new THREE.EdgesGeometry(sphereGeo),
+    line2 = new THREE.LineSegments(
+            edgeGeoSphere,
+            new THREE.LineBasicMaterial({
+                color: new THREE.Color('cyan'),
+                linewidth: 8,
+                transparent: true,
+                opacity: 0.15
+            }));
+    scene.add(line2);
 
     //-------- ----------
     // BACKGROUND
@@ -91,6 +103,9 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             // line1
             line1.rotation.set(0, 0, 0);
+            // line2
+            line2.rotation.set(0, 0, 0);
+            line2.rotation.y = Math.PI * 2 * seq.per;
             // textube, camera
             textCube.visible = false;
             camera.position.set(8, 1, 0);
@@ -105,6 +120,8 @@ VIDEO.init = function(sm, scene, camera){
                     if(seq.partFrame < seq.partFrameMax){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
+                    // line1
+                    line1.rotation.y = Math.PI * 2 * partPer;
                     // camera
                     camera.lookAt(0, 0, 0);
                 }
