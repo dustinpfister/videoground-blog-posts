@@ -2,22 +2,25 @@
  
 // scripts
 VIDEO.scripts = [
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
    '../../../js/canvas/r0/canvas.js',
-   '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
-   '../../../js/sequences-hooks/r1/sequences-hooks.js'
+   '../../../js/canvas-text-cube/r0/canvas-text-cube.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
- 
+    //-------- ----------
     // BACKGROUND
+    //-------- ----------
     scene.background = new THREE.Color('#2a2a2a');
-
+    //-------- ----------
     // GRID
+    //-------- ----------
     var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
     scene.add( grid );
- 
+    //-------- ----------
     // TEXT CUBE
+    //-------- ----------
     var textCube = scene.userData.textCube = CanvasTextCube.create({
         width: 128,
         height: 128,
@@ -33,7 +36,6 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
-
     // A SEQ FOR TEXT CUBE
     var seq_textcube = seqHooks.create({
         setPerValues: false,
@@ -68,8 +70,9 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
-
+    //-------- ----------
     // A MAIN SEQ OBJECT
+    //-------- ----------
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
@@ -109,10 +112,8 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
-
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
-
 };
 
 // update method for the video

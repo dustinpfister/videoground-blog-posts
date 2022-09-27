@@ -4,12 +4,7 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-vector3-apply-euler
-* (done) start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
+
 
 ### () - threejs-examples-svg-movement
 * () start video folder and a video1 file
@@ -50,6 +45,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 09/26/2022 ) - threejs-vector3-apply-euler
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 09/23/2022 ) - video1 for threejs-cube-texture
 * (done) start video folder and a video1 file
