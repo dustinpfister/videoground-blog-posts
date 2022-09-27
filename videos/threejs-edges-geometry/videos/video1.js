@@ -203,7 +203,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 3,
                 update: function(seq, partPer, partBias){
                     // camera
-                    const s = 8 - 3 * partPer;
+                    const s = 8 + 100 * partPer;
                     camera.position.set(s, s, s);
                     camera.lookAt(0, 0, 0);
                 }
