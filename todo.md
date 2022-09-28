@@ -4,6 +4,13 @@
 
 <!--  0 VIDEOS -->
 
+### () - threejs-vector3-lerp
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-examples-svg-movement
 * () start video folder and a video1 file
 * () export to raw video file
@@ -12,6 +19,11 @@
 * () embed in post
 
 ### () - threejs-examples-dae-tools
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
 
 ### () - video1 for threejs-texture-loader
 * () start video folder and a video1 file
@@ -29,14 +41,6 @@
 * () create final video file
 * () upload to youtube
 * () embed in post
-
-### () - threejs-vector3-lerp
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 
 <!--  TRAFFIC -->
 
