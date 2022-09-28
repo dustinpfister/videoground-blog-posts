@@ -9,9 +9,9 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
     // MESH
-    const mkMesh = function(){
+    const mkMesh = function(size){
         return new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1), 
+            new THREE.BoxGeometry(size, size, size), 
             new THREE.MeshNormalMaterial({
             })
         );
@@ -21,8 +21,8 @@ VIDEO.init = function(sm, scene, camera){
         let alphaPow = Math.pow( n, 1 + ( ( n - 1 ) * alpha) ) / Math.pow( n, n );
         return a.clone().lerp(b, alphaPow);
     };
-    // SET GROUP
-    const setGroup = (group, alpha) => {
+    // SET GROUP BY lerp pow
+    const setGroupPow = (group, alpha) => {
         let v1 = new THREE.Vector3( 4.5, 0, -4.5);
         let v2 = new THREE.Vector3(-4.5, 0, -4.5);
         group.children.forEach( (mesh, i, arr) => {
@@ -32,17 +32,40 @@ VIDEO.init = function(sm, scene, camera){
                 2 + 4 * (i / arr.length), alpha) );
         });
     };
-
-    // create group
-    const group = new THREE.Group(), len = 10;
-    let i = 0;
-    while(i < len){
-        const mesh = mkMesh();
-        group.add(mesh);
-        i += 1;
+    // set group by Euler positions
+    const setGroupEuler = (group, alpha) => {
+        const vs = new THREE.Vector3(0, 0, 1);
+        group.children.forEach( (mesh, i, arr) => {
+            const per = i / arr.length;
+            const e = new THREE.Euler();
+            e.y = Math.PI / 180 * 360 * per;
+            e.x = Math.PI / 180 * ( -90 + 180 * Math.sin( Math.PI * 2 * 6 * per ) ) * per;
+            const v1 = new THREE.Vector3();
+            v1.copy(vs).applyEuler(e).normalize().multiplyScalar(2);
+            const v2 = v1.clone().normalize().multiplyScalar(4)
+            mesh.position.copy(v1).lerp(v2, alpha);
+            mesh.lookAt(group.position);
+        });
     };
+    const createGroup = (len, size) => {
+        // create group
+        const group = new THREE.Group();
+        let i = 0;
+        while(i < len){
+            const mesh = mkMesh(size);
+            group.add(mesh);
+            i += 1;
+        };
+        return group;
+    };
+
+    const group = createGroup(10, 1);
     scene.add(group);
-    setGroup(group, 1);
+    setGroupPow(group, 1);
+
+    const group2 = createGroup(30, 0.5);
+    scene.add(group2);
+    setGroupEuler(group2, 1);
 
     //-------- ----------
     // BACKGROUND
@@ -114,7 +137,7 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
-            setGroup(group, seq.getSinBias(4, false));
+            setGroupPow(group, seq.getSinBias(4, false));
         },
         afterObjects: function(seq){
         },
@@ -128,6 +151,8 @@ VIDEO.init = function(sm, scene, camera){
                     }
                     // camera
                     camera.lookAt(0, 0, 0);
+                    // group 2
+                    setGroupEuler(group2, 1 - partPer);
                 }
             },
             {
@@ -136,14 +161,18 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8 - 16 * partPer, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // group 2
+                    setGroupEuler(group2, partPer);
                 }
             },
             {
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(-8, 8, 8);
+                    camera.position.set(-8, 8, 8 - 16 * partPer);
                     camera.lookAt(0, 0, 0);
+                    // group 2
+                    setGroupEuler(group2, 1 - seq.getSinBias(6));
                 }
             }
         ]
