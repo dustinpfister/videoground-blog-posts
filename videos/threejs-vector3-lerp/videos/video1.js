@@ -8,6 +8,42 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+    // MESH
+    const mkMesh = function(){
+        return new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1), 
+            new THREE.MeshNormalMaterial({
+            })
+        );
+    };
+    // HELPER METHOD USING LERP AND MATH POW
+    const lerpPow = function(a, b, n, alpha){
+        let alphaPow = Math.pow( n, 1 + ( ( n - 1 ) * alpha) ) / Math.pow( n, n );
+        return a.clone().lerp(b, alphaPow);
+    };
+    // SET GROUP
+    const setGroup = (group, alpha) => {
+        let v1 = new THREE.Vector3( 4.5, 0, -4.5);
+        let v2 = new THREE.Vector3(-4.5, 0, -4.5);
+        group.children.forEach( (mesh, i, arr) => {
+            mesh.position.copy( lerpPow(
+                v1.clone().add( new THREE.Vector3(0, 0, i) ), 
+                v2.clone().add( new THREE.Vector3(0, 0, i) ), 
+                2 + 4 * (i / arr.length), alpha) );
+        });
+    };
+
+    // create group
+    const group = new THREE.Group(), len = 10;
+    let i = 0;
+    while(i < len){
+        const mesh = mkMesh();
+        group.add(mesh);
+        i += 1;
+    };
+    scene.add(group);
+    setGroup(group, 1);
+
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -78,6 +114,7 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+            setGroup(group, seq.getSinBias(4, false));
         },
         afterObjects: function(seq){
         },
@@ -94,10 +131,10 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 16 * partPer, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -105,8 +142,7 @@ VIDEO.init = function(sm, scene, camera){
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(-8, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
