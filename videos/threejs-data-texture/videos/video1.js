@@ -147,13 +147,13 @@ scene.add(group);
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#8a8a8a');
     //-------- ----------
     // GRID
     //-------- ----------
-    var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //var grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -240,7 +240,7 @@ const update = function(frame, frameMax){
         fps: 30,
         beforeObjects: function(seq){
 
-update(seq.frame, seq.frameMax)
+            update(seq.frame, seq.frameMax)
 
             textCube.visible = false;
             camera.position.set(8, 1, 0);
@@ -263,7 +263,7 @@ update(seq.frame, seq.frameMax)
                 secs: 7,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    camera.position.set(8 - 2 * partPer, 1 + 5 * partPer, 6 * partPer);
                     camera.lookAt(0, 0, 0);
                 }
             },
@@ -271,8 +271,7 @@ update(seq.frame, seq.frameMax)
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(6 - 12 * partPer, 6, 6);
                     camera.lookAt(0, 0, 0);
                 }
             }
