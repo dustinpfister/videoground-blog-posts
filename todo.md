@@ -4,6 +4,7 @@
 
 <!--  0 VIDEOS -->
 
+
 ### () - threejs-examples-svg-movement
 * () start video folder and a video1 file
 * () export to raw video file
@@ -38,6 +39,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/04/2022 ) - threejs-data-textures
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 09/28/2022 ) - threejs-vector3-lerp
 * (done) start video folder and a video1 file
