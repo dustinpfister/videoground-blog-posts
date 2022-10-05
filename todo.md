@@ -4,6 +4,13 @@
 
 <!--  0 VIDEOS -->
 
+### () - threejs-materials
+* (done) start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-raycaster
 * () start video folder and a video1 file
 * () export to raw video file
@@ -14,8 +21,6 @@
 ### () - threejs-shape
 
 ### () - threejs-geometry
-
-### () - threejs-materials
 
 ### () - threejs-face3
 
