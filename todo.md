@@ -4,27 +4,32 @@
 
 <!--  0 VIDEOS -->
 
+### () - threejs-raycaster
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
+### () - threejs-shape
+
+### () - threejs-geometry
+
+### () - threejs-materials
+
+### () - threejs-face3
+
+### () - threejs-normal-map
+
+### () - threejs-object3d-get-world-position
+
+### () - threejs-examples-weird-walk-two
 
 ### () - threejs-examples-svg-movement
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - threejs-examples-dae-tools
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - video1 for threejs-texture-loader
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
 
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
