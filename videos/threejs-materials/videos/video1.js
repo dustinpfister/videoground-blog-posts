@@ -4,10 +4,24 @@
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
    '../../../js/canvas/r0/canvas.js',
-   '../../../js/canvas-text-cube/r0/canvas-text-cube.js'
+   '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
+   '../../../js/datatex/r0/datatex.js',
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+    //-------- ----------
+    // TEXTURES
+    //-------- ----------
+    const texture_rnd = datatex.seededRandom(8, 8, 1, 1, 1, [64, 255]);
+    //-------- ----------
+    // MESH
+    //-------- ----------
+    let mi = 0;
+    const materials = [
+        new THREE.MeshBasicMaterial({ map: texture_rnd })
+    ];
+    const mesh = new THREE.Mesh( new THREE.BoxGeometry(5, 5, 5), materials[mi] );
+    scene.add(mesh);
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -76,10 +90,14 @@ VIDEO.init = function(sm, scene, camera){
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+            mi = 0;
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
+
+            mesh.material = materials[mi];
+            mesh.rotation.y = Math.PI * 8 * seq.per;
         },
         objects: [
             {
@@ -94,7 +112,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
@@ -102,11 +120,10 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 20,
+                secs: 25,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
