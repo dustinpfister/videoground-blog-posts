@@ -12,15 +12,32 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // TEXTURES
     //-------- ----------
-    const texture_rnd = datatex.seededRandom(8, 8, 1, 1, 1, [64, 255]);
+    const texture_rnd = datatex.seededRandom(16, 16, 1, 1, 1, [64, 255]);
+    //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(1, 3, 2);
+    scene.add(dl);
+    //-------- ----------
+    // camera
+    //-------- ----------
+    camera.near = 1;
+    camera.far = 20;
+    camera.updateProjectionMatrix();
     //-------- ----------
     // MESH
     //-------- ----------
     let mi = 0;
     const materials = [
-        new THREE.MeshBasicMaterial({ map: texture_rnd })
+        new THREE.MeshBasicMaterial({ map: texture_rnd, color: 0xff0000 }),
+        new THREE.MeshDepthMaterial(),
+        new THREE.MeshLambertMaterial({ map: texture_rnd, color: 0x00ff00 }),
+        new THREE.MeshNormalMaterial(),
+        new THREE.MeshPhongMaterial({ map: texture_rnd, shininess: 90, color: 0x0000ff }),
+        new THREE.MeshStandardMaterial({ map: texture_rnd, color: 0xffff00 })
     ];
-    const mesh = new THREE.Mesh( new THREE.BoxGeometry(5, 5, 5), materials[mi] );
+    const mesh = new THREE.Mesh( new THREE.SphereGeometry(4.5, 30, 30), materials[mi] );
     scene.add(mesh);
     //-------- ----------
     // BACKGROUND
@@ -91,13 +108,15 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             mi = 0;
+            camera.near = 1;
+            camera.far = 20;
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
-
             mesh.material = materials[mi];
             mesh.rotation.y = Math.PI * 8 * seq.per;
+            camera.updateProjectionMatrix();
         },
         objects: [
             {
@@ -117,14 +136,17 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
                     camera.lookAt(0, 0, 0);
+                    camera.near = 1 + 4 * partPer;
                 }
             },
             {
                 secs: 25,
                 update: function(seq, partPer, partBias){
+                    mi = Math.floor(materials.length * partPer);
                     // camera
                     camera.position.set(8, 8, 8);
                     camera.lookAt(0, 0, 0);
+                    camera.near = 5;
                 }
             }
         ]
