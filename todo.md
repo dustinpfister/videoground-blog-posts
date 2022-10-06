@@ -4,13 +4,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-raycaster
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-shape
 
 ### () - threejs-geometry
@@ -42,6 +35,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/06/2022 ) - threejs-raycaster
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 10/05/2022 ) - threejs-materials
 * (done) start video folder and a video1 file
