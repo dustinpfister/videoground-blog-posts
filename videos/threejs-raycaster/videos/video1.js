@@ -8,6 +8,54 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+
+//-------- ----------
+// HELPERS
+//-------- ----------
+// set mesh posiiton if we have a hit
+const setMeshIfHit = (raycaster, mesh, target, v_lookat) => {
+    const result = raycaster.intersectObject(target, false);
+    if(result.length > 0){
+        const hit = result[0];
+        mesh.position.copy( hit.point );
+        mesh.lookAt(v_lookat);
+   }
+};
+// get dir
+const getDir = (v_origin, v_lookat) => {
+    const obj = new THREE.Object3D();
+    obj.position.copy(v_origin);
+    obj.lookAt(v_lookat);
+    const dir = new THREE.Vector3(0, 0, 1);
+    dir.applyEuler(obj.rotation).normalize();
+    return dir;
+};
+// get look at vector
+const getLookAt = (deg, radius) => {
+    let radian = Math.PI / 180 * deg;
+    return new THREE.Vector3(1, 0, 0).applyEuler( new THREE.Euler(0, radian, 0) ).multiplyScalar(radius);
+};
+//-------- ----------
+// MESH - SPHERE
+//-------- ----------
+const torus_radius = 4;
+const torus = new THREE.Mesh(
+        new THREE.TorusGeometry(torus_radius, 1.25, 20, 20),
+        new THREE.MeshNormalMaterial({wireframe: true, wireframeLinewidth: 3}));
+torus.geometry.rotateX(Math.PI * 0.5)
+scene.add(torus);
+// create mesh at point
+const box = new THREE.Mesh(
+    new THREE.SphereGeometry(1, 30, 30),
+    new THREE.MeshNormalMaterial());
+scene.add(box);
+//-------- ----------
+// RAYCASTER
+//-------- ----------
+// create raycaster
+const raycaster = new THREE.Raycaster();
+
+
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -73,9 +121,23 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // A MAIN SEQ OBJECT
     //-------- ----------
+
+const update = function(a){
+    let b = 1 - Math.abs(0.5 - a * 2 % 1 ) / 0.5;
+    let v_lookat = getLookAt(360 * a, torus_radius);
+    let v_ray_origin = new THREE.Vector3(0, -20 + 40 * b, 0)
+    let v_ray_dir = getDir(v_ray_origin,  v_lookat);
+    raycaster.set(v_ray_origin, v_ray_dir);
+    setMeshIfHit(raycaster, box, torus, v_lookat);
+};
+
+
     var seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+update(seq.per);
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
@@ -94,7 +156,7 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 2,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
@@ -102,11 +164,18 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
+                secs: 5,
+                update: function(seq, partPer, partBias){
+                    // camera
+                    camera.position.set(8, 8, 8);
+                    camera.lookAt(0, 0, 0);
+                }
+            },
+            {
                 secs: 20,
                 update: function(seq, partPer, partBias){
                     // camera
-                    var b = seq.getSinBias(2);
-                    camera.position.set(8, 8 - 16 * b, 8);
+                    camera.position.set(8 - 16 * partPer, 8, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
