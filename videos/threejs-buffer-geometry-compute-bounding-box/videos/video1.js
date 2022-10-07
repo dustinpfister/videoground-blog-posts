@@ -143,7 +143,7 @@ const update = function(a){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
-update(seq.per * 2 % 1);
+            update(seq.per * 2 % 1);
         },
         afterObjects: function(seq){
         },
@@ -171,7 +171,7 @@ update(seq.per * 2 % 1);
                 secs: 25,
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 8, 8);
+                    camera.position.set(8 - 16 * partPer, 8 - 4 * partPer, 8);
                     camera.lookAt(0, 0, 0);
                 }
             }
