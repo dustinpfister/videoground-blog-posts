@@ -8,6 +8,74 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+//-------- ----------
+// HELPER FUNCTIONS
+//-------- ----------
+// make a heart shape
+const makeHeartShape = (b, mb, sx, sy) => {
+    b = b === undefined ? 9: b;
+    mb = mb === undefined ? 0.75: mb;
+    sx = sx === undefined ? 2.5: sx;
+    sy = sy === undefined ? 2.5: sy;
+    const shape = new THREE.Shape();
+    shape.moveTo( sx, sy );
+    shape.bezierCurveTo( sx, sy, 2, 0, 0, 0 );
+    shape.bezierCurveTo( -3, 0, -3, 3, -3.0, 3 );
+    shape.bezierCurveTo( -3, 5, -1, b * mb, 2, b );
+    shape.bezierCurveTo( 6, b * mb, 8, 5, 8, 3 );
+    shape.bezierCurveTo( 8, 3, 8, 0, 5, 0 );
+    shape.bezierCurveTo( 3, 0, sx, sy, sx, sy );
+    return shape;
+};
+// make a heart geometry
+const makeHeartGeo = (b, mb, sx, sy, extrudeSettings) => {
+    const shape = makeHeartShape(b, mb, sx, sy);
+    extrudeSettings = extrudeSettings || {
+        depth: 1.5,
+        steps: 2,
+        curveSegments: 20,
+        bevelEnabled: true,
+        bevelThickness: 1.5,
+        bevelSize: 1.5,
+        bevelOffset: 0,
+        bevelSegments: 20
+    };
+    const geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+    geometry.rotateX(Math.PI * 1);
+    geometry.rotateY(Math.PI * 0.5);
+    geometry.center();
+    return geometry;
+};
+// update geo
+const updateGeo = (geoA, geoB) => {
+    const posA = geoA.getAttribute('position');
+    const posB = geoB.getAttribute('position');
+    posA.array = posA.array.map((n, i)=>{
+        return posB.array[i];
+    });
+    posA.needsUpdate = true;
+    geoA.computeVertexNormals();
+};
+//-------- ----------
+// GEOMETRY
+//-------- ----------
+const geometry = makeHeartGeo();
+
+
+
+
+//-------- ----------
+// MESH
+//-------- ----------
+const mesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial() );
+let s = 0.5;
+mesh.scale.set(s, s, s);
+// add the mesh to the scene
+scene.add(mesh);
+
+
+
+
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -76,6 +144,15 @@ VIDEO.init = function(sm, scene, camera){
     const seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
+
+    const a = seq.per;
+    const ab = 1 - Math.abs(0.5 - a) / 0.5;
+    let b = 6 + 6 * ab;
+    let mb = 0.75;
+    let sy = 1.5  + 1 * ab;
+    updateGeo(mesh.geometry, makeHeartGeo(b, mb, 2.5, sy));
+    mesh.rotation.y = Math.PI * 4 * a;
+
             textCube.visible = false;
             camera.position.set(8, 1, 0);
         },
