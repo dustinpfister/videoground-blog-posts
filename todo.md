@@ -4,7 +4,7 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-shape
+### () - threejs-examples-sphere-mutate
 * () start video folder and a video1 file
 * () export to raw video file
 * () create final video file
@@ -40,6 +40,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/10/2022 ) - threejs-shape
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 10/07/2022 ) - threejs-buffer-geometry-compute-bounding-box
 * (done) start video folder and a video1 file
