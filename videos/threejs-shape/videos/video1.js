@@ -33,12 +33,12 @@ const makeHeartGeo = (b, mb, sx, sy, extrudeSettings) => {
     extrudeSettings = extrudeSettings || {
         depth: 1.5,
         steps: 2,
-        curveSegments: 20,
+        curveSegments: 30,
         bevelEnabled: true,
         bevelThickness: 1.5,
         bevelSize: 1.5,
         bevelOffset: 0,
-        bevelSegments: 20
+        bevelSegments: 30
     };
     const geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
     geometry.rotateX(Math.PI * 1);
