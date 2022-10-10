@@ -1,4 +1,4 @@
-// video1 for template2-sequence-hooks
+// video1 for threejs-shape
  
 // scripts
 VIDEO.scripts = [
@@ -28,10 +28,10 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,128,0.8)',
         lineCount: 9,
         lines: [
-            ['template2', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
+            ['Shapes in', 64, 17, 14, 'white'],
+            ['threejs', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['( r140 10/10/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
