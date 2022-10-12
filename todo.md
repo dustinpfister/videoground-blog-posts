@@ -4,12 +4,14 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-examples-sphere-mutate
-* () start video folder and a video1 file
+### () - threejs-object3d-get-world-position
+* (done) start video folder and a video1 file
 * () export to raw video file
 * () create final video file
 * () upload to youtube
 * () embed in post
+
+
 
 ### () - threejs-geometry
 
@@ -17,7 +19,7 @@
 
 ### () - threejs-normal-map
 
-### () - threejs-object3d-get-world-position
+
 
 ### () - threejs-examples-weird-walk-two
 
@@ -40,6 +42,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/11/2022 ) - threejs-examples-sphere-mutate
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 10/10/2022 ) - threejs-shape
 * (done) start video folder and a video1 file
@@ -772,9 +781,6 @@
 
 ### ( done 04/26/2022 ) - video1 for threejs-scene
 * (done) video1 done
-
-### ( done 04/26/2022 ) - video1 for threejs-geometry-attributes-position ( 406 - 3mo - 4/11/2022 )
-* start a video1 for position attribute
 
 ### ( done 04/24/2022 ) - video1 for threejs-object3d-get-world-position ( 429 - 3mo - 4/11/2022 )
 * (done) get world position demo video
