@@ -2,12 +2,13 @@
  
 // scripts
 VIDEO.scripts = [
-   '../../../js/canvas.js',
-   '../../../js/canvas-text-cube.js',
-   '../../../js/sequences-hooks-r1.js',
-   '../../../js/datatex.js',
-   '../../../js/tile-index.js',
-   '../js/object-grid-wrap.js'
+   '../../../js/canvas/r0/canvas.js',
+   '../../../js/canvas-text-cube/r0/canvas-text-cube.js',
+   '../../../js/sequences-hooks/r1/sequences-hooks.js',
+   //'../../../js/datatex/r0/datatex.js',
+   //'../../../js/tile-index.js',
+   '../../../js/tilemod/r0/tilemod.js',
+   '../../../js/object-grid-wrap/r0/object-grid-wrap.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -43,8 +44,61 @@ th = 6,
 space = 3.1;
 // source objects
 
+    const mkDataTexture = function (data, w) {
+        data = data || [];
+        w = w || 0;
+        var width = w, //20,
+        height = data.length / 4 / w;
+        var texture = new THREE.DataTexture(data, width, height);
+        texture.needsUpdate = true;
+        return texture;
+    };
 
-    var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2});
+
+    // simple gray scale seeded random texture
+    const seededRandom = function (w, h, rPer, gPer, bPer, range) {
+        w = w === undefined ? 5 : w,
+        h = h === undefined ? 5 : h;
+        rPer = rPer === undefined ? 1 : rPer;
+        gPer = gPer === undefined ? 1 : gPer;
+        bPer = bPer === undefined ? 1 : bPer;
+        range = range || [0, 255]
+        var size = w * h;
+        var data = new Uint8Array(4 * size);
+        for (let i = 0; i < size; i++) {
+            var stride = i * 4;
+            var v = Math.floor(range[0] + THREE.MathUtils.seededRandom() * (range[1] - range[0]));
+            data[stride] = v * rPer;
+            data[stride + 1] = v * gPer;
+            data[stride + 2] = v * bPer;
+            data[stride + 3] = 255;
+        }
+        return mkDataTexture(data, w);
+    };
+
+
+    var textureRND1 = seededRandom(80, 80, 1, 1, 1, [130, 250]);
+    var textureRND2 = seededRandom(160, 160, 1, 1, 1, [64, 170]);
+
+    var MATERIALS = [
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            map: textureRND1,
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.75,
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({
+            color: 0x00aa00,
+            map: textureRND2,
+            //emissive: 0x00ff00,
+            //emissiveIntensity: 0.2,
+            side: THREE.DoubleSide
+        })
+    ];
+
+
+    var ground = TileMod.create({w: 3, h: 3, sw: 2, sh: 2, materials: MATERIALS});
     TileMod.setCheckerBoard(ground)
     //scene.add(ground);
 
