@@ -267,10 +267,8 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 5,
                 update: function(seq, partPer, partBias){
-
-                    grid.userData.startFlip = -800 * partBias;
-                    grid.userData.maxFlipDelta = 1600 * partBias;
-
+                    grid.userData.startFlip = -250 * partBias;
+                    grid.userData.maxFlipDelta = 500 * partBias;
                     camera.position.set(10, 10, 10);
                 }
             },
@@ -281,8 +279,10 @@ VIDEO.init = function(sm, scene, camera){
                     grid.userData.startFlip = -90 * partPer;
                     grid.userData.maxFlipDelta = 180 * partPer;
 
-                    updateTexture(texture_checker, opt_data_texture);
-                    updateTexture(texture_rnd, opt_data_texture_rnd);
+                    if(seq.frame % 4 === 0){
+                        updateTexture(texture_checker, opt_data_texture);
+                        updateTexture(texture_rnd, opt_data_texture_rnd);
+                    }
 
                     camera.position.set(10, 10, 10);
                 }
