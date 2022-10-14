@@ -11,10 +11,8 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // MESH
     //-------- ----------
-    //let plane = TextPlane.makePlane(canObj2.texture, 7, 5);
     const plane = TextPlane.createPlane({
         w: 7, h: 5,
-        //update_mode: 'dual', // Might not need data textures
         rows: 10, size: 256, palette: ['rgba(0,255,255,0.2)', 'black', 'black']
     });
     plane.position.set(0, 2.5, 0);
