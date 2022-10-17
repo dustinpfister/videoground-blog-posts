@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
    '../../../js/canvas/r1/canvas.js',
-   '../../../js/text-plane/r0/text-plane.js'
+   '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
+   '../../../js/canvas-text-plane/r0/text-plane.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -17,6 +18,28 @@ VIDEO.init = function(sm, scene, camera){
     });
     plane.position.set(0, 2.5, 0);
     scene.add(plane);
+ 
+    //-------- ----------
+    // TEXT CUBE
+    //-------- ----------
+    const textCube = scene.userData.textCube = CanvasTextCube.create({
+        bg: '#0a0a0a',
+        size: 128,
+        lineWidth: 7,
+        lineColor: 'rgba(0,100,0,0.8)',
+        lineCount: 9,
+        lines: [
+            ['template9', 64, 17, 14, 'white'],
+            ['', 64, 32, 14, 'white'],
+            ['', 64, 47, 14, 'white'],
+            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['video1', 64, 100, 10, 'gray']
+        ]
+    });
+    scene.add(textCube);
+
+    textCube.position.set(0, 3.5, 5);
+ 
     //-------- ----------
     // TEXT and textLines
     //-------- ----------
