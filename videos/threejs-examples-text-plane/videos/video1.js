@@ -104,8 +104,10 @@ VIDEO.init = function(sm, scene, camera){
     const sphere = new THREE.Mesh(
         new THREE.SphereGeometry(30, 30, 30),
         new THREE.MeshBasicMaterial({
-             wireframe: true,
-             wireframeLinewidth: 3
+             map: canObj3.texture,
+             side: THREE.DoubleSide
+            // wireframe: true,
+            // wireframeLinewidth: 3
         })
     );
     scene.add(sphere);
@@ -148,7 +150,7 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             // TEXT Plane r0
-            TextPlane.moveTextLines(canObj1.state.lines, textLines, seq.bias, 0, 30);
+            TextPlane.moveTextLines(canObj1.state.lines, textLines, seq.bias * 0.8, 0, 30);
             // TEXT CUBE r1
             textCube.rotation.y = 0;
             textCube.position.set(0, 3.7, 6.1);
