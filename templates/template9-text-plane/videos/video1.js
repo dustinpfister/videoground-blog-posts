@@ -1,5 +1,4 @@
 // video1 for template9-text-plane
- 
 // scripts
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r1/sequences-hooks.js',
@@ -18,11 +17,10 @@ VIDEO.init = function(sm, scene, camera){
     });
     plane.position.set(0, 2.5, 0);
     scene.add(plane);
- 
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
-    const textCube = scene.userData.textCube = CanvasTextCube.create({
+    const textCube = CanvasTextCube.create({
         bg: '#0a0a0a',
         size: 128,
         lineWidth: 7,
@@ -37,9 +35,6 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
-
-    textCube.position.set(0, 3.5, 5);
- 
     //-------- ----------
     // TEXT and textLines
     //-------- ----------
@@ -59,9 +54,16 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             camera.position.set(0, 4, 8);
-            // UPDATE
+            // TEXT PLANE r0
             TextPlane.moveTextLines(plane.userData.canObj.state.lines, textLines, seq.per, 0, 30);
             canvasMod.update(plane.userData.canObj);
+            // TEXT CUBE r1
+            //const textCube = scene.userData.textCube;
+            textCube.rotation.y = 0;
+            textCube.position.set(0, 3.7, 6.1);
+            textCube.visible = false;
+            textCube.material.transparent = true;
+            textCube.material.opacity = 0.0;
         },
         afterObjects: function(seq){
         },
@@ -69,12 +71,21 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 3,
                 update: function(seq, partPer, partBias){
+                    // text cube
+                    textCube.visible = true;
+                    textCube.material.opacity = 1.0;
+
                     camera.lookAt(0, 2.5, 0);
                 }
             },
             {
                 secs: 7,
                 update: function(seq, partPer, partBias){
+                    // text cube
+                    textCube.visible = true;
+                    textCube.position.set(0, 3.7 + 1 * partPer, 6.1);
+                    textCube.rotation.y = Math.PI * 2 * partPer;
+                    textCube.material.opacity = 1.0 - partPer;
                     // camera
                     camera.position.set(4 * partPer, 4, 8 - 2 * partPer);
                     camera.lookAt(0, 2.5, 0);
