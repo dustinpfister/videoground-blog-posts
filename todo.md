@@ -4,21 +4,11 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-examples-text-plane
-* () start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
-
 ### () - threejs-geometry
 
 ### () - threejs-face3
 
 ### () - threejs-normal-map
-
-
 
 ### () - threejs-examples-weird-walk-two
 
@@ -41,6 +31,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/17/2022 ) - threejs-examples-text-plane
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 10/12/2022 ) - threejs-object3d-get-world-position
 * (done) start video folder and a video1 file
