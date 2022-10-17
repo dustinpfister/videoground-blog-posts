@@ -4,12 +4,7 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-object3d-get-world-position
-* (done) start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
+
 
 
 
@@ -42,6 +37,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/12/2022 ) - threejs-object3d-get-world-position
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 10/11/2022 ) - threejs-examples-sphere-mutate
 * (done) start video folder and a video1 file
