@@ -1,10 +1,10 @@
-// video1 for template2-sequence-hooks using r0 of canvas.js
+// video2 for template2-sequence-hooks using r1 of canvas.js and r2 of sequences-hooks
  
 // scripts
 VIDEO.scripts = [
-   '../../../js/sequences-hooks/r1/sequences-hooks.js',
-   '../../../js/canvas/r0/canvas.js',
-   '../../../js/canvas-text-cube/r0/canvas-text-cube.js'
+   '../../../js/sequences-hooks/r2/sequences-hooks.js',
+   '../../../js/canvas/r1/canvas.js',
+   '../../../js/canvas-text-cube/r1/canvas-text-cube.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -22,17 +22,17 @@ VIDEO.init = function(sm, scene, camera){
     // TEXT CUBE
     //-------- ----------
     const textCube = scene.userData.textCube = CanvasTextCube.create({
-        width: 128,
-        height: 128,
+        bg: '#000000',
+        size: 128,
         lineWidth: 7,
-        lineColor: 'rgba(0,100,128,0.8)',
+        lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
             ['template2', 64, 17, 14, 'white'],
             ['', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
             ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
-            ['video1', 64, 100, 10, 'gray']
+            ['video2', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
@@ -54,7 +54,6 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8, 0);
                     textCube.material.opacity = 1.0;
                 }
             },
