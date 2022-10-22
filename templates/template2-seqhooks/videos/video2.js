@@ -93,15 +93,22 @@ VIDEO.init = function(sm, scene, camera){
                 }
             },
             {
-                secs: 7,
+                secs: 2,
+                v3Paths: [
+                    {
+                        key: 'campos',
+                        array: [8,1,0,8,8,8],
+                        lerp: true
+                    }
+                ],
                 update: function(seq, partPer, partBias){
                     // camera
-                    camera.position.set(8, 1 + 7 * partPer, 8 * partPer);
+                    seq.copyPos('campos', camera);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 20,
+                secs: 25,
                 update: function(seq, partPer, partBias){
                     // camera
                     camera.position.set(8, 8, 8);
