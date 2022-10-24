@@ -4,13 +4,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-curve-quadratic-bezier-curve3
-* (done) start video folder and a video1 file
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
-
 ### () - threejs-geometry
 
 ### () - threejs-face3
@@ -38,6 +31,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/22/2022 ) - threejs-curve-quadratic-bezier-curve3
+* (done) start video folder and a video1 file
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 10/17/2022 ) - threejs-examples-text-plane
 * (done) start video folder and a video1 file
