@@ -1,6 +1,12 @@
 # videoground-blog-posts todo list
 
-<!-- Whats next -->
+<!-- VIDEO2 -->
+
+### () - threejs-examples-sphere-mutate
+* () new video on r2 that shows new demos
+
+### () - threejs-examples-sequence-hooks
+* () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
 
