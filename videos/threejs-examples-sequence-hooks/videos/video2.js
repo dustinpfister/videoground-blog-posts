@@ -48,9 +48,9 @@ VIDEO.init = function(sm, scene, camera){
     // V3 ARRAYS
     //-------- ----------
     const v3Array_campos = QBV3Array([
-        [8,1,0, 8,8,8,      4,4,5,      25],
-        [8,8,8, -8,4,0,   -5,-2,0,      50],
-        [-8,4,0, 0,0,-8,   -14,2,-9,      25]
+        [8,1,0, 8,8,8,      4,4,5,      20],
+        [8,8,8, -8,4,0,   -5,-2,0,      25],
+        [-8,4,0, 0,0,-8,   -14,2,-9,      50]
     ]);
     const v3Array_camlook = QBV3Array([
         [0,0,0, -2,0,-5,      2,0,-2,      25],
@@ -62,12 +62,12 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const points_campos = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({color: new THREE.Color(0,0,1), size: 0.25 })
+        new THREE.PointsMaterial({color: new THREE.Color(0,1,0), size: 0.5 })
     );
     scene.add(points_campos);
     const points_camlook = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints(v3Array_camlook),
-        new THREE.PointsMaterial({color: new THREE.Color(0,1,1), size: 0.5 })
+        new THREE.PointsMaterial({color: new THREE.Color(0,0.5,0), size: 0.5 })
     );
     scene.add(points_camlook);
 
@@ -107,7 +107,7 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             const textCube = scene.userData.textCube;
             textCube.rotation.y = 0;
-            textCube.position.set(6, 0.8, 0);
+            textCube.position.set(5.5, 0.7, 0);
             textCube.visible = false;
             textCube.material.transparent = true;
             textCube.material.opacity = 0.0;
@@ -126,7 +126,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // move up text cube
                     textCube.visible = true;
-                    textCube.position.set(6, 0.8 + 1 * partPer, 0);
+                    textCube.position.set(5.5, 0.7 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
                     textCube.material.opacity = 1.0 - partPer;
                 }
@@ -143,6 +143,7 @@ VIDEO.init = function(sm, scene, camera){
             camera.position.set(8, 1, 0);
         },
         afterObjects: function(seq){
+            camera.updateProjectionMatrix();
         },
         objects: [
             {
@@ -153,12 +154,13 @@ VIDEO.init = function(sm, scene, camera){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
-                    camera.position.set(14, 14, 14);
+                    //camera.position.set(14, 14, 14);
                     camera.lookAt(0, 0, 0);
+                    camera.zoom = 1 + 0.6 * partPer;
                 }
             },
             {
-                secs: 27,
+                secs: 17,
                 v3Paths: [
                     { key: 'campos', array: v3Array_campos, lerp: true },
                     { key: 'camlook', array: v3Array_camlook, lerp: true }
@@ -167,6 +169,20 @@ VIDEO.init = function(sm, scene, camera){
                     // camera
                     seq.copyPos('campos', camera);
                     camera.lookAt(seq.getPos('camlook', camera));
+                    camera.zoom = 1.6 - 0.2 * partPer;
+                }
+            },
+            {
+                secs: 10,
+                update: function(seq, partPer, partBias){
+                    const v1 = new THREE.Vector3(0,0,-8);
+                    const v2 = new THREE.Vector3(17, 10, -17);
+                    // camera
+                    camera.position.copy(v1).lerp(v2, partPer);
+                    const v3 = new THREE.Vector3(-5,0,5);
+                    const v4 = new THREE.Vector3(0, 0, 0);
+                    camera.lookAt( v3.lerp(v4, partPer) );
+                    camera.zoom = 1.4 - 0.6 * partPer;
                 }
             }
         ]
