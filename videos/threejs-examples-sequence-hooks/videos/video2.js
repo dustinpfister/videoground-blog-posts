@@ -48,13 +48,13 @@ VIDEO.init = function(sm, scene, camera){
     // V3 ARRAYS
     //-------- ----------
     const v3Array_campos = QBV3Array([
-        [8,1,0, 8,8,8,      4,4,5,      20],
-        [8,8,8, -8,4,0,   -5,-2,0,      25],
-        [-8,4,0, 0,0,-8,   -14,2,-9,      50]
+        [8,1,0, 8,8,8,      4,4,5,      40],
+        [8,8,8, -8,4,0,   -5,-2,0,      50],
+        [-8,4,0, 0,0,-8,   -14,2,-9,      80]
     ]);
     const v3Array_camlook = QBV3Array([
-        [0,0,0, 5,0,-5,      2,0,2,      25],
-        [5,0,-5, -5,0,-5,     5,0,-5,      25],
+        [0,0,0, 5,0,-5,      2,0,2,      50],
+        [5,0,-5, -5,0,-5,     5,0,-5,      50],
         [-5,0,-5, -5,0,5,     -7,0,0,      50]
     ]);
 
@@ -76,12 +76,14 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#ffffff');
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#ffffff');
+    const grid = scene.userData.grid = new THREE.GridHelper(30, 30, '#000000', '#000000');
     grid.material.linewidth = 3;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.3;
     scene.add( grid );
     //-------- ----------
     // TEXT CUBE
