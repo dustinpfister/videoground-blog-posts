@@ -2,9 +2,6 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-examples-sphere-mutate
-* () new video on r2 that shows new demos
-
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
@@ -37,6 +34,9 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 10/24/2022 ) - threejs-examples-sphere-mutate
+* (done) new video on r2 that shows new demos
 
 ### ( done 10/22/2022 ) - threejs-curve-quadratic-bezier-curve3
 * (done) start video folder and a video1 file
