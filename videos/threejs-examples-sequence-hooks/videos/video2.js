@@ -52,15 +52,24 @@ VIDEO.init = function(sm, scene, camera){
         [8,8,8, -8,4,0,   -5,-2,0,      50],
         [-8,4,0, 0,0,-8,   -14,2,-9,      25]
     ]);
+    const v3Array_camlook = QBV3Array([
+        [0,0,0, -2,0,-5,      2,0,-2,      25],
+        [-2,0,-5, -5,0,5,      -5,0,-5,      50]
+    ]);
 
     //-------- ----------
     // POINTS
     //-------- ----------
     const points_campos = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({color: new THREE.Color(0,1,0), size: 0.5 })
+        new THREE.PointsMaterial({color: new THREE.Color(0,0,1), size: 0.25 })
     );
     scene.add(points_campos);
+    const points_camlook = new THREE.Points(
+        new THREE.BufferGeometry().setFromPoints(v3Array_camlook),
+        new THREE.PointsMaterial({color: new THREE.Color(0,1,1), size: 0.5 })
+    );
+    scene.add(points_camlook);
 
 
     //-------- ----------
@@ -70,7 +79,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#ffffff');
     grid.material.linewidth = 3;
     scene.add( grid );
     //-------- ----------
@@ -151,16 +160,13 @@ VIDEO.init = function(sm, scene, camera){
             {
                 secs: 27,
                 v3Paths: [
-                    {
-                        key: 'campos',
-                        array: v3Array_campos,
-                        lerp: true
-                    }
+                    { key: 'campos', array: v3Array_campos, lerp: true },
+                    { key: 'camlook', array: v3Array_camlook, lerp: true }
                 ],
                 update: function(seq, partPer, partBias){
                     // camera
                     seq.copyPos('campos', camera);
-                    camera.lookAt(0, 0, 0);
+                    camera.lookAt(seq.getPos('camlook', camera));
                 }
             }
         ]
