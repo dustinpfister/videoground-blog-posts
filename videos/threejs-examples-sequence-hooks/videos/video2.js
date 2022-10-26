@@ -9,6 +9,61 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
     //-------- ----------
+    // HELPERS
+    //-------- ----------
+    // just a short hand for THREE.QuadraticBezierCurve3
+    const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
+        let vs = x1;
+        let ve = y1;
+        let vc = z1;
+        if(arguments.length === 9){
+            vs = new THREE.Vector3(x1, y1, z1);
+            ve = new THREE.Vector3(x2, y2, z2);
+            vc = new THREE.Vector3(x3, y3, z3);
+        }
+        return new THREE.QuadraticBezierCurve3( vs, vc, ve );
+    };
+    // QBDelta helper using QBC3
+    // this works by giving deltas from the point that is half way between
+    // the two start and end points rather than a direct control point for x3, y3, and x3
+    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
+        const vs = new THREE.Vector3(x1, y1, z1);
+        const ve = new THREE.Vector3(x2, y2, z2);
+        // deltas
+        const vDelta = new THREE.Vector3(x3, y3, z3);
+        const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
+        const curve = QBC3(vs, ve, vc);
+        return curve;
+    };
+    // QBV3Array
+    const QBV3Array = function(data) {
+        const v3Array = [];
+        data.forEach( ( a ) => {
+            const curve = QBDelta.apply(null, a.slice(0, a.length - 1))
+            v3Array.push( curve.getPoints( a[9]) );
+        })
+        return v3Array.flat();
+    };
+    //-------- ----------
+    // V3 ARRAYS
+    //-------- ----------
+    const v3Array_campos = QBV3Array([
+        [8,1,0, 8,8,8,      4,4,5,      25],
+        [8,8,8, -8,4,0,   -5,-2,0,      50],
+        [-8,4,0, 0,0,-8,   -14,2,-9,      25]
+    ]);
+
+    //-------- ----------
+    // POINTS
+    //-------- ----------
+    const points_campos = new THREE.Points(
+        new THREE.BufferGeometry().setFromPoints(v3Array_campos),
+        new THREE.PointsMaterial({color: new THREE.Color(0,1,0), size: 0.5 })
+    );
+    scene.add(points_campos);
+
+
+    //-------- ----------
     // BACKGROUND
     //-------- ----------
     scene.background = new THREE.Color('#2a2a2a');
@@ -72,39 +127,6 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // A MAIN SEQ OBJECT
     //-------- ----------
-    // just a short hand for THREE.QuadraticBezierCurve3
-    const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
-        let vs = x1;
-        let ve = y1;
-        let vc = z1;
-        if(arguments.length === 9){
-            vs = new THREE.Vector3(x1, y1, z1);
-            ve = new THREE.Vector3(x2, y2, z2);
-            vc = new THREE.Vector3(x3, y3, z3);
-        }
-        return new THREE.QuadraticBezierCurve3( vs, vc, ve );
-    };
-    // QBDelta helper using QBC3
-    // this works by giving deltas from the point that is half way between
-    // the two start and end points rather than a direct control point for x3, y3, and x3
-    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
-        const vs = new THREE.Vector3(x1, y1, z1);
-        const ve = new THREE.Vector3(x2, y2, z2);
-        // deltas
-        const vDelta = new THREE.Vector3(x3, y3, z3);
-        const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
-        const curve = QBC3(vs, ve, vc);
-        return curve;
-    };
-    // QBV3Array
-    const QBV3Array = function(data) {
-        const v3Array = [];
-        data.forEach( ( a ) => {
-            const curve = QBDelta.apply(null, a.slice(0, a.length - 1))
-            v3Array.push( curve.getPoints( a[9]) );
-        })
-        return v3Array.flat();
-    };
     const seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
@@ -122,33 +144,16 @@ VIDEO.init = function(sm, scene, camera){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
+                    camera.position.set(14, 14, 14);
                     camera.lookAt(0, 0, 0);
                 }
             },
             {
-                secs: 2,
+                secs: 27,
                 v3Paths: [
                     {
                         key: 'campos',
-                        array: QBDelta(8,1,0,8,8,8,4,4,-5).getPoints(50),
-                        lerp: true
-                    }
-                ],
-                update: function(seq, partPer, partBias){
-                    // camera
-                    seq.copyPos('campos', camera);
-                    camera.lookAt(0, 0, 0);
-                }
-            },
-            {
-                secs: 25,
-                v3Paths: [
-                    {
-                        key: 'campos',
-                        array: QBV3Array([
-                            [8,8,8,-8,-8,-8,-50,0,50,50],
-                            [-8,-8,-8,3,0,0,0,80,0,50]
-                        ]),
+                        array: v3Array_campos,
                         lerp: true
                     }
                 ],
