@@ -4,7 +4,8 @@
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r1/canvas.js',
-   '../../../js/canvas-text-cube/r1/canvas-text-cube.js'
+   '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
+   '../../../js/sphere-mutate/r2/sphere-mutate.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -48,14 +49,14 @@ VIDEO.init = function(sm, scene, camera){
     // V3 ARRAYS
     //-------- ----------
     const v3Array_campos = QBV3Array([
-        [8,1,0, 8,8,8,      4,4,5,      40],
-        [8,8,8, -8,4,0,   -5,-2,0,      50],
-        [-8,4,0, 0,0,-8,   -14,2,-9,      80]
+        [8,1,0, 8,8,8,      4,4,5,      20],
+        [8,8,8, -8,4,0,   -5,-2,0,      25],
+        [-8,4,0, 0,0,-8,   -14,2,-9,      50]
     ]);
     const v3Array_camlook = QBV3Array([
-        [0,0,0, 5,0,-5,      2,0,2,      50],
-        [5,0,-5, -5,0,-5,     5,0,-5,      50],
-        [-5,0,-5, -5,0,5,     -7,0,0,      50]
+        [0,0,0, 5,0,-5,      1,0,1,      25],
+        [5,0,-5, -5,0,-5,     0,0,-3,      25],
+        [-5,0,-5, -2,0,1,     3,0,0,      50]
     ]);
 
     //-------- ----------
@@ -63,14 +64,53 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const points_campos = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({color: new THREE.Color(0,1,0), size: 0.5 })
+        new THREE.PointsMaterial({color: new THREE.Color(0,1,0), size: 0.75 })
     );
     scene.add(points_campos);
     const points_camlook = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints(v3Array_camlook),
-        new THREE.PointsMaterial({color: new THREE.Color(0,0.5,0), size: 0.5 })
+        new THREE.PointsMaterial({color: new THREE.Color(0,1,1), size: 0.75 })
     );
     scene.add(points_camlook);
+
+
+    //-------- ----------
+    //  SPHERE MUTATE MESH OBJECTS, UPDATE OPTIONS
+    //-------- ----------
+    const updateOpt1 = {
+        forPoint : function(vs, i, x, y, mesh, alpha){
+            const mud = mesh.userData;
+            const state = mud.state = mud.state === undefined ? [] : mud.state;
+            if(!state[i]){
+                const size = mesh.geometry.parameters.radius;
+                const ud = mesh.userData.ud === undefined ? 0.2 : mesh.userData.ud;
+                state[i] = {
+                    v: vs.clone().normalize().multiplyScalar(size + ud * Math.random()),
+                    count: 1 + Math.floor( Math.random() * 9 ),
+                    offset: Math.random()
+                };
+            }
+            const alpha2 = (state[i].offset + state[i].count * alpha) % 1;
+            const alpha3 = 1 - Math.abs(0.5 - alpha2) / 0.5;
+            return vs.lerp(state[i].v, alpha3);
+        }
+    };
+    const material_sphere = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide, transparent: true, opacity:0.8 });
+    const mesh1 = sphereMutate.create({
+        size: 30, w: 40, h: 40, material: material_sphere
+    });
+    mesh1.userData.ud = 10;
+    scene.add(mesh1);
+    sphereMutate.update(mesh1, 1, updateOpt1);
+
+
+    const mesh2 = sphereMutate.create({
+        size: 2, w: 40, h: 40, material: material_sphere
+    });
+    mesh2.userData.ud = 0.8;
+    mesh2.position.set(-1, 0, -3);
+    scene.add(mesh2);
+    sphereMutate.update(mesh2, 1, updateOpt1);
 
 
     //-------- ----------
@@ -144,6 +184,8 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
+            sphereMutate.update(mesh1, seq.per, updateOpt1);
+            sphereMutate.update(mesh2, seq.per, updateOpt1);
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -157,7 +199,7 @@ VIDEO.init = function(sm, scene, camera){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
-                    //camera.position.set(14, 14, 14);
+                    camera.position.set(14, 14, 14);
                     camera.lookAt(0, 0, 0);
                     camera.zoom = 1 + 0.6 * partPer;
                 }
