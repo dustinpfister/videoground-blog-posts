@@ -101,7 +101,7 @@ VIDEO.init = function(sm, scene, camera){
     });
     mesh1.userData.ud = 10;
     scene.add(mesh1);
-    sphereMutate.update(mesh1, 1, updateOpt1);
+    //sphereMutate.update(mesh1, 1, updateOpt1);
 
 
     const mesh2 = sphereMutate.create({
@@ -110,7 +110,14 @@ VIDEO.init = function(sm, scene, camera){
     mesh2.userData.ud = 0.8;
     mesh2.position.set(-1, 0, -3);
     scene.add(mesh2);
-    sphereMutate.update(mesh2, 1, updateOpt1);
+   // sphereMutate.update(mesh2, 1, updateOpt1);
+
+    const mesh3 = sphereMutate.create({
+        size: 4, w: 40, h: 40, material: material_sphere
+    });
+    mesh3.userData.ud = 2;
+    mesh3.position.set(-2, 0, -14);
+    scene.add(mesh3);
 
 
     //-------- ----------
@@ -186,6 +193,11 @@ VIDEO.init = function(sm, scene, camera){
             camera.position.set(8, 1, 0);
             sphereMutate.update(mesh1, seq.per, updateOpt1);
             sphereMutate.update(mesh2, seq.per, updateOpt1);
+            sphereMutate.update(mesh3, seq.per, updateOpt1);
+
+            mesh2.rotation.y = Math.PI * 4 * seq.per;
+            mesh3.rotation.y = Math.PI * 2 * seq.per;
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -199,7 +211,7 @@ VIDEO.init = function(sm, scene, camera){
                         seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                     }
                     // camera
-                    camera.position.set(14, 14, 14);
+                    //camera.position.set(14, 14, 14);
                     camera.lookAt(0, 0, 0);
                     camera.zoom = 1 + 0.6 * partPer;
                 }
