@@ -105,13 +105,6 @@ VIDEO.init = function(sm, scene, camera){
         })
         return v3Array.flat();
     };
-
-
-console.log( QBV3Array([
-  [8,1,0,8,8,8,0,0,0,28],
-  [8,8,8,-8,-8,-8,20,15,-20,20]
-]) );
-
     const seq = scene.userData.seq = seqHooks.create({
         fps: 30,
         beforeObjects: function(seq){
@@ -152,7 +145,10 @@ console.log( QBV3Array([
                 v3Paths: [
                     {
                         key: 'campos',
-                        array: QBDelta(8,8,8,-8,-8,-8, -20,0,20).getPoints(50),
+                        array: QBV3Array([
+                            [8,8,8,-8,-8,-8,-50,0,50,50],
+                            [-8,-8,-8,3,0,0,0,80,0,50]
+                        ]),
                         lerp: true
                     }
                 ],
