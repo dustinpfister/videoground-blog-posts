@@ -84,17 +84,33 @@ VIDEO.init = function(sm, scene, camera){
         }
         return new THREE.QuadraticBezierCurve3( vs, vc, ve );
     };
-    //
-
-    const QBPoints = (x1, y1, z1, x2, y2, z2, x3, y3, z3, points) => {
+    // QBDelta helper using QBC3
+    // this works by giving deltas from the point that is half way between
+    // the two start and end points rather than a direct control point for x3, y3, and x3
+    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
         const vs = new THREE.Vector3(x1, y1, z1);
         const ve = new THREE.Vector3(x2, y2, z2);
         // deltas
         const vDelta = new THREE.Vector3(x3, y3, z3);
         const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
         const curve = QBC3(vs, ve, vc);
-        return curve.getPoints(points);
+        return curve;
     };
+    // QBV3Array
+    const QBV3Array = function(data) {
+        const v3Array = [];
+        data.forEach( ( a ) => {
+            const curve = QBDelta.apply(null, a.slice(0, a.length - 1))
+            v3Array.push( curve.getPoints( a[9]) );
+        })
+        return v3Array.flat();
+    };
+
+
+console.log( QBV3Array([
+  [8,1,0,8,8,8,0,0,0,28],
+  [8,8,8,-8,-8,-8,20,15,-20,20]
+]) );
 
     const seq = scene.userData.seq = seqHooks.create({
         fps: 30,
@@ -121,7 +137,7 @@ VIDEO.init = function(sm, scene, camera){
                 v3Paths: [
                     {
                         key: 'campos',
-                        array: QBPoints(8,1,0,8,8,8,4,4,-5, 50 ),
+                        array: QBDelta(8,1,0,8,8,8,4,4,-5).getPoints(50),
                         lerp: true
                     }
                 ],
@@ -136,7 +152,7 @@ VIDEO.init = function(sm, scene, camera){
                 v3Paths: [
                     {
                         key: 'campos',
-                        array: QBPoints(8,8,8,-8,-8,-8, -20,0,20, 50 ),
+                        array: QBDelta(8,8,8,-8,-8,-8, -20,0,20).getPoints(50),
                         lerp: true
                     }
                 ],
