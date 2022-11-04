@@ -10,10 +10,11 @@
 ### () - threejs-examples-uvmap-cube-canvas-update
 * (done) start video folder and a video1 file
 * (done) set pxa to 0
+* (done) more points say 400
 
 * () I want to have a plane to show the image as a whole rather than a background
 * () color points
-* () more points
+
 * () have a pps array as well so there are differing speeds
 * () v3 array paths for sequnce from start pos to final pos
 * () have the camera move around a little durring final pos

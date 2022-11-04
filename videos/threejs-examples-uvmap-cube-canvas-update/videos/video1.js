@@ -102,9 +102,22 @@ VIDEO.init = function(sm, scene, camera){
             canObj1.canvas
         ]
     });
-    mesh.position.set(1.25,0,0.75);
+    mesh.position.set(1.2, 0, 0);
     mesh.material.emissiveIntensity = 0.15;
     scene.add(mesh);
+    //-------- ----------
+    // PLANE
+    //-------- ----------
+    const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(4, 4, 1, 1),
+        new THREE.MeshBasicMaterial({
+            map: mesh.material.map,
+            side: THREE.DoubleSide
+        })
+    );
+    plane.rotation.y = Math.PI / 180 * 45;
+    plane.position.set(-3.25,-1,-2);
+    scene.add(plane);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -146,12 +159,14 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = mesh.material.map; //canObj1.texture;
+    scene.background = new THREE.Color(0.2, 0.2, 0.2);  //mesh.material.map; //canObj1.texture;
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
+    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#00ff00', '#ffffff');
+    grid.material.linewidth = 4;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.25;
     scene.add( grid );
     //-------- ----------
     // PATHS
