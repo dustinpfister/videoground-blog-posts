@@ -8,6 +8,12 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
     //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(3, 2, 1);
+    scene.add(dl);
+    //-------- ----------
     // HELPERS
     //-------- ----------
     const createRandomPoints = (count, vRange) => {
@@ -73,6 +79,8 @@ VIDEO.init = function(sm, scene, camera){
             canObj1.canvas
         ]
     });
+    mesh.position.set(1.25,0,0.75);
+    mesh.material.emissiveIntensity = 0.15;
     scene.add(mesh);
     //-------- ----------
     // HELPERS
@@ -199,15 +207,17 @@ VIDEO.init = function(sm, scene, camera){
             camera.zoom = 1;
 
             draw_one_update(canObj1, seq.per);
-    uvMapCube.drawFace(mesh, 'front', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'back', {i:0, sx: 96, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'left', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'right', {i:0, sx: 64, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
+            uvMapCube.drawFace(mesh, 'front', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
+            uvMapCube.drawFace(mesh, 'back', {i:0, sx: 96, sy: 32, sw: 32, sh: 32});
+            uvMapCube.drawFace(mesh, 'left', {i:0, sx: 64, sy: 32, sw: 32, sh: 32});
+            uvMapCube.drawFace(mesh, 'right', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
+            uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
+            uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
 
             canvasMod.update(canObj1);
             canvasMod.update(mesh.userData.canObj);
+
+            mesh.rotation.y = Math.PI * 2 * seq.per;
 
         },
         afterObjects: function(seq){
@@ -234,7 +244,7 @@ VIDEO.init = function(sm, scene, camera){
         update: function(seq, partPer, partBias){
             // camera
             const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(2, 2, 2);
+            const v2 = new THREE.Vector3(2, 2, 4);
             camera.position.copy( v1.lerp(v2, partPer) );
             camera.lookAt(0, 0, 0);
         }
@@ -244,7 +254,7 @@ VIDEO.init = function(sm, scene, camera){
         secs: 25,
         update: function(seq, partPer, partBias){
             // camera
-            camera.position.set( 2, 2, 2 );
+            camera.position.set( 2, 2, 4 );
             camera.lookAt(0, 0, 0);
         }
     };
