@@ -7,6 +7,13 @@
 
 <!--  0 VIDEOS -->
 
+### () - threejs-examples-uvmap-cube-canvas-update
+* () start video folder and a video1 file
+* () export to raw video file
+* () create final video file
+* () upload to youtube
+* () embed in post
+
 ### () - threejs-geometry
 
 ### () - threejs-face3
