@@ -9,6 +9,7 @@
 
 ### () - threejs-examples-uvmap-cube-canvas-update
 * (done) start video folder and a video1 file
+* (done) set pxa to 0
 
 * () I want to have a plane to show the image as a whole rather than a background
 * () color points

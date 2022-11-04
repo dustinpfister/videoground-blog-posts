@@ -97,7 +97,7 @@ VIDEO.init = function(sm, scene, camera){
     // CREATE MESH
     //-------- ----------
     const mesh = uvMapCube.create({
-        pxa: 1.5,
+        pxa: 0,
         images: [ 
             canObj1.canvas
         ]
