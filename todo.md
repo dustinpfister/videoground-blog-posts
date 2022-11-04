@@ -9,6 +9,9 @@
 
 ### () - threejs-examples-uvmap-cube-canvas-update
 * (done) start video folder and a video1 file
+
+* () I want to have a plane to show the image as a whole rather than a background
+
 * () export to raw video file
 * () create final video file
 * () upload to youtube
