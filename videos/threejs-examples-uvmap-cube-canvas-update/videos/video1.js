@@ -8,16 +8,47 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
     //-------- ----------
-    // SOURCE CANVAS
+    // HELPERS
+    //-------- ----------
+    const createRandomPoints = (count, vRange) => {
+         const points = [];
+         let i = 0;
+         while(i < count){
+             const x = vRange.x * THREE.MathUtils.seededRandom();
+             const y = vRange.y * THREE.MathUtils.seededRandom();
+             points.push( new THREE.Vector2(x, y) );
+             i += 1;
+         }
+         return points;
+    };
+    //-------- ----------
+    // CANVAS.JS DRAW METHODS
+    //-------- ----------
+    const draw_one = (canObj, ctx, canvas, state) => {
+        ctx.fillStyle = canObj.palette[0];
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = canObj.palette[1];
+        state.points.forEach( (v2) => {
+            ctx.beginPath();
+            ctx.arc(v2.x, v2.y, state.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    };
+    //-------- ----------
+    // SOURCE CANVAS OBJECTS
     //-------- ----------
     const canOpt1 = {
-            draw: 'rnd', 
+            draw: draw_one, 
             update_mode: 'canvas', 
-            palette: ['white', 'red'], 
-            size:128, 
-            state:{ gSize: 4 }
+            palette: ['white', 'black'], 
+            size: 128, 
+            state:{
+                radius: 2,
+                points: createRandomPoints(100, new THREE.Vector2(128, 128))
+            }
     };
     const canObj1 = canvasMod.create( canOpt1 );
+    canvasMod.update(canObj1);
     //-------- ----------
     // CREATE MESH
     //-------- ----------
@@ -28,7 +59,12 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(mesh);
-    uvMapCube.drawFace(mesh, 'front', {i:0, sx: 0, sy: 0, sw: 128, sh: 128});
+    uvMapCube.drawFace(mesh, 'front', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'back', {i:0, sx: 96, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'left', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'right', {i:0, sx: 64, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
     //-------- ----------
     // HELPERS
     //-------- ----------
