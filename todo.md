@@ -12,7 +12,7 @@
 * (done) set pxa to 0
 * (done) more points say 400
 
-* () I want to have a plane to show the image as a whole rather than a background
+* (done) I want to have a plane to show the image as a whole rather than a background
 * () color points
 
 * () have a pps array as well so there are differing speeds
