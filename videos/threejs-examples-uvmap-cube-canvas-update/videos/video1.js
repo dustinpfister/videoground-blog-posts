@@ -16,6 +16,23 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // HELPERS
     //-------- ----------
+    const wrap = function (value, a, b){
+        // get min and max this way
+        let max = Math.max(a, b);
+        let min = Math.min(a, b);
+        // return 0 for Wrap(value, 0, 0);
+        if(max === 0 && min === 0){
+             return 0;
+        }
+        let range = max - min;
+        return (min + ((((value - min) % range) + range) % range));
+    };
+    // wrap an axis
+    const wrapAxis = function(vec, vecMin, vecMax, axis){
+        axis = axis || 'x';
+        vec[axis] = wrap( vec[axis], vecMin[axis], vecMax[axis] );
+        return vec;
+    };
     const createRandomPoints = (count, vRange) => {
          const points = [];
          let i = 0;
@@ -49,6 +66,9 @@ VIDEO.init = function(sm, scene, camera){
              const pt_start = canObj.state.points_start[i];
              pt.x = pt_start.x + 64 * alpha;
              pt.y = pt_start.y + 64 * alpha;
+
+wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'x');
+wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'y');
              i += 1;
          }
     };
