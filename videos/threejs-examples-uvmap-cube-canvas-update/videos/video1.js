@@ -64,11 +64,11 @@ VIDEO.init = function(sm, scene, camera){
          while(i < count){
              const pt = points[i];
              const pt_start = canObj.state.points_start[i];
-             pt.x = pt_start.x + 64 * alpha;
-             pt.y = pt_start.y + 64 * alpha;
-
-wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'x');
-wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'y');
+             const dir = canObj.state.dirs[i]
+             pt.x = pt_start.x + 64 * dir.x * alpha;
+             pt.y = pt_start.y + 64 * dir.y * alpha;
+             wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'x');
+             wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'y');
              i += 1;
          }
     };
@@ -84,7 +84,10 @@ wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'y');
             state:{
                 radius: 2,
                 points: points,
-                points_start: points.map( (v2) =>{ return v2.clone(); })
+                points_start: points.map( (v2) =>{ return v2.clone(); }),
+                dirs: points.map( (pt) => {
+                    return new THREE.Vector2(THREE.MathUtils.seededRandom(), THREE.MathUtils.seededRandom());
+                })
             }
     };
     const canObj1 = canvasMod.create( canOpt1 );
