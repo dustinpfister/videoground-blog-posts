@@ -34,9 +34,22 @@ VIDEO.init = function(sm, scene, camera){
             ctx.fill();
         });
     };
+    const draw_one_update = (canObj, alpha) => {
+         const points = canObj.state.points;
+         const count = points.length;
+         let i = 0;
+         while(i < count){
+             const pt = points[i];
+             const pt_start = canObj.state.points_start[i];
+             pt.x = pt_start.x + 64 * alpha;
+             pt.y = pt_start.y + 64 * alpha;
+             i += 1;
+         }
+    };
     //-------- ----------
     // SOURCE CANVAS OBJECTS
     //-------- ----------
+    const points = createRandomPoints(100, new THREE.Vector2(128, 128));
     const canOpt1 = {
             draw: draw_one, 
             update_mode: 'canvas', 
@@ -44,10 +57,12 @@ VIDEO.init = function(sm, scene, camera){
             size: 128, 
             state:{
                 radius: 2,
-                points: createRandomPoints(100, new THREE.Vector2(128, 128))
+                points: points,
+                points_start: points.map( (v2) =>{ return v2.clone(); })
             }
     };
     const canObj1 = canvasMod.create( canOpt1 );
+    //draw_one_update(canObj1, 0);
     canvasMod.update(canObj1);
     //-------- ----------
     // CREATE MESH
@@ -59,12 +74,6 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(mesh);
-    uvMapCube.drawFace(mesh, 'front', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'back', {i:0, sx: 96, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'left', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'right', {i:0, sx: 64, sy: 32, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
-    uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -106,7 +115,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = mesh.material.map; //canObj1.texture;
     //-------- ----------
     // GRID
     //-------- ----------
@@ -188,6 +197,18 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
+
+            draw_one_update(canObj1, seq.per);
+    uvMapCube.drawFace(mesh, 'front', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'back', {i:0, sx: 96, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'left', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'right', {i:0, sx: 64, sy: 32, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
+    uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
+
+            canvasMod.update(canObj1);
+            canvasMod.update(mesh.userData.canObj);
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
