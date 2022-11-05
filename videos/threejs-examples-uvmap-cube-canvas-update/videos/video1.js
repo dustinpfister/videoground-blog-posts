@@ -65,9 +65,10 @@ VIDEO.init = function(sm, scene, camera){
          while(i < count){
              const pt = points[i];
              const pt_start = canObj.state.points_start[i];
-             const dir = canObj.state.dirs[i]
-             pt.x = pt_start.x + 256 * dir.x * alpha;
-             pt.y = pt_start.y + 256 * dir.y * alpha;
+             const dir = canObj.state.dirs[i];
+             const dist = canObj.state.dists[i];
+             pt.x = pt_start.x + dist * dir.x * alpha;
+             pt.y = pt_start.y + dist * dir.y * alpha;
              wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'x');
              wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'y');
              i += 1;
@@ -87,10 +88,13 @@ VIDEO.init = function(sm, scene, camera){
                 radius: 4,
                 points: points,
                 points_start: points.map( (v2) =>{ return v2.clone(); }),
-                colorIndices: points.map( () => {
+                colorIndices: points.map( (v2) => {
                     return Math.floor( 2 + ( palette.length - 2 ) * THREE.MathUtils.seededRandom() );
                 }),
-                dirs: points.map( (pt) => {
+                dists: points.map( (v2) => {
+                     return Math.floor( 32 + ( 512 - 32 ) * THREE.MathUtils.seededRandom() );
+                }),
+                dirs: points.map( (v2) => {
 
                     const radian = Math.PI * 2 * THREE.MathUtils.seededRandom();
                     const vul = 0.25 + 0.75 * THREE.MathUtils.seededRandom();
