@@ -102,22 +102,32 @@ VIDEO.init = function(sm, scene, camera){
             canObj1.canvas
         ]
     });
-    mesh.position.set(1.2, 0, 0);
+    mesh.position.set(0, 0, 0);
     mesh.material.emissiveIntensity = 0.15;
     scene.add(mesh);
     //-------- ----------
     // PLANE
     //-------- ----------
-    const plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(4, 4, 1, 1),
+    const plane1 = new THREE.Mesh(
+        new THREE.PlaneGeometry(2, 2, 1, 1),
         new THREE.MeshBasicMaterial({
             map: mesh.material.map,
             side: THREE.DoubleSide
         })
     );
-    plane.rotation.y = Math.PI / 180 * 45;
-    plane.position.set(-3.25,-1,-2);
-    scene.add(plane);
+    plane1.rotation.y = Math.PI / 180 * 45;
+    plane1.position.set(-2, 0, -1);
+    scene.add(plane1);
+    const plane2 = new THREE.Mesh(
+        new THREE.PlaneGeometry(2, 2, 1, 1),
+        new THREE.MeshBasicMaterial({
+            map: canObj1.texture,
+            side: THREE.DoubleSide
+        })
+    );
+    plane2.rotation.y = Math.PI / 180 * -45;
+    plane2.position.set(2, 0, -1);
+    scene.add(plane2);
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -254,10 +264,8 @@ VIDEO.init = function(sm, scene, camera){
             uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
 
-
-            //canvasMod.update(mesh.userData.canObj);
-
-            mesh.rotation.y = Math.PI * 2 * seq.per;
+            mesh.rotation.x = Math.PI / 180 * -180 * seq.per;
+            mesh.rotation.y = Math.PI * 4 * seq.per;
 
         },
         afterObjects: function(seq){
@@ -284,7 +292,7 @@ VIDEO.init = function(sm, scene, camera){
         update: function(seq, partPer, partBias){
             // camera
             const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(2, 2, 4);
+            const v2 = new THREE.Vector3(0, 2, 4);
             camera.position.copy( v1.lerp(v2, partPer) );
             camera.lookAt(0, 0, 0);
         }
@@ -294,7 +302,7 @@ VIDEO.init = function(sm, scene, camera){
         secs: 25,
         update: function(seq, partPer, partBias){
             // camera
-            camera.position.set( 2, 2, 4 );
+            camera.position.set( 0, 2, 4 );
             camera.lookAt(0, 0, 0);
         }
     };
