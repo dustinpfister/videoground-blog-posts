@@ -92,7 +92,7 @@ VIDEO.init = function(sm, scene, camera){
     };
     const canObj1 = canvasMod.create( canOpt1 );
     //draw_one_update(canObj1, 0);
-    canvasMod.update(canObj1);
+    //canvasMod.update(canObj1);
     //-------- ----------
     // CREATE MESH
     //-------- ----------
@@ -245,6 +245,8 @@ VIDEO.init = function(sm, scene, camera){
             camera.zoom = 1;
 
             draw_one_update(canObj1, seq.per);
+            canvasMod.update(canObj1);
+
             uvMapCube.drawFace(mesh, 'front', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'back', {i:0, sx: 96, sy: 32, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'left', {i:0, sx: 64, sy: 32, sw: 32, sh: 32});
@@ -252,8 +254,8 @@ VIDEO.init = function(sm, scene, camera){
             uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
 
-            canvasMod.update(canObj1);
-            canvasMod.update(mesh.userData.canObj);
+
+            //canvasMod.update(mesh.userData.canObj);
 
             mesh.rotation.y = Math.PI * 2 * seq.per;
 
