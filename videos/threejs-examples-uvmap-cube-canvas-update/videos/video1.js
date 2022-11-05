@@ -172,7 +172,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color(0.2, 0.2, 0.2);  //mesh.material.map; //canObj1.texture;
+    scene.background = new THREE.Color(0.7, 0.7, 0.7);  //mesh.material.map; //canObj1.texture;
     //-------- ----------
     // LIGHT
     //-------- ----------
@@ -182,11 +182,11 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#00ff00', '#ffffff');
-    grid.material.linewidth = 4;
-    grid.material.transparent = true;
-    grid.material.opacity = 0.25;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#00ff00', '#ffffff');
+    //grid.material.linewidth = 4;
+    //grid.material.transparent = true;
+    //grid.material.opacity = 0.25;
+    //scene.add( grid );
     //-------- ----------
     // PATHS
     //-------- ----------
