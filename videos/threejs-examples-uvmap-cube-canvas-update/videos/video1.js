@@ -50,8 +50,9 @@ VIDEO.init = function(sm, scene, camera){
     const draw_one = (canObj, ctx, canvas, state) => {
         ctx.fillStyle = canObj.palette[0];
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = canObj.palette[1];
-        state.points.forEach( (v2) => {
+        state.points.forEach( (v2, i) => {
+            const ci = state.colorIndices[i];
+            ctx.fillStyle = canObj.palette[ci];
             ctx.beginPath();
             ctx.arc(v2.x, v2.y, state.radius, 0, Math.PI * 2);
             ctx.fill();
@@ -76,17 +77,23 @@ VIDEO.init = function(sm, scene, camera){
     // SOURCE CANVAS OBJECTS
     //-------- ----------
     const points = createRandomPoints(400, new THREE.Vector2(128, 128));
+    const palette = ['white', 'black', 'red', 'lime', 'blue', 'orange', 'green', 'cyan', 'purple'];
     const canOpt1 = {
             draw: draw_one, 
             update_mode: 'canvas', 
-            palette: ['white', 'black'], 
+            palette: palette, 
             size: 128, 
             state:{
-                radius: 2,
+                radius: 4,
                 points: points,
                 points_start: points.map( (v2) =>{ return v2.clone(); }),
+                colorIndices: points.map( () => {
+                    return Math.floor( 2 + ( palette.length - 2 ) * THREE.MathUtils.seededRandom() );
+                }),
                 dirs: points.map( (pt) => {
-                    return new THREE.Vector2(THREE.MathUtils.seededRandom(), THREE.MathUtils.seededRandom());
+                    const dx = THREE.MathUtils.seededRandom();
+                    const dy = THREE.MathUtils.seededRandom();
+                    return new THREE.Vector2(dx, dy);
                 })
             }
     };
