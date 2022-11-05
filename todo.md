@@ -13,7 +13,9 @@
 * (done) more points say 400
 
 * (done) I want to have a plane to show the image as a whole rather than a background
-* () color points
+* (done) color points
+
+* () fix dir values so that points go in all directions
 
 * () have a pps array as well so there are differing speeds
 * () v3 array paths for sequnce from start pos to final pos

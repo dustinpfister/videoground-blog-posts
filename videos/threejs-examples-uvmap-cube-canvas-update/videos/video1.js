@@ -66,8 +66,8 @@ VIDEO.init = function(sm, scene, camera){
              const pt = points[i];
              const pt_start = canObj.state.points_start[i];
              const dir = canObj.state.dirs[i]
-             pt.x = pt_start.x + 128 * dir.x * alpha;
-             pt.y = pt_start.y + 128 * dir.y * alpha;
+             pt.x = pt_start.x + 256 * dir.x * alpha;
+             pt.y = pt_start.y + 256 * dir.y * alpha;
              wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'x');
              wrapAxis(pt, new THREE.Vector2(0,0), new THREE.Vector2(128,128), 'y');
              i += 1;
@@ -91,8 +91,14 @@ VIDEO.init = function(sm, scene, camera){
                     return Math.floor( 2 + ( palette.length - 2 ) * THREE.MathUtils.seededRandom() );
                 }),
                 dirs: points.map( (pt) => {
-                    const dx = THREE.MathUtils.seededRandom();
-                    const dy = THREE.MathUtils.seededRandom();
+
+                    const radian = Math.PI * 2 * THREE.MathUtils.seededRandom();
+                    const vul = 0.25 + 0.75 * THREE.MathUtils.seededRandom();
+                    const dx = Math.cos(radian) * vul;
+                    const dy = Math.sin(radian) * vul;
+
+                    //const dx = THREE.MathUtils.seededRandom();
+                    //const dy = THREE.MathUtils.seededRandom();
                     return new THREE.Vector2(dx, dy);
                 })
             }
