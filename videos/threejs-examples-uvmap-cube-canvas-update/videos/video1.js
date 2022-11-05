@@ -170,9 +170,22 @@ VIDEO.init = function(sm, scene, camera){
     plane2.position.set(2, 0, -1);
     scene.add(plane2);
     //-------- ----------
+    // SPHERE
+    //-------- ----------
+    const sphere = new THREE.Mesh( new THREE.SphereGeometry(60, 30, 30),
+        new THREE.MeshPhongMaterial({
+            side : THREE.DoubleSide,
+            map: canObj1.texture,
+            transparent: true,
+            opacity: 0.5
+        })
+    );
+    sphere.rotation.y = Math.PI / 180 * 90;
+    scene.add(sphere)
+    //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color(0.7, 0.7, 0.7);  //mesh.material.map; //canObj1.texture;
+    scene.background = new THREE.Color(0.8, 0.8, 0.8);  //mesh.material.map; //canObj1.texture;
     //-------- ----------
     // LIGHT
     //-------- ----------
