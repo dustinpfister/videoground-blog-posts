@@ -17,7 +17,7 @@
 * (done) have a dists array so there are differing speeds by setting differign distances to go over alpha
 * (done) stroke color for points
 
-* () v3 array paths for sequnce from start pos to final pos
+* (done) v3 array paths for sequnce from start pos to final pos
 * () have the camera move around a little durring final pos
 
 * () export to raw video file

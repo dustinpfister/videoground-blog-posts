@@ -190,7 +190,6 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // PATHS
     //-------- ----------
-    
     const v3Array_campos = QBV3Array([
         [8,1,0, 0,1,-5,    5,0,-3,      60],
         [0,1,-5, 0,2,4,    -6,0,-3,      60]
@@ -306,9 +305,20 @@ VIDEO.init = function(sm, scene, camera){
     // SEQ 2 - ...
     opt_seq.objects[2] = {
         secs: 20,
+        v3Paths: [
+            { key: 'campos', array: [
+                0, 2, 4,
+                0, 1, 4,
+                -5, 1, 4,
+                -2, -2, 4,
+                0, -5, 4,
+                2, 1, 4,
+                5, 5, 5
+             ], lerp: true }
+        ],
         update: function(seq, partPer, partBias){
             // camera
-            camera.position.set( 0, 2, 4 );
+            seq.copyPos('campos', camera);
             camera.lookAt(0, 0, 0);
         }
     };
