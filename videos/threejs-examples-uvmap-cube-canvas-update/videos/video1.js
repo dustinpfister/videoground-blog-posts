@@ -103,7 +103,7 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     mesh.position.set(0, 0, 0);
-    mesh.material.emissiveIntensity = 0.15;
+    mesh.material.emissiveIntensity = 0.05;
     scene.add(mesh);
     //-------- ----------
     // PLANE
