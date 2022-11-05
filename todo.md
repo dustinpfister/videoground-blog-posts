@@ -15,8 +15,7 @@
 * (done) color points
 * (done) fix dir values so that points go in all directions
 * (done) have a dists array so there are differing speeds by setting differign distances to go over alpha
-
-* () stroke color for points
+* (done) stroke color for points
 
 * () v3 array paths for sequnce from start pos to final pos
 * () have the camera move around a little durring final pos

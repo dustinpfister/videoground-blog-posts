@@ -8,12 +8,6 @@ VIDEO.scripts = [
 // init
 VIDEO.init = function(sm, scene, camera){
     //-------- ----------
-    // LIGHT
-    //-------- ----------
-    const dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(3, 2, 1);
-    scene.add(dl);
-    //-------- ----------
     // HELPERS
     //-------- ----------
     const wrap = function (value, a, b){
@@ -43,6 +37,39 @@ VIDEO.init = function(sm, scene, camera){
              i += 1;
          }
          return points;
+    };
+    // just a short hand for THREE.QuadraticBezierCurve3
+    const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
+        let vs = x1;
+        let ve = y1;
+        let vc = z1;
+        if(arguments.length === 9){
+            vs = new THREE.Vector3(x1, y1, z1);
+            ve = new THREE.Vector3(x2, y2, z2);
+            vc = new THREE.Vector3(x3, y3, z3);
+        }
+        return new THREE.QuadraticBezierCurve3( vs, vc, ve );
+    };
+    // QBDelta helper using QBC3
+    // this works by giving deltas from the point that is half way between
+    // the two start and end points rather than a direct control point for x3, y3, and x3
+    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
+        const vs = new THREE.Vector3(x1, y1, z1);
+        const ve = new THREE.Vector3(x2, y2, z2);
+        // deltas
+        const vDelta = new THREE.Vector3(x3, y3, z3);
+        const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
+        const curve = QBC3(vs, ve, vc);
+        return curve;
+    };
+    // QBV3Array
+    const QBV3Array = function(data) {
+        const v3Array = [];
+        data.forEach( ( a ) => {
+            const curve = QBDelta.apply(null, a.slice(0, a.length - 1))
+            v3Array.push( curve.getPoints( a[9]) );
+        })
+        return v3Array.flat();
     };
     //-------- ----------
     // CANVAS.JS DRAW METHODS
@@ -107,8 +134,6 @@ VIDEO.init = function(sm, scene, camera){
             }
     };
     const canObj1 = canvasMod.create( canOpt1 );
-    //draw_one_update(canObj1, 0);
-    //canvasMod.update(canObj1);
     //-------- ----------
     // CREATE MESH
     //-------- ----------
@@ -119,7 +144,7 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     mesh.position.set(0, 0, 0);
-    mesh.material.emissiveIntensity = 0.05;
+    mesh.material.emissiveIntensity = 0.1;
     scene.add(mesh);
     //-------- ----------
     // PLANE
@@ -145,47 +170,15 @@ VIDEO.init = function(sm, scene, camera){
     plane2.position.set(2, 0, -1);
     scene.add(plane2);
     //-------- ----------
-    // HELPERS
-    //-------- ----------
-/*
-    // just a short hand for THREE.QuadraticBezierCurve3
-    const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
-        let vs = x1;
-        let ve = y1;
-        let vc = z1;
-        if(arguments.length === 9){
-            vs = new THREE.Vector3(x1, y1, z1);
-            ve = new THREE.Vector3(x2, y2, z2);
-            vc = new THREE.Vector3(x3, y3, z3);
-        }
-        return new THREE.QuadraticBezierCurve3( vs, vc, ve );
-    };
-    // QBDelta helper using QBC3
-    // this works by giving deltas from the point that is half way between
-    // the two start and end points rather than a direct control point for x3, y3, and x3
-    const QBDelta = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
-        const vs = new THREE.Vector3(x1, y1, z1);
-        const ve = new THREE.Vector3(x2, y2, z2);
-        // deltas
-        const vDelta = new THREE.Vector3(x3, y3, z3);
-        const vc = vs.clone().lerp(ve, 0.5).add(vDelta);
-        const curve = QBC3(vs, ve, vc);
-        return curve;
-    };
-    // QBV3Array
-    const QBV3Array = function(data) {
-        const v3Array = [];
-        data.forEach( ( a ) => {
-            const curve = QBDelta.apply(null, a.slice(0, a.length - 1))
-            v3Array.push( curve.getPoints( a[9]) );
-        })
-        return v3Array.flat();
-    };
-*/
-    //-------- ----------
     // BACKGROUND
     //-------- ----------
     scene.background = new THREE.Color(0.2, 0.2, 0.2);  //mesh.material.map; //canObj1.texture;
+    //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(3, 2, 1);
+    scene.add(dl);
     //-------- ----------
     // GRID
     //-------- ----------
@@ -197,17 +190,17 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // PATHS
     //-------- ----------
-    /*
+    
     const v3Array_campos = QBV3Array([
-        [8,8,8, 7,-2,-7,    0,0,0,      20]
+        [8,1,0, 0,1,-5,    5,0,-3,      60],
+        [0,1,-5, 0,2,4,    -6,0,-3,      60]
     ]);
     // PATH DEBUG POINTS
-    const points_debug = new THREE.Points(
-        new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
-    );
-    scene.add(points_debug);
-    */
+    //const points_debug = new THREE.Points(
+    //    new THREE.BufferGeometry().setFromPoints(v3Array_campos),
+    //    new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
+    //);
+    //scene.add(points_debug);
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -244,7 +237,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.material.opacity = 1.0;
+                    textCube.material.opacity = 0.8;
                 }
             },
             {
@@ -254,7 +247,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
-                    textCube.material.opacity = 1.0 - partPer;
+                    textCube.material.opacity = 0.8 - 0.8 * partPer;
                 }
             }
         ]
@@ -269,20 +262,16 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
-
             draw_one_update(canObj1, seq.per);
             canvasMod.update(canObj1);
-
             uvMapCube.drawFace(mesh, 'front', {i:0, sx: 32, sy: 32, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'back', {i:0, sx: 96, sy: 32, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'left', {i:0, sx: 64, sy: 32, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'right', {i:0, sx: 0, sy: 32, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'top', {i:0, sx: 32, sy: 0, sw: 32, sh: 32});
             uvMapCube.drawFace(mesh, 'bottom', {i:0, sx: 32, sy: 64, sw: 32, sh: 32});
-
             mesh.rotation.x = Math.PI / 180 * -180 * seq.per;
             mesh.rotation.y = Math.PI * 4 * seq.per;
-
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -298,34 +287,13 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(5, 18, 14);
+            //camera.position.set(10, 10, 10);
             camera.lookAt(0, 0, 0);
         }
      };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 2,
-        update: function(seq, partPer, partBias){
-            // camera
-            const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(0, 2, 4);
-            camera.position.copy( v1.lerp(v2, partPer) );
-            camera.lookAt(0, 0, 0);
-        }
-    };
-    // SEQ 2 - ...
-    opt_seq.objects[2] = {
-        secs: 25,
-        update: function(seq, partPer, partBias){
-            // camera
-            camera.position.set( 0, 2, 4 );
-            camera.lookAt(0, 0, 0);
-        }
-    };
-/*
-    // SEQ 2 - ...
-    opt_seq.objects[2] = {
-        secs: 5,
+        secs: 7,
         v3Paths: [
             { key: 'campos', array: v3Array_campos, lerp: true }
         ],
@@ -336,17 +304,14 @@ VIDEO.init = function(sm, scene, camera){
         }
     };
     // SEQ 2 - ...
-    opt_seq.objects[3] = {
+    opt_seq.objects[2] = {
         secs: 20,
         update: function(seq, partPer, partBias){
             // camera
-            camera.position.set(8 - 16 * partBias, 8, 8);
+            camera.position.set( 0, 2, 4 );
             camera.lookAt(0, 0, 0);
-            const b2 = seq.getSinBias(1, true);
-            camera.zoom = 1 + 7 * b2;
         }
     };
-*/
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
