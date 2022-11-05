@@ -49,6 +49,8 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const draw_one = (canObj, ctx, canvas, state) => {
         ctx.fillStyle = canObj.palette[0];
+        ctx.strokeStyle = canObj.palette[1];
+        ctx.lineWidth = 2;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         state.points.forEach( (v2, i) => {
             const ci = state.colorIndices[i];
@@ -56,6 +58,7 @@ VIDEO.init = function(sm, scene, camera){
             ctx.beginPath();
             ctx.arc(v2.x, v2.y, state.radius, 0, Math.PI * 2);
             ctx.fill();
+            ctx.stroke();
         });
     };
     const draw_one_update = (canObj, alpha) => {
@@ -85,24 +88,20 @@ VIDEO.init = function(sm, scene, camera){
             palette: palette, 
             size: 128, 
             state:{
-                radius: 4,
+                radius: 6,
                 points: points,
                 points_start: points.map( (v2) =>{ return v2.clone(); }),
                 colorIndices: points.map( (v2) => {
                     return Math.floor( 2 + ( palette.length - 2 ) * THREE.MathUtils.seededRandom() );
                 }),
                 dists: points.map( (v2) => {
-                     return Math.floor( 32 + ( 512 - 32 ) * THREE.MathUtils.seededRandom() );
+                     return Math.floor( 64 + ( 512 - 64 ) * THREE.MathUtils.seededRandom() );
                 }),
                 dirs: points.map( (v2) => {
-
                     const radian = Math.PI * 2 * THREE.MathUtils.seededRandom();
-                    const vul = 0.25 + 0.75 * THREE.MathUtils.seededRandom();
+                    const vul = 1; 
                     const dx = Math.cos(radian) * vul;
                     const dy = Math.sin(radian) * vul;
-
-                    //const dx = THREE.MathUtils.seededRandom();
-                    //const dy = THREE.MathUtils.seededRandom();
                     return new THREE.Vector2(dx, dy);
                 })
             }

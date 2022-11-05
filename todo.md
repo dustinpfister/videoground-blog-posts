@@ -11,13 +11,13 @@
 * (done) start video folder and a video1 file
 * (done) set pxa to 0
 * (done) more points say 400
-
 * (done) I want to have a plane to show the image as a whole rather than a background
 * (done) color points
+* (done) fix dir values so that points go in all directions
+* (done) have a dists array so there are differing speeds by setting differign distances to go over alpha
 
-* () fix dir values so that points go in all directions
+* () stroke color for points
 
-* () have a pps array as well so there are differing speeds
 * () v3 array paths for sequnce from start pos to final pos
 * () have the camera move around a little durring final pos
 
