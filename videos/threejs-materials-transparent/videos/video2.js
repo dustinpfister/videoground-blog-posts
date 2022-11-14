@@ -2,7 +2,8 @@
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r1/canvas.js',
-   '../../../js/canvas-text-cube/r1/canvas-text-cube.js'
+   '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
+   '../../../js/audio-sample-alphas/r0/sample_alphas.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -230,9 +231,26 @@ VIDEO.init = function(sm, scene, camera){
             camera.lookAt(0, 0, 0);
         }
     };
+
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
+
+/*
+    return sampleAlpha.load({
+        URLS_BASE: videoAPI.pathJoin(sm.filePath, '../../../sample_data/'),
+        URLS: []
+    })
+    .then( ( result ) => {
+         console.log('we have a audio sample alphas result object!');
+         // set samples to the value of the result object from this load of smaple data files
+         samples = result;
+         const seq = scene.userData.seq = seqHooks.create(opt_seq);
+         console.log('frameMax for main seq: ' + seq.frameMax);
+         sm.frameMax = seq.frameMax;
+         return Promise.resolve();
+     });
+*/
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
