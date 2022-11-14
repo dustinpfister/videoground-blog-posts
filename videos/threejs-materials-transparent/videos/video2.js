@@ -1,4 +1,4 @@
-// video2 for threejs-materials-transparent
+	// video2 for threejs-materials-transparent
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r1/canvas.js',
@@ -7,6 +7,10 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+    //-------- ----------
+    // SAMPLES RESULT OBJECT
+    //-------- ----------
+    let samples = {};
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -232,14 +236,14 @@ VIDEO.init = function(sm, scene, camera){
         }
     };
 
-    const seq = scene.userData.seq = seqHooks.create(opt_seq);
-    console.log('frameMax for main seq: ' + seq.frameMax);
-    sm.frameMax = seq.frameMax;
+    //const seq = scene.userData.seq = seqHooks.create(opt_seq);
+    //console.log('frameMax for main seq: ' + seq.frameMax);
+    //sm.frameMax = seq.frameMax;
 
-/*
+
     return sampleAlpha.load({
-        URLS_BASE: videoAPI.pathJoin(sm.filePath, '../../../sample_data/'),
-        URLS: []
+        URLS_BASE: videoAPI.pathJoin(sm.filePath, '../../../sample_data/bv-006-16m/'),
+        URLS: ['bv-006-16m-50hz-drums.html']
     })
     .then( ( result ) => {
          console.log('we have a audio sample alphas result object!');
@@ -248,9 +252,10 @@ VIDEO.init = function(sm, scene, camera){
          const seq = scene.userData.seq = seqHooks.create(opt_seq);
          console.log('frameMax for main seq: ' + seq.frameMax);
          sm.frameMax = seq.frameMax;
-         return Promise.resolve();
+         console.log(samples);
+         return Promise.resolve('load of sample data is a go!');
      });
-*/
+
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
