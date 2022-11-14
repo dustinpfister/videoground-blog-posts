@@ -7,7 +7,7 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-examples-uvmap-cube-canvas-update
+### ( done 11/05/2022 ) - threejs-examples-uvmap-cube-canvas-update
 * (done) start video folder and a video1 file
 * (done) set pxa to 0
 * (done) more points say 400
@@ -18,12 +18,10 @@
 * (done) stroke color for points
 * (done) v3 array paths for sequnce from start pos to final pos
 * (done) have the camera move around a little durring final pos
-
-
-* () export to raw video file
-* () create final video file
-* () upload to youtube
-* () embed in post
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### () - threejs-geometry
 
