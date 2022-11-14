@@ -65,18 +65,18 @@ VIDEO.init = function(sm, scene, camera){
     const canObj_rnd = canvasMod.create({
         size: 64,
         update_mode: 'canvas',
+        palette: [ '#ffdd00', '#eecc00', '#ddaa00', '#cc9900', '#aa8800', '#997700', '#886600', '#553300'],
         state: {
             gSize: 30
         },
         draw: 'rnd'
     });
     const draw_trans = (canObj, ctx, canvas, state) => {
-        // USING rgba TO SET STYLE
-        //ctx.fillStyle = 'rgba(128,128,128,1)';
-        //ctx.fillRect(0,0, canvas.width, canvas.height);
+        // base color background
+        ctx.fillStyle = 'rgba(255,255,255,1)';
+        // using rnd canvas for soem base tetxure
+        ctx.fillRect(0,0, canvas.width, canvas.height);
         ctx.drawImage(canObj_rnd.canvas, 0, 0, canvas.width, canvas.height);
-
-
         // CLEAR RECT CAN BE USED TO SET AN AREA AS TRANSPARENT
         // THEN FILL WITH AN rgba STYLE
         ctx.clearRect(6, 6, 24, 24);
