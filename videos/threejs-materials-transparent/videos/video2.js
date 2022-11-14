@@ -67,7 +67,7 @@ VIDEO.init = function(sm, scene, camera){
         update_mode: 'canvas',
         palette: [ '#ffdd00', '#eecc00', '#ddaa00', '#cc9900', '#aa8800', '#997700', '#886600', '#553300'],
         state: {
-            gSize: 30
+            gSize: 20
         },
         draw: 'rnd'
     });
@@ -112,7 +112,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // MESH
     //-------- ----------
-    const cube = createCube(4, material, 0, 0, 0);
+    const cube = createCube(3, material, 0, 0, 0);
     scene.add(cube);
     //-------- ----------
     // BACKGROUND
@@ -196,7 +196,8 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
-            cube.rotation.y = Math.PI * 2 * seq.per;
+            cube.rotation.x = Math.PI / 180 * 90 * seq.per;
+            cube.rotation.y = Math.PI * 4 * seq.per;
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
