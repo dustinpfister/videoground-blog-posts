@@ -2,10 +2,6 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-materials-transparent
-* () video2 for materials transparent
-
-
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
@@ -38,6 +34,9 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### (done 11/14/2022) - threejs-materials-transparent
+* (done) video2 for materials transparent
 
 ### ( done 11/05/2022 ) - threejs-examples-uvmap-cube-canvas-update
 * (done) start video folder and a video1 file
