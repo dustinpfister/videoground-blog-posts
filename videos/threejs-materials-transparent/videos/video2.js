@@ -62,10 +62,21 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // TEXTURE
     //-------- ----------
-    const texture_map = createCanvasTexture( (ctx, canvas) => {
+    const canObj_rnd = canvasMod.create({
+        size: 64,
+        update_mode: 'canvas',
+        state: {
+            gSize: 30
+        },
+        draw: 'rnd'
+    });
+    const draw_trans = (canObj, ctx, canvas, state) => {
         // USING rgba TO SET STYLE
-        ctx.fillStyle = 'rgba(128,128,128,1)';
-        ctx.fillRect(0,0, canvas.width, canvas.height);
+        //ctx.fillStyle = 'rgba(128,128,128,1)';
+        //ctx.fillRect(0,0, canvas.width, canvas.height);
+        ctx.drawImage(canObj_rnd.canvas, 0, 0, canvas.width, canvas.height);
+
+
         // CLEAR RECT CAN BE USED TO SET AN AREA AS TRANSPARENT
         // THEN FILL WITH AN rgba STYLE
         ctx.clearRect(6, 6, 24, 24);
@@ -81,14 +92,19 @@ VIDEO.init = function(sm, scene, camera){
         ctx.restore();
         // FRAME
         ctx.strokeStyle = 'rgba(0,0,0,1)';
-        ctx.strokeRect(2, 2, canvas.width - 4, canvas.height - 4)
+        ctx.strokeRect(2, 2, canvas.width - 4, canvas.height - 4);
+    };
+    const canObj_trans = canvasMod.create({
+        size: 64,
+        update_mode: 'canvas',
+        draw: draw_trans
     });
     //-------- ----------
     // MATERIAL
     //-------- ----------
     const material =  new THREE.MeshBasicMaterial({
         color: new THREE.Color(1, 1, 1),
-        map: texture_map,
+        map: canObj_trans.texture,
         side: THREE.DoubleSide,
         transparent: true,
         opacity: 1
