@@ -1,3 +1,4 @@
+// video1 for threejs-materials-transparent
 // scripts
 VIDEO.scripts = [
    '../../../js/canvas.js',
