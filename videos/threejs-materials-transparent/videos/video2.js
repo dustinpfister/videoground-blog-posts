@@ -163,14 +163,16 @@ VIDEO.init = function(sm, scene, camera){
     // A MAIN SEQ OBJECT
     //-------- ----------
     const v3Array_campos = QBV3Array([
-        [8,1,0, 8,8,8,    0,0,0,      20]
+        [8,1,0, 5,2,5,    5,0.5,0,      30],
+        [5,2,5, -5,2,5,    -1,0,2,      50],
+        [-5,2,5, -5,1,-5,    -5,0,2.5,      60]
     ]);
     // PATH DEBUG POINTS
-    const points_debug = new THREE.Points(
-        new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
-    );
-    scene.add(points_debug);
+    //const points_debug = new THREE.Points(
+    //    new THREE.BufferGeometry().setFromPoints(v3Array_campos),
+    //    new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
+    //);
+    //scene.add(points_debug);
     // start options for main seq object
     const opt_seq = {
         fps: 30,
@@ -194,8 +196,9 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(5, 18, 14);
-            camera.lookAt(0, 0, 0);
+            //camera.position.set(-10, 10, 1);
+            //camera.lookAt(-5, 2, 5);
+            camera.lookAt(0,0,0)
         }
      };
     // SEQ 1 - ...
