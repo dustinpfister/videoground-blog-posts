@@ -93,12 +93,12 @@ VIDEO.init = function(sm, scene, camera){
         map: texture_map,
         side: THREE.DoubleSide,
         transparent: true,
-        opacity: 0.8
+        opacity: 1
     });
     //-------- ----------
     // MESH
     //-------- ----------
-    const cube = createCube(1, material, 0, 0, 0);
+    const cube = createCube(4, material, 0, 0, 0);
     scene.add(cube);
 
 
@@ -122,11 +122,11 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
-            ['template2', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
-            ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
-            ['video3', 64, 100, 10, 'gray']
+            ['Transparent', 64, 17, 14, 'white'],
+            ['Materials', 64, 32, 14, 'white'],
+            ['in Threejs', 64, 47, 14, 'white'],
+            ['( r140 11/14/2022 )', 64, 70, 12, 'gray'],
+            ['video2', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
@@ -148,7 +148,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.material.opacity = 1.0;
+                    textCube.material.opacity = 0.8;
                 }
             },
             {
@@ -158,7 +158,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
-                    textCube.material.opacity = 1.0 - partPer;
+                    textCube.material.opacity = 0.8 - 0.8 * partPer;
                 }
             }
         ]
@@ -167,9 +167,7 @@ VIDEO.init = function(sm, scene, camera){
     // A MAIN SEQ OBJECT
     //-------- ----------
     const v3Array_campos = QBV3Array([
-        [8,8,8, 7,-2,-7,    2,0,0,      20],
-        [7,-2,-7, -8,4,0,   0,0,0,      25],
-        [-8,4,0, 8,8,8,     0,0,0,      50]
+        [8,1,0, 8,8,8,    0,0,0,      20]
     ]);
     // PATH DEBUG POINTS
     const points_debug = new THREE.Points(
@@ -205,18 +203,7 @@ VIDEO.init = function(sm, scene, camera){
      };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 2,
-        update: function(seq, partPer, partBias){
-            // camera
-            const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(8, 8, 8);
-            camera.position.copy( v1.lerp(v2, partPer) );
-            camera.lookAt(0, 0, 0);
-        }
-    };
-    // SEQ 2 - ...
-    opt_seq.objects[2] = {
-        secs: 5,
+        secs: 27,
         v3Paths: [
             { key: 'campos', array: v3Array_campos, lerp: true }
         ],
@@ -224,17 +211,6 @@ VIDEO.init = function(sm, scene, camera){
             // camera
             seq.copyPos('campos', camera);
             camera.lookAt(0, 0, 0);
-        }
-    };
-    // SEQ 2 - ...
-    opt_seq.objects[3] = {
-        secs: 20,
-        update: function(seq, partPer, partBias){
-            // camera
-            camera.position.set(8 - 16 * partBias, 8, 8);
-            camera.lookAt(0, 0, 0);
-            const b2 = seq.getSinBias(1, true);
-            camera.zoom = 1 + 7 * b2;
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
