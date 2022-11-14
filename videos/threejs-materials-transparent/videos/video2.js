@@ -237,7 +237,7 @@ VIDEO.init = function(sm, scene, camera){
             cube.rotation.x = Math.PI / 180 * 90 * seq.per;
             cube.rotation.y = Math.PI * 4 * seq.per;
 
-            const a1 = getByAlphaMean(samples, 'bv-006-16m-50hz-pad', seq.per, 1);
+            const a1 = getByAlphaMean(samples, 'bv-006-16m-30hz-pad', seq.per, 1);
             const a2 = getByAlphaMean(samples, 'bv-006-16m-50hz-drums', seq.per, 3);
             const a3 = getByAlphaMean(samples, 'bv-006-16m-50hz-bass', seq.per, 3);
 
@@ -289,7 +289,7 @@ VIDEO.init = function(sm, scene, camera){
 
     return sampleAlpha.load({
         URLS_BASE: videoAPI.pathJoin(sm.filePath, '../../../sample_data/bv-006-16m/'),
-        URLS: ['bv-006-16m-50hz-pad.html', 'bv-006-16m-50hz-drums.html', 'bv-006-16m-50hz-bass.html']
+        URLS: ['bv-006-16m-30hz-pad.html', 'bv-006-16m-50hz-drums.html', 'bv-006-16m-50hz-bass.html']
     })
     .then( ( result ) => {
          console.log('we have a audio sample alphas result object!');
