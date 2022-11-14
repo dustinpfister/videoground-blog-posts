@@ -14,6 +14,39 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // get a sample alpha by a given sample index and a backCount that is
+    // the max number of samples back to go to create a mean to use.
+    const getByIndexMean = (result, key, csi, backCount) => {
+        backCount = backCount === undefined ? 3 : backCount;
+        const sampleObj = result[key];
+        // current sample index
+        const bsi = csi - backCount;
+        // by default just use the
+        let samples = [];
+        // if csi is bellow backCount
+        if(bsi < 0){
+            samples = sampleObj.abs.slice( 0, csi + 1 );
+        }
+        // we have at least the back count
+        if(bsi >= 0){
+            samples = sampleObj.abs.slice( bsi + 1, csi + 1 );
+        }
+        let absNum = 0; //sampleObj.abs[ csi ];
+        const sampCount = samples.length;
+        if(sampCount > 0){
+            const sum = samples.reduce((acc, n) => { return acc + n;  }, 0);
+            absNum = sum / sampCount;
+        }
+        const alphaSamp = absNum / sampleObj.maxABS;
+        return alphaSamp;
+    };
+    // get a sample alpha by a given alpha value and a backCount that is
+    // the max number of samples back to go to create a mean to use.
+    const getByAlphaMean = (result, key, alpha, backCount) => {
+        const sampleObj = result[key];
+        const csi = Math.round( ( sampleObj.abs.length - 1) * alpha);
+        return getByIndexMean(result, key, csi, backCount);
+    };
     // just a short hand for THREE.QuadraticBezierCurve3
     const QBC3 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3){
         let vs = x1;
@@ -203,6 +236,19 @@ VIDEO.init = function(sm, scene, camera){
             camera.zoom = 1;
             cube.rotation.x = Math.PI / 180 * 90 * seq.per;
             cube.rotation.y = Math.PI * 4 * seq.per;
+
+            const a1 = getByAlphaMean(samples, 'bv-006-16m-50hz-pad', seq.per, 3);
+            const a2 = getByAlphaMean(samples, 'bv-006-16m-50hz-drums', seq.per, 3);
+            const a3 = getByAlphaMean(samples, 'bv-006-16m-50hz-bass', seq.per, 3);
+
+            // opacity effected by pad synth
+            cube.material.opacity = 1 - a1;
+
+            // scale effected by drums and base
+            let s = 0.75 + 0.25 * a3 + 0.5 * a2;
+            cube.scale.set(s, s, s);
+
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -243,7 +289,7 @@ VIDEO.init = function(sm, scene, camera){
 
     return sampleAlpha.load({
         URLS_BASE: videoAPI.pathJoin(sm.filePath, '../../../sample_data/bv-006-16m/'),
-        URLS: ['bv-006-16m-50hz-drums.html']
+        URLS: ['bv-006-16m-50hz-pad.html', 'bv-006-16m-50hz-drums.html', 'bv-006-16m-50hz-bass.html']
     })
     .then( ( result ) => {
          console.log('we have a audio sample alphas result object!');
