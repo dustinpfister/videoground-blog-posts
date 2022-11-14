@@ -237,7 +237,7 @@ VIDEO.init = function(sm, scene, camera){
             cube.rotation.x = Math.PI / 180 * 90 * seq.per;
             cube.rotation.y = Math.PI * 4 * seq.per;
 
-            const a1 = getByAlphaMean(samples, 'bv-006-16m-50hz-pad', seq.per, 3);
+            const a1 = getByAlphaMean(samples, 'bv-006-16m-50hz-pad', seq.per, 1);
             const a2 = getByAlphaMean(samples, 'bv-006-16m-50hz-drums', seq.per, 3);
             const a3 = getByAlphaMean(samples, 'bv-006-16m-50hz-bass', seq.per, 3);
 
