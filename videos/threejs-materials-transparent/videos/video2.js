@@ -42,8 +42,6 @@ VIDEO.init = function(sm, scene, camera){
         })
         return v3Array.flat();
     };
-
-
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -66,7 +64,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const texture_map = createCanvasTexture( (ctx, canvas) => {
         // USING rgba TO SET STYLE
-        ctx.fillStyle = 'rgba(64,64,64,1)';
+        ctx.fillStyle = 'rgba(128,128,128,1)';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // CLEAR RECT CAN BE USED TO SET AN AREA AS TRANSPARENT
         // THEN FILL WITH AN rgba STYLE
@@ -100,8 +98,6 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const cube = createCube(4, material, 0, 0, 0);
     scene.add(cube);
-
-
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -182,6 +178,7 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
+            cube.rotation.y = Math.PI * 2 * seq.per;
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
