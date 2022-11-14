@@ -2,26 +2,14 @@
 
 <!-- VIDEO2 -->
 
+### () - threejs-materials-transparent
+* () video2 for materials transparent
+
+
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
-
-### ( done 11/05/2022 ) - threejs-examples-uvmap-cube-canvas-update
-* (done) start video folder and a video1 file
-* (done) set pxa to 0
-* (done) more points say 400
-* (done) I want to have a plane to show the image as a whole rather than a background
-* (done) color points
-* (done) fix dir values so that points go in all directions
-* (done) have a dists array so there are differing speeds by setting differign distances to go over alpha
-* (done) stroke color for points
-* (done) v3 array paths for sequnce from start pos to final pos
-* (done) have the camera move around a little durring final pos
-* (done) export to raw video file
-* (done) create final video file
-* (done) upload to youtube
-* (done) embed in post
 
 ### () - threejs-geometry
 
@@ -50,6 +38,22 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 11/05/2022 ) - threejs-examples-uvmap-cube-canvas-update
+* (done) start video folder and a video1 file
+* (done) set pxa to 0
+* (done) more points say 400
+* (done) I want to have a plane to show the image as a whole rather than a background
+* (done) color points
+* (done) fix dir values so that points go in all directions
+* (done) have a dists array so there are differing speeds by setting differign distances to go over alpha
+* (done) stroke color for points
+* (done) v3 array paths for sequnce from start pos to final pos
+* (done) have the camera move around a little durring final pos
+* (done) export to raw video file
+* (done) create final video file
+* (done) upload to youtube
+* (done) embed in post
 
 ### ( done 10/24/2022 ) - threejs-examples-sphere-mutate
 * (done) new video on r2 that shows new demos
