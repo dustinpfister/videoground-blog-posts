@@ -156,7 +156,7 @@ VIDEO.init = function(sm, scene, camera){
     curvePath.add( QBDelta(2, 0, 5, -5, 0, 5, 0, 0, 0) );
     curvePath.add( QBDelta(-5, 0, 5, -10, 0, -5, -5, 0, 5) );
     // PATH DEBUG POINTS
-    const v3Array_path = curvePath.getPoints(20);
+    const v3Array_path = curvePath.getPoints(40);
     const points_debug1 = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints(v3Array_path),
         new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
@@ -230,18 +230,16 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // A MAIN SEQ OBJECT
     //-------- ----------
-
     const v3Array_campos = QBV3Array([
-        [8,1,0, 10,10,10,    10,5,5,      20],
-        [10,10,10, -5,10,10,    0,0,0,      20]
+        [8,1,0, 10,10,10,    10,5,5,      40],
+        //[10,10,10, -5,10,10,    0,0,0,      20]
     ]);
     // PATH DEBUG POINTS
-    const points_debug2 = new THREE.Points(
-        new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({size: 0.5, color: new THREE.Color(0,1,0)})
-    );
-    scene.add(points_debug2);
-
+    //const points_debug2 = new THREE.Points(
+    //    new THREE.BufferGeometry().setFromPoints(v3Array_campos),
+    //    new THREE.PointsMaterial({size: 0.5, color: new THREE.Color(0,1,0)})
+    //);
+    //scene.add(points_debug2);
     // start options for main seq object
     const opt_seq = {
         fps: 30,
