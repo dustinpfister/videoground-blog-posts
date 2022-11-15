@@ -232,12 +232,13 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
 
     const v3Array_campos = QBV3Array([
-        [8,1,0, 8,8,8,    0,0,0,      20]
+        [8,1,0, 10,10,10,    10,5,5,      20],
+        [10,10,10, -5,10,10,    0,0,0,      20]
     ]);
     // PATH DEBUG POINTS
     const points_debug2 = new THREE.Points(
         new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
+        new THREE.PointsMaterial({size: 0.5, color: new THREE.Color(0,1,0)})
     );
     scene.add(points_debug2);
 
@@ -267,7 +268,7 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(5, 18, 14);
+            //camera.position.set(18, 18, 18);
             camera.lookAt(0, 0, 0);
         }
      };
