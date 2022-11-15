@@ -178,8 +178,10 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    const grid = scene.userData.grid = new THREE.GridHelper(30, 60, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.5;
     scene.add( grid );
     //-------- ----------
     // TEXT CUBE
