@@ -144,12 +144,25 @@ VIDEO.init = function(sm, scene, camera){
             setGuyRotation(guy, curvePath.getPoint( (a2 + offset) % 1 ) );
             guy.walk(a1, 10);
             // opacity
-            const a4 = 1 - Math.abs(0.5 - a3) / 0.5;
-            guy.head.material[0].opacity = a4;
-            guy.head.material[1].opacity = a4;
-            guy.body.material.opacity = a4;
-            guy.arm_right.material.opacity = a4;
-            guy.leg_right.material.opacity = a4;
+
+            //const a4 = 1 - Math.abs(0.5 - a3) / 0.5;
+            guy.group.scale.y = 0.5;
+            if(a3 < 0.2){
+               const s = a3 / 0.2 * 0.5;
+               guy.group.scale.set(s, s, s);
+            }
+            if(a3 > 0.8){
+               const s = (1 - (a3 - 0.8) / 0.2) * 0.5;
+               guy.group.scale.set(s, s, s);
+            }
+
+
+            //guy.head.material[0].opacity = a4;
+            //guy.head.material[1].opacity = a4;
+            //guy.body.material.opacity = a4;
+            //guy.arm_right.material.opacity = a4;
+            //guy.leg_right.material.opacity = a4;
+
         });
     };
     //-------- ----------
@@ -170,7 +183,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // ADDING GUY OBJECT TO SCENE
     //-------- ----------
-    const guys = createGuyCollection(16, 2);
+    const guys = createGuyCollection(20, 2);
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -238,7 +251,7 @@ VIDEO.init = function(sm, scene, camera){
     // A MAIN SEQ OBJECT
     //-------- ----------
     const v3Array_campos = QBV3Array([
-        [8,1,0, 10,10,10,    10,5,5,      40],
+        [8,1,0, 8,8,8,    8,5,5,      40],
         //[10,10,10, -5,10,10,    0,0,0,      20]
     ]);
     // PATH DEBUG POINTS
