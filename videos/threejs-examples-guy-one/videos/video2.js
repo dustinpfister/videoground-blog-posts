@@ -17,6 +17,11 @@ VIDEO.init = function(sm, scene, camera){
     const al = new THREE.AmbientLight(0xffffff, 0.15);
     scene.add(al);
     //-------- ----------
+    // TEXTURE
+    //-------- ----------
+    const palette = ['#444444', '#888888', '#aaaaaa', '#ffffff'];
+    const canObj_guy = canvasMod.create({ palette: palette, size: 128, state:{ gSize: 30}, draw: 'rnd'});
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // create guy helper
@@ -102,21 +107,21 @@ VIDEO.init = function(sm, scene, camera){
             guy.head.material = [
                // 0 default material
                new THREE.MeshPhongMaterial({
-                   color: 0xffff00, transparent: true
+                   color: 0xffff00, transparent: true, map: canObj_guy.texture
                }),
                // 1 used for the face
                new THREE.MeshPhongMaterial({
-                    color: 0xffffff, transparent: true
+                    color: 0xffffff, transparent: true, map: canObj_guy.texture
                 })
             ];
             guy.body.material = new THREE.MeshPhongMaterial({
-                color: 0x00ff00, transparent: true
+                color: 0x00ff00, transparent: true, map: canObj_guy.texture
             });
             guy.arm_right.material = new THREE.MeshPhongMaterial({
-                color: 0x00ff00, transparent: true
+                color: 0x00ff00, transparent: true, map: canObj_guy.texture
             });
             guy.leg_right.material = new THREE.MeshPhongMaterial({
-                color: 0x00ffff, transparent: true
+                color: 0x00ffff, transparent: true, map: canObj_guy.texture
             });
             guy.arm_left.material = guy.arm_right.material;
             guy.leg_left.material = guy.leg_right.material;
