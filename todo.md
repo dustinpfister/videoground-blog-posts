@@ -2,6 +2,9 @@
 
 <!-- VIDEO2 -->
 
+### () - threejs-examples-guy-one
+* () video2 based on curve path demo
+
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
