@@ -2,9 +2,6 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-examples-guy-one
-* () video2 based on curve path demo
-
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
@@ -37,6 +34,9 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 11/15/2022 ) - threejs-examples-guy-one
+* (done) video2 based on curve path demo
 
 ### (done 11/14/2022) - threejs-materials-transparent
 * (done) video2 for materials transparent
