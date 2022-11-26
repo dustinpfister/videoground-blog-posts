@@ -171,7 +171,7 @@ VIDEO.init = function(sm, scene, camera){
      };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 2,
         update: function(seq, partPer, partBias){
             // camera
             const v1 = new THREE.Vector3(8, 1, 0);
@@ -180,10 +180,9 @@ VIDEO.init = function(sm, scene, camera){
             camera.lookAt(0, 0, 0);
         }
     };
-/*
     // SEQ 2 - ...
     opt_seq.objects[2] = {
-        secs: 5,
+        secs: 25,
         v3Paths: [
             { key: 'campos', array: v3Array_campos, lerp: true }
         ],
@@ -193,7 +192,6 @@ VIDEO.init = function(sm, scene, camera){
             camera.lookAt(0, 0, 0);
         }
     };
-*/
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
