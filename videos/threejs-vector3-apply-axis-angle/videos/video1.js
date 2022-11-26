@@ -52,11 +52,11 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ---------- ----------
     // GROUP
     // ---------- ---------- ----------
-    const group1 = makeGroup( { count: 10, angle: 360, v: new THREE.Vector3(0, 1, 0), unitLen: 5 } );
+    const group1 = makeGroup( { count: 15, angle: 360, v: new THREE.Vector3(0, 1, 0), unitLen: 5 } );
     scene.add(group1);
-    const group2 = makeGroup( { count: 10, angle: 270, v: new THREE.Vector3(0, 1, 1), unitLen: 5  } );
+    const group2 = makeGroup( { count: 15, angle: 270, v: new THREE.Vector3(0, 1, 1), unitLen: 5  } );
     scene.add(group2);
-    const group3 = makeGroup( { count: 10, angle: 360, v: new THREE.Vector3(1, 1, 0), unitLen: 5  } );
+    const group3 = makeGroup( { count: 15, angle: 360, v: new THREE.Vector3(1, 1, 0), unitLen: 5  } );
     scene.add(group3);
     //-------- ----------
     // BACKGROUND
@@ -124,20 +124,10 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
 
     const v3Array_campos = curveMod.QBV3Array([
-        [8,8,8, 7,-2,-7,    2,0,0,      20],
-        [7,-2,-7, -8,4,0,   0,0,0,      25],
-        [-8,4,0, 8,8,8,     0,0,0,      50]
+        [8,8,8, -8,2,3,    -6,0,12,      100]
     ]);
-
-    console.log(v3Array_campos)
-
-    // PATH DEBUG POINTS
-    //const points_debug = new THREE.Points(
-    //    new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-   //     new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
-   // );
+    //const points_debug = curveMod.debugPoints(v3Array_campos);
     //scene.add(points_debug);
-
     // start options for main seq object
     const opt_seq = {
         fps: 30,
