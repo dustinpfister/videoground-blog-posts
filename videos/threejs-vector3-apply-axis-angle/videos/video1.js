@@ -122,19 +122,22 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // A MAIN SEQ OBJECT
     //-------- ----------
-/*
-    const v3Array_campos = QBV3Array([
+
+    const v3Array_campos = curveMod.QBV3Array([
         [8,8,8, 7,-2,-7,    2,0,0,      20],
         [7,-2,-7, -8,4,0,   0,0,0,      25],
         [-8,4,0, 8,8,8,     0,0,0,      50]
     ]);
+
+    console.log(v3Array_campos)
+
     // PATH DEBUG POINTS
-    const points_debug = new THREE.Points(
-        new THREE.BufferGeometry().setFromPoints(v3Array_campos),
-        new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
-    );
-    scene.add(points_debug);
-*/
+    //const points_debug = new THREE.Points(
+    //    new THREE.BufferGeometry().setFromPoints(v3Array_campos),
+   //     new THREE.PointsMaterial({size: 0.25, color: new THREE.Color(0,1,0)})
+   // );
+    //scene.add(points_debug);
+
     // start options for main seq object
     const opt_seq = {
         fps: 30,
