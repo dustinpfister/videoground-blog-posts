@@ -7,6 +7,11 @@
 
 <!--  0 VIDEOS -->
 
+### () - threejs-vector3-apply-axis-angle
+* () start video1 for this
+* () base it off of loop 2 example in the blog post
+* () embed in the post
+
 ### () - threejs-geometry
 
 ### () - threejs-face3
