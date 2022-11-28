@@ -140,12 +140,14 @@ VIDEO.init = function(sm, scene, camera){
     // CURVE
     //-------- ----------
     const curve1 = new THREE.CurvePath();
-    curve1.add( QBC3(5, 0, -5, 5, 0, 5, 10, -5, 2) );
-    curve1.add( QBC3(5, 0, 5, -5, 5, 0, -10, 2.5, 10) );
+    curve1.add( QBC3(-5, 0, -5, -5, 0, 5, 0, 0, 0) );
+    curve1.add( QBC3(-5, 0, 5, 5, 0, 5, 0, 0, 0) );
+    curve1.add( QBC3(5, 0, 5, 5, 0, -5, 0, 0, 0) );
+    curve1.add( QBC3(5, 0, -5, -5, 0, -5, 0, 0, 0) );
     //-------- ----------
     // POINTS
     //-------- ----------
-    scene.add( createCurvePoints(curve1, 100, 0.125, new THREE.Color(1,1,1), getAlphaSmoother ) );
+    scene.add( createCurvePoints(curve1, 100, 0.25, new THREE.Color(1,1,1), getAlphaSmoother ) );
     //-------- ----------
     // MESH TO MOVE ALONG CURVE
     //-------- ----------
@@ -249,7 +251,7 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(5, 18, 14);
+            camera.position.set(5, 18, 14);
             camera.lookAt(0, 0, 0);
         }
      };
