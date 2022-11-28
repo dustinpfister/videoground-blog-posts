@@ -118,21 +118,21 @@ VIDEO.init = function(sm, scene, camera){
     const mesh1 = new THREE.Mesh(geo1, 
         new THREE.MeshBasicMaterial({
             color: new THREE.Color(1, 0, 0),
-            transparent: true, opacity: 0.2, wireframe: true, wireframeLinewidth: 2
+            transparent: true, opacity: 0.2, wireframe: true, wireframeLinewidth: 4
         })
     );
     scene.add(mesh1);
     const mesh2 = new THREE.Mesh(geo2, 
         new THREE.MeshBasicMaterial({
             color: new THREE.Color(0, 1, 0),
-            transparent: true, opacity: 0.8, wireframe: true, wireframeLinewidth: 4
+            transparent: true, opacity: 0.2, wireframe: true, wireframeLinewidth: 4
         })
     );
     scene.add(mesh2);
     const mesh3 = new THREE.Mesh(geo3, 
         new THREE.MeshBasicMaterial({
             color: new THREE.Color(0, 0, 1),
-            transparent: true, opacity: 0.2, wireframe: true, wireframeLinewidth: 1
+            transparent: true, opacity: 0.2, wireframe: true, wireframeLinewidth: 4
         })
     );
     scene.add(mesh3);
@@ -178,11 +178,11 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
-            ['template2', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
-            ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
-            ['video3', 64, 100, 10, 'gray']
+            ['Object3D Position', 64, 17, 14, 'white'],
+            ['Property in', 64, 32, 14, 'white'],
+            ['Threejs', 64, 47, 14, 'white'],
+            ['( r140 11/28/2022 )', 64, 70, 12, 'gray'],
+            ['video2', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
@@ -251,7 +251,7 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            camera.position.set(5, 18, 14);
+            //camera.position.set(5, 18, 14);
             camera.lookAt(0, 0, 0);
         }
      };
