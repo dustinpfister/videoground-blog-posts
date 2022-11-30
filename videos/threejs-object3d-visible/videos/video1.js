@@ -95,9 +95,7 @@ VIDEO.init = function(sm, scene, camera){
     // PATHS
     //-------- ----------
     const v3Array_campos = curveMod.QBV3Array([
-        [8,8,8, 7,-2,-7,    2,0,0,      20],
-        [7,-2,-7, -8,4,0,   0,0,0,      25],
-        [-8,4,0, 8,8,8,     0,0,0,      50]
+        [8,1,0, 8,8,8,    0,0,0,      20]
     ]);
     scene.add( curveMod.debugPoints( v3Array_campos ) );
     //-------- ----------
@@ -197,21 +195,10 @@ VIDEO.init = function(sm, scene, camera){
             //camera.position.set(5, 18, 14);
             camera.lookAt(0, 0, 0);
         }
-     };
-    // SEQ 1 - ...
-    opt_seq.objects[1] = {
-        secs: 2,
-        update: function(seq, partPer, partBias){
-            // camera
-            const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(8, 8, 8);
-            camera.position.copy( v1.lerp(v2, partPer) );
-            camera.lookAt(0, 0, 0);
-        }
     };
     // SEQ 2 - ...
-    opt_seq.objects[2] = {
-        secs: 25,
+    opt_seq.objects[1] = {
+        secs: 27,
         v3Paths: [
             { key: 'campos', array: v3Array_campos, lerp: true }
         ],
