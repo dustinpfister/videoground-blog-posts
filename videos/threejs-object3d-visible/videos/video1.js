@@ -199,7 +199,7 @@ VIDEO.init = function(sm, scene, camera){
     };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 3,
+        secs: 1,
         update: function(seq, partPer, partBias){
             camera.lookAt(0.5 * partPer, 1 * partPer, 0);
         }
