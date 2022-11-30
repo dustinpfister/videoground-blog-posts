@@ -197,16 +197,23 @@ VIDEO.init = function(sm, scene, camera){
             camera.lookAt(0, 0, 0);
         }
     };
-    // SEQ 2 - ...
+    // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 3,
+        update: function(seq, partPer, partBias){
+            camera.lookAt(0.5 * partPer, 1 * partPer, 0);
+        }
+    };
+    // SEQ 2 - ...
+    opt_seq.objects[2] = {
+        secs: 26,
         v3Paths: [
             { key: 'campos', array: v3Array_campos, lerp: true }
         ],
         update: function(seq, partPer, partBias){
             // camera
             seq.copyPos('campos', camera);
-            camera.lookAt(0, 0, 0);
+            camera.lookAt(0.5 + 2 * partPer, 1, 0);
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
