@@ -7,10 +7,9 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-vector3-apply-axis-angle
-* () start video1 for this
-* () base it off of loop 2 example in the blog post
-* () embed in the post
+### () - threejs-object3d-visible
+* () start the video folder and video1
+* () embed and link
 
 ### () - threejs-geometry
 
@@ -39,6 +38,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 11/26/2022 ) - threejs-vector3-apply-axis-angle
+* (done) start video1 for this
+* (done) base it off of loop 2 example in the blog post
+* (done) embed in the post
 
 ### ( done 11/15/2022 ) - threejs-examples-guy-one
 * (done) video2 based on curve path demo
