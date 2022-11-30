@@ -63,7 +63,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.material.opacity = 1.0;
+                    textCube.material.opacity = 0.8;
                 }
             },
             {
@@ -73,7 +73,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
-                    textCube.material.opacity = 1.0 - partPer;
+                    textCube.material.opacity = 0.8 - 0.8 * partPer;
                 }
             }
         ]
