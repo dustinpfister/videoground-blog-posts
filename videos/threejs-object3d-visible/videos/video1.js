@@ -95,9 +95,10 @@ VIDEO.init = function(sm, scene, camera){
     // PATHS
     //-------- ----------
     const v3Array_campos = curveMod.QBV3Array([
-        [8,1,0, 8,8,8,    0,0,0,      20]
+        [8,1,0, -8,0,8,    3,0,8,      100],
+        [-8,0,8, 0,0,0,    -15,2,1,      100]
     ]);
-    scene.add( curveMod.debugPoints( v3Array_campos ) );
+    //scene.add( curveMod.debugPoints( v3Array_campos ) );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
