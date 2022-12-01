@@ -1,6 +1,6 @@
 # videoground-blog-posts content collection
 
-The aim here is to have a collection of [videoground](https://github.com/dustinpfister/videoground) projects to create videos that I then upload to [Youtube](https://www.youtube.com/user/javaweaver) to then emped in my various blog posts on my [website here at Github Pages](https://dustinpfister.github.io/). As of this writing this is my first and most active collection of content that I made using my videoground electronjs application that I work on a little now and then.
+The aim here is to have a collection of [videoground](https://github.com/dustinpfister/videoground) projects to create videos that I then upload to [Youtube](https://www.youtube.com/user/javaweaver) that will then be embeded into my various blog posts on my [website here at Github Pages](https://dustinpfister.github.io/). As of this writing this is my first and most active collection of content that I made using my videoground electronjs application.
 
 <div align="center">
     <a href="https://www.youtube.com/watch?v=AzuB6ExUE64">
