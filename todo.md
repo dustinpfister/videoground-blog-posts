@@ -7,10 +7,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-tetrahedron
-* () start folder and use the demo in the post
-* () upload and embed
-
 ### () - threejs-geometry
 
 ### () - threejs-face3
@@ -38,6 +34,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 12/02/2022 ) - threejs-tetrahedron
+* (done) start folder and use the demo in the post
+* (done) upload and embed
 
 ### ( done 11/30/2022 ) - threejs-object3d-visible
 * (done) start the video folder and video1
