@@ -7,6 +7,49 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+    // ---------- ----------
+    // HELPERS
+    // ---------- ----------
+    const appendLine = (mesh, color, lw, opacity ) => {
+        const line_material = new THREE.LineBasicMaterial( {
+            color: color|| 0xffffff,
+            linewidth: lw === undefined ? 6 : lw,
+            transparent: true,
+            opacity: opacity === undefined ? 1 : opacity
+        });
+        const line = new THREE.LineSegments( mesh.geometry, line_material );
+        mesh.add(line)
+    };
+    // ---------- ----------
+    // Tetrahedron Geometry
+    // ---------- ----------
+    const geo = new THREE.TetrahedronGeometry(3, 0);
+    // ---------- ----------
+    // MESH
+    // ---------- ----------
+    const mesh_material1 = new THREE.MeshPhongMaterial( {
+        color: 0x00ff88, flatShading: true,
+        side: THREE.DoubleSide,
+        transparent: true, opacity: 0.50 } );
+    const mesh_material2 = new THREE.MeshPhongMaterial( {
+        color: 0x00ff00, flatShading: true,
+        transparent: true, opacity: 0.25
+    });
+    const mesh = new THREE.Mesh( geo, mesh_material1 );
+    scene.add(mesh);
+    appendLine(mesh);
+    // sphere mesh
+    const mesh_sphere = new THREE.Mesh( new THREE.SphereGeometry(3.0, 30, 30), mesh_material2);
+    scene.add(mesh_sphere);
+    appendLine(mesh_sphere, 0xffffff, 3, 0.2);
+    // ---------- ----------
+    // LIGHT
+    // ---------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1.0);
+    dl.position.set(3, 1, 2);
+    scene.add(dl);
+    const al = new THREE.AmbientLight(0xffffff, 0.1);
+    scene.add(al);
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -85,6 +128,9 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
+            const a1 = seq.getSinBias(1, false);
+            mesh.rotation.y = Math.PI * 2 * a1;
+            mesh.rotation.z = Math.PI * 4 * a1;
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
