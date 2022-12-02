@@ -64,7 +64,7 @@ VIDEO.init = function(sm, scene, camera){
     // PATHS
     //-------- ----------
     const v3Array_campos = curveMod.QBV3Array([
-        [8,1,0, 0,10,10,    0,0,0,      20]
+        [8,1,0, 0,5,9,    4,0,4,      200]
     ]);
     scene.add( curveMod.debugPoints( v3Array_campos ) );
     //-------- ----------
@@ -158,6 +158,7 @@ VIDEO.init = function(sm, scene, camera){
         ],
         update: function(seq, partPer, partBias){
             // camera
+            camera.zoom = 1 + 0.15 * partPer;
             seq.copyPos('campos', camera);
             camera.lookAt(0, 0, 0);
         }
