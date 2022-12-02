@@ -7,9 +7,9 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-object3d-visible
-* () start the video folder and video1
-* () embed and link
+### () - threejs-tetrahedron
+* () start folder and use the demo in the post
+* () upload and embed
 
 ### () - threejs-geometry
 
@@ -38,6 +38,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 11/30/2022 ) - threejs-object3d-visible
+* (done) start the video folder and video1
+* (done) embed and link
 
 ### ( done 11/26/2022 ) - threejs-vector3-apply-axis-angle
 * (done) start video1 for this
