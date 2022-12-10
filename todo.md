@@ -7,9 +7,10 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-line-fat-width
+### () - threejs-buffer-geometry-index
 * () start folder
-* () upload video
+* () base it on video1 loop example for post
+* () upload and embed
 
 ### () - threejs-geometry
 
@@ -38,6 +39,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 12/08/2022 ) - threejs-line-fat-width
+* (done) start folder
+* (done) upload video
 
 ### ( done 12/02/2022 ) - threejs-tetrahedron
 * (done) start folder and use the demo in the post
