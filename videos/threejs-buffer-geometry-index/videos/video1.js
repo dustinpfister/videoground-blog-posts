@@ -54,6 +54,10 @@ VIDEO.init = function(sm, scene, camera){
         group.add(mesh2);
         mesh1.position.set(-6, 0, 0);
         mesh2.position.set(6, 0, 0);
+        // points
+        mesh1.add( new THREE.LineSegments( geo_index ) );
+        mesh2.add( new THREE.LineSegments( geo_noindex ) )
+
         return group;
     };
     const updateGroup = (group, alpha) => {
