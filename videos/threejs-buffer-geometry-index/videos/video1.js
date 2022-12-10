@@ -59,20 +59,22 @@ VIDEO.init = function(sm, scene, camera){
     const updateGroup = (group, alpha) => {
         // loop over group children
         group.children.forEach( (mesh) => {
-            const pos = mesh.geometry.getAttribute('position');
-            const pos_home = mesh.userData.pos_home;
-            let len_tri = Math.floor(pos.array.length / 9);
-            let i_tri = 0;
-            while(i_tri < len_tri){
-                let i = i_tri * 9;
-                 const delta = mesh.userData.deltas[i_tri];
-                 pos.array[i + 1] = pos_home.array[ i + 1] + delta * alpha;
-                 pos.array[i + 4] = pos_home.array[i + 4] + delta * alpha;
-                 pos.array[i + 7] = pos_home.array[ i + 7] + delta * alpha;
-                 i_tri += 1;
+            if(mesh.type === 'Mesh'){
+                const pos = mesh.geometry.getAttribute('position');
+                const pos_home = mesh.userData.pos_home;
+                let len_tri = Math.floor(pos.array.length / 9);
+                let i_tri = 0;
+                while(i_tri < len_tri){
+                    let i = i_tri * 9;
+                     const delta = mesh.userData.deltas[i_tri];
+                     pos.array[i + 1] = pos_home.array[ i + 1] + delta * alpha;
+                     pos.array[i + 4] = pos_home.array[i + 4] + delta * alpha;
+                     pos.array[i + 7] = pos_home.array[ i + 7] + delta * alpha;
+                     i_tri += 1;
+                }
+                pos.needsUpdate = true;
+                mesh.geometry.computeVertexNormals();
             }
-            pos.needsUpdate = true;
-            mesh.geometry.computeVertexNormals();
         });
     };
     const createCanvasTexture = function (draw, size) {
