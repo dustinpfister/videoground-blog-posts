@@ -139,13 +139,13 @@ VIDEO.init = function(sm, scene, camera){
     // PATHS
     //-------- ----------
     const v3Array_campos1 = curveMod.QBV3Array([
-        [8,1,0, 8,8,8,    0,0,0,      20]
+        [8,1,0, 8,8,8,    2,3,2,      20]
     ]);
-    scene.add( curveMod.debugPoints( v3Array_campos1 ) );
+    //scene.add( curveMod.debugPoints( v3Array_campos1 ) );
     const v3Array_campos2 = curveMod.QBV3Array([
-        [8,8,8, -8,8,8,    0,0,0,      20]
+        [8,8,8, -8,8,8,    5,-5,0,      20]
     ]);
-    scene.add( curveMod.debugPoints( v3Array_campos2 ) );
+    //scene.add( curveMod.debugPoints( v3Array_campos2 ) );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -224,7 +224,7 @@ VIDEO.init = function(sm, scene, camera){
             // groups
             updateGroup(group, partPer);
             // camera
-            camera.position.set(20, 20, 20);
+            //camera.position.set(10, 10, 10);
             camera.lookAt(0, 0, 0);
         }
     };
