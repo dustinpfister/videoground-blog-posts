@@ -11,7 +11,7 @@ VIDEO.init = function(sm, scene, camera){
     // LIGHT
     // ---------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(0, 1, 2)
+    dl.position.set(0, 1, 0)
     scene.add(dl);
     // ---------- ----------
     // HELPERS
@@ -33,9 +33,9 @@ VIDEO.init = function(sm, scene, camera){
         // material
         const material = new THREE.MeshPhongMaterial({
             side: THREE.DoubleSide,
-            color: new THREE.Color(0,1,0),
-            emissive: new THREE.Color(1,1,1),
-            emissiveIntensity: 0.1
+            color: new THREE.Color(1,1,1),
+            emissive: new THREE.Color(0,0,0),
+            emissiveIntensity: 0.0
         });
         // geo indexed and non indxed
         const geo_index = new THREE.PlaneGeometry(4, 10, 8, 20);
@@ -87,15 +87,17 @@ VIDEO.init = function(sm, scene, camera){
     // TEXTURE
     // ---------- ----------
     const texture_map = createCanvasTexture(function (ctx, canvas) {
-        const w = 16, h = 16;
+        const w = 16, h = 40;
         let i = 0, len = w * h;
         while(i < len){
             const x = i % w;
             const y = Math.floor(i / w);
             const px = canvas.width / w * x;
             const py = canvas.height / h * y;
-            const v = 0.5 * Math.random().toFixed(2);
-            const color = new THREE.Color(v,v,v);
+            const r = Math.random().toFixed(2);
+            const g = Math.random().toFixed(2);
+            const b = Math.random().toFixed(2);
+            const color = new THREE.Color(r,g,b);
             ctx.fillStyle = color.getStyle();
             ctx.fillRect(px, py, canvas.width / w, canvas.width / h);
             i += 1;
