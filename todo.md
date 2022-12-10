@@ -8,7 +8,7 @@
 <!--  0 VIDEOS -->
 
 ### () - threejs-buffer-geometry-index
-* () start folder
+* (done) start folder
 * () base it on video1 loop example for post
 * () upload and embed
 
