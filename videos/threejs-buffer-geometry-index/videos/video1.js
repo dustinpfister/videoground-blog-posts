@@ -38,7 +38,7 @@ VIDEO.init = function(sm, scene, camera){
             emissiveIntensity: 0.1
         });
         // geo indexed and non indxed
-        const geo_index = new THREE.PlaneGeometry(4, 5, 20, 25);
+        const geo_index = new THREE.PlaneGeometry(4, 10, 8, 20);
         geo_index.rotateX(Math.PI * 1.5)
         const geo_noindex = geo_index.clone().toNonIndexed();
         const group = new THREE.Group();
@@ -52,8 +52,8 @@ VIDEO.init = function(sm, scene, camera){
         mesh2.userData.deltas = createTriDeltas(mesh2.geometry);
         group.add(mesh1);
         group.add(mesh2);
-        mesh1.position.set(-2.5, 0, 0);
-        mesh2.position.set(2.5, 0, 0);
+        mesh1.position.set(-3, 0, 0);
+        mesh2.position.set(3, 0, 0);
         return group;
     };
     const updateGroup = (group, alpha) => {
