@@ -38,7 +38,7 @@ VIDEO.init = function(sm, scene, camera){
             emissiveIntensity: 0.0
         });
         // geo indexed and non indxed
-        const geo_index = new THREE.PlaneGeometry(4, 10, 8, 20);
+        const geo_index = new THREE.PlaneGeometry(12, 20, 12, 20);
         geo_index.rotateX(Math.PI * 1.5)
         const geo_noindex = geo_index.clone().toNonIndexed();
         const group = new THREE.Group();
@@ -52,8 +52,8 @@ VIDEO.init = function(sm, scene, camera){
         mesh2.userData.deltas = createTriDeltas(mesh2.geometry);
         group.add(mesh1);
         group.add(mesh2);
-        mesh1.position.set(-3, 0, 0);
-        mesh2.position.set(3, 0, 0);
+        mesh1.position.set(-6, 0, 0);
+        mesh2.position.set(6, 0, 0);
         return group;
     };
     const updateGroup = (group, alpha) => {
@@ -87,7 +87,7 @@ VIDEO.init = function(sm, scene, camera){
     // TEXTURE
     // ---------- ----------
     const texture_map = createCanvasTexture(function (ctx, canvas) {
-        const w = 16, h = 40;
+        const w = 12, h = 20;
         let i = 0, len = w * h;
         while(i < len){
             const x = i % w;
