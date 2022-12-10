@@ -54,10 +54,6 @@ VIDEO.init = function(sm, scene, camera){
         group.add(mesh2);
         mesh1.position.set(-6, 0, 0);
         mesh2.position.set(6, 0, 0);
-        // points
-        mesh1.add( new THREE.LineSegments( geo_index ) );
-        mesh2.add( new THREE.LineSegments( geo_noindex ) )
-
         return group;
     };
     const updateGroup = (group, alpha) => {
@@ -84,8 +80,8 @@ VIDEO.init = function(sm, scene, camera){
     const createCanvasTexture = function (draw, size) {
         var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
-        canvas.width = size || 32;
-        canvas.height = size || 32;
+        canvas.width = size || 256;
+        canvas.height = size || 256;
         draw(ctx, canvas);
         return new THREE.CanvasTexture(canvas);
     };
@@ -108,7 +104,19 @@ VIDEO.init = function(sm, scene, camera){
             ctx.fillRect(px, py, canvas.width / w, canvas.width / h);
             i += 1;
         }
-    }, 64);
+        i = 0;
+        while(i < len){
+            const x = i % w;
+            const y = Math.floor(i / w);
+            const px = canvas.width / w * x;
+            const py = canvas.height / h * y;
+            const color = new THREE.Color(1, 1, 1);
+            ctx.strokeStyle = color.getStyle();
+            ctx.lineWidth = 3;
+            ctx.strokeRect(px, py, canvas.width / w, canvas.width / h);
+            i += 1;
+        }
+    }, 512);
     // ---------- ----------
     // GROUP
     // ---------- ----------
