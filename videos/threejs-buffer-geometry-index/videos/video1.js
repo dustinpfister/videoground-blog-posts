@@ -224,7 +224,7 @@ VIDEO.init = function(sm, scene, camera){
             // groups
             updateGroup(group, partPer);
             // camera
-            //camera.position.set(5, 18, 14);
+            camera.position.set(20, 20, 20);
             camera.lookAt(0, 0, 0);
         }
     };
