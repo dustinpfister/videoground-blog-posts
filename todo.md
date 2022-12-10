@@ -7,11 +7,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-buffer-geometry-index
-* (done) start folder
-* () base it on video1 loop example for post
-* () upload and embed
-
 ### () - threejs-geometry
 
 ### () - threejs-face3
@@ -39,6 +34,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 12/10/2022 ) - threejs-buffer-geometry-index
+* (done) start folder
+* (done) base it on video1 loop example for post
+* (done) upload and embed
 
 ### ( done 12/08/2022 ) - threejs-line-fat-width
 * (done) start folder
