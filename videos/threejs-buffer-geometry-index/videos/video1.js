@@ -122,12 +122,14 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // PATHS
     //-------- ----------
-    const v3Array_campos = curveMod.QBV3Array([
-        [8,8,8, 7,-2,-7,    2,0,0,      20],
-        [7,-2,-7, -8,4,0,   0,0,0,      25],
-        [-8,4,0, 8,8,8,     0,0,0,      50]
+    const v3Array_campos1 = curveMod.QBV3Array([
+        [8,1,0, 8,8,8,    0,0,0,      20]
     ]);
-    scene.add( curveMod.debugPoints( v3Array_campos ) );
+    scene.add( curveMod.debugPoints( v3Array_campos1 ) );
+    const v3Array_campos2 = curveMod.QBV3Array([
+        [8,8,8, -8,8,8,    0,0,0,      20]
+    ]);
+    scene.add( curveMod.debugPoints( v3Array_campos2 ) );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -189,7 +191,6 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
-            updateGroup(group, seq.getSinBias(4, false));
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -204,32 +205,49 @@ VIDEO.init = function(sm, scene, camera){
             if(seq.partFrame < seq.partFrameMax){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
+            // groups
+            updateGroup(group, partPer);
             // camera
             //camera.position.set(5, 18, 14);
             camera.lookAt(0, 0, 0);
         }
-     };
+    };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 2,
+        secs: 3,
+        v3Paths: [
+            { key: 'campos1', array: v3Array_campos1, lerp: true }
+        ],
         update: function(seq, partPer, partBias){
+            // groups
+            updateGroup(group, 1 - partPer);
             // camera
-            const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(8, 8, 8);
-            camera.position.copy( v1.lerp(v2, partPer) );
+            seq.copyPos('campos1', camera);
             camera.lookAt(0, 0, 0);
         }
     };
-
     // SEQ 2 - ...
     opt_seq.objects[2] = {
-        secs: 25,
+        secs: 4,
+        update: function(seq, partPer, partBias){
+            // groups
+            updateGroup(group, seq.getSinBias(1));
+            // camera
+            camera.position.set(8, 8, 8);
+            camera.lookAt(0, 0, 0);
+        }
+    };
+    // SEQ 3 - ...
+    opt_seq.objects[3] = {
+        secs: 20,
         v3Paths: [
-            { key: 'campos', array: v3Array_campos, lerp: true }
+            { key: 'campos2', array: v3Array_campos2, lerp: true }
         ],
         update: function(seq, partPer, partBias){
+            // groups
+            updateGroup(group, seq.getSinBias(8));
             // camera
-            seq.copyPos('campos', camera);
+            seq.copyPos('campos2', camera);
             camera.lookAt(0, 0, 0);
         }
     };
