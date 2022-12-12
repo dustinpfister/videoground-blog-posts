@@ -7,11 +7,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-examples-weird-walk-two
-* () start the folder
-* () just make it after the current demo for this
-* () upload and embed
-
 ### () - threejs-geometry
 
 ### () - threejs-face3
@@ -37,6 +32,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 12/12/2022 ) - threejs-examples-weird-walk-two
+* (done) start the folder
+* (done) just make it after the current demo for this
+* (done) upload and embed
 
 ### ( done 12/10/2022 ) - threejs-buffer-geometry-index
 * (done) start folder
