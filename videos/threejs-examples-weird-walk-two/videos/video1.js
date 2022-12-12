@@ -3,29 +3,60 @@ VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r1/canvas.js',
    '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
-   '../../../js/curve/r0/curve.js'
+   '../../../js/curve/r0/curve.js',
+   '../../../js/datatex/r0/datatex.js',
+   'guy-weird-two-r0.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
     //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 0.8);
+    dl.position.set(5, 10, 1);
+    scene.add(dl);
+    //-------- ----------
+    // HELPER METHODS
+    //-------- ----------
+    // give frame, maxframe, and count to get values like per, bias, ect
+    const getFrameValues = function(frame, maxFrame, count){
+        count = count === undefined ? 1 : count;
+        const values = {
+            frame: frame, 
+            maxFrame: maxFrame
+        };
+        values.per = frame / maxFrame * count % 1;
+        values.bias = 1 - Math.abs(0.5 - values.per) / 0.5;
+        return values;
+    };
+    //-------- ----------
+    // GROUND MESH
+    //-------- ----------
+    const texture = datatex.forEachPix(20, 100, function(x, y, w, h, i){
+        const obj = {};
+        const v = y % 2 === 0 ? 255 - 200 * (x / w) : 55 + 200 * (x / w);
+        obj.r = v;
+        obj.b = v;
+        return obj;
+    });
+    const ground = new THREE.Mesh( new THREE.BoxGeometry(20, 1, 100), new THREE.MeshStandardMaterial({
+        map: texture
+    }) );
+    ground.position.y = -1.0;
+    scene.add(ground);
+    //-------- ----------
+    // WEIRD GUY INSTANCE
+    //-------- ----------
+    const guy = weirdGuy2.create({
+        guyID: 'mrguy1'
+    });
+    guy.position.y = 2.75;
+    scene.add(guy);
+    weirdGuy2.setWalk(guy, 0);
+    //-------- ----------
     // BACKGROUND
     //-------- ----------
     scene.background = new THREE.Color('#2a2a2a');
-    //-------- ----------
-    // GRID
-    //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
-    //-------- ----------
-    // PATHS
-    //-------- ----------
-    const v3Array_campos = curveMod.QBV3Array([
-        [8,8,8, 7,-2,-7,    2,0,0,      20],
-        [7,-2,-7, -8,4,0,   0,0,0,      25],
-        [-8,4,0, 8,8,8,     0,0,0,      50]
-    ]);
-    scene.add( curveMod.debugPoints( v3Array_campos ) );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -86,7 +117,29 @@ VIDEO.init = function(sm, scene, camera){
         beforeObjects: function(seq){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
-            camera.zoom = 1;
+            camera.zoom = 0.9;
+
+
+            const frame = seq.frame;
+            const maxFrame = seq.frameMax;
+
+            // update guy position over mesh
+            let v = getFrameValues(frame, maxFrame, 1);
+            guy.position.z = -10 + 20 * v.per;
+            // set walk
+            v = getFrameValues(frame, maxFrame, 40);
+            weirdGuy2.setWalk(guy, v.bias);
+            // setting arms
+            const v1 = getFrameValues(frame, maxFrame, 10);
+            const v2 = getFrameValues(frame, maxFrame, 80);
+            const a2 = 360 - (80 + 20 * v2.bias);
+            weirdGuy2.setArm(guy, 1, 185 - 10 * v1.bias, a2 );
+            weirdGuy2.setArm(guy, 2, 175 + 10 * v1.bias, a2 );
+            // body rotation
+            v = getFrameValues(frame, maxFrame, 1);
+            const body = guy.getObjectByName(guy.name + '_body');
+            body.rotation.y = -0.5 + 1 * v.bias;
+            // update camera
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -110,23 +163,25 @@ VIDEO.init = function(sm, scene, camera){
     opt_seq.objects[1] = {
         secs: 2,
         update: function(seq, partPer, partBias){
-            // camera
             const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(8, 8, 8);
-            camera.position.copy( v1.lerp(v2, partPer) );
-            camera.lookAt(0, 0, 0);
+            const v2 = guy.position.clone().add( new THREE.Vector3(5, 3, 5) );
+            camera.position.copy(v1.lerp(v2, partPer));
+
+            const v3 = new THREE.Vector3(0, 0, 0);
+            const v4 = new THREE.Vector3(0, 0, 0);
+            guy.getWorldPosition(v4).add(new THREE.Vector3( 0, -1.0, 2.0));
+            camera.lookAt(v3.lerp(v4, partPer) );
         }
     };
     // SEQ 2 - ...
     opt_seq.objects[2] = {
         secs: 25,
-        v3Paths: [
-            { key: 'campos', array: v3Array_campos, lerp: true }
-        ],
         update: function(seq, partPer, partBias){
-            // camera
-            seq.copyPos('campos', camera);
-            camera.lookAt(0, 0, 0);
+            const v1 = guy.position.clone().add( new THREE.Vector3(5, 3, 5) );
+            camera.position.copy(v1);
+            const a = new THREE.Vector3(0, 0, 0);
+            guy.getWorldPosition(a);
+            camera.lookAt(a.add(new THREE.Vector3( 0, -1.0, 2.0)));
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
