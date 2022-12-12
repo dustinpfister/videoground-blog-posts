@@ -7,13 +7,16 @@
 
 <!--  0 VIDEOS -->
 
+### () - threejs-examples-weird-walk-two
+* () start the folder
+* () just make it after the current demo for this
+* () upload and embed
+
 ### () - threejs-geometry
 
 ### () - threejs-face3
 
 ### () - threejs-normal-map
-
-### () - threejs-examples-weird-walk-two
 
 ### () - threejs-examples-svg-movement
 
