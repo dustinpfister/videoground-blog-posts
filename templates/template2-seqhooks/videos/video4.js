@@ -106,7 +106,7 @@ VIDEO.init = function(sm, scene, camera){
             //camera.position.set(5, 18, 14);
             camera.lookAt(0, 0, 0);
         }
-     };
+    };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
         secs: 2,
@@ -118,7 +118,6 @@ VIDEO.init = function(sm, scene, camera){
             camera.lookAt(0, 0, 0);
         }
     };
-
     // SEQ 2 - ...
     opt_seq.objects[2] = {
         secs: 25,
