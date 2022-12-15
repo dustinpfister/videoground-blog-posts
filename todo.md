@@ -2,6 +2,9 @@
 
 <!-- VIDEO2 -->
 
+### () - threejs-examples-waves video2
+* () start video2 for the post
+
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
