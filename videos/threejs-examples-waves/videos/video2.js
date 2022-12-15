@@ -120,8 +120,8 @@ scene.add(dl);
 
         // wave options and update of wave geo
         wave_opt.alpha = seq.getPer(32, false);
-        wave_opt.degree = 360 * seq.getPer(1, false);
-
+        wave_opt.degree = 45;
+        //wave_opt.degree = 360 * seq.getPer(1, false);
 
 
         },
@@ -159,6 +159,9 @@ scene.add(dl);
     opt_seq.objects[2] = {
         secs: 15,
         update: function(seq, partPer, partBias){
+            // wave
+            wave_opt.degree = 45 + 360 * seq.getPer(1);
+
             // camera
             camera.position.set( 8.5, 8.5, 8.5 );
             camera.lookAt(0, -2, 0);
