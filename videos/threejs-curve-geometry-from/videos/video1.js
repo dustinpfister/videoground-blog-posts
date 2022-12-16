@@ -142,18 +142,16 @@ scene.add(mesh);
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // PATHS
     //-------- ----------
     const v3Array_campos = curveMod.QBV3Array([
-        [8,8,8, 7,-2,-7,    2,0,0,      20],
-        [7,-2,-7, -8,4,0,   0,0,0,      25],
-        [-8,4,0, 8,8,8,     0,0,0,      50]
+        [8,1,0, -5,4,-10,    20,2,-10,      100]
     ]);
-    scene.add( curveMod.debugPoints( v3Array_campos ) );
+    //scene.add( curveMod.debugPoints( v3Array_campos ) );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -216,20 +214,22 @@ scene.add(mesh);
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
 
-    const a2 = seq.getSinBias(1, false);
-    c1_control.set(-10 + 20 * a2,-10 + 20 * a2,0);
-    c2_control.set(0, 0, -10);
-    updateCurveGeo(
-        geo,
-        QBC3(c1_start, c1_control, c1_end),
-        QBC3(c2_start, c2_control, c2_end),
-        50
-    );
+            const a1 = seq.getSinBias(8, false);
+            const a2 = seq.getSinBias(4, false);
+            c1_control.set(0,-5 + 10 * a1, 0);
+            c2_control.set(0, 5 - 10 * a2, 0);
+
 
 
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
+                updateCurveGeo(
+                geo,
+                QBC3(c1_start, c1_control, c1_end),
+                QBC3(c2_start, c2_control, c2_end),
+                50
+            );
         },
         objects: []
     };
@@ -242,24 +242,13 @@ scene.add(mesh);
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(5, 18, 14);
-            camera.lookAt(0, 0, 0);
-        }
-    };
-    // SEQ 1 - ...
-    opt_seq.objects[1] = {
-        secs: 2,
-        update: function(seq, partPer, partBias){
-            // camera
-            const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(8, 8, 8);
-            camera.position.copy( v1.lerp(v2, partPer) );
+            //camera.position.set(15, 15, 15);
             camera.lookAt(0, 0, 0);
         }
     };
     // SEQ 2 - ...
-    opt_seq.objects[2] = {
-        secs: 25,
+    opt_seq.objects[1] = {
+        secs: 27,
         v3Paths: [
             { key: 'campos', array: v3Array_campos, lerp: true }
         ],
