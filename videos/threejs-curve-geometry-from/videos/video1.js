@@ -78,8 +78,10 @@ VIDEO.init = function(sm, scene, camera){
     // LIGHT
     // ---------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 1);
-    dl.position.set(0.25, 0.5, 0.5);
+    dl.position.set(0, 1, -5);
     scene.add(dl);
+    const al = new THREE.AmbientLight(0xffffff, 0.25);
+    scene.add(al);
     // ---------- ----------
     // CURVES
     // ---------- ----------
@@ -138,7 +140,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
     //-------- ----------
     // GRID
     //-------- ----------
