@@ -2,13 +2,14 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-examples-waves video2
-* () start video2 for the post
-
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
+
+### () - threejs-curve-geometry-from
+* () start video2 for the post
+* () upload and embed
 
 ### () - threejs-geometry
 
@@ -35,6 +36,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 12/15/2022 ) - threejs-examples-waves video2
+* (done) start video2 for the post
+* (done) upload and embed
 
 ### ( done 12/12/2022 ) - threejs-examples-weird-walk-two
 * (done) start the folder
