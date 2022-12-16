@@ -216,8 +216,8 @@ VIDEO.init = function(sm, scene, camera){
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
 
-            const a1 = seq.getSinBias(8, false);
-            const a2 = seq.getSinBias(4, false);
+            const a1 = seq.getSinBias(12, false);
+            const a2 = seq.getSinBias(6, false);
 
             c1_start.set(-5 - 15 * seq.per, 0, 5);
             c1_end.set(5, 0, 5);
@@ -226,7 +226,7 @@ VIDEO.init = function(sm, scene, camera){
 
             c2_start.set(-5 + 4 * seq.per, 0, -5);
             c2_end.set(5 - 4 * seq.per, 0, -5);
-            c2_control.set(0, 2.5 - 5 * a2, 0);
+            c2_control.set(0, 2.5 - 6 * a2, 0);
 
         },
         afterObjects: function(seq){
@@ -261,6 +261,7 @@ VIDEO.init = function(sm, scene, camera){
         ],
         update: function(seq, partPer, partBias){
             // camera
+            camera.zoom = 1 + 0.5 * partBias;
             seq.copyPos('campos', camera);
             camera.lookAt(0, 0, 0);
         }
