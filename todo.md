@@ -8,7 +8,7 @@
 <!--  0 VIDEOS -->
 
 ### () - threejs-curve-geometry-from
-* () start video2 for the post
+* (done) start video2 for the post
 * () upload and embed
 
 ### () - threejs-geometry
