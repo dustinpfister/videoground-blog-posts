@@ -22,11 +22,25 @@ VIDEO.init = function(sm, scene, camera){
         heightSegs: 100
     });
     const geo = waveMod.create( wave_opt );
-    console.log(geo.getAttribute('position').count)
+    console.log(geo.getAttribute('position').count);
+    //-------- ----------
+    // TEXTURE
+    //-------- ----------
+
+let canObj = canvasMod.create({
+    draw:'rnd',
+    size: 64,
+    update_mode: 'dual',
+    state: {
+        gSize: 30
+    },
+    palette: ['cyan', 'lime', 'red', 'blue', 'yellow', 'orange', 'purple']
+});
+
     //-------- ----------
     // MESH, MATERIAL
     //-------- ----------
-    const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide, wireframe: false});
+    const material = new THREE.MeshPhongMaterial({ side: THREE.DoubleSide, wireframe: false, map: canObj.texture_data });
     const mesh = new THREE.Mesh(geo, material);
     scene.add(mesh);
     //-------- ----------
@@ -38,7 +52,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#1a1a1a');
     //-------- ----------
     // GRID
     //-------- ----------
