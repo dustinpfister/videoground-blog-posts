@@ -7,10 +7,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-curve-geometry-from
-* (done) start video2 for the post
-* () upload and embed
-
 ### () - threejs-geometry
 
 ### () - threejs-face3
@@ -36,6 +32,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 12/16/2022 ) - threejs-curve-geometry-from
+* (done) start video2 for the post
+* (done) upload and embed
 
 ### ( done 12/15/2022 ) - threejs-examples-waves video2
 * (done) start video2 for the post
