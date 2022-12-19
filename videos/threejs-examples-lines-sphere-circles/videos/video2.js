@@ -4,25 +4,62 @@ VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r1/canvas.js',
    '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
-   '../../../js/curve/r0/curve.js'
+   '../../../js/curve/r0/curve.js',
+   'lines-sphere-circles-r1.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+//-------- ----------
+// LINES
+//-------- ----------
+const opt = {
+    maxRadius: 4,
+    pointsPerCircle: 100,
+    circleCount: 20,
+    linewidth: 8,
+    colors: ['red', 'lime', 'blue', 'yellow', 'green', 'cyan', 'orange', 'pink', 'purple'],
+    forPoint: function(v, s, opt){
+        v.x = v.x + -0.25 + 0.5 * Math.random();
+        v.z = v.z + -0.25 + 0.5 * Math.random();
+        return v;
+    }
+}
+const g1 = LinesSphereCircles.create(opt);
+scene.add(g1);
+
+const update = function(frame, frameMax){
+    const a1 = frame / frameMax * 2 % 1;
+    const a2 = 1 - Math.abs( 0.5 - a1 * 4 % 1 ) / 0.5;
+    g1.children.forEach( (line, i, arr) => {
+        // rotate
+        const count = Math.floor(i + 1);
+        line.rotation.z = Math.PI * 2 * count * a1;
+        // scale
+        const s = 1 - (i / arr.length * 0.5 * a2);
+        line.scale.set(s, s, s);
+        // material
+        const m = line.material;
+        m.transparent = true;
+        m.opacity = 0.85 - 0.80 * ( i / arr.length);
+    });
+    LinesSphereCircles.setByFrame(g1, frame, frameMax, opt);
+    g1.rotation.y = Math.PI * 2 * a1;
+};
     //-------- ----------
     // BACKGROUND
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    scene.background = new THREE.Color('#000000');
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // PATHS
     //-------- ----------
     const v3Array_campos = curveMod.QBV3Array([
-        [8,8,8, -8,8,8,    0,0,0,      20]
+        [8,8,8, -8,8,8,    8,4,0,      20]
     ]);
     //scene.add( curveMod.debugPoints( v3Array_campos ) );
     //-------- ----------
@@ -86,6 +123,9 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
+
+update(seq.frame, seq.frameMax);
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
