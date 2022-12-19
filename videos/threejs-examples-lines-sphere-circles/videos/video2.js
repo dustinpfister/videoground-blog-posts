@@ -16,8 +16,21 @@ const opt = {
     maxRadius: 4,
     pointsPerCircle: 100,
     circleCount: 20,
-    linewidth: 8,
-    colors: ['red', 'lime', 'blue', 'yellow', 'green', 'cyan', 'orange', 'pink', 'purple'],
+    linewidth: 15,
+    //colors: ['red', 'lime', 'blue', 'yellow', 'green', 'cyan', 'orange', 'pink', 'purple'],
+/*
+    colors: ['#00ff11','#00ee22','#00dd33','#00cc44','#00bb55',
+             '#00aa66','#009977','#008888','#007799','#0066aa',
+             '#0055bb','#0044cc','#0033dd','#0022ee','#0011ff'
+    ],
+*/
+    colors: new Array(20).fill('.').map((e, i, arr) => {
+        const color = new THREE.Color(0, 0, 0);
+        const a1 = i / arr.length;
+        color.g = 1 - a1;
+        color.b = a1;
+        return color.getStyle();
+    }),
     forPoint: function(v, s, opt){
         v.x = v.x + -0.25 + 0.5 * Math.random();
         v.z = v.z + -0.25 + 0.5 * Math.random();
