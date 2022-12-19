@@ -5,7 +5,12 @@
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
+### () - threejs-examples-lines-sphere-circles
+* () start video2
+* () upload and embed
+
 <!--  0 VIDEOS -->
+
 
 ### () - threejs-geometry
 
