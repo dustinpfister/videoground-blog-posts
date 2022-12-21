@@ -1,6 +1,9 @@
 # videoground-blog-posts todo list
 
 <!-- VIDEO2 -->
+### () - threejs-examples-lerp-geo
+* () start video2 for this threejs example
+
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
