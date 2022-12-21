@@ -1,42 +1,47 @@
 # videoground-blog-posts todo list
 
 <!-- VIDEO2 -->
-
 ### () - threejs-examples-sequence-hooks
 * () new video showcasing r2 of the project
 
-### () - threejs-examples-lines-sphere-circles
-* () start video2
-* () upload and embed
-
 <!--  0 VIDEOS -->
-
-
-### () - threejs-geometry
-
-### () - threejs-face3
-
-### () - threejs-normal-map
-
-### () - threejs-examples-svg-movement
-
+### () - threejs-clock
+### () - threejs-dae-collada-loader
+### () - threejs-examples-animation-loop-module
+### () - threejs-examples-build-a-box
 ### () - threejs-examples-dae-tools
-
-### () - video1 for threejs-texture-loader
-
+### () - threejs-examples-clock-basic
+### () - threejs-examples-create-path-tool
+### () - threejs-examples-land-sections
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * (done) use new sin-grid plug in for the video
-* () sphere background
-* () move obejcts and not just the camera
-* () export to raw video file
-* () create final video file
-* () upload to youtube
 * () embed in post
+### () - threejs-examples-menus
+### () - threejs-examples-svg-movement
+### () - threejs-examples-tool-source-layer-3d
+### () - threejs-face3
+### () - threejs-face3-color
+### () - threejs-fly-controls
+### () - threejs-geometry
+### () - threejs-light-prope
+### () - threejs-normal-map
+### () - threejs-orbit-controls
+### () - threejs-object3d-parent
+### () - threejs-object3d-type
+### () - threejs-object3d-get-by-name
+### () - threejs-object3d-layers
+### () - threejs-texture-loader
+### () - threejs-webgl
+### () - threejs-webglrenderer
 
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 12/19/2022 ) - threejs-examples-lines-sphere-circles
+* (done) start video2
+* (done) upload and embed
 
 ### ( done 12/16/2022 ) - threejs-curve-geometry-from
 * (done) start video2 for the post
