@@ -31,17 +31,31 @@ VIDEO.init = function(sm, scene, camera){
     const texture = new THREE.DataTexture( data, width, height );
     texture.needsUpdate = true;
 */
-
-
+    const canObj_sphere = canvasMod.create({
+        size: 64,
+        draw: 'rnd',
+        palette: ['#00ff00','#00ffff'],
+        state: { 
+           gSize: 30
+        }
+    });
+    const texture_sphere = canObj_sphere.texture;
+    texture_sphere.magFilter = THREE.NearestFilter;
+    texture_sphere.minFilter = THREE.NearestFilter;
 
     //-------- ----------
     //  MESH OBJECTS, UPDATE OPTIONS
     //-------- ----------
     const mesh1 = sphereMutate.create({
-        size: 2, w: 40, h: 40, //texture: texture
+        size: 2, w: 40, h: 40, 
+        material : new THREE.MeshPhongMaterial({
+            map: texture_sphere
+        })
+
+//texture: texture_sphere
     });
     mesh1.material.transparent = true;
-    mesh1.material.opacity = 0.8;
+    //mesh1.material.opacity = 1;
     const updateOpt1 = {
         forPoint : function(vs, i, x, y, mesh, alpha){
             const mud = mesh.userData;
@@ -61,16 +75,15 @@ VIDEO.init = function(sm, scene, camera){
     console.log(mesh1.material.type) // MeshPhongMaterial
     scene.add(mesh1);
     sphereMutate.update(mesh1, 1, updateOpt1);
-
     //-------- ----------
     // LIGHT
     //-------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 1);
     scene.add(dl);
-//-------- ----------
+    //-------- ----------
     // BACKGROUND
     //-------- ----------
-    const canObj = canvasMod.create({
+    const canObj_back = canvasMod.create({
         size: 512,
         draw: 'grid_palette',
         palette: ['#000000', '#1f1f1f', '#00ffff'],
@@ -80,17 +93,17 @@ VIDEO.init = function(sm, scene, camera){
     // can use LZString to compress and decompress
     //console.log( LZString.decompressFromBase64('AwGlEYyzNCVgpcmPit1mqvTsg===') );
     // I want to repeat the texture
-    const texture = canObj.texture;
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(40, 40);
-    scene.background = texture;
+    const texture_back = canObj_back.texture;
+    texture_back.wrapS = THREE.RepeatWrapping;
+    texture_back.wrapT = THREE.RepeatWrapping;
+    texture_back.repeat.set(40, 40);
+    scene.background = texture_back;
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -152,8 +165,10 @@ VIDEO.init = function(sm, scene, camera){
             camera.position.set(8, 1, 0);
             sphereMutate.update(mesh1, seq.per, updateOpt1);
             mesh1.rotation.y = Math.PI * 2 * seq.per;
+
         },
         afterObjects: function(seq){
+            //mesh1.material.opacity = 1;
         },
         objects: [
             {
