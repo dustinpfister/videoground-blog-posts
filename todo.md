@@ -37,7 +37,11 @@
 ### () - threejs-object3d-type
 ### () - threejs-object3d-get-by-name
 ### () - threejs-object3d-layers
+
 ### () - threejs-phong-material
+* () start the video folder
+* () use the sphere mutate module also
+
 ### () - threejs-texture-loader
 ### () - threejs-webgl
 ### () - threejs-webglrenderer
