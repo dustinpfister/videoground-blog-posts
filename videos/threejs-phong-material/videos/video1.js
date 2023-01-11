@@ -13,28 +13,10 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // TEXTURE
     //-------- ----------
-    // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
-/*
-    const width = 256, height = 256;
-    const size = width * height;
-    const data = new Uint8Array( 4 * size );
-    for ( let i = 0; i < size; i ++ ) {
-        const stride = i * 4;
-        const a1 = i / size;
-        const a2 = 1 - Math.abs(0.5 - a1 * 2 % 1) / 0.5;
-        const v = 105 + 150 * Math.random();
-        data[ stride ] = v * a1;
-        data[ stride + 1 ] = v * (1 - a1);
-        data[ stride + 2 ] = v * a2
-        data[ stride + 3 ] = 255;
-    }
-    const texture = new THREE.DataTexture( data, width, height );
-    texture.needsUpdate = true;
-*/
     const canObj_sphere = canvasMod.create({
         size: 64,
         draw: 'rnd',
-        palette: ['#00ff00','#00ffff'],
+        palette: ['#00ff00','#00ffff', '#008888', '#008800'],
         state: { 
            gSize: 30
         }
@@ -42,7 +24,6 @@ VIDEO.init = function(sm, scene, camera){
     const texture_sphere = canObj_sphere.texture;
     texture_sphere.magFilter = THREE.NearestFilter;
     texture_sphere.minFilter = THREE.NearestFilter;
-
     //-------- ----------
     //  MESH OBJECTS, UPDATE OPTIONS
     //-------- ----------
@@ -79,6 +60,7 @@ VIDEO.init = function(sm, scene, camera){
     // LIGHT
     //-------- ----------
     const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(0,1,2);
     scene.add(dl);
     //-------- ----------
     // BACKGROUND
