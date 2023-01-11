@@ -8,6 +8,12 @@
 * () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
+
+### () - threejs-phong-material
+* (done) start the video folder
+* (done) use the sphere mutate module also
+* () make final video, upload and embed
+
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
@@ -37,11 +43,6 @@
 ### () - threejs-object3d-type
 ### () - threejs-object3d-get-by-name
 ### () - threejs-object3d-layers
-
-### () - threejs-phong-material
-* () start the video folder
-* () use the sphere mutate module also
-
 ### () - threejs-texture-loader
 ### () - threejs-webgl
 ### () - threejs-webglrenderer
