@@ -8,6 +8,7 @@
 * () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
+### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
 ### () - threejs-examples-animation-loop-module
@@ -16,10 +17,12 @@
 ### () - threejs-examples-clock-basic
 ### () - threejs-examples-create-path-tool
 ### () - threejs-examples-land-sections
+
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * (done) use new sin-grid plug in for the video
 * () embed in post
+
 ### () - threejs-examples-menus
 ### () - threejs-examples-svg-movement
 ### () - threejs-examples-tool-source-layer-3d
@@ -34,6 +37,7 @@
 ### () - threejs-object3d-type
 ### () - threejs-object3d-get-by-name
 ### () - threejs-object3d-layers
+### () - threejs-phong-material
 ### () - threejs-texture-loader
 ### () - threejs-webgl
 ### () - threejs-webglrenderer
