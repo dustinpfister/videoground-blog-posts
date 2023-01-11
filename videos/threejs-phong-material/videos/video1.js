@@ -30,10 +30,10 @@ VIDEO.init = function(sm, scene, camera){
     const mesh1 = sphereMutate.create({
         size: 2, w: 40, h: 40, 
         material : new THREE.MeshPhongMaterial({
+            shininess: 300,
+            specular : new THREE.Color(1,1,1),
             map: texture_sphere
         })
-
-//texture: texture_sphere
     });
     mesh1.material.transparent = true;
     //mesh1.material.opacity = 1;
