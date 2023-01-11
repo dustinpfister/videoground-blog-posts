@@ -3,7 +3,8 @@
 // scripts
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
-   '../../../js/canvas/r1/canvas.js',
+   //'../../../js/canvas/r2/lz-string.js',
+   '../../../js/canvas/r2/canvas.js',
    '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
    '../../../js/sphere-mutate/r2/sphere-mutate.js'
 ];
@@ -13,6 +14,7 @@ VIDEO.init = function(sm, scene, camera){
     // TEXTURE
     //-------- ----------
     // USING THREE DATA TEXTURE To CREATE A RAW DATA TEXTURE
+/*
     const width = 256, height = 256;
     const size = width * height;
     const data = new Uint8Array( 4 * size );
@@ -28,11 +30,15 @@ VIDEO.init = function(sm, scene, camera){
     }
     const texture = new THREE.DataTexture( data, width, height );
     texture.needsUpdate = true;
+*/
+
+
+
     //-------- ----------
     //  MESH OBJECTS, UPDATE OPTIONS
     //-------- ----------
     const mesh1 = sphereMutate.create({
-        size: 2, w: 40, h: 40, texture: texture
+        size: 2, w: 40, h: 40, //texture: texture
     });
     mesh1.material.transparent = true;
     mesh1.material.opacity = 0.8;
@@ -52,6 +58,7 @@ VIDEO.init = function(sm, scene, camera){
             return vs.lerp(state[i].v, alpha3);
         }
     };
+    console.log(mesh1.material.type) // MeshPhongMaterial
     scene.add(mesh1);
     sphereMutate.update(mesh1, 1, updateOpt1);
 
