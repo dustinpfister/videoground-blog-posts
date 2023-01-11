@@ -23,12 +23,6 @@
 ### () - threejs-examples-clock-basic
 ### () - threejs-examples-create-path-tool
 ### () - threejs-examples-land-sections
-
-### () - threejs-examples-lines-deterministic
-* (done) start video folder and a video1 file
-* (done) use new sin-grid plug in for the video
-* () embed in post
-
 ### () - threejs-examples-menus
 ### () - threejs-examples-svg-movement
 ### () - threejs-examples-tool-source-layer-3d
@@ -50,6 +44,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( 01/01/2023 ) - threejs-examples-lines-deterministic
+* (done) start video folder and a video1 file
+* (done) use new sin-grid plug in for the video
+* (done) embed in post
 
 ### ( done 12/19/2022 ) - threejs-examples-lines-sphere-circles
 * (done) start video2
