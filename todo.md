@@ -37,6 +37,7 @@
 ### () - threejs-object3d-type
 ### () - threejs-object3d-get-by-name
 ### () - threejs-object3d-layers
+### () - threejs-shader-material
 ### () - threejs-texture-loader
 ### () - threejs-webgl
 ### () - threejs-webglrenderer
