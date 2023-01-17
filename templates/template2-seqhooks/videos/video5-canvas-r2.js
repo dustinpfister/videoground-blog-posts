@@ -35,6 +35,14 @@ VIDEO.init = function(sm, scene, camera){
         [8,1,0, 8,8,8,  4,0,4]
     ]);
     //-------- ----------
+    // CURVE Alphas
+    //-------- ----------
+    const getCamPosAlpha = curveMod.getAlphaFunction({
+        type: 'curve2',
+        ac_points: [0,0.15,  0.5,0.075,   0.7,0,   0.75,-0.15,    1]
+    });
+    scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
+    //-------- ----------
     // GRID
     //-------- ----------
     const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -118,7 +126,7 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(5, 18, 14);
+            camera.position.set(8, 8, 8);
             camera.lookAt(0, 0, 0);
         }
     };
@@ -126,7 +134,8 @@ VIDEO.init = function(sm, scene, camera){
     opt_seq.objects[1] = {
         secs: 27,
         update: function(seq, partPer, partBias){
-            camera.position.copy( cp_campos.getPoint(partPer) );
+            const a1 = getCamPosAlpha(partPer);
+            camera.position.copy( cp_campos.getPoint(a1) );
             camera.lookAt(0, 0, 0);
         }
     };
