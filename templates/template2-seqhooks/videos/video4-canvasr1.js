@@ -1,10 +1,10 @@
 // video4 for template2-sequence-hooks using r1 of canvas.js
-// and r2 of sequences-hooks. Also now using r0 of the curves.js module
+// and r2 of sequences-hooks. Also now using r1 of the curves.js module as well
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r1/canvas.js',
    '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
-   '../../../js/curve/r0/curve.js'
+   '../../../js/curve/r1/curve.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
