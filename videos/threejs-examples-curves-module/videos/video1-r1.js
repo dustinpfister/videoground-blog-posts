@@ -11,7 +11,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // BACKGROUND - using canvas2 and lz-string to create a background texture
     //-------- ----------
-    const canObj = canvasMod.create({
+    const canObj_bg = canvasMod.create({
         size: 512,
         draw: 'grid_palette',
         palette: ['#000000', '#1f1f1f', '#00ffff'],
@@ -21,7 +21,7 @@ VIDEO.init = function(sm, scene, camera){
     // can use LZString to compress and decompress
     //console.log( LZString.decompressFromBase64('AwGlEYyzNCVgpcmPit1mqvTsg===') );
     // I want to repeat the texture
-    const texture = canObj.texture;
+    const texture = canObj_bg.texture;
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(32, 24);
@@ -32,7 +32,7 @@ VIDEO.init = function(sm, scene, camera){
     const cp_campos = curveMod.QBCurvePath([
         [8,1,0, 8,3,8,  5,2,5]
     ]);
-    //scene.add( curveMod.debugPointsCurve(cp_campos) )
+    scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
@@ -44,9 +44,23 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
+    //-------- ----------
+    // TEXTURES
+    //-------- ----------
+    
+    //-------- ----------
+    // MATERIALS
+    //-------- ----------
+    const material_1 = new THREE.MeshNormalMaterial({ side: THREE.DobleSide });
+    //-------- ----------
+    // OBJECTS
+    //-------- ----------
+    const plane = new THREE.Mesh( new THREE.PlaneGeometry(20, 20, 1, 1), material_1 );
+    plane.geometry.rotateX(Math.PI * 1.5);
+    scene.add(plane);
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -85,7 +99,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.material.opacity = 0.8;
+                    textCube.material.opacity = 0.9;
                 }
             },
             {
@@ -95,7 +109,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
-                    textCube.material.opacity = 0.8 - 0.8 * partPer;
+                    textCube.material.opacity = 0.9 - 0.9 * partPer;
                 }
             }
         ]
