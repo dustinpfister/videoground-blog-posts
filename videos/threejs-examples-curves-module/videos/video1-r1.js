@@ -160,21 +160,22 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            camera.position.set(-12, 5, -12);
+            //camera.position.set(-12, 5, -12);
             camera.lookAt(0, 0, 0);
         }
     };
     // SEQ 1 - move along path and use curve alpha when doing so
     opt_seq.objects[1] = {
-        secs: 7,
+        secs: 12,
         update: function(seq, partPer, partBias){
             const a1 = getCamPosAlpha(partPer);
             camera.position.copy( cp_campos.getPoint(a1) );
             camera.lookAt(3 * partBias, 0, 0);
         }
     };
+    // SEQ 2 - move to new pos, use smooth alpha method
     opt_seq.objects[2] = {
-        secs: 3,
+        secs: 5,
         update: function(seq, partPer, partBias){
             const v1 = cp_campos.getPoint(1);
             const v2 = new THREE.Vector3(-10, 5, 10)
@@ -182,12 +183,15 @@ VIDEO.init = function(sm, scene, camera){
             camera.lookAt(0, 0, 0);
         }
     };
+    // SEQ 3 - rotate camera around using the smooth alpha
     opt_seq.objects[3] = {
-        secs: 5,
+        secs: 10,
         update: function(seq, partPer, partBias){
             const v1 = new THREE.Vector3(-10, 5, 10)
             camera.position.copy( v1 );
             camera.lookAt(0, 0, 0);
+            const a1 = getSmoothAlpha( partPer )
+            camera.rotation.z += Math.PI * 8 * a1;
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
