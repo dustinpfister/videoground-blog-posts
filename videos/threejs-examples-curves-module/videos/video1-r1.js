@@ -33,9 +33,10 @@ VIDEO.init = function(sm, scene, camera){
         [8,1,0, 10,4,10,  8,1,0,    0 ],
         [10,4,10, 0,2,10,  -5,1,7,   0 ],
         [0,2,10, 0,1,5,  0,-0.5,0,     0 ],
-        [0,1,5, 0,1,-5,  0,0,0,     0 ]
+        [0,1,5, 0,1,-5,  0,0,0,     0 ],
+        [0,1,-5, -8,2,-10,  10,-2,-2,     0 ]
     ]);
-    scene.add( curveMod.debugPointsCurve(cp_campos, {count: 60, color: new THREE.Color(1,0,0), size: 0.5}) )
+    scene.add( curveMod.debugPointsCurve(cp_campos, {count: 80, color: new THREE.Color(1,0,0), size: 0.75}) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
@@ -158,16 +159,25 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            camera.position.set(-8, 4, -8);
+            camera.position.set(-12, 5, -12);
             camera.lookAt(0, 0, 0);
         }
     };
-    // SEQ 1 - ...
+    // SEQ 1 - move along path and use curve alpha when doing so
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 7,
         update: function(seq, partPer, partBias){
             const a1 = getCamPosAlpha(partPer);
             camera.position.copy( cp_campos.getPoint(a1) );
+            camera.lookAt(0, 0, 0);
+        }
+    };
+    opt_seq.objects[2] = {
+        secs: 20,
+        update: function(seq, partPer, partBias){
+            const v1 = cp_campos.getPoint(1);
+            const v2 = new THREE.Vector3(-10, 5, 10)
+            camera.position.copy( v1 ).lerp(v2, partPer);
             camera.lookAt(0, 0, 0);
         }
     };
