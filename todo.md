@@ -1,6 +1,10 @@
 # videoground-blog-posts todo list
 
 <!-- VIDEO2 -->
+
+### () - threejs-camera-move
+* () new camera move video2
+
 ### () - threejs-examples-lerp-geo
 * () start video2 for this threejs example
 
@@ -9,10 +13,14 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-phong-material
-* (done) start the video folder
-* (done) use the sphere mutate module also
-* () make final video, upload and embed
+### () - threejs-examples-lines-deterministic
+* (done) start video folder and a video1 file
+* () finish this
+
+### () - threejs-examples-curves-module
+* () start video1 for this
+* () upload and embed
+
 
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
@@ -46,10 +54,10 @@
 
 <!-- DONE -->
 
-### ( 01/01/2023 ) - threejs-examples-lines-deterministic
-* (done) start video folder and a video1 file
-* (done) use new sin-grid plug in for the video
-* (done) embed in post
+### ( done 01/11/2023 ) - threejs-phong-material
+* (done) start the video folder
+* (done) use the sphere mutate module also
+* (done) make final video, upload and embed
 
 ### ( done 12/19/2022 ) - threejs-examples-lines-sphere-circles
 * (done) start video2
