@@ -1,32 +1,45 @@
-// video4 for template2-sequence-hooks using r1 of canvas.js
-// and r2 of sequences-hooks. Also now using r1 of the curves.js module as well
+// video5 for template2-sequence-hooks using r2 of canvas.js, and r1 of curve.js
+// * makes use of new compression features for a background texture
+// * curve paths in place of v3 array, and not using built in v3 array features of sequnce hooks
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
-   '../../../js/canvas/r1/canvas.js',
-   '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
-   '../../../js/curve/r1/curve.js'
+   '../../../js/canvas/r2/lz-string.js',
+   '../../../js/canvas/r2/canvas.js',
+   '../../../js/curve/r1/curve.js',
+   '../../../js/canvas-text-cube/r1/canvas-text-cube.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
     //-------- ----------
-    // BACKGROUND
+    // BACKGROUND - using canvas2 and lz-string to create a background texture
     //-------- ----------
-    scene.background = new THREE.Color('#2a2a2a');
+    const canObj = canvasMod.create({
+        size: 512,
+        draw: 'grid_palette',
+        palette: ['#000000', '#1f1f1f', '#00ffff'],
+        dataParse: 'lzstring64',
+        state: { w: 8, h: 5, data: 'AwGlEYyzNCVgpcmPit1mqvTsg===' }
+    });
+    // can use LZString to compress and decompress
+    //console.log( LZString.decompressFromBase64('AwGlEYyzNCVgpcmPit1mqvTsg===') );
+    // I want to repeat the texture
+    const texture = canObj.texture;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(32, 24);
+    scene.background = texture;
+    //-------- ----------
+    // CURVE PATHS - cretaing a curve path for the camera
+    //-------- ----------
+    const cp_campos = curveMod.QBCurvePath([
+        [8,1,0, 8,8,8,  4,0,4]
+    ]);
     //-------- ----------
     // GRID
     //-------- ----------
     const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
     grid.material.linewidth = 3;
     scene.add( grid );
-    //-------- ----------
-    // PATHS
-    //-------- ----------
-    const v3Array_campos = curveMod.QBV3Array([
-        [8,8,8, 7,-2,-7,    2,0,0,      20],
-        [7,-2,-7, -8,4,0,   0,0,0,      25],
-        [-8,4,0, 8,8,8,     0,0,0,      50]
-    ]);
-    scene.add( curveMod.debugPointsArray( v3Array_campos ) );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -37,7 +50,7 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
-            ['template2-video4', 64, 17, 14, 'white'],
+            ['template2-video5', 64, 17, 14, 'white'],
             ['', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
             ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
@@ -45,7 +58,9 @@ VIDEO.init = function(sm, scene, camera){
         ]
     });
     scene.add(textCube);
+    //-------- ----------
     // A SEQ FOR TEXT CUBE
+    //-------- ----------
     const seq_textcube = seqHooks.create({
         setPerValues: false,
         fps: 30,
@@ -109,24 +124,9 @@ VIDEO.init = function(sm, scene, camera){
     };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 2,
+        secs: 27,
         update: function(seq, partPer, partBias){
-            // camera
-            const v1 = new THREE.Vector3(8, 1, 0);
-            const v2 = new THREE.Vector3(8, 8, 8);
-            camera.position.copy( v1.lerp(v2, partPer) );
-            camera.lookAt(0, 0, 0);
-        }
-    };
-    // SEQ 2 - ...
-    opt_seq.objects[2] = {
-        secs: 25,
-        v3Paths: [
-            { key: 'campos', array: v3Array_campos, lerp: true }
-        ],
-        update: function(seq, partPer, partBias){
-            // camera
-            seq.copyPos('campos', camera);
+            camera.position.copy( cp_campos.getPoint(partPer) );
             camera.lookAt(0, 0, 0);
         }
     };
