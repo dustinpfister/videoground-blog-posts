@@ -44,6 +44,7 @@ VIDEO.init = function(sm, scene, camera){
         type: 'curve2',
         ac_points: [0,0.4,  0.6,-0.25,  1]
     });
+    const getSmoothAlpha = curveMod.getAlphaFunction({type: 'smooth'});
     //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha, {color: new THREE.Color(0,1,1), size: 1}) )
     //-------- ----------
     // GRID
@@ -177,7 +178,7 @@ VIDEO.init = function(sm, scene, camera){
         update: function(seq, partPer, partBias){
             const v1 = cp_campos.getPoint(1);
             const v2 = new THREE.Vector3(-10, 5, 10)
-            camera.position.copy( v1 ).lerp(v2, partPer);
+            camera.position.copy( v1 ).lerp(v2, getSmoothAlpha( partPer ));
             camera.lookAt(0, 0, 0);
         }
     };
