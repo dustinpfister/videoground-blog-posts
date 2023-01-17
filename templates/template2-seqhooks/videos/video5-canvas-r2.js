@@ -1,6 +1,7 @@
 // video5 for template2-sequence-hooks using r2 of canvas.js, and r1 of curve.js
 // * makes use of new compression features for a background texture
 // * curve paths in place of v3 array, and not using built in v3 array features of sequnce hooks
+// * using curve alphas to get the alpha values to use to get a point along a curve
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r2/lz-string.js',
@@ -32,16 +33,17 @@ VIDEO.init = function(sm, scene, camera){
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,8,8,  4,0,4]
+        [8,1,0, 8,3,8,  5,2,5]
     ]);
+    //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
     const getCamPosAlpha = curveMod.getAlphaFunction({
         type: 'curve2',
-        ac_points: [0,0.15,  0.5,0.075,   0.7,0,   0.75,-0.15,    1]
+        ac_points: [0,0.4,  0.6,-0.25,  1]
     });
-    scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
+    //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
     //-------- ----------
     // GRID
     //-------- ----------
@@ -126,7 +128,7 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            camera.position.set(8, 8, 8);
+            //camera.position.set(-8, 4, -8);
             camera.lookAt(0, 0, 0);
         }
     };
