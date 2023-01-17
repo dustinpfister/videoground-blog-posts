@@ -17,11 +17,6 @@
 * (done) start video folder and a video1 file
 * () finish this
 
-### () - threejs-examples-curves-module
-* (done) start video1 for this
-* () upload and embed
-
-
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
@@ -53,6 +48,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 01/17/2023 ) - threejs-examples-curves-module
+* (done) start video1 for this
+* (done) upload and embed
 
 ### ( done 01/11/2023 ) - threejs-phong-material
 * (done) start the video folder
