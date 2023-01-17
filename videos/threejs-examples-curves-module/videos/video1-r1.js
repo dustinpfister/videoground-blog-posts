@@ -73,6 +73,10 @@ VIDEO.init = function(sm, scene, camera){
     const plane = new THREE.Mesh( new THREE.PlaneGeometry(20, 20, 1, 1), material_1 );
     plane.geometry.rotateX(Math.PI * 1.5);
     scene.add(plane);
+    const cylinder = new THREE.Mesh( new THREE.CylinderGeometry(1, 1, 3, 20, 20, true), material_2 );
+    cylinder.geometry.rotateX(Math.PI * 1.5);
+    cylinder.geometry.translate(0, 0.5, 0);
+    scene.add(cylinder);
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
