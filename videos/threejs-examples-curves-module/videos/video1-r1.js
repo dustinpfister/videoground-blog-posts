@@ -36,7 +36,7 @@ VIDEO.init = function(sm, scene, camera){
         [0,1,5, 0,1,-5,  0,0,0,     0 ],
         [0,1,-5, -8,2,-10,  10,-2,-2,     0 ]
     ]);
-    scene.add( curveMod.debugPointsCurve(cp_campos, {count: 80, color: new THREE.Color(1,0,0), size: 0.75}) )
+    //scene.add( curveMod.debugPointsCurve(cp_campos, {count: 80, color: new THREE.Color(1,0,0), size: 0.75}) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
@@ -170,15 +170,23 @@ VIDEO.init = function(sm, scene, camera){
         update: function(seq, partPer, partBias){
             const a1 = getCamPosAlpha(partPer);
             camera.position.copy( cp_campos.getPoint(a1) );
-            camera.lookAt(0, 0, 0);
+            camera.lookAt(3 * partBias, 0, 0);
         }
     };
     opt_seq.objects[2] = {
-        secs: 20,
+        secs: 3,
         update: function(seq, partPer, partBias){
             const v1 = cp_campos.getPoint(1);
             const v2 = new THREE.Vector3(-10, 5, 10)
             camera.position.copy( v1 ).lerp(v2, getSmoothAlpha( partPer ));
+            camera.lookAt(0, 0, 0);
+        }
+    };
+    opt_seq.objects[3] = {
+        secs: 5,
+        update: function(seq, partPer, partBias){
+            const v1 = new THREE.Vector3(-10, 5, 10)
+            camera.position.copy( v1 );
             camera.lookAt(0, 0, 0);
         }
     };
