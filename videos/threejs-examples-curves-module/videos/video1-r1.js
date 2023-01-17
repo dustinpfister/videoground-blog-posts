@@ -30,9 +30,12 @@ VIDEO.init = function(sm, scene, camera){
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5]
+        [8,1,0, 10,4,10,  8,1,0,    0 ],
+        [10,4,10, 0,2,10,  -5,1,7,   0 ],
+        [0,2,10, 0,1,5,  0,-0.5,0,     0 ],
+        [0,1,5, 0,1,-5,  0,0,0,     0 ]
     ]);
-    scene.add( curveMod.debugPointsCurve(cp_campos) )
+    scene.add( curveMod.debugPointsCurve(cp_campos, {count: 60, color: new THREE.Color(1,0,0), size: 0.5}) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
@@ -40,7 +43,7 @@ VIDEO.init = function(sm, scene, camera){
         type: 'curve2',
         ac_points: [0,0.4,  0.6,-0.25,  1]
     });
-    //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
+    //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha, {color: new THREE.Color(0,1,1), size: 1}) )
     //-------- ----------
     // GRID
     //-------- ----------
@@ -73,9 +76,9 @@ VIDEO.init = function(sm, scene, camera){
     const plane = new THREE.Mesh( new THREE.PlaneGeometry(20, 20, 1, 1), material_1 );
     plane.geometry.rotateX(Math.PI * 1.5);
     scene.add(plane);
-    const cylinder = new THREE.Mesh( new THREE.CylinderGeometry(1, 1, 3, 20, 20, true), material_2 );
+    const cylinder = new THREE.Mesh( new THREE.CylinderGeometry(1, 1, 5, 20, 20, true), material_2 );
     cylinder.geometry.rotateX(Math.PI * 1.5);
-    cylinder.geometry.translate(0, 0.5, 0);
+    cylinder.geometry.translate(0, 1, 0);
     scene.add(cylinder);
     //-------- ----------
     // TEXT CUBE
@@ -155,7 +158,7 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(-8, 4, -8);
+            camera.position.set(-8, 4, -8);
             camera.lookAt(0, 0, 0);
         }
     };
