@@ -50,11 +50,23 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // TEXTURES
     //-------- ----------
-    
+    const canObj_rnd1 = canvasMod.create({
+        size: 512,
+        draw: 'rnd',
+        palette: ['#00ff00', '#00aa00', '#008800', '#004400'],
+        state: { gSize: 64 }
+    });
+    const canObj_rnd2 = canvasMod.create({
+        size: 512,
+        draw: 'rnd',
+        palette: ['#aaaaaa', '#bbbbbb', '#cccccc'],
+        state: { gSize: 32 }
+    });
     //-------- ----------
     // MATERIALS
     //-------- ----------
-    const material_1 = new THREE.MeshNormalMaterial({ side: THREE.DobleSide });
+    const material_1 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: canObj_rnd1.texture });
+    const material_2 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: canObj_rnd2.texture });
     //-------- ----------
     // OBJECTS
     //-------- ----------
