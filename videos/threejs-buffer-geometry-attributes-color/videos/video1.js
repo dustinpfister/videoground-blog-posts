@@ -41,10 +41,6 @@ VIDEO.init = function(sm, scene, camera){
             geo.setAttribute('color', new_color_attribute);
         }
     };
-    // get bias alpha helper
-    const getBias = (a1, count) => {
-        return 1 - Math.abs(0.5 - a1 * count % 1) / 0.5;
-    };
     // ---------- ----------
     // GEOMETRY, MATERIAL, MESH
     // ---------- ----------
@@ -168,6 +164,13 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
+
+            const a = seq.frame, b = seq.frameMax;
+            const a1 = curveMod.getAlpha('sinBias', a, b, 1);
+            const a2 = curveMod.getAlpha('sinBias', a, b, 8);
+            const a3 = curveMod.getAlpha('sinBias', a, b, 16);
+            update_color_attribute(geo, a1, a2, a3);
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
