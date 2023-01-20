@@ -8,6 +8,13 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+    //-------- ----------
+    // CURVE PATHS - cretaing a curve path for the camera
+    //-------- ----------
+    const cp_campos = curveMod.QBCurvePath([
+        [8,1,0, 0,1,0,  0,5,0,    0]
+    ]);
+    scene.add( curveMod.debugPointsCurve(cp_campos) );
     // ---------- ----------
     // HELPERS
     // ---------- ----------
@@ -81,13 +88,6 @@ VIDEO.init = function(sm, scene, camera){
     texture.repeat.set(32, 24);
     scene.background = texture;
     //-------- ----------
-    // CURVE PATHS - cretaing a curve path for the camera
-    //-------- ----------
-    const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
-    ]);
-    //scene.add( curveMod.debugPointsCurve(cp_campos) )
-    //-------- ----------
     // CURVE Alphas
     //-------- ----------
     const getCamPosAlpha = curveMod.getAlphaFunction({
@@ -98,9 +98,9 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // GRID
     //-------- ----------
-    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
+    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    grid.material.linewidth = 3;
+    scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -164,13 +164,11 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
-
             const a = seq.frame, b = seq.frameMax;
             const a1 = curveMod.getAlpha('sinBias', a, b, 1);
             const a2 = curveMod.getAlpha('sinBias', a, b, 8);
             const a3 = curveMod.getAlpha('sinBias', a, b, 16);
             update_color_attribute(geo, a1, a2, a3);
-
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -186,7 +184,7 @@ VIDEO.init = function(sm, scene, camera){
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
-            //camera.position.set(-8, 4, -8);
+            camera.position.set(-8, 4, -8);
             camera.lookAt(0, 0, 0);
         }
     };
