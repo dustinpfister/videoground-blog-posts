@@ -205,7 +205,7 @@ VIDEO.init = function(sm, scene, camera){
         update: function(seq, partPer, partBias){
             const n = 5 - 2.5 * partPer;
             camera.position.set(n, n, n);
-            camera.lookAt(0, -2 * partPer, 0);
+            camera.lookAt(0, -1 * partPer, 0);
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
