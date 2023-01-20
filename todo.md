@@ -13,6 +13,11 @@
 
 <!--  0 VIDEOS -->
 
+### () - threejs-buffer-geometry-attributes-color - video1
+* () start the folder for this post
+* () just base it off of the basic loop example
+* () upload and embed
+
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * () finish this
