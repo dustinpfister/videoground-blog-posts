@@ -41,9 +41,12 @@ VIDEO.init = function(sm, scene, camera){
     // CURVE PATHS - creating a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
+        [8,1,0, 0,1,4,  2,0,8,    0],
+        [0,1,4, -3,1,-2,  -2,0,-1,    0],
+        [-3,1,-2, 0,2,-2,  -1,-1,-2,    0],
+        [0,2,-2, 2,2,0,  0,1,0,    0]
     ]);
-    //scene.add( curveMod.debugPointsCurve(cp_campos) )
+    //scene.add( curveMod.debugPointsCurve(cp_campos, {color: new THREE.Color(1,0,0)}) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
@@ -159,7 +162,7 @@ VIDEO.init = function(sm, scene, camera){
             },
             objects: []
         };
-        // SEQ 0 - ...
+        // SEQ 0 - Text cube moves up
         opt_seq.objects[0] = {
             secs: 3,
             update: function(seq, partPer, partBias){
@@ -168,7 +171,7 @@ VIDEO.init = function(sm, scene, camera){
                    seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
                 }
                 // camera
-                //camera.position.set(-8, 4, -8);
+                //camera.position.set(-8, 8, -8);
                 camera.lookAt(0, 0, 0);
             }
         };
@@ -176,7 +179,7 @@ VIDEO.init = function(sm, scene, camera){
         opt_seq.objects[1] = {
             secs: 27,
             update: function(seq, partPer, partBias){
-                const a1 = getCamPosAlpha(partPer);
+                const a1 = seq.per;
                 camera.position.copy( cp_campos.getPoint(a1) );
                 camera.lookAt(0, 0, 0);
             }
