@@ -4,7 +4,8 @@ VIDEO.scripts = [
    '../../../js/canvas/r2/lz-string.js',
    '../../../js/canvas/r2/canvas.js',
    '../../../js/curve/r1/curve.js',
-   '../../../js/canvas-text-cube/r1/canvas-text-cube.js'
+   '../../../js/canvas-text-cube/r1/canvas-text-cube.js',
+   '../../../js/dae-helper/r0/dae-helper.js'
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
@@ -27,7 +28,7 @@ VIDEO.init = function(sm, scene, camera){
     texture.repeat.set(32, 24);
     scene.background = texture;
     //-------- ----------
-    // CURVE PATHS - cretaing a curve path for the camera
+    // CURVE PATHS - creating a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
         [8,1,0, 8,3,8,  5,2,5,    0]

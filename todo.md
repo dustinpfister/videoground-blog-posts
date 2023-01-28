@@ -13,9 +13,9 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-buffer-geometry-attributes-color - video1
-* () start the folder for this post
-* () just base it off of the basic loop example
+### () - threejs-examples-house-two
+* (done) start a folder for this
+* () just base it off of the video1 loop example of the post
 * () upload and embed
 
 ### () - threejs-examples-lines-deterministic
@@ -53,6 +53,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 01/20/2023) - threejs-buffer-geometry-attributes-color - video1
+* (done) start the folder for this post
+* (done) just base it off of the basic loop example
+* (done) upload and embed
 
 ### ( done 01/17/2023 ) - threejs-examples-curves-module
 * (done) start video1 for this
