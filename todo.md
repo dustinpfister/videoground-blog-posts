@@ -1,5 +1,9 @@
 # videoground-blog-posts todo list
 
+<!-- Template 10 -->
+## () template 10
+* () start template 10 based off of the threejs-examples-house-two example
+
 <!-- VIDEO2 -->
 
 ### () - threejs-camera-move
