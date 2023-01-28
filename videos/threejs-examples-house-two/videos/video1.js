@@ -172,16 +172,16 @@ VIDEO.init = function(sm, scene, camera){
                 }
                 // camera
                 //camera.position.set(-8, 8, -8);
-                camera.lookAt(0, 0, 0);
+                camera.lookAt(mesh_house.position);
             }
         };
-        // SEQ 1 - ...
+        // SEQ 1 - Move camera along a Curve
         opt_seq.objects[1] = {
             secs: 27,
             update: function(seq, partPer, partBias){
                 const a1 = seq.per;
                 camera.position.copy( cp_campos.getPoint(a1) );
-                camera.lookAt(0, 0, 0);
+                camera.lookAt(mesh_house.position);
             }
         };
         const seq = scene.userData.seq = seqHooks.create(opt_seq);
