@@ -53,12 +53,6 @@ VIDEO.init = function(sm, scene, camera){
     });
     //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
     //-------- ----------
-    // GRID
-    //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
-    //-------- ----------
     // TEXT CUBE
     //-------- ----------
     const textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -111,6 +105,7 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
+	
     //-------- ----------
     // A MAIN SEQ OBJECT
     //-------- ----------
@@ -152,6 +147,52 @@ VIDEO.init = function(sm, scene, camera){
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
+
+
+//-------- ----------
+// LOADING
+//-------- ----------
+return DAE_loader({
+    // custom cloner
+    cloner: (obj, scene_source ) => {
+        if(obj.type === 'Mesh'){
+            const mat = new THREE.MeshBasicMaterial({
+                map: obj.material.map
+            });
+            const mesh = new THREE.Mesh(obj.geometry, mat);
+            mesh.name = obj.name;
+            mesh.rotation.copy(obj.rotation);
+            scene_source.add(mesh);
+        }
+    },
+    urls_dae: [
+        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/house_2.dae')
+    ],
+    urls_resource: [
+        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/skins/windows/')
+    ]
+})
+.then( (scene_source) => {
+    console.log('done loading');
+    // adding the house_0 object to the scene
+    const mesh_house = scene_source.getObjectByName('house_0').clone();
+    scene.add( mesh_house );
+    // plane geometry for the ground
+    const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(10, 10, 1, 1), 
+        new THREE.MeshBasicMaterial({
+            map: canObj_grass.texture
+            //side: THREE.DoubleSide
+        })
+    );
+    plane.geometry.rotateX(Math.PI * 1.5);
+    scene.add(plane)
+})
+.catch( (e) => {
+    console.warn(e);
+});
+
+
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
