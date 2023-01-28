@@ -193,7 +193,8 @@ VIDEO.init = function(sm, scene, camera){
                 const v1 = cp_campos.getPoint(1);
                 const v2 = new THREE.Vector3(2.25,0.5,-2.25);
                 camera.position.copy( v1.lerp(v2, partPer) );
-                camera.lookAt(mesh_house.position);
+                const v3 = new THREE.Vector3().lerp( new THREE.Vector3(0, 0.5, 0), partPer );
+                camera.lookAt(mesh_house.position.clone().add( v3 ));
             }
         };
         const seq = scene.userData.seq = seqHooks.create(opt_seq);
