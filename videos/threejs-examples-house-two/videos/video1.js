@@ -188,12 +188,24 @@ VIDEO.init = function(sm, scene, camera){
         };
         // SEQ 2 - lerp camera from curve end to fixed pos
         opt_seq.objects[2] = {
-            secs: 20,
+            secs: 3,
             update: function(seq, partPer, partBias){
                 const v1 = cp_campos.getPoint(1);
                 const v2 = new THREE.Vector3(2.25,0.5,-2.25);
                 camera.position.copy( v1.lerp(v2, partPer) );
                 const v3 = new THREE.Vector3().lerp( new THREE.Vector3(0, 0.5, 0), partPer );
+                camera.lookAt(mesh_house.position.clone().add( v3 ));
+            }
+        };
+        // SEQ 3 - spin around house
+        opt_seq.objects[3] = {
+            secs: 17,
+            update: function(seq, partPer, partBias){
+                const v1 = new THREE.Vector3(2.25, 0.5, -2.25);
+                const e = new THREE.Euler();
+                e.y = Math.PI * 2.25 * partPer;
+                camera.position.copy( v1.applyEuler(e) );
+                const v3 = new THREE.Vector3(0, 0.5, 0);
                 camera.lookAt(mesh_house.position.clone().add( v3 ));
             }
         };
