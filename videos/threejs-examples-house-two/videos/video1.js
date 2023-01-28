@@ -209,7 +209,7 @@ VIDEO.init = function(sm, scene, camera){
                 camera.lookAt(mesh_house.position.clone().add( v3 ));
             }
         };
-        // SEQ 4 - 
+        // SEQ 4 - zoom in
         opt_seq.objects[4] = {
             secs: 2,
             update: function(seq, partPer, partBias){
@@ -222,7 +222,7 @@ VIDEO.init = function(sm, scene, camera){
                 camera.zoom = 1 + 0.8 * partPer;
             }
         };
-        // SEQ 5 - 
+        // SEQ 5 - rest at a final view for a few last secs
         opt_seq.objects[5] = {
             secs: 3,
             update: function(seq, partPer, partBias){
