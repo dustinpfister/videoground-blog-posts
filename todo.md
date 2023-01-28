@@ -17,11 +17,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-examples-house-two
-* (done) start a folder for this
-* () just base it off of the video1 loop example of the post
-* () upload and embed
-
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * () finish this
@@ -57,6 +52,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 01/28/2023 ) - threejs-examples-house-two
+* (done) start a folder for this
+* (done) just base it off of the video1 loop example of the post
+* (done) upload and embed
 
 ### ( done 01/20/2023) - threejs-buffer-geometry-attributes-color - video1
 * (done) start the folder for this post
