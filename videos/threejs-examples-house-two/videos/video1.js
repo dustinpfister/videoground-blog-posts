@@ -199,14 +199,40 @@ VIDEO.init = function(sm, scene, camera){
         };
         // SEQ 3 - spin around house
         opt_seq.objects[3] = {
-            secs: 17,
+            secs: 12,
             update: function(seq, partPer, partBias){
                 const v1 = new THREE.Vector3(2.25, 0.5, -2.25);
                 const e = new THREE.Euler();
-                e.y = Math.PI * 2.25 * partPer;
+                e.y = Math.PI * 2.6 * partPer;
                 camera.position.copy( v1.applyEuler(e) );
                 const v3 = new THREE.Vector3(0, 0.5, 0);
                 camera.lookAt(mesh_house.position.clone().add( v3 ));
+            }
+        };
+        // SEQ 4 - 
+        opt_seq.objects[4] = {
+            secs: 2,
+            update: function(seq, partPer, partBias){
+                const v1 = new THREE.Vector3(2.25, 0.5, -2.25);
+                const e = new THREE.Euler();
+                e.y = Math.PI * 2.6;
+                camera.position.copy( v1.applyEuler(e) );
+                const v3 = new THREE.Vector3(0, 0.5, 0);
+                camera.lookAt(mesh_house.position.clone().add( v3 ));
+                camera.zoom = 1 + 0.8 * partPer;
+            }
+        };
+        // SEQ 5 - 
+        opt_seq.objects[5] = {
+            secs: 3,
+            update: function(seq, partPer, partBias){
+                const v1 = new THREE.Vector3(2.25, 0.5, -2.25);
+                const e = new THREE.Euler();
+                e.y = Math.PI * 2.6;
+                camera.position.copy( v1.applyEuler(e) );
+                const v3 = new THREE.Vector3(0, 0.5, 0);
+                camera.lookAt(mesh_house.position.clone().add( v3 ));
+                camera.zoom = 1.8;
             }
         };
         const seq = scene.userData.seq = seqHooks.create(opt_seq);
