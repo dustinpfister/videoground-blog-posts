@@ -28,6 +28,16 @@ VIDEO.init = function(sm, scene, camera){
     texture.repeat.set(32, 24);
     scene.background = texture;
     //-------- ----------
+    // TEXTURES
+    //-------- ----------
+    const canObj_grass = canvasMod.create({
+        size: 512,
+        draw: 'rnd',
+        palette: ['#00aa00', '#008800', '#00ff00'],
+        dataParse: 'lzstring64',
+        state: { gSize: 100 }
+    });
+    //-------- ----------
     // CURVE PATHS - creating a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
@@ -58,10 +68,10 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
-            ['template2-video5', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
+            ['House Two', 64, 17, 14, 'white'],
+            ['Threejs example', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['( r140 JAN/28/2023 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
