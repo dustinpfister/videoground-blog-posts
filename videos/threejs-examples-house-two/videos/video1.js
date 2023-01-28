@@ -15,7 +15,7 @@ VIDEO.init = function(sm, scene, camera){
     const canObj = canvasMod.create({
         size: 512,
         draw: 'grid_palette',
-        palette: ['#00ffff', '#008888', '#00ffff'],
+        palette: ['#005555', '#004444', '#00ffff'],
         dataParse: 'lzstring64',
         state: { w: 8, h: 5, data: 'AwGlEYyzNCVgpcmPit1mqvTsg===' }
     });
@@ -33,7 +33,7 @@ VIDEO.init = function(sm, scene, camera){
     const canObj_grass = canvasMod.create({
         size: 512,
         draw: 'rnd',
-        palette: ['#002200', '#004400', '#008800'],
+        palette: ['#002200', '#004400', '#006600','#006622'],
         dataParse: 'lzstring64',
         state: { gSize: 100 }
     });
@@ -62,7 +62,7 @@ VIDEO.init = function(sm, scene, camera){
         bg: '#000000',
         size: 128,
         lineWidth: 7,
-        lineColor: 'rgba(0,100,0,0.8)',
+        lineColor: 'rgba(100,0,100,0.8)',
         lineCount: 9,
         lines: [
             ['House Two', 64, 17, 14, 'white'],
@@ -93,7 +93,7 @@ VIDEO.init = function(sm, scene, camera){
                 update: function(seq, partPer, partBias){
                     // text cube
                     textCube.visible = true;
-                    textCube.material.opacity = 0.8;
+                    textCube.material.opacity = 0.9;
                 }
             },
             {
@@ -103,7 +103,7 @@ VIDEO.init = function(sm, scene, camera){
                     textCube.visible = true;
                     textCube.position.set(6, 0.8 + 1 * partPer, 0);
                     textCube.rotation.y = Math.PI * 2 * partPer;
-                    textCube.material.opacity = 0.8 - 0.8 * partPer;
+                    textCube.material.opacity = 0.9 - 0.9 * partPer;
                 }
             }
         ]
@@ -118,7 +118,7 @@ VIDEO.init = function(sm, scene, camera){
                 const mat = new THREE.MeshPhongMaterial({
                     emissiveMap: obj.material.map,
                     emissive: new THREE.Color(1,1,1),
-                    emissiveIntensity: 2
+                    emissiveIntensity: 2.5
                 });
                 const mesh = new THREE.Mesh(obj.geometry, mat);
                 mesh.name = obj.name;
