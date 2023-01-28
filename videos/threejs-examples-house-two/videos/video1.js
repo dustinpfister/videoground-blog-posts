@@ -177,10 +177,20 @@ VIDEO.init = function(sm, scene, camera){
         };
         // SEQ 1 - Move camera along a Curve
         opt_seq.objects[1] = {
-            secs: 27,
+            secs: 7,
             update: function(seq, partPer, partBias){
-                const a1 = seq.per;
+                const a1 = partPer;
                 camera.position.copy( cp_campos.getPoint(a1) );
+                camera.lookAt(mesh_house.position);
+            }
+        };
+        // SEQ 2 - lerp camera from curve end to fixed pos
+        opt_seq.objects[2] = {
+            secs: 20,
+            update: function(seq, partPer, partBias){
+                const v1 = cp_campos.getPoint(1);
+                const v2 = new THREE.Vector3(2.25,0.5,-2.25);
+                camera.position.copy( v1.lerp(v2, partPer) );
                 camera.lookAt(mesh_house.position);
             }
         };
