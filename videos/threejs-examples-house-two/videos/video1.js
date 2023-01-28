@@ -105,94 +105,89 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
-	
     //-------- ----------
-    // A MAIN SEQ OBJECT
+    // LOADING
     //-------- ----------
-    // start options for main seq object
-    const opt_seq = {
-        fps: 30,
-        beforeObjects: function(seq){
-            textCube.visible = false;
-            camera.position.set(8, 1, 0);
-            camera.zoom = 1;
-        },
-        afterObjects: function(seq){
-            camera.updateProjectionMatrix();
-        },
-        objects: []
-    };
-    // SEQ 0 - ...
-    opt_seq.objects[0] = {
-        secs: 3,
-        update: function(seq, partPer, partBias){
-            // textcube
-            if(seq.partFrame < seq.partFrameMax){
-               seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+    return DAE_loader({
+        // custom cloner
+        cloner: (obj, scene_source ) => {
+            if(obj.type === 'Mesh'){
+                const mat = new THREE.MeshBasicMaterial({
+                    map: obj.material.map
+                });
+                const mesh = new THREE.Mesh(obj.geometry, mat);
+                mesh.name = obj.name;
+                mesh.rotation.copy(obj.rotation);
+                scene_source.add(mesh);
             }
-            // camera
-            //camera.position.set(-8, 4, -8);
-            camera.lookAt(0, 0, 0);
-        }
-    };
-    // SEQ 1 - ...
-    opt_seq.objects[1] = {
-        secs: 27,
-        update: function(seq, partPer, partBias){
-            const a1 = getCamPosAlpha(partPer);
-            camera.position.copy( cp_campos.getPoint(a1) );
-            camera.lookAt(0, 0, 0);
-        }
-    };
-    const seq = scene.userData.seq = seqHooks.create(opt_seq);
-    console.log('frameMax for main seq: ' + seq.frameMax);
-    sm.frameMax = seq.frameMax;
-
-
-//-------- ----------
-// LOADING
-//-------- ----------
-return DAE_loader({
-    // custom cloner
-    cloner: (obj, scene_source ) => {
-        if(obj.type === 'Mesh'){
-            const mat = new THREE.MeshBasicMaterial({
-                map: obj.material.map
-            });
-            const mesh = new THREE.Mesh(obj.geometry, mat);
-            mesh.name = obj.name;
-            mesh.rotation.copy(obj.rotation);
-            scene_source.add(mesh);
-        }
-    },
-    urls_dae: [
-        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/house_2.dae')
-    ],
-    urls_resource: [
-        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/skins/windows/')
-    ]
-})
-.then( (scene_source) => {
-    console.log('done loading');
-    // adding the house_0 object to the scene
-    const mesh_house = scene_source.getObjectByName('house_0').clone();
-    scene.add( mesh_house );
-    // plane geometry for the ground
-    const plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(10, 10, 1, 1), 
-        new THREE.MeshBasicMaterial({
-            map: canObj_grass.texture
-            //side: THREE.DoubleSide
-        })
-    );
-    plane.geometry.rotateX(Math.PI * 1.5);
-    scene.add(plane)
-})
-.catch( (e) => {
-    console.warn(e);
-});
-
-
+        },
+        urls_dae: [
+            videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/house_2.dae')
+        ],
+        urls_resource: [
+            videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/skins/windows/')
+        ]
+    })
+    .then( (scene_source) => {
+        console.log('done loading');
+        // adding the house_0 object to the scene
+        const mesh_house = scene_source.getObjectByName('house_0').clone();
+        scene.add( mesh_house );
+        // plane geometry for the ground
+        const plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(20, 20, 1, 1), 
+            new THREE.MeshBasicMaterial({
+                map: canObj_grass.texture
+                //side: THREE.DoubleSide
+            })
+        );
+        plane.geometry.rotateX(Math.PI * 1.5);
+        scene.add(plane);
+        //-------- ----------
+        // A MAIN SEQ OBJECT
+        //-------- ----------
+        // start options for main seq object
+        const opt_seq = {
+            fps: 30,
+            beforeObjects: function(seq){
+                textCube.visible = false;
+                camera.position.set(8, 1, 0);
+                camera.zoom = 1;
+            },
+            afterObjects: function(seq){
+                camera.updateProjectionMatrix();
+            },
+            objects: []
+        };
+        // SEQ 0 - ...
+        opt_seq.objects[0] = {
+            secs: 3,
+            update: function(seq, partPer, partBias){
+                // textcube
+                if(seq.partFrame < seq.partFrameMax){
+                   seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+                }
+                // camera
+                //camera.position.set(-8, 4, -8);
+                camera.lookAt(0, 0, 0);
+            }
+        };
+        // SEQ 1 - ...
+        opt_seq.objects[1] = {
+            secs: 27,
+            update: function(seq, partPer, partBias){
+                const a1 = getCamPosAlpha(partPer);
+                camera.position.copy( cp_campos.getPoint(a1) );
+                camera.lookAt(0, 0, 0);
+            }
+        };
+        const seq = scene.userData.seq = seqHooks.create(opt_seq);
+        console.log('frameMax for main seq: ' + seq.frameMax);
+        sm.frameMax = seq.frameMax;
+    })
+    .catch( (e) => {
+        console.warn(e);
+    });
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
