@@ -33,7 +33,7 @@ VIDEO.init = function(sm, scene, camera){
     const canObj_grass = canvasMod.create({
         size: 512,
         draw: 'rnd',
-        palette: ['#00aa00', '#008800', '#00ff00'],
+        palette: ['#002200', '#004400', '#008800'],
         dataParse: 'lzstring64',
         state: { gSize: 100 }
     });
@@ -115,8 +115,10 @@ VIDEO.init = function(sm, scene, camera){
         // custom cloner
         cloner: (obj, scene_source ) => {
             if(obj.type === 'Mesh'){
-                const mat = new THREE.MeshBasicMaterial({
-                    map: obj.material.map
+                const mat = new THREE.MeshPhongMaterial({
+                    emissiveMap: obj.material.map,
+                    emissive: new THREE.Color(1,1,1),
+                    emissiveIntensity: 2
                 });
                 const mesh = new THREE.Mesh(obj.geometry, mat);
                 mesh.name = obj.name;
