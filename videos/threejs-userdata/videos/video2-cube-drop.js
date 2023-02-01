@@ -8,6 +8,24 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+    //-------- ----------
+    // BACKGROUND - using canvas2 and lz-string to create a background texture
+    //-------- ----------
+    const canObj = canvasMod.create({
+        size: 512,
+        draw: 'grid_palette',
+        palette: ['#000000', '#1f1f1f', '#00ffff'],
+        dataParse: 'lzstring64',
+        state: { w: 8, h: 5, data: 'AwGlEYyzNCVgpcmPit1mqvTsg===' }
+    });
+    // can use LZString to compress and decompress
+    //console.log( LZString.decompressFromBase64('AwGlEYyzNCVgpcmPit1mqvTsg===') );
+    // I want to repeat the texture
+    const texture = canObj.texture;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(32, 24);
+    scene.background = texture;
 // ---------- ----------
 // SETTINGS
 // ---------- ----------
@@ -31,7 +49,9 @@ const createCubes = () => {
         const geometry = new THREE.BoxGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
         const material = new THREE.MeshPhongMaterial({
             transparent: true, opacity: 0.7,
-            color: new THREE.Color(Math.random(),Math.random(),Math.random())
+            color: new THREE.Color(Math.random(),Math.random(),Math.random()),
+            //emissive: new THREE.Color(1,1,1),
+            //emissiveMap: canObj.texture
         });
         const mesh = new THREE.Mesh( geometry, material );
         mesh.position.y = CUBE_MIN_HEIGHT - 10;
@@ -95,24 +115,7 @@ scene.add( plane );
 const dl = new THREE.DirectionalLight(0xffffff, 1);
 dl.position.set(3,2,1);
 scene.add(dl);
-    //-------- ----------
-    // BACKGROUND - using canvas2 and lz-string to create a background texture
-    //-------- ----------
-    const canObj = canvasMod.create({
-        size: 512,
-        draw: 'grid_palette',
-        palette: ['#000000', '#1f1f1f', '#00ffff'],
-        dataParse: 'lzstring64',
-        state: { w: 8, h: 5, data: 'AwGlEYyzNCVgpcmPit1mqvTsg===' }
-    });
-    // can use LZString to compress and decompress
-    //console.log( LZString.decompressFromBase64('AwGlEYyzNCVgpcmPit1mqvTsg===') );
-    // I want to repeat the texture
-    const texture = canObj.texture;
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(32, 24);
-    scene.background = texture;
+
     //-------- ----------
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
