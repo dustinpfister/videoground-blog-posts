@@ -8,6 +8,93 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+// ---------- ----------
+// SETTINGS
+// ---------- ----------
+const CUBE_COUNT = 40;
+const CUBE_SIZE = 0.5;
+const CUBE_HSIZE = CUBE_SIZE / 2;
+const CUBE_DROP_SPEED = 20;
+const CUBE_MOVE_SPEED = [30, 100];
+const CUBE_START_HEIGHT = [5, 15];
+const CUBE_MIN_HEIGHT = -5;
+const PLANE_SIZE = 5;
+const PLANE_HSIZE = PLANE_SIZE / 2;
+// ---------- ----------
+// HELPER FUNCTIONS
+// ---------- ----------
+const createCubes = () => {
+    let i = 0;
+    const count = CUBE_COUNT;
+    const group = new THREE.Group();
+    while(i < count){
+        const geometry = new THREE.BoxGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+        const material = new THREE.MeshPhongMaterial({
+            transparent: true, opacity: 0.7,
+            color: new THREE.Color(Math.random(),Math.random(),Math.random())
+        });
+        const mesh = new THREE.Mesh( geometry, material );
+        mesh.position.y = CUBE_MIN_HEIGHT - 10;
+        // USER DATA FOR MESH OBJECTS
+        const mud = mesh.userData;
+        mud.radian = Math.PI * 2 * Math.random();
+        const sr = CUBE_MOVE_SPEED;
+        mud.ups = sr[0] + (sr[1] - sr[0]) * Math.random();
+        group.add(mesh);
+        i += 1;
+    }
+    return group;
+};
+// update the given group by a secs value
+const updateCubes = (group, secs) => {
+    let i = 0;
+    const count = CUBE_COUNT;
+    while(i < count){
+        const mesh = group.children[i];
+        const mud = mesh.userData;
+        const v_pos = mesh.position;
+        // reset to spawn location if y is too low
+        if(v_pos.y < CUBE_MIN_HEIGHT){
+            const sh = CUBE_START_HEIGHT;
+            v_pos.set(0, sh[0] + (sh[1] - sh[0]) * Math.random(), 0);
+            break;
+        }
+        // y adjust
+        v_pos.y -= CUBE_DROP_SPEED * secs;
+        // is mesh on the plane
+        const n = PLANE_HSIZE + CUBE_HSIZE;
+        if(v_pos.x <= n && v_pos.x >= n * -1 && v_pos.z <= n && v_pos.z >= n * -1){
+            // y will get capped if it is on the plane
+            v_pos.y = v_pos.y < CUBE_HSIZE ? CUBE_HSIZE : v_pos.y;
+            if(v_pos.y === CUBE_HSIZE){
+                const dx = Math.cos(mud.radian) * mud.ups * secs;
+                const dz = Math.sin(mud.radian) * mud.ups * secs;
+                v_pos.x += dx * secs;
+                v_pos.z += dz * secs;
+            }
+        }
+        i += 1;
+    }
+};
+// ---------- ----------
+// OBJECTS
+// ---------- ----------
+const group = createCubes();
+scene.add(group);
+const geometry = new THREE.PlaneGeometry(PLANE_SIZE, PLANE_SIZE);
+geometry.rotateX(Math.PI * 1.5)
+const plane = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({
+   color: new THREE.Color(0,1,1),
+   transparent: true,
+   opacity: 0.25
+}))
+scene.add( plane );
+// ---------- ----------
+// LIGHT
+// ---------- ----------
+const dl = new THREE.DirectionalLight(0xffffff, 1);
+dl.position.set(3,2,1);
+scene.add(dl);
     //-------- ----------
     // BACKGROUND - using canvas2 and lz-string to create a background texture
     //-------- ----------
@@ -30,7 +117,7 @@ VIDEO.init = function(sm, scene, camera){
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
+        [8,1,0, 2.5,1,2.5,  5,2,5,    0]
     ]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
@@ -44,9 +131,9 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -110,6 +197,11 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
+
+
+    updateCubes(group, 1 / 30);
+    camera.lookAt(group.position);
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
