@@ -22,7 +22,7 @@
 
 ### () - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
-* () finish this
+* () finish video 1
 
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
