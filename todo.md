@@ -19,11 +19,6 @@
 * () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
-
-### () - threejs-examples-lines-deterministic
-* (done) start video folder and a video1 file
-* () finish video 1
-
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
@@ -55,6 +50,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 02/02/2023 ) - threejs-examples-lines-deterministic
+* (done) start video folder and a video1 file
+* (done) finish video 1
 
 ### ( done 01/28/2023 ) - threejs-examples-house-two
 * (done) start a folder for this
