@@ -39,20 +39,20 @@ var lg1Base = {
         new THREE.Vector3(0, 0, 0)
     ], 
     lerpVectors: [
-        new THREE.Vector3(-5, 0, -5),
-        new THREE.Vector3(-5, 0, 5),
-        new THREE.Vector3(5, 0, 0)
+        new THREE.Vector3(-2, 0, -2),
+        new THREE.Vector3(-2, 0, 2),
+        new THREE.Vector3(2, 0, 0)
     ],
-    rBase: 0,
-    rDelta: 2
+    rBase: 1,
+    //rDelta: 2
 };
 var lg1 = LineGroup.create('tri', {
-    forLineStyle: function(m, i){
-       m.linewidth = 8;
-       m.color = new THREE.Color( '#00ff00' );
-       m.transparent = true;
-       m.opacity = 1;
-    }
+    //forLineStyle: function(m, i){
+    //   m.linewidth = 8;
+    //   m.color = new THREE.Color( '#00ff00' );
+    //   m.transparent = true;
+    //   m.opacity = 1;
+    //}
 });
 lg1.position.set(-3, 0, 0);
 //lg1.scale.set(1.5, 1.5, 1.5);
@@ -88,23 +88,23 @@ scene.add(lg3);
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
+        [8,1,0, 5,5,5,  0,1,0,    0]
     ]);
-    //scene.add( curveMod.debugPointsCurve(cp_campos) )
+    scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
-    const getCamPosAlpha = curveMod.getAlphaFunction({
-        type: 'curve2',
-        ac_points: [0,0.4,  0.6,-0.25,  1]
-    });
+    //const getCamPosAlpha = curveMod.getAlphaFunction({
+    //    type: 'curve2',
+    //    ac_points: [0,0.4,  0.6,-0.25,  1]
+    //});
     //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -115,10 +115,10 @@ scene.add(lg3);
         lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
-            ['template2-video5', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
+            ['Lines Deterministic', 64, 17, 14, 'white'],
+            ['threejs example', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['( r140 02/02/2022 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
@@ -189,17 +189,28 @@ scene.add(lg3);
                seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
             }
             // camera
+            camera.zoom = 1;
             //camera.position.set(-8, 4, -8);
             camera.lookAt(0, 0, 0);
         }
     };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 7,
         update: function(seq, partPer, partBias){
-            const a1 = getCamPosAlpha(partPer);
-            camera.position.copy( cp_campos.getPoint(a1) );
-            camera.lookAt(0, 0, 0);
+            //const a1 = getCamPosAlpha(partPer);
+            camera.zoom = 1 - 0.25 * partPer;
+            camera.position.copy( cp_campos.getPoint(partPer) );
+            camera.lookAt(-5.0 * partPer, 1.0 * partPer, 1.4 * partPer);
+        }
+    };
+    // SEQ 2 - ...
+    opt_seq.objects[2] = {
+        secs: 20,
+        update: function(seq, partPer, partBias){
+            camera.zoom = 0.75
+            camera.position.copy( cp_campos.getPoint(1) );
+            camera.lookAt(-5.0, 1.0, 1.4);
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
