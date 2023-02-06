@@ -19,11 +19,6 @@
 * () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
-### () - threejs-buffer-geometry-morph-attributes
-* () start the folder
-* () just make it off of the one good example
-* () embed
-
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
@@ -55,6 +50,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 02/06/2023 ) - threejs-buffer-geometry-morph-attributes
+* (done) start the folder
+* (done) just make it off of the one good example
+* (done) embed
 
 ### ( done 02/02/2023 ) - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
