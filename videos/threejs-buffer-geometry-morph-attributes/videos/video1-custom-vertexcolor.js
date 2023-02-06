@@ -8,6 +8,90 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+
+// ---------- ----------
+// GEOMETRY
+// ---------- ----------
+const geo = new THREE.BufferGeometry();
+geo.morphAttributes.position = [];
+// USING MORPH TARGETS RELATIVE
+geo.morphTargetsRelative = true;
+// home data position
+const data_pos = [
+  // body
+  -0.5,-1.0, 1.0,  -1.0,-1.0, 0.0,
+   0.0,-1.5,-4.0,   1.0,-1.0, 0.0,
+   0.0,-2.0, 0.0,   0.0, 0.0, 0.0,
+   // wings
+   1.0, 1.0,-0.7,   1.0, 1.0, 0.7,   2.0, 1.0, 0.0,
+  -1.0, 1.0,-0.7,  -1.0, 1.0, 0.7,  -2.0, 1.0, 0.0
+];
+geo.setAttribute('position', new THREE.Float32BufferAttribute(data_pos, 3) );
+geo.setIndex([ 0,5,1, 0,3,5, 0,4,3, 0,1,4, 5,3,2, 4,2,3, 4,1,2, 1,5,2, 6,7,8, 5,7,6, 10,9,11, 5,9,10 ]);
+geo.computeVertexNormals();
+// position deltas 0 - move tail up and down
+const data_pos_deltas0 = [
+   // body
+   0, 0, 0,   0, 0, 0,   0, 1, 0,
+   0, 0, 0,   0, 0, 0,   0, 0, 0,
+   // wings
+   0, 0, 0,   0, 0, 0,   0, 0, 0,
+   0, 0, 0,   0, 0, 0,   0, 0, 0,
+];
+geo.morphAttributes.position[ 0 ] = new THREE.Float32BufferAttribute( data_pos_deltas0, 3 );
+// position deltas 1 - move head side to side
+const data_pos_deltas1 = [
+   1, 0, 0.0,   0, 0, 0.5,   0, 0, 0,
+   0, 0,-0.5,   0, 0, 0.0,   0, 0, 0,
+   // wings
+   0, 0, 0.0,   0, 0, 0.0,   0, 0, 0,
+   0, 0, 0.0,   0, 0, 0.0,   0, 0, 0
+];
+geo.morphAttributes.position[ 1 ] = new THREE.Float32BufferAttribute( data_pos_deltas1, 3 );
+// position deltas 2 - move wings
+const data_pos_deltas2 = [
+   0, 0, 0,   0, 0, 0,   0, 0, 0,
+   0, 0, 0,   0, 0, 0,   0, 0, 0,
+   // wings
+   0,-2,-1,   0,-2,-1,   0,-2,-1,
+   0,-2,-1,   0,-2,-1,   0,-2,-1
+];
+geo.morphAttributes.position[ 2 ] = new THREE.Float32BufferAttribute( data_pos_deltas2, 3 );
+// ---------- ----------
+// COLOR ATTRIBUTE
+// ---------- ----------
+const data_color = [
+    1, 1, 0,   0, 1, 0,   1, 0, 0,
+    0, 1, 0,   0, 1, 1,   0, 0, 1,
+    // wings
+    1, 1, 1,   1, 1, 1,   1, 1, 0,
+    1, 1, 1,   1, 1, 1,   1, 1, 0
+];
+geo.setAttribute('color', new THREE.Float32BufferAttribute(data_color, 3) );
+// ---------- ----------
+// LIGHT
+// ---------- ----------
+const dl = new THREE.DirectionalLight();
+dl.position.set(2,1,0)
+scene.add(dl);
+const al = new THREE.AmbientLight(0xffffff, 0.2);
+scene.add(al);
+// ---------- ----------
+// MATERIAL
+// ---------- ----------
+const material = new THREE.MeshPhongMaterial({
+     vertexColors: true,
+     side: THREE.DoubleSide
+});
+// ---------- ----------
+// MESH
+// ---------- ----------
+const mesh = new THREE.Mesh(geo, material);
+mesh.position.set(0, 1, 0);
+scene.add(mesh);
+
+
+
     //-------- ----------
     // BACKGROUND - using canvas2 and lz-string to create a background texture
     //-------- ----------
@@ -30,7 +114,8 @@ VIDEO.init = function(sm, scene, camera){
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
+        [8,1,0, 5,0,5,  2,0,2,    0],
+        [5,0,5, -5,-1,5,  0,0,0,    0],
     ]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
@@ -38,15 +123,15 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const getCamPosAlpha = curveMod.getAlphaFunction({
         type: 'curve2',
-        ac_points: [0,0.4,  0.6,-0.25,  1]
+        ac_points: [0, 0,  0.25, 0,  1]
     });
     //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -110,6 +195,19 @@ VIDEO.init = function(sm, scene, camera){
             textCube.visible = false;
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
+
+
+    const a1 = seq.frame / seq.frameMax;
+    const a2 = 1 - Math.abs(0.5 - a1 * 8 % 1) / 0.5;
+    const a3 = 1 - Math.abs(0.5 - a1 * 4 % 1) / 0.5;
+    const a4 = 1 - Math.abs(0.5 - a1 * 20 % 1) / 0.5;
+    // using morph target influences to set current state of each position attribite
+    mesh.morphTargetInfluences[ 0 ] = a2;
+    mesh.morphTargetInfluences[ 1 ] = a3;
+    mesh.morphTargetInfluences[ 2 ] = a4;
+    mesh.geometry.computeVertexNormals();
+
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -131,11 +229,21 @@ VIDEO.init = function(sm, scene, camera){
     };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 2,
+        update: function(seq, partPer, partBias){
+            //camera.position.set(-8, 4, -8);
+            camera.lookAt(0, 0, 0);
+            camera.zoom = 1 + 0.5 * partPer;
+        }
+    };
+    // SEQ 1 - ...
+    opt_seq.objects[2] = {
+        secs: 25,
         update: function(seq, partPer, partBias){
             const a1 = getCamPosAlpha(partPer);
             camera.position.copy( cp_campos.getPoint(a1) );
             camera.lookAt(0, 0, 0);
+            camera.zoom = 1.5 - 0.5 * partPer;
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
