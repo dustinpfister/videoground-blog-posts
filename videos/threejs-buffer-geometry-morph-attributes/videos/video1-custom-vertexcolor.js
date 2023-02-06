@@ -87,7 +87,7 @@ const material = new THREE.MeshPhongMaterial({
 // MESH
 // ---------- ----------
 const mesh = new THREE.Mesh(geo, material);
-mesh.position.set(0, 1, 0);
+mesh.position.set(0, 2, 0);
 scene.add(mesh);
 
 
@@ -115,7 +115,7 @@ scene.add(mesh);
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
         [8,1,0, 5,0,5,  2,0,2,    0],
-        [5,0,5, -5,-1,5,  0,0,0,    0],
+        [5,0,5, -5,2,5,  0,0,0,    0],
     ]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
@@ -129,9 +129,9 @@ scene.add(mesh);
     //-------- ----------
     // GRID
     //-------- ----------
-    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
+    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    grid.material.linewidth = 3;
+    scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -193,7 +193,7 @@ scene.add(mesh);
         fps: 30,
         beforeObjects: function(seq){
             textCube.visible = false;
-            camera.position.set(8, 1, 0);
+            camera.lookAt(0,0,0);
             camera.zoom = 1;
 
 
@@ -224,6 +224,7 @@ scene.add(mesh);
             }
             // camera
             //camera.position.set(-8, 4, -8);
+            camera.position.set(8, 1, 0);
             camera.lookAt(0, 0, 0);
         }
     };
@@ -231,9 +232,10 @@ scene.add(mesh);
     opt_seq.objects[1] = {
         secs: 2,
         update: function(seq, partPer, partBias){
-            //camera.position.set(-8, 4, -8);
-            camera.lookAt(0, 0, 0);
-            camera.zoom = 1 + 0.5 * partPer;
+            const v1 = new THREE.Vector3(0,0,0);
+            const v2 = new THREE.Vector3(0,1,0)
+            camera.lookAt( v1.lerp(v2, partPer));
+            camera.zoom = 1 + 0.25 * partPer;
         }
     };
     // SEQ 1 - ...
@@ -242,8 +244,8 @@ scene.add(mesh);
         update: function(seq, partPer, partBias){
             const a1 = getCamPosAlpha(partPer);
             camera.position.copy( cp_campos.getPoint(a1) );
-            camera.lookAt(0, 0, 0);
-            camera.zoom = 1.5 - 0.5 * partPer;
+            camera.lookAt(0, 1, 0);
+            camera.zoom = 1.25 - 0.25 * partPer;
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
