@@ -19,6 +19,11 @@
 * () new video showcasing r2 of the project
 
 <!--  0 VIDEOS -->
+### () - threejs-buffer-geometry-morph-attributes
+* () start the folder
+* () just make it off of the one good example
+* () embed
+
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
