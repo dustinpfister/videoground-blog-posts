@@ -7,11 +7,6 @@
 <!-- VIDEO2 -->
 
 <!--  0 VIDEOS -->
-### () - threejs-buffer-geometry-set-from-points video1
-* (done) start video folder
-* (done) base video1 off the code from the position section examples from the post
-* () upload and embed
-
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
 ### () - threejs-examples-animation-loop-module
@@ -42,6 +37,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( 02/08/2023 ) - threejs-buffer-geometry-set-from-points video1
+* (done) start video folder
+* (done) base video1 off the code from the position section examples from the post
+* (done) upload and embed
 
 ### ( done 02/06/2023 ) - threejs-buffer-geometry-morph-attributes
 * (done) start the folder
