@@ -39,8 +39,10 @@ const createGeometry = (point_count, sec_count, rotation_count, y_mag, radius) =
     const len = att_pos.count;
     const data_color = [];
     while(i < len){
-        const n = 0.25 + 0.75 * (i / len);
-        data_color.push(0, 1 - n, n);
+        const a1 = (i / len);
+        const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+        const n = 0.25 + 0.75 * a1;
+        data_color.push(a2 * 0.5, 1 - n, n);
         i += 1;
     }
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(data_color, 3));
@@ -64,9 +66,9 @@ const updateGeometry = (geometry, sec_count, rotation_count, y_mag, radius) => {
 //-------- ----------
 // OBJECTS
 //-------- ----------
-const geometry = createGeometry(400, 1, 2, 1, 3);
+const geometry = createGeometry(600, 1, 2, 1, 3);
 const points1 = new THREE.Points(geometry, new THREE.PointsMaterial({
-    size: 0.5,
+    size: 0.8,
     transparent: true,
     opacity: 0.8,
     vertexColors: true
