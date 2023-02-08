@@ -6,18 +6,6 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-userdata
-* () start a video2 for this post based on the example made for this very video
-
-### () - threejs-camera-move
-* () new camera move video2
-
-### () - threejs-examples-lerp-geo
-* () start video2 for this threejs example
-
-### () - threejs-examples-sequence-hooks
-* () new video showcasing r2 of the project
-
 <!--  0 VIDEOS -->
 ### () - threejs-buffer-geometry-set-from-points
 ### () - threejs-clock
@@ -59,6 +47,9 @@
 ### ( done 02/02/2023 ) - threejs-examples-lines-deterministic
 * (done) start video folder and a video1 file
 * (done) finish video 1
+
+### ( done 02/01/2023 ) - threejs-userdata
+* (done) start a video2 for this post based on the example made for this very video
 
 ### ( done 01/28/2023 ) - threejs-examples-house-two
 * (done) start a folder for this
