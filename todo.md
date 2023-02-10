@@ -7,6 +7,12 @@
 <!-- VIDEO2 -->
 
 <!--  0 VIDEOS -->
+### () - threejs-curves-cubicbeziercurve3
+* () start the folder
+* () base video1 on the first demo of the loop section
+* () work out a few seq objects for this where we are moving the pointer mesh objects in various ways
+* () upload and embed
+
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
 ### () - threejs-examples-animation-loop-module
