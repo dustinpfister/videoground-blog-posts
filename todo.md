@@ -7,12 +7,6 @@
 <!-- VIDEO2 -->
 
 <!--  0 VIDEOS -->
-### () - threejs-curves-cubicbeziercurve3
-* () start the folder
-* () base video1 on the first demo of the loop section
-* () work out a few seq objects for this where we are moving the pointer mesh objects in various ways
-* () upload and embed
-
 ### () - threejs-clock
 ### () - threejs-dae-collada-loader
 ### () - threejs-examples-animation-loop-module
@@ -44,7 +38,13 @@
 
 <!-- DONE -->
 
-### ( 02/08/2023 ) - threejs-buffer-geometry-set-from-points video1
+### ( done 02/10/2023 ) - threejs-curves-cubicbeziercurve3
+* (done) start the folder
+* (done) base video1 on the first demo of the loop section
+* (done) work out a few seq objects for this where we are moving the pointer mesh objects in various ways
+* (done) upload and embed
+
+### ( done 02/08/2023 ) - threejs-buffer-geometry-set-from-points video1
 * (done) start video folder
 * (done) base video1 off the code from the position section examples from the post
 * (done) upload and embed
