@@ -28,6 +28,12 @@ VIDEO.init = function(sm, scene, camera){
     texture.repeat.set(32, 24);
     scene.background = texture;
     //-------- ----------
+    // LIGHT
+    //-------- ----------
+    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    dl.position.set(5, 1, 2)
+    scene.add(dl);
+    //-------- ----------
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
@@ -45,9 +51,9 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
-    scene.add( grid );
+    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
+    //grid.material.linewidth = 3;
+    //scene.add( grid );
     //-------- ----------
     // TEXT CUBE
     //-------- ----------
@@ -101,74 +107,116 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
-
-return DAE_loader({
-    urls_dae: [
-        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/house_2.dae')
-    ],
-    urls_resource: [
-        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/skins/windows/')
-    ],
-    cloner: (obj, scene_source, scene_result, result) => {
-        if(obj.type === 'Mesh'){
-            const mesh = obj.clone();
-            mesh.position.set(0,0,0);
-            scene_source.add(mesh);
-        }
-    }
-})
-.then((scene_source) => {
-
-console.log(scene_source)
-
     //-------- ----------
-    // A MAIN SEQ OBJECT
+    // LOAD DAE FILES
     //-------- ----------
-    // start options for main seq object
-    const opt_seq = {
-        fps: 30,
-        beforeObjects: function(seq){
-            textCube.visible = false;
-            camera.position.set(8, 1, 0);
-            camera.zoom = 1;
-        },
-        afterObjects: function(seq){
-            camera.updateProjectionMatrix();
-        },
-        objects: []
-    };
-    // SEQ 0 - ...
-    opt_seq.objects[0] = {
-        secs: 3,
-        update: function(seq, partPer, partBias){
-            // textcube
-            if(seq.partFrame < seq.partFrameMax){
-               seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+    return DAE_loader({
+        urls_dae: [
+            videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/house_2.dae'),
+            videoAPI.pathJoin(sm.filePath, '../../../dae/land-set-one/land-set-1c.dae'),
+        ],
+        urls_resource: [
+            videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/skins/windows/'),
+            videoAPI.pathJoin(sm.filePath, '../../../dae/land-set-one/')
+        ],
+        cloner: (obj, scene_source, scene_result, result) => {
+            if(obj.type === 'Mesh'){
+                const mesh = obj.clone();
+                console.log(mesh.name)
+                mesh.position.set(0,0,0);
+                scene_source.add(mesh);
             }
-            // camera
-            //camera.position.set(-8, 4, -8);
-            camera.lookAt(0, 0, 0);
         }
-    };
-    // SEQ 1 - ...
-    opt_seq.objects[1] = {
-        secs: 27,
-        update: function(seq, partPer, partBias){
-            const a1 = getCamPosAlpha(partPer);
-            camera.position.copy( cp_campos.getPoint(a1) );
-            camera.lookAt(0, 0, 0);
+    })
+    .then((scene_source) => {
+        //-------- ----------
+        // A MAIN SEQ OBJECT
+        //-------- ----------
+        const mesh1 = scene_source.getObjectByName('house_0').clone();
+        scene.add(mesh1);
+        // land tiles
+        const data_land_index = [
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,0,0,0,0,0,0
+        ];
+        const data_land_rotation = [
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0,
+            2,0,0,0,0,0,0,0,0,0
+        ];
+        let i = 0, len = 10 * 10;
+        while(i < len){
+            const x = -4.5 + i % 10;
+            const z = -4.5 + Math.floor(i / 10);
+            const index = data_land_index[i];
+            const mesh = scene_source.getObjectByName('land_' + index).clone();
+            mesh.rotation.y = Math.PI * 2 / 4 * data_land_rotation[i];
+            let y = -0.5;
+            if(index > 0){
+                y = 0.5;
+            }
+            mesh.position.set(x,y,z);
+            scene.add(mesh)
+            i += 1;
         }
-    };
-    const seq = scene.userData.seq = seqHooks.create(opt_seq);
-    console.log('frameMax for main seq: ' + seq.frameMax);
-    sm.frameMax = seq.frameMax;
-
-    return '';
-
-})
-
-
-
+        //-------- ----------
+        // A MAIN SEQ OBJECT
+        //-------- ----------
+        // start options for main seq object
+        const opt_seq = {
+            fps: 30,
+            beforeObjects: function(seq){
+                textCube.visible = false;
+                camera.position.set(8, 1, 0);
+                camera.zoom = 1;
+            },
+            afterObjects: function(seq){
+                camera.updateProjectionMatrix();
+            },
+            objects: []
+        };
+        // SEQ 0 - ...
+        opt_seq.objects[0] = {
+            secs: 3,
+            update: function(seq, partPer, partBias){
+                // textcube
+                if(seq.partFrame < seq.partFrameMax){
+                   seqHooks.setFrame(seq_textcube, seq.partFrame, seq.partFrameMax);
+                }
+                // camera
+                //camera.position.set(-8, 4, -8);
+                camera.lookAt(0, 0, 0);
+            }
+        };
+        // SEQ 1 - ...
+        opt_seq.objects[1] = {
+            secs: 27,
+            update: function(seq, partPer, partBias){
+                const a1 = getCamPosAlpha(partPer);
+                camera.position.copy( cp_campos.getPoint(a1) );
+                camera.lookAt(0, 0, 0);
+            }
+        };
+        const seq = scene.userData.seq = seqHooks.create(opt_seq);
+        console.log('frameMax for main seq: ' + seq.frameMax);
+        sm.frameMax = seq.frameMax;
+        return '';
+    });
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
