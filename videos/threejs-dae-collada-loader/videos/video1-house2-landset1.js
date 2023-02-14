@@ -101,6 +101,26 @@ VIDEO.init = function(sm, scene, camera){
             }
         ]
     });
+
+return DAE_loader({
+    urls_dae: [
+        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/house_2.dae')
+    ],
+    urls_resource: [
+        videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/skins/windows/')
+    ],
+    cloner: (obj, scene_source, scene_result, result) => {
+        if(obj.type === 'Mesh'){
+            const mesh = obj.clone();
+            mesh.position.set(0,0,0);
+            scene_source.add(mesh);
+        }
+    }
+})
+.then((scene_source) => {
+
+console.log(scene_source)
+
     //-------- ----------
     // A MAIN SEQ OBJECT
     //-------- ----------
@@ -142,6 +162,13 @@ VIDEO.init = function(sm, scene, camera){
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
+
+    return '';
+
+})
+
+
+
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
