@@ -110,6 +110,15 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // LOAD DAE FILES
     //-------- ----------
+
+    const canObj_grass = canvasMod.create({
+        size: 512,
+        draw: 'rnd',
+        palette: ['#00ff00', '#008800', '#00aa00'],
+        state: { gSize: 32 }
+    });
+
+
     return DAE_loader({
         urls_dae: [
             videoAPI.pathJoin(sm.filePath, '../../../dae/house_two/house_2.dae'),
@@ -124,7 +133,14 @@ VIDEO.init = function(sm, scene, camera){
                 const mesh = obj.clone();
                 console.log(mesh.name)
                 mesh.position.set(0,0,0);
+
+
+                if(mesh.name.split('_')[0] === 'land'){
+                    mesh.material.map = canObj_grass.texture;
+                }
+
                 scene_source.add(mesh);
+
             }
         }
     })
@@ -179,9 +195,6 @@ VIDEO.init = function(sm, scene, camera){
             const mesh = scene_source.getObjectByName('land_' + index).clone();
             mesh.rotation.y = Math.PI * 2 / 4 * data_land_rotation[i];
             let y = -0.5 + data_land_alt[i];
-            //if(index > 0){
-            //    y = 0.5;
-            //}
             mesh.position.set(x,y,z);
             scene.add(mesh)
             i += 1;
