@@ -8,7 +8,7 @@
 
 <!--  0 VIDEOS -->
 ### () - threejs-dae-collada-loader
-* () start the folder based off template 2
+* (done) start the folder based off template 2
 * () make use of dae-helper r0
 * () load house two, and land set one
 * () create a scene with those assets
