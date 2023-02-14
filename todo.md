@@ -7,8 +7,15 @@
 <!-- VIDEO2 -->
 
 <!--  0 VIDEOS -->
-### () - threejs-clock
 ### () - threejs-dae-collada-loader
+* () start the folder based off template 2
+* () make use of dae-helper r0
+* () load house two, and land set one
+* () create a scene with those assets
+* () upload and embed
+
+### () - threejs-clock
+
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
 ### () - threejs-examples-dae-tools
