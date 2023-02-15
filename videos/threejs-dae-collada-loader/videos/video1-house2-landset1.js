@@ -247,6 +247,16 @@ VIDEO.init = function(sm, scene, camera){
                 camera.lookAt(0, 0, 0);
             }
         };
+        // SEQ 3 - move
+        opt_seq.objects[3] = {
+            secs: 22,
+            update: function(seq, partPer, partBias){
+                const v1 = new THREE.Vector3(8, 2, 8);
+                const v2 = new THREE.Vector3(-8, 3, 1);
+                camera.position.copy(v1).lerp(v2, partPer);
+                camera.lookAt(0, 0, 0);
+            }
+        };
         const seq = scene.userData.seq = seqHooks.create(opt_seq);
         console.log('frameMax for main seq: ' + seq.frameMax);
         sm.frameMax = seq.frameMax;
