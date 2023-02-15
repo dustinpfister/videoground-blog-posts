@@ -36,27 +36,6 @@ VIDEO.init = function(sm, scene, camera){
     const al = new THREE.AmbientLight(0xffffff, 0.25);
     scene.add(al);
     //-------- ----------
-    // CURVE PATHS - cretaing a curve path for the camera
-    //-------- ----------
-    //const cp_campos = curveMod.QBCurvePath([
-    //    [8,1,0, 8,3,8,  5,2,5,    0]
-    //]);
-    //scene.add( curveMod.debugPointsCurve(cp_campos) )
-    //-------- ----------
-    // CURVE Alphas
-    //-------- ----------
-    //const getCamPosAlpha = curveMod.getAlphaFunction({
-    //    type: 'curve2',
-    //    ac_points: [0,0.4,  0.6,-0.25,  1]
-    //});
-    //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
-    //-------- ----------
-    // GRID
-    //-------- ----------
-    //const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    //grid.material.linewidth = 3;
-    //scene.add( grid );
-    //-------- ----------
     // TEXT CUBE
     //-------- ----------
     const textCube = scene.userData.textCube = CanvasTextCube.create({
@@ -146,12 +125,24 @@ VIDEO.init = function(sm, scene, camera){
         // house
         const mesh1 = scene_source.getObjectByName('house_0').clone();
         mesh1.scale.set(1.5, 1.5, 1.5);
+        // trees
         scene.add(mesh1);
-        const mesh2 = scene_source.getObjectByName('tree_3').clone();
-        mesh2.position.set(-2, 0, 2);
-        mesh2.scale.set(0.5, 0.5, 0.5);
-        mesh2.rotation.y = Math.PI / 180 * 90;
-        scene.add(mesh2);
+        [
+            [ 3,   -2.0, 0.0, 2.0,   0.5, 90 ],
+            [ 3,   -2.0, 0.0,-1.5,   0.6, 45 ],
+            [ 3,    3.5, 0.0,-2.5,   0.4,  0 ],
+            [ 2,    2.5, 0.0,-1.0,   0.5,  7 ],
+            [ 2,    1.5, 0.0,-2.0,   0.4,  20 ],
+            [ 2,   -0.2, 0.0,-3.0,   0.6,  60 ],
+            [ 2,    0.0, 0.0,-2.0,   0.3,  45 ],
+        ].forEach( (data) => {
+                const mesh = scene_source.getObjectByName('tree_' + data[0]).clone();
+                mesh.position.set(data[1], data[2], data[3]);
+                const s = data[4];
+                mesh.scale.set(s, s, s);
+                mesh.rotation.y = Math.PI / 180 * data[5];
+                scene.add(mesh);
+        });
         // land tiles
         const data_land_index = [
             0,0,0,1,0,0,0,0,0,1,
