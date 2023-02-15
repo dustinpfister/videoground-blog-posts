@@ -30,9 +30,11 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // LIGHT
     //-------- ----------
-    const dl = new THREE.DirectionalLight(0xffffff, 1);
+    const dl = new THREE.DirectionalLight(0xffffff, 0.75);
     dl.position.set(5, 1, 2)
     scene.add(dl);
+    const al = new THREE.AmbientLight(0xffffff, 0.25);
+    scene.add(al);
     //-------- ----------
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
