@@ -36,17 +36,17 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // CURVE PATHS - cretaing a curve path for the camera
     //-------- ----------
-    const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
-    ]);
+    //const cp_campos = curveMod.QBCurvePath([
+    //    [8,1,0, 8,3,8,  5,2,5,    0]
+    //]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
-    const getCamPosAlpha = curveMod.getAlphaFunction({
-        type: 'curve2',
-        ac_points: [0,0.4,  0.6,-0.25,  1]
-    });
+    //const getCamPosAlpha = curveMod.getAlphaFunction({
+    //    type: 'curve2',
+    //    ac_points: [0,0.4,  0.6,-0.25,  1]
+    //});
     //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
     //-------- ----------
     // GRID
@@ -143,6 +143,7 @@ VIDEO.init = function(sm, scene, camera){
         //-------- ----------
         // house
         const mesh1 = scene_source.getObjectByName('house_0').clone();
+        mesh1.scale.set(1.5, 1.5, 1.5);
         scene.add(mesh1);
         const mesh2 = scene_source.getObjectByName('tree_3').clone();
         mesh2.position.set(-2, 0, 2);
@@ -195,6 +196,7 @@ VIDEO.init = function(sm, scene, camera){
             mesh.rotation.y = Math.PI * 2 / 4 * data_land_rotation[i];
             let y = -0.5 + data_land_alt[i];
             mesh.position.set(x,y,z);
+            mesh.scale.set(0.97, 0.97, 0.97);
             scene.add(mesh)
             i += 1;
         }
@@ -227,12 +229,21 @@ VIDEO.init = function(sm, scene, camera){
                 camera.lookAt(0, 0, 0);
             }
         };
-        // SEQ 1 - ...
+        // SEQ 1 - quick move to corner
         opt_seq.objects[1] = {
-            secs: 27,
+            secs: 2,
             update: function(seq, partPer, partBias){
-                const a1 = getCamPosAlpha(partPer);
-                camera.position.copy( cp_campos.getPoint(a1) );
+                const v1 = new THREE.Vector3(8, 1, 0);
+                const v2 = new THREE.Vector3(8, 2, 8);
+                camera.position.copy(v1).lerp(v2, partPer);
+                camera.lookAt(0, 0, 0);
+            }
+        };
+        // SEQ 2 - rest
+        opt_seq.objects[2] = {
+            secs: 3,
+            update: function(seq, partPer, partBias){
+                camera.position.set(8, 2, 8)
                 camera.lookAt(0, 0, 0);
             }
         };
