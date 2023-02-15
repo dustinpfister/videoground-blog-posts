@@ -7,12 +7,6 @@
 <!-- VIDEO2 -->
 
 <!--  0 VIDEOS -->
-### () - threejs-dae-collada-loader
-* (done) start the folder based off template 2
-* () make use of dae-helper r0
-* () load house two, and land set one
-* () create a scene with those assets
-* () upload and embed
 
 ### () - threejs-clock
 
@@ -44,6 +38,13 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 02/15/2023 ) - threejs-dae-collada-loader
+* (done) start the folder based off template 2
+* (done) make use of dae-helper r0
+* (done) load house two, and land set one
+* (done) create a scene with those assets
+* (done) upload and embed
 
 ### ( done 02/10/2023 ) - threejs-curves-cubicbeziercurve3
 * (done) start the folder
