@@ -15,7 +15,7 @@ VIDEO.init = function(sm, scene, camera){
     const canObj = canvasMod.create({
         size: 512,
         draw: 'grid_palette',
-        palette: ['#000088', '#00ffff', '#00ffff'],
+        palette: ['#0000cc', '#0088cc', '#00ffff'],
         dataParse: 'lzstring64',
         state: { w: 8, h: 5, data: 'AwGlEYyzNCVgpcmPit1mqvTsg===' }
     });
@@ -94,7 +94,7 @@ VIDEO.init = function(sm, scene, camera){
     const canObj_grass = canvasMod.create({
         size: 512,
         draw: 'rnd',
-        palette: ['#00ff00', '#008800', '#00aa00'],
+        palette: ['#00ff00', '#00ee00', '#00dd00', '#00cc00', '#009900', '#008800', '#006600'],
         state: { gSize: 32 }
     });
     return DAE_loader({
