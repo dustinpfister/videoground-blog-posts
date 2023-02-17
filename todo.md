@@ -9,8 +9,8 @@
 <!--  0 VIDEOS -->
 
 ### () - threejs-examples-tracks
-* () start the video folder
-* () just base video1 on the r0-2-flip demo for the post
+* (done) start the video folder
+* (done) just base video1 on the r0-2-flip demo for the post
 * () upload and embed
 
 ### () - threejs-clock
