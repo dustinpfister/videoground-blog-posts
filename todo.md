@@ -7,12 +7,6 @@
 <!-- VIDEO2 -->
 
 <!--  0 VIDEOS -->
-
-### () - threejs-examples-tracks
-* (done) start the video folder
-* (done) just base video1 on the r0-2-flip demo for the post
-* () upload and embed
-
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -42,6 +36,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 02/17/2023 ) - threejs-examples-tracks
+* (done) start the video folder
+* (done) just base video1 on the r0-2-flip demo for the post
+* (done) upload and embed
 
 ### ( done 02/15/2023 ) - threejs-dae-collada-loader
 * (done) start the folder based off template 2
