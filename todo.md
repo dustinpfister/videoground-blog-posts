@@ -7,7 +7,7 @@
 <!-- VIDEO2 -->
 
 ## () - threejs-emissive-map
-* () base video2 on the s2-2-loop-video2 demo in the post
+* (done) base video2 on the s2-2-loop-video2 demo in the post
 * () upload and embed
 
 <!--  0 VIDEOS -->

@@ -114,21 +114,6 @@ scene.add(mesh);
     texture.repeat.set(32, 24);
     scene.background = texture;
     //-------- ----------
-    // CURVE PATHS - creating a curve path for the camera
-    //-------- ----------
-    const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
-    ]);
-    //scene.add( curveMod.debugPointsCurve(cp_campos) )
-    //-------- ----------
-    // CURVE Alphas
-    //-------- ----------
-    const getCamPosAlpha = curveMod.getAlphaFunction({
-        type: 'curve2',
-        ac_points: [0,0.4,  0.6,-0.25,  1]
-    });
-    //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
-    //-------- ----------
     // GRID
     //-------- ----------
     const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
@@ -231,10 +216,21 @@ scene.add(mesh);
     };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 2,
         update: function(seq, partPer, partBias){
-            const a1 = getCamPosAlpha(partPer);
-            camera.position.copy( cp_campos.getPoint(a1) );
+            const v1 = new THREE.Vector3(8, 1, 0);
+            const v2 = new THREE.Vector3(8, 8, 8);
+            camera.position.copy(v1).lerp(v2, partPer);
+            camera.lookAt(0, 0, 0);
+        }
+    };
+    // SEQ 2 - ...
+    opt_seq.objects[2] = {
+        secs: 25,
+        update: function(seq, partPer, partBias){
+            const v1 = new THREE.Vector3(8, 8, 8);
+            const v2 = new THREE.Vector3(-8, 4, 8);
+            camera.position.copy(v1).lerp(v2, partPer);
             camera.lookAt(0, 0, 0);
         }
     };
