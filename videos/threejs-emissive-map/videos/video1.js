@@ -208,7 +208,7 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
 
-            // defualt light intensity for al and dl is 0
+            // default light intensity for al and dl is 0
             dl.intensity = 0;
             al.intensity = 0;
 
