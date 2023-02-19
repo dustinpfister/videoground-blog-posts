@@ -1,7 +1,4 @@
-// video5 for template2-sequence-hooks using r2 of canvas.js, and r1 of curve.js
-// * makes use of new compression features for a background texture
-// * curve paths in place of v3 array, and not using built in v3 array features of sequnce hooks
-// * using curve alphas to get the alpha values to use to get a point along a curve
+// video2-canvas-update.js - for threejs-emissive-map
 VIDEO.scripts = [
    '../../../js/sequences-hooks/r2/sequences-hooks.js',
    '../../../js/canvas/r2/lz-string.js',
@@ -60,11 +57,11 @@ VIDEO.init = function(sm, scene, camera){
         lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
-            ['template2-video5', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
+            ['Emissive Maps', 64, 17, 14, 'white'],
+            ['in threejs', 64, 32, 14, 'white'],
             ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
-            ['video1', 64, 100, 10, 'gray']
+            ['( r146 02/19/2023 )', 64, 70, 12, 'gray'],
+            ['video2', 64, 100, 10, 'gray']
         ]
     });
     scene.add(textCube);
