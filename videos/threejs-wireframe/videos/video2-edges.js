@@ -13,6 +13,20 @@ VIDEO.init = function(sm, scene, camera){
 //-------- ----------
 const boxGeo = new THREE.BoxGeometry(1.50, 1.50, 1.50),
 edgeGeo = new THREE.EdgesGeometry(boxGeo);
+
+// adding a color attribute
+const len = edgeGeo.getAttribute('position').count;
+const color_array = [];
+let i = 0;
+while(i < len){
+   const a1 = i / len;
+   const a2 = 1 - Math.abs(0.5 - a1) / 0.5;
+   color_array.push(a1, a2, 1 - a2);
+   i += 1;
+}
+const color_attribute = new THREE.BufferAttribute(new Float32Array(color_array), 3);
+edgeGeo.setAttribute('color', color_attribute);
+
 //-------- ----------
 // LINE
 //-------- ----------
@@ -20,7 +34,8 @@ const line = new THREE.LineSegments(
     edgeGeo,
     new THREE.LineBasicMaterial({
         color: new THREE.Color('white'),
-        linewidth: 3
+        linewidth: 8,
+        vertexColors: true
     })
 );
 scene.add(line);
