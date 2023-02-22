@@ -144,6 +144,7 @@ scene.add(line);
             //camera.position.set(-8, 4, -8);
             camera.lookAt(0, 0, 0);
             line.rotation.y = Math.PI * 2 * partPer;
+            line.rotation.z = 0;
         }
     };
     // SEQ 1 - ...
