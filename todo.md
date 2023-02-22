@@ -6,10 +6,6 @@
 
 <!-- VIDEO2 -->
 
-## (  ) - threejs-wireframe video2
-* () start a video2 for post on wireframes
-* () upload and embed
-
 <!--  0 VIDEOS -->
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
@@ -40,6 +36,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+## ( done 02/22/2023 ) - threejs-wireframe video2
+* (done) start a video2 for post on wireframes
+* (done) upload and embed
 
 ## ( done 02/19/2023 ) - threejs-emissive-map video2
 * (done) base video2 on the s2-2-loop-video2 demo in the post
