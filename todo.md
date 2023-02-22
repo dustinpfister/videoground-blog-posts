@@ -6,8 +6,8 @@
 
 <!-- VIDEO2 -->
 
-## () - threejs-emissive-map
-* (done) base video2 on the s2-2-loop-video2 demo in the post
+## (  ) - threejs-wireframe video2
+* () start a video2 for post on wireframes
 * () upload and embed
 
 <!--  0 VIDEOS -->
@@ -40,6 +40,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+## ( done 02/19/2023 ) - threejs-emissive-map video2
+* (done) base video2 on the s2-2-loop-video2 demo in the post
+* (done) upload and embed
 
 ### ( done 02/17/2023 ) - threejs-examples-tracks
 * (done) start the video folder
