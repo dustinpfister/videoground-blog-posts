@@ -7,6 +7,11 @@
 <!-- VIDEO2 -->
 
 <!--  0 VIDEOS -->
+### () - threejs-points - video1
+* () start the folder
+* () bade video1 on the source code from the video1 example for the post
+* () upload and embed
+
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
