@@ -14,7 +14,7 @@ VIDEO.init = function(sm, scene, camera){
 // GEOMETRY
 // base on this: https://github.com/mrdoob/three.js/blob/master/examples/webgl_morphtargets.html
 // ---------- ----------
-const geo = new THREE.BoxGeometry(2, 2, 2, 16, 16, 16);
+const geo = new THREE.BoxGeometry(2, 2, 2, 14, 14, 14);
 geo.morphAttributes.position = [];
 const pos = geo.attributes.position;
 const data_pos = [];
