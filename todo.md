@@ -6,12 +6,11 @@
 
 <!-- VIDEO2 -->
 
-<!--  0 VIDEOS -->
-### () - threejs-points - video1
-* () start the folder
-* () bade video1 on the source code from the video1 example for the post
-* () upload and embed
+### () - threejs-camera-perspective video2
+* () start a video2 for threejs-camera-perspective
+* () make this one based on the helper demo
 
+<!--  0 VIDEOS -->
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -41,6 +40,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 02/23/2023 ) - threejs-points - video1
+* (done) start the folder
+* (done) bade video1 on the source code from the video1 example for the post
+* (done) upload and embed
 
 ## ( done 02/22/2023 ) - threejs-wireframe video2
 * (done) start a video2 for post on wireframes
