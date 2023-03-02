@@ -12,14 +12,27 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     // OTHER CAMERA, AND CAMERA HELPER
     //-------- ----------
-
-const camera2 = new THREE.PerspectiveCamera(50, 16 / 9, 0.5, 15);
-camera2.position.set(2.5, 1, 2.5);
-camera2.lookAt(0, 0, 0);
-scene.add(camera2);
-const helper = new THREE.CameraHelper(camera2);
-scene.add(helper);
-
+    const camera2 = new THREE.PerspectiveCamera(50, 16 / 9, 0.5, 6);
+    camera2.position.set(2.5, 1, 2.5);
+    camera2.lookAt(0, 0, 0);
+    scene.add(camera2);
+    const helper = new THREE.CameraHelper(camera2);
+    helper.material.linewidth = 6;
+    console.log(helper);
+    scene.add(helper);
+    //-------- ----------
+    // MESH OBJECTS
+    //-------- ----------
+    const material_mesh = new THREE.MeshNormalMaterial();
+    const mesh1 = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), material_mesh);
+    mesh1.position.set(1,0.5,-2);
+    scene.add(mesh1);
+    const mesh2 = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), material_mesh);
+    mesh2.position.set(-3.6,0.5, -0.3);
+    scene.add(mesh2);
+    const mesh3 = new THREE.Mesh( new THREE.BoxGeometry(1,1,1), material_mesh);
+    mesh3.position.set(-4.5,0.5,-4.5);
+    scene.add(mesh3);
     //-------- ----------
     // BACKGROUND - using canvas2 and lz-string to create a background texture
     //-------- ----------
@@ -42,7 +55,7 @@ scene.add(helper);
     // CURVE PATHS - creating a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
+        [8,1,0, 2.5,1,2.5,  2,0.5,7,    0]
     ]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
@@ -56,8 +69,10 @@ scene.add(helper);
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
+    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#afafaf', '#008888');
+    grid.material.transparent = true;
+    grid.material.opacity = 0.6;
+    grid.material.linewidth = 5;
     scene.add( grid );
     //-------- ----------
     // TEXT CUBE
@@ -142,28 +157,42 @@ scene.add(helper);
             }
             // camera
             //camera.position.set(-8, 4, -8);
+            camera.far = 50; THREE.MathUtils.lerp(camera2.far, 0, partPer)
             camera.lookAt(0, 0, 0);
         }
     };
-    // SEQ 1 - ...
+    // SEQ 1 - rotate
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 10,
+        update: function(seq, partPer, partBias){
+
+            const e = new THREE.Euler();
+            e.y = Math.PI * 2 * partPer;
+            camera.position.set(8, 1, 0).applyEuler(e);
+            camera.far = 50;
+            camera.lookAt(0, 0, 0);
+        }
+    };
+    // SEQ 2 - move into the same state as camera2
+    opt_seq.objects[2] = {
+        secs: 10,
         update: function(seq, partPer, partBias){
             const a1 = getCamPosAlpha(partPer);
             camera.position.copy( cp_campos.getPoint(a1) );
+            camera.far = THREE.MathUtils.lerp(50, camera2.far, partPer);
             camera.lookAt(0, 0, 0);
         }
     };
-/*
-    opt_seq.objects[1] = {
-        secs: 27,
+    // SEQ 2 - move into the same state as camera2
+    opt_seq.objects[3] = {
+        secs: 7,
         update: function(seq, partPer, partBias){
-            const a1 = getCamPosAlpha(partPer);
-            camera.position.copy( cp_campos.getPoint(a1) );
+            camera.position.copy(camera2.position);
             camera.lookAt(0, 0, 0);
+            camera.zoom = THREE.MathUtils.lerp(camera2.zoom, 2, partPer);
         }
     };
-*/
+
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
     console.log('frameMax for main seq: ' + seq.frameMax);
     sm.frameMax = seq.frameMax;
