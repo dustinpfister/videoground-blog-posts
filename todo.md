@@ -11,6 +11,11 @@
 * () make this one based on the helper demo
 
 <!--  0 VIDEOS -->
+### () - threejs-examples-breath-module
+* () add breath.js r0 to the main js folder
+* () start a folder and video1 for this post
+* () base the video1 on the r0-2-custom demo
+
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
