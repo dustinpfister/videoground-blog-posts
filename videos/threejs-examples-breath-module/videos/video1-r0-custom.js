@@ -74,8 +74,10 @@ scene.add(group);
     //-------- ----------
     // GRID
     //-------- ----------
-    const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#00afaf');
-    grid.material.linewidth = 3;
+    const grid = scene.userData.grid = new THREE.GridHelper(20, 20, '#ffffff', '#008800');
+    grid.material.transparent = true;
+    grid.material.opacity = 0.4;
+    grid.material.linewidth = 5;
     scene.add( grid );
     //-------- ----------
     // TEXT CUBE
