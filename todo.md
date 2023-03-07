@@ -6,14 +6,9 @@
 
 <!-- VIDEO2 -->
 
-### (  ) - threejs-vector3-normalize
-* (done) start a video2 for vector3 normalize
-* (done) just base it on the sphere demo
-* () upload and embed
+
 
 <!--  0 VIDEOS -->
-
-
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -43,6 +38,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/07/2023 ) - threejs-vector3-normalize
+* (done) start a video2 for vector3 normalize
+* (done) just base it on the sphere demo
+* (done) upload and embed
 
 ### ( done 03/06/2023 ) - threejs-examples-breath-module
 * (done) add breath.js r0 to the main js folder
