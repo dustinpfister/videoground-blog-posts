@@ -7,8 +7,9 @@
 <!-- VIDEO2 -->
 
 ### (  ) - threejs-vector3-normalize
-* () start a video2 for vector3 normalize
-* () just base it on the sphere demo
+* (done) start a video2 for vector3 normalize
+* (done) just base it on the sphere demo
+* () upload and embed
 
 <!--  0 VIDEOS -->
 
