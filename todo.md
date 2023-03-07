@@ -6,15 +6,12 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-camera-perspective video2
-* () start a video2 for threejs-camera-perspective
-* () make this one based on the helper demo
+### (  ) - threejs-vector3-normalize
+* () start a video2 for vector3 normalize
+* () just base it on the sphere demo
 
 <!--  0 VIDEOS -->
-### () - threejs-examples-breath-module
-* () add breath.js r0 to the main js folder
-* () start a folder and video1 for this post
-* () base the video1 on the r0-2-custom demo
+
 
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
@@ -45,6 +42,15 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/06/2023 ) - threejs-examples-breath-module
+* (done) add breath.js r0 to the main js folder
+* (done) start a folder and video1 for this post
+* (done) base the video1 on the r0-2-custom demo
+
+### ( done 03/02/2023 ) - threejs-camera-perspective video2
+* (done) start a video2 for threejs-camera-perspective
+* (done) make this one based on the helper demo
 
 ### ( done 02/23/2023 ) - threejs-points - video1
 * (done) start the folder
