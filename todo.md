@@ -6,10 +6,6 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-vector3-clamp video2
-* (done) start video2 based on the clamp to grid demo
-* () upload and embed
-
 <!--  0 VIDEOS -->
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
@@ -40,6 +36,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/08/2023 ) - threejs-vector3-clamp video2
+* (done) start video2 based on the clamp to grid demo
+* (done) upload and embed
 
 ### ( done 03/07/2023 ) - threejs-vector3-normalize
 * (done) start a video2 for vector3 normalize
