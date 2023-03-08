@@ -7,7 +7,7 @@
 <!-- VIDEO2 -->
 
 ### () - threejs-vector3-clamp video2
-* () start video2 based on the clamp to grid demo
+* (done) start video2 based on the clamp to grid demo
 * () upload and embed
 
 <!--  0 VIDEOS -->
