@@ -41,7 +41,7 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const getCamPosAlpha = curveMod.getAlphaFunction({
         type: 'curve2',
-        ac_points: [0,0.4,  0.6,-0.25,  1]
+        ac_points: [0,0.2,  0.6, -0.15,  1]
     });
     //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
     //-------- ----------
