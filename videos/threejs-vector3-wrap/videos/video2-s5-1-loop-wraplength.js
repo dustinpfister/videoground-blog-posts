@@ -21,9 +21,9 @@ const TOTAL_LENGTH = 100;
 const MAX_LENGTH = 15;
 const COUNT = 400;
 const SIN_LOOP_RANGE = [32, 64];
-const Y_ROTATION_COUNT = 1;
-const Y_ROTATION_OFFSET = 40;
-const X_DEG = 10;
+const Y_ROTATION_COUNT = 4;
+const Y_ROTATION_OFFSET = 45;
+const X_DEG = 15;
 // ---------- ---------- ----------
 // OBJECTS
 // ---------- ---------- ----------
@@ -87,8 +87,8 @@ const updateGroup = function(a1){
     // CURVE PATHS - creating a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 12,3,12,  5,2,5,    0],
-        [12,3,12, -12,3,12,  0,0,0,    0]
+        [8,1,0, 15,3,15,  5,2,5,    0],
+        [15,3,15, -15,3,15,  0,0,0,    0]
     ]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
@@ -171,6 +171,7 @@ const updateGroup = function(a1){
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
 updateGroup(seq.per);
+grid.material.opacity = 0.25 - 0.25 * seq.per;
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
