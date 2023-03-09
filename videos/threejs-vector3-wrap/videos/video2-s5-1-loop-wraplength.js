@@ -19,11 +19,11 @@ scene.add(al);
 // ---------- ---------- ----------
 // CONST
 // ---------- ---------- ----------
-const TOTAL_LENGTH = 100;
+const TOTAL_LENGTH = 200;
 const MAX_LENGTH = 10;
 const COUNT = 400;
-const SIN_LOOP_RANGE = [8, 32];
-const Y_ROTATION_COUNT = 4;
+const SIN_LOOP_RANGE = [0, 64];
+const Y_ROTATION_COUNT = 2;
 const Y_ROTATION_OFFSET = 60;
 const X_DEG = 8;
 // ---------- ---------- ----------
@@ -88,18 +88,18 @@ const updateGroup = function(a1){
     //-------- ----------
     // CURVE PATHS - creating a curve path for the camera
     //-------- ----------
-    const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 15,3,15,  5,2,5,    0],
-        [15,3,15, -15,3,15,  0,0,0,    0]
-    ]);
+    //const cp_campos = curveMod.QBCurvePath([
+    //    [8,1,0, 15,3,15,  5,2,5,    0],
+    //    [15,3,15, -15,3,15,  0,0,0,    0]
+    //]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
     // CURVE Alphas
     //-------- ----------
-    const getCamPosAlpha = curveMod.getAlphaFunction({
-        type: 'curve2',
-        ac_points: [0,0.2,  0.6, -0.15,  1]
-    });
+    //const getCamPosAlpha = curveMod.getAlphaFunction({
+    //    type: 'curve2',
+    //    ac_points: [0,0.2,  0.6, -0.15,  1]
+    //});
     //scene.add( curveMod.debugAlphaFunction(getCamPosAlpha) )
     //-------- ----------
     // GRID
@@ -173,18 +173,19 @@ const updateGroup = function(a1){
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
 updateGroup(seq.per);
-let a_grid_opacity = 0.25 - 0.25 * (seq.per * 2);
-a_grid_opacity = a_grid_opacity < 0 ? 0 : a_grid_opacity;
 
-grid.material.linewidth = 6;
- grid.visible = true;
-if(a_grid_opacity === 0){
- grid.visible = false;
-}else{
-grid.material.linewidth = 8 - 8 * (1 - a_grid_opacity);
-}
+//let a_grid_opacity = 0.25 - 0.25 * (seq.per * 2);
+//a_grid_opacity = a_grid_opacity < 0 ? 0 : a_grid_opacity;
+//grid.material.linewidth = 6;
+// grid.visible = true;
+//if(a_grid_opacity === 0){
+// grid.visible = false;
+//}else{
+//grid.material.linewidth = 8 - 8 * (1 - a_grid_opacity);
+//}
+//grid.material.opacity = a_grid_opacity;
 
-grid.material.opacity = a_grid_opacity;
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -204,12 +205,22 @@ grid.material.opacity = a_grid_opacity;
             camera.lookAt(0, 0, 0);
         }
     };
+
     // SEQ 1 - ...
     opt_seq.objects[1] = {
-        secs: 27,
+        secs: 2,
         update: function(seq, partPer, partBias){
-            const a1 = getCamPosAlpha(partPer);
-            camera.position.copy( cp_campos.getPoint(a1) );
+            camera.position.set(8 + 7 * partPer, 1 + 9 * partPer, 15 * partPer);
+            camera.lookAt(0, 0, 0);
+        }
+    };
+    // SEQ 2 - ...
+    opt_seq.objects[2] = {
+        secs: 25,
+        update: function(seq, partPer, partBias){
+            //const a1 = getCamPosAlpha(partPer);
+            //camera.position.copy( cp_campos.getPoint(a1) );
+            camera.position.set(15, 10, 15);
             camera.lookAt(0, 0, 0);
         }
     };
