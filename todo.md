@@ -6,6 +6,11 @@
 
 <!-- VIDEO2 -->
 
+### () - threejs-vector3-wrap video2
+* () start a video2 for threejs-vector3-wrap
+* () base this one off of the s5-1-loop-wraplength demo
+* () upload and embed
+
 <!--  0 VIDEOS -->
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
