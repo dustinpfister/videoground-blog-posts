@@ -11,19 +11,21 @@ VIDEO.init = function(sm, scene, camera){
 // ---------- ---------- ----------
 // LIGHT
 // ---------- ---------- ----------
-const dl = new THREE.DirectionalLight(0xffffff, 1);
+const dl = new THREE.DirectionalLight(0xffffff, 0.85);
 dl.position.set(3, 2, 1);
 scene.add(dl);
+const al = new THREE.AmbientLight(0xffffff, 0.25);
+scene.add(al);
 // ---------- ---------- ----------
 // CONST
 // ---------- ---------- ----------
 const TOTAL_LENGTH = 100;
-const MAX_LENGTH = 15;
+const MAX_LENGTH = 10;
 const COUNT = 400;
-const SIN_LOOP_RANGE = [32, 64];
+const SIN_LOOP_RANGE = [8, 32];
 const Y_ROTATION_COUNT = 4;
-const Y_ROTATION_OFFSET = 45;
-const X_DEG = 15;
+const Y_ROTATION_OFFSET = 60;
+const X_DEG = 8;
 // ---------- ---------- ----------
 // OBJECTS
 // ---------- ---------- ----------
@@ -171,7 +173,18 @@ const updateGroup = function(a1){
             camera.position.set(8, 1, 0);
             camera.zoom = 1;
 updateGroup(seq.per);
-grid.material.opacity = 0.25 - 0.25 * seq.per;
+let a_grid_opacity = 0.25 - 0.25 * (seq.per * 2);
+a_grid_opacity = a_grid_opacity < 0 ? 0 : a_grid_opacity;
+
+grid.material.linewidth = 6;
+ grid.visible = true;
+if(a_grid_opacity === 0){
+ grid.visible = false;
+}else{
+grid.material.linewidth = 8 - 8 * (1 - a_grid_opacity);
+}
+
+grid.material.opacity = a_grid_opacity;
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
