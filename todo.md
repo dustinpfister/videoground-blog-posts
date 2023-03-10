@@ -6,12 +6,13 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-vector3-wrap video2
-* () start a video2 for threejs-vector3-wrap
-* () base this one off of the s5-1-loop-wraplength demo
-* () upload and embed
+
 
 <!--  0 VIDEOS -->
+### () - threejs-examples-camera-planes
+* () just make a quick demo video based on the r0-5-move-planes demo
+* () upload and embed
+
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -41,6 +42,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/09/2023 ) - threejs-vector3-wrap video2
+* (done) start a video2 for threejs-vector3-wrap
+* (done) base this one off of the s5-1-loop-wraplength demo
+* (done) upload and embed
 
 ### ( done 03/08/2023 ) - threejs-vector3-clamp video2
 * (done) start video2 based on the clamp to grid demo
