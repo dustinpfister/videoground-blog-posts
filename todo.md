@@ -5,13 +5,14 @@
 * () start template 10 based off of the threejs-examples-house-two example
 
 <!-- VIDEO2 -->
-
+## () - threejs-vector3-distance-t0 video2
+* (done) started a video2 for threejs-vector3-distance
+* (done) based on the s2-2-loop-opacity demo
+* () upload and embed
 
 
 <!--  0 VIDEOS -->
-### () - threejs-examples-camera-planes
-* () just make a quick demo video based on the r0-5-move-planes demo
-* () upload and embed
+
 
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
@@ -42,6 +43,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/10/2023 ) - threejs-examples-camera-planes
+* (done) just make a quick demo video based on the r0-5-move-planes demo
+* (done) upload and embed
 
 ### ( done 03/09/2023 ) - threejs-vector3-wrap video2
 * (done) start a video2 for threejs-vector3-wrap
