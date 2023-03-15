@@ -33,7 +33,8 @@ VIDEO.init = function(sm, scene, camera){
     // CURVE PATHS - creating a curve path for the camera
     //-------- ----------
     const cp_campos = curveMod.QBCurvePath([
-        [8,1,0, 8,3,8,  5,2,5,    0]
+        [8,1,0, 8,3,8,  5,2,5,    0],
+        [8,3,8, -8,3,8,  0,0,0,    0]
     ]);
     //scene.add( curveMod.debugPointsCurve(cp_campos) )
     //-------- ----------
