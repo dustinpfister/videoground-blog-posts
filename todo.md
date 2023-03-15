@@ -6,10 +6,9 @@
 
 <!-- VIDEO2 -->
 
-## () - threejs-vector3-distance-t0 video2
-* () base this on the s4-2-loop-move-many-along demo from the post
+## ( ) - threejs-math-utils video2
+* () have a video2 for threejs-math-utils
 * () upload and embed
-
 
 <!--  0 VIDEOS -->
 
@@ -42,6 +41,9 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+## ( done 03/15/2023 ) - threejs-vector3-multiply-scalar video2
+* (done) have a video2 for threejs-vector3-multiply-scalar
 
 ## ( done 03/13/2023 ) - threejs-vector3-distance-to video2
 * (done) started a video2 for threejs-vector3-distance
