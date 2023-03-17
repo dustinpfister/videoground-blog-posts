@@ -6,8 +6,8 @@
 
 <!-- VIDEO2 -->
 
-## ( ) - threejs-math-utils video2
-* () have a video2 for threejs-math-utils
+### () - threejs-mesh-material-index video2
+* (done) start a video2 for this post based on the s3-2-loop demo
 * () upload and embed
 
 <!--  0 VIDEOS -->
@@ -41,6 +41,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+## ( done 03/15/2023 ) - threejs-math-utils video2
+* (done) have a video2 for threejs-math-utils
+* (done) upload and embed
 
 ## ( done 03/15/2023 ) - threejs-vector3-multiply-scalar video2
 * (done) have a video2 for threejs-vector3-multiply-scalar
