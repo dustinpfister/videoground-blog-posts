@@ -6,8 +6,8 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-mesh-material-index video2
-* (done) start a video2 for this post based on the s3-2-loop demo
+### ( ) - threejs-mesh-normal-material - video2
+* (done) start video2 for mesh normal material post
 * () upload and embed
 
 <!--  0 VIDEOS -->
@@ -41,6 +41,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/17/2023 ) - threejs-mesh-material-index video2
+* (done) start a video2 for this post based on the s3-2-loop demo
+* (done) upload and embed
 
 ## ( done 03/15/2023 ) - threejs-math-utils video2
 * (done) have a video2 for threejs-math-utils
