@@ -7,7 +7,7 @@
 <!-- VIDEO2 -->
 
 ## () - threejs-scene video2
-* () start a video2 for threejs-scene on scale
+* (done) start a video2 for threejs-scene on scale
 * () upload and embed
 
 <!--  0 VIDEOS -->
