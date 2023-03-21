@@ -6,12 +6,11 @@
 
 <!-- VIDEO2 -->
 
-### ( ) - threejs-mesh-normal-material - video2
-* (done) start video2 for mesh normal material post
+## () - threejs-scene video2
+* () start a video2 for threejs-scene on scale
 * () upload and embed
 
 <!--  0 VIDEOS -->
-
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -21,6 +20,7 @@
 ### () - threejs-examples-land-sections
 ### () - threejs-examples-menus
 ### () - threejs-examples-svg-movement
+### () - threejs-examples-svg-tools
 ### () - threejs-examples-tool-source-layer-3d
 ### () - threejs-face3
 ### () - threejs-face3-color
@@ -41,6 +41,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/20/2023 ) - threejs-mesh-normal-material - video2
+* (done) start video2 for mesh normal material post
+* (done) upload and embed
 
 ### ( done 03/17/2023 ) - threejs-mesh-material-index video2
 * (done) start a video2 for this post based on the s3-2-loop demo
