@@ -6,8 +6,8 @@
 
 <!-- VIDEO2 -->
 
-## () - threejs-scene video2
-* (done) start a video2 for threejs-scene on scale
+### () - threejs-quaternion video1
+* () start video1 and base it on s2-1-methods-setfromaxisangle demo
 * () upload and embed
 
 <!--  0 VIDEOS -->
@@ -41,6 +41,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+## ( done 03/21/2023 ) - threejs-scene video2
+* (done) start a video2 for threejs-scene on scale
+* (done) upload and embed
 
 ### ( done 03/20/2023 ) - threejs-mesh-normal-material - video2
 * (done) start video2 for mesh normal material post
