@@ -6,8 +6,8 @@
 
 <!-- VIDEO2 -->
 
-### () - threejs-quaternion video1
-* () start video1 and base it on s2-1-methods-setfromaxisangle demo
+### ( ) - threejs-quaternion video2
+* (done) base video2 for threejs-quaternion on the s2-1-loop demo
 * () upload and embed
 
 <!--  0 VIDEOS -->
@@ -41,6 +41,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( 03/25/2023 ) - threejs-quaternion video1
+* (done) start video1 and base it on s2-1-methods-setfromaxisangle demo
+* (done) upload and embed
 
 ## ( done 03/21/2023 ) - threejs-scene video2
 * (done) start a video2 for threejs-scene on scale
