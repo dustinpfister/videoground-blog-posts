@@ -11,7 +11,7 @@
 <!--  0 VIDEOS -->
 
 ### ( ) - threejs-quaternion-premultiply - video1
-* () base video1 off of one of the demos
+* (done) base video1 off of one of the three spheres demo from the post
 * () upload and embed
 
 ### () - threejs-clock
