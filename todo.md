@@ -6,11 +6,14 @@
 
 <!-- VIDEO2 -->
 
-### ( ) - threejs-quaternion video2
-* (done) base video2 for threejs-quaternion on the s2-1-loop demo
-* () upload and embed
+
 
 <!--  0 VIDEOS -->
+
+### ( ) - threejs-quaternion-premultiply - video1
+* () base video1 off of one of the demos
+* () upload and embed
+
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -41,6 +44,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 03/25/2023 ) - threejs-quaternion video2
+* (done) base video2 for threejs-quaternion on the s2-1-loop demo
+* (done) upload and embed
 
 ### ( 03/25/2023 ) - threejs-quaternion video1
 * (done) start video1 and base it on s2-1-methods-setfromaxisangle demo
