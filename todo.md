@@ -6,14 +6,11 @@
 
 <!-- VIDEO2 -->
 
-
-
-<!--  0 VIDEOS -->
-
-### ( ) - threejs-quaternion-premultiply - video1
-* (done) base video1 off of one of the three spheres demo from the post
+### ( ) - threejs-raycaster - video2
+* () start video2 for threejs-raycaster
 * () upload and embed
 
+<!--  0 VIDEOS -->
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -44,6 +41,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 04/01/2023 ) - threejs-quaternion-premultiply - video1
+* (done) base video1 off of one of the three spheres demo from the post
+* (done) upload and embed
 
 ### ( done 03/25/2023 ) - threejs-quaternion video2
 * (done) base video2 for threejs-quaternion on the s2-1-loop demo
