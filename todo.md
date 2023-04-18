@@ -11,6 +11,9 @@
 * () upload and embed
 
 <!--  0 VIDEOS -->
+### () - threejs-quaternion-slerp
+### () - threejs-quaternion-setfromunitvectors
+
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
