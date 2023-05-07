@@ -11,6 +11,11 @@
 * () upload and embed
 
 <!--  0 VIDEOS -->
+
+### () - threejs-object3d-get-by-name
+* () make video1 for this post based on that cool demo I made
+* () upload and embed
+
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
 
@@ -34,7 +39,6 @@
 ### () - threejs-orbit-controls
 ### () - threejs-object3d-parent
 ### () - threejs-object3d-type
-### () - threejs-object3d-get-by-name
 ### () - threejs-object3d-layers
 ### () - threejs-shader-material
 ### () - threejs-texture-loader
