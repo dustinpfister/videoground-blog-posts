@@ -12,11 +12,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-buffer-geometry-set-draw-range
-* (done) start project folder
-* (done) base video1 on the first loop demo that I have for this post
-* () upload and embed
-
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
 ### () - threejs-clock
@@ -48,6 +43,11 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 05/15/2023 ) - threejs-buffer-geometry-set-draw-range
+* (done) start project folder
+* (done) base video1 on the first loop demo that I have for this post
+* (done) upload and embed
 
 ### ( done 05/07/2023 ) - threejs-object3d-get-by-name
 * (done) make video1 for this post based on that cool demo I made
