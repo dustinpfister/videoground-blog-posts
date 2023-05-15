@@ -85,10 +85,10 @@ scene.add(mesh1);
         lineColor: 'rgba(0,100,0,0.8)',
         lineCount: 9,
         lines: [
-            ['template2-video5', 64, 17, 14, 'white'],
-            ['', 64, 32, 14, 'white'],
-            ['', 64, 47, 14, 'white'],
-            ['( r140 dd/mm/yyyy )', 64, 70, 12, 'gray'],
+            ['Set Draw Range', 64, 17, 14, 'white'],
+            ['Method of Buffer', 64, 32, 14, 'white'],
+            ['Geometry', 64, 47, 14, 'white'],
+            ['( r146 May/15/2023 )', 64, 70, 12, 'gray'],
             ['video1', 64, 100, 10, 'gray']
         ]
     });
