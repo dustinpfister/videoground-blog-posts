@@ -12,13 +12,13 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-object3d-get-by-name
-* () make video1 for this post based on that cool demo I made
+### () - threejs-buffer-geometry-set-draw-range
+* (done) start project folder
+* (done) base video1 on the first loop demo that I have for this post
 * () upload and embed
 
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
-
 ### () - threejs-clock
 ### () - threejs-examples-animation-loop-module
 ### () - threejs-examples-build-a-box
@@ -48,6 +48,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 05/07/2023 ) - threejs-object3d-get-by-name
+* (done) make video1 for this post based on that cool demo I made
+* (done) upload and embed
 
 ### ( done 04/01/2023 ) - threejs-quaternion-premultiply - video1
 * (done) base video1 off of one of the three spheres demo from the post
