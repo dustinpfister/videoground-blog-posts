@@ -12,6 +12,10 @@
 
 <!--  0 VIDEOS -->
 
+### ( ) - threejs-lod - video1
+* (done) start video1 for three-lod
+* () upload and embed
+
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
 ### () - threejs-clock
