@@ -81,6 +81,7 @@ scene.add(group1);
             camera.position.set(10, 1, 0);
             camera.lookAt(0,0,0)
             camera.zoom = 1;
+            group1.rotation.x = Math.PI * 2 * seq.per;
             group1.rotation.y = Math.PI * 8 * seq.per;
         },
         afterObjects: function(seq){
