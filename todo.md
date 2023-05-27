@@ -4,7 +4,11 @@
 ## () template 10
 * () start template 10 based off of the threejs-examples-house-two example
 
-<!-- VIDEO2 -->
+<!-- VIDEO2+ -->
+
+### ( ) - threejs-object3d-position - video3
+* (done) start video3 based on the lerp geometry example
+* () upload and embed
 
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
@@ -47,6 +51,8 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+
 
 ### ( done 05/15/2023 ) - threejs-buffer-geometry-set-draw-range
 * (done) start project folder
