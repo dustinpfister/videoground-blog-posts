@@ -6,14 +6,6 @@
 
 <!-- VIDEO2+ -->
 
-### () - threejs-buffer-geometry-attributes-position - video2
-* (done) start video2 based on the curve update demo
-* () upload and embed
-
-### ( ) - threejs-object3d-position - video3
-* (done) start video3 based on the lerp geometry example
-* () upload and embed
-
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
 * () upload and embed
@@ -56,7 +48,13 @@
 
 <!-- DONE -->
 
+### ( done 06/04/2023 ) - threejs-buffer-geometry-attributes-position - video2
+* (done) start video2 based on the curve update demo
+* (done) upload and embed
 
+### ( done 05/27/2023 ) - threejs-object3d-position - video3
+* (done) start video3 based on the lerp geometry example
+* (done) upload and embed
 
 ### ( done 05/15/2023 ) - threejs-buffer-geometry-set-draw-range
 * (done) start project folder
