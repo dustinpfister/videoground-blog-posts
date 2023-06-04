@@ -6,6 +6,10 @@
 
 <!-- VIDEO2+ -->
 
+### () - threejs-buffer-geometry-attributes-position - video2
+* (done) start video2 based on the curve update demo
+* () upload and embed
+
 ### ( ) - threejs-object3d-position - video3
 * (done) start video3 based on the lerp geometry example
 * () upload and embed
