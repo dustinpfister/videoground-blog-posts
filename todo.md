@@ -12,8 +12,8 @@
 
 <!--  0 VIDEOS -->
 
-### ( ) - threejs-lod - video1
-* (done) start video1 for three-lod
+### () - threejs-tube-geometry - video1
+* () start video1 based on curve update demo
 * () upload and embed
 
 ### () - threejs-quaternion-slerp
@@ -54,6 +54,10 @@
 
 ### ( done 05/27/2023 ) - threejs-object3d-position - video3
 * (done) start video3 based on the lerp geometry example
+* (done) upload and embed
+
+### ( done 05/22/2023 ) - threejs-lod - video1
+* (done) start video1 for three-lod
 * (done) upload and embed
 
 ### ( done 05/15/2023 ) - threejs-buffer-geometry-set-draw-range
