@@ -12,10 +12,6 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-tube-geometry - video1
-* () start video1 based on curve update demo
-* () upload and embed
-
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
 ### () - threejs-clock
@@ -47,6 +43,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 06/08/2023 ) - threejs-tube-geometry - video1
+* (done) start video1 based on curve update demo
+* (done) upload and embed
 
 ### ( done 06/04/2023 ) - threejs-buffer-geometry-attributes-position - video2
 * (done) start video2 based on the curve update demo
