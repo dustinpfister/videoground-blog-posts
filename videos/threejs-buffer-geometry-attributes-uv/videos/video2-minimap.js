@@ -15,7 +15,7 @@ const updateUVRotation = (geometry, a_rotation = 0, radius = 0.5, center = new T
     let i = 0;
     while(i < att_uv.count){
         const a_count = (i / att_uv.count);
-        const radian = (radian_start + Math.PI * 2 * a_count) % Math.PI * 2;
+        const radian = (radian_start + Math.PI * 2 * a_count);
         const v = new THREE.Vector2();
         v.x = center.x + Math.cos(radian) * radius;
         v.y = center.y + Math.sin(radian) * radius;
@@ -162,21 +162,24 @@ scene.add(mesh1);
     opt_seq.objects[0] = {
         secs: 5,
         update: function(seq, partPer, partBias){
-            updateUVRotation(geometry, 0, 0.05 + 0.45 * partPer);
+            const a_rotate = scene.userData.a_rotate = 0;
+            updateUVRotation(geometry, a_rotate, 0.05 + 0.45 * partPer);
         }
     };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
         secs: 9,
         update: function(seq, partPer, partBias){
-            updateUVRotation(geometry, seq.getSinBias(1), 0.5);
+            const a_rotate = scene.userData.a_rotate = seq.getSinBias(1);
+            updateUVRotation(geometry, a_rotate, 0.5);
         }
     };
     // SEQ 2 - ...
     opt_seq.objects[2] = {
         secs: 4,
         update: function(seq, partPer, partBias){
-            updateUVRotation(geometry, 0, 0.5 - 0.4 * partPer);
+            const a_rotate = scene.userData.a_rotate = 0;
+            updateUVRotation(geometry, a_rotate, 0.5 - 0.4 * partPer);
         }
     };
     // SEQ 3 - ...
@@ -184,8 +187,9 @@ scene.add(mesh1);
         secs: 4,
         update: function(seq, partPer, partBias){
             const v1 = new THREE.Vector2(0.5, 0.5);
-            const v2 = v1.clone().lerp( new THREE.Vector2(0.9, 0.75), partPer )
-            updateUVRotation(geometry, 0.25 * partPer, 0.1, v2);
+            const v2 = v1.clone().lerp( new THREE.Vector2(0.9, 0.75), partPer );
+            const a_rotate = scene.userData.a_rotate = 0.5 * partPer;
+            updateUVRotation(geometry, a_rotate , 0.1, v2);
         }
     };
     // SEQ 4 - ...
@@ -193,8 +197,9 @@ scene.add(mesh1);
         secs: 4,
         update: function(seq, partPer, partBias){
             const v1 = new THREE.Vector2(0.9, 0.75);
-            const v2 = v1.clone().lerp( new THREE.Vector2(0.1, 0.75), partPer )
-            updateUVRotation(geometry, 0.25 + 0.125 * partPer, 0.1, v2);
+            const v2 = v1.clone().lerp( new THREE.Vector2(0.1, 0.75), partPer );
+            const a_rotate = scene.userData.a_rotate = 0.5 + 0.25 * partPer;
+            updateUVRotation(geometry, a_rotate, 0.1, v2);
         }
     };
     // SEQ 5 - ...
@@ -202,8 +207,9 @@ scene.add(mesh1);
         secs: 4,
         update: function(seq, partPer, partBias){
             const v1 = new THREE.Vector2(0.1, 0.75);
-            const v2 = v1.clone().lerp( new THREE.Vector2(0.1, 0.1), partPer )
-            updateUVRotation(geometry, 0.375, 0.1, v2);
+            const v2 = v1.clone().lerp( new THREE.Vector2(0.1, 0.1), partPer );
+            const a_rotate = scene.userData.a_rotate = 0.75;
+            updateUVRotation(geometry, a_rotate, 0.1, v2);
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
@@ -217,6 +223,13 @@ VIDEO.render = (sm, canvas, ctx, scene, camera, renderer) => {
    ctx.drawImage(sm.renderer.domElement, 0, 0, canvas.width, canvas.height);
    // draw uv minimap
    scene.userData.drawMinimap(minimap, ctx);
+   // text
+   ctx.fillStyle = 'white';
+   ctx.textBaseline = 'top';
+   ctx.textAlign = 'left';
+   ctx.font = '40px courier';
+   ctx.fillText('frame: ' + String(sm.frame).padStart(3, '0') + '/' + sm.frameMax, 1280 - 430, 470);
+   ctx.fillText('a_rotate: ' + scene.userData.a_rotate.toFixed(4), 1280 - 430, 520);
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
