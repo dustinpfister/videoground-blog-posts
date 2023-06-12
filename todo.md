@@ -6,6 +6,10 @@
 
 <!-- VIDEO2+ -->
 
+### () - threejs-buffer-geometry-attributes-uv - video2
+* (done) start video2 based on the minimap-tri demo for the post
+* () upload and embed
+
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
 * () upload and embed
