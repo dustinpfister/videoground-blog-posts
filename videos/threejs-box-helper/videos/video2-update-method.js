@@ -6,6 +6,31 @@ VIDEO.scripts = [
 ];
 // init
 VIDEO.init = function(sm, scene, camera){
+//-------- ----------
+// SCENE CHILD OBJECTS
+//-------- ----------
+const mesh1 = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 2, 3),
+        new THREE.MeshNormalMaterial({ transparent: true, opacity: 0.5 }));
+scene.add(mesh1);
+// helper
+const helper1 = new THREE.BoxHelper(mesh1, 0xffffff);
+helper1.material.linewidth = 8;
+helper1.material.vertexColors = true;
+helper1.material.transparent = true;
+const data_color = [];
+const att_pos = helper1.geometry.getAttribute('position');
+let i = 0;
+while(i < att_pos.count){
+    const a_vertex = i / att_pos.count;
+    const a_opacity = (a_vertex * 4) % 1;
+    data_color.push(1 * a_vertex, 1, 1 - a_vertex, 0.8 + 0.2 * Math.random());
+    i += 1;
+}
+helper1.geometry.setAttribute('color', new THREE.BufferAttribute( new Float32Array( data_color ), 4));
+scene.add(helper1);
+
+
     //-------- ----------
     // BACKGROUND - using canvas2
     //-------- ----------
@@ -36,6 +61,8 @@ VIDEO.init = function(sm, scene, camera){
     //-------- ----------
     const grid = scene.userData.grid = new THREE.GridHelper(10, 10, '#ffffff', '#ffffff');
     grid.material.linewidth = 6;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.3;
     scene.add( grid );
     //-------- ----------
     // A MAIN SEQ OBJECT
@@ -45,6 +72,18 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             camera.zoom = 1;
+
+    const a_frame = seq.per,
+    a_z = Math.sin( Math.PI * (a_frame * 2 % 1) ),
+    a_x = Math.sin( Math.PI * (a_frame * 8 % 1) );
+
+        mesh1.position.x = -2  + 4 * a_x;
+        mesh1.position.z = -2  + 4 * a_z;
+        mesh1.rotation.y = Math.PI * (a_frame * 8 % 1);
+        mesh1.rotation.z = Math.PI * (a_frame * 24 % 1);
+        // using the update method as a way to update the geometry of the box
+        helper1.update();
+
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -89,7 +128,7 @@ VIDEO.render = function(sm, canvas, ctx, scene, camera, renderer){
    canObj_bg.state.a_stops = 0.5 + 0.5 * sm.per;
    canvasMod.update(canObj_bg);
    ctx.drawImage(canObj_bg.canvas, 0,0, canvas.width, canvas.height);
-   ctx.fillStyle = 'rgba(255,0,128,0.2)';
+   ctx.fillStyle = 'rgba(255,0,128,0.3)';
    ctx.fillRect(0, 0, sm.canvas.width, sm.canvas.height);
 
    // update and draw dom element of renderer
@@ -97,11 +136,11 @@ VIDEO.render = function(sm, canvas, ctx, scene, camera, renderer){
    ctx.drawImage(sm.renderer.domElement, 0, 0, sm.canvas.width, sm.canvas.height);
 
    // additional plain 2d overlay for status info
-   ctx.fillStyle = 'rgba(0,0,0,0.3)';
-   ctx.fillRect(0, 0, sm.canvas.width, sm.canvas.height);
-   ctx.fillStyle = 'white';
-   ctx.font = '60px arial';
-   ctx.textBaseline = 'top';
-   ctx.fillText('frame: ' + sm.frame + '/' + sm.frameMax, 10, 10);
+   //ctx.fillStyle = 'rgba(0,0,0,0.3)';
+   //ctx.fillRect(0, 0, sm.canvas.width, sm.canvas.height);
+   //ctx.fillStyle = 'white';
+   //ctx.font = '60px arial';
+   //ctx.textBaseline = 'top';
+   //ctx.fillText('frame: ' + sm.frame + '/' + sm.frameMax, 10, 10);
 };
  
