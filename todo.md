@@ -6,9 +6,10 @@
 
 <!-- VIDEO2+ -->
 
-### () - threejs-buffer-geometry-attributes-uv - video2
-* (done) start video2 based on the minimap-tri demo for the post
+### ( ) - threejs-box-helper - video2
+* (done) start video2 for threejs-box-helper
 * () upload and embed
+
 
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
@@ -47,6 +48,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 06/13/2023 ) - threejs-buffer-geometry-attributes-uv - video2
+* (done) start video2 based on the minimap-tri demo for the post
+* (done) upload and embed
 
 ### ( done 06/08/2023 ) - threejs-tube-geometry - video1
 * (done) start video1 based on curve update demo
