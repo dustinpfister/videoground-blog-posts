@@ -6,16 +6,15 @@
 
 <!-- VIDEO2+ -->
 
-### ( ) - threejs-box-helper - video2
-* (done) start video2 for threejs-box-helper
-* () upload and embed
-
-
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
 * () upload and embed
 
 <!--  0 VIDEOS -->
+
+### () - threejs-texture - video1
+* () start video1 based on the magfilter feature section demo
+* () upload and embed
 
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
@@ -48,6 +47,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 06/18/2023 ) - threejs-box-helper - video2
+* (done) start video2 for threejs-box-helper
+* (done) upload and embed
 
 ### ( done 06/13/2023 ) - threejs-buffer-geometry-attributes-uv - video2
 * (done) start video2 based on the minimap-tri demo for the post
