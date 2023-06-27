@@ -12,9 +12,7 @@
 
 <!--  0 VIDEOS -->
 
-### () - threejs-texture - video1
-* () start video1 based on the magfilter feature section demo
-* () upload and embed
+
 
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
@@ -47,6 +45,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 06/27/2023 ) - threejs-texture - video1
+* (done) start video1 based on the magfilter feature section demo
+* (done) upload and embed
 
 ### ( done 06/18/2023 ) - threejs-box-helper - video2
 * (done) start video2 for threejs-box-helper
