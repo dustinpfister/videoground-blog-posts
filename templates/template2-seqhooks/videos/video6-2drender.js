@@ -32,6 +32,7 @@ VIDEO.init = function(sm, scene, camera){
     });
     canObj_bg.canvas.height = 72 * BG_SCALE;
     scene.background = null;
+    sm.renderer.setClearColor(null, 0);
     //-------- ----------
     // GRID
     //-------- ----------
@@ -82,27 +83,22 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 // custom render function
 VIDEO.render = function(sm, canvas, ctx, scene, camera, renderer){
 
-   const canObj_bg = scene.userData.canObj_bg;
+    // background
+    const canObj_bg = scene.userData.canObj_bg;
+    canvasMod.update(canObj_bg);
+    ctx.drawImage(canObj_bg.canvas, 0, 0, canvas.width, canvas.height)
+  
+    // update and draw dom element of renderer
+    sm.renderer.render(sm.scene, sm.camera);
+    ctx.drawImage(sm.renderer.domElement, 0, 0, sm.canvas.width, sm.canvas.height);
 
-   // background
-   ctx.clearRect(0,0, canvas.width, canvas.height);
-   canObj_bg.state.a_x = sm.per;
-   canObj_bg.state.a_stops = 0.5 + 0.5 * sm.per;
-   canvasMod.update(canObj_bg);
-   ctx.drawImage(canObj_bg.canvas, 0,0, canvas.width, canvas.height);
-   ctx.fillStyle = 'rgba(255,0,128,0.2)';
-   ctx.fillRect(0, 0, sm.canvas.width, sm.canvas.height);
+    // additional plain 2d overlay for status info
+    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+    ctx.fillRect(0, 0, sm.canvas.width, sm.canvas.height);
+    ctx.fillStyle = 'white';
+    ctx.font = '60px arial';
+    ctx.textBaseline = 'top';
+    ctx.fillText('frame: ' + sm.frame + '/' + sm.frameMax, 10, 10);
 
-   // update and draw dom element of renderer
-   sm.renderer.render(sm.scene, sm.camera);
-   ctx.drawImage(sm.renderer.domElement, 0, 0, sm.canvas.width, sm.canvas.height);
-
-   // additional plain 2d overlay for status info
-   ctx.fillStyle = 'rgba(0,0,0,0.3)';
-   ctx.fillRect(0, 0, sm.canvas.width, sm.canvas.height);
-   ctx.fillStyle = 'white';
-   ctx.font = '60px arial';
-   ctx.textBaseline = 'top';
-   ctx.fillText('frame: ' + sm.frame + '/' + sm.frameMax, 10, 10);
 };
  
