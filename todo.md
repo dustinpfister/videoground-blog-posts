@@ -6,6 +6,10 @@
 
 <!-- VIDEO2+ -->
 
+### () - threejs-camera-perspective - video3
+* () start video3 on camera-mirror demo from post
+* () upload and embed
+
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
 * () upload and embed
