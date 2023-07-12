@@ -6,8 +6,8 @@
 
 <!-- VIDEO2+ -->
 
-### () - threejs-camera-perspective - video3
-* () start video3 on camera-mirror demo from post
+### ( ) - threejs-vector3-wrap - video3
+* () start video3 for this post based on the grid loop section demo
 * () upload and embed
 
 ### ( ) - threejs-raycaster - video2
@@ -49,6 +49,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 07/07/2023 ) - threejs-camera-perspective - video3
+* (done) start video3 on camera-mirror demo from post
+* (done) upload and embed
 
 ### ( done 06/27/2023 ) - threejs-texture - video1
 * (done) start video1 based on the magfilter feature section demo
