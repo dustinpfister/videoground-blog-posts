@@ -6,17 +6,17 @@
 
 <!-- VIDEO2+ -->
 
-### ( ) - threejs-vector3-wrap - video3
-* () start video3 for this post based on the grid loop section demo
-* () upload and embed
-
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
 * () upload and embed
 
 <!--  0 VIDEOS -->
 
+### () - threejs-lathe-geometry
+* (done) start a video1 where We are just looking at cup geometry from vector2 post
+* () upload and embed
 
+### () - threejs-vector2
 
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
@@ -49,6 +49,14 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 07/21/2023 ) - threejs-object-loader - video1
+* (done) video1 for threejs-object-loader
+* (done) upload and embed
+
+### ( done 07/12/2023 ) - threejs-vector3-wrap - video3
+* (done) start video3 for this post based on the grid loop section demo
+* (done) upload and embed
 
 ### ( done 07/07/2023 ) - threejs-camera-perspective - video3
 * (done) start video3 on camera-mirror demo from post
