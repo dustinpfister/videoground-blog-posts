@@ -117,7 +117,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     // R9 now allows for using Promises on a Frame By Frame basis
     const uri_file = '/home/pi/Documents/github/blog_posts/_posts/threejs-materials.md';
-    return videoAPI.read( uri_file, { alpha: sm.per * 0.95, buffer_size_alpha: 0.5 } )
+    return videoAPI.read( uri_file, { alpha: 0.25 + sm.per * 0.15, buffer_size_alpha: 0.25 } )
     .then( (data) => {
         const text = data;
         scene.userData.lines = wrapText(text, 45).split( /\n/ ); //text.split( /\n/ );
