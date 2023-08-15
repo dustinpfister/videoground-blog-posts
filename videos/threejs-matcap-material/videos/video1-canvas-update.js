@@ -46,11 +46,24 @@ VIDEO.init = function(sm, scene, camera){
     const texture = create_texture();
     const material = new THREE.MeshMatcapMaterial({ matcap: texture });
     // ---------- ----------
+    // GRID
+    // ---------- ----------
+    const grid = new THREE.GridHelper(10, 10, 0x8f8f8f, 0x2a2a2a);
+    grid.material.linewidth = 5;
+    scene.add(grid);
+    // ---------- ----------
     // GEOMETRY, MESH
     // ---------- ----------
     const geometry = new THREE.SphereGeometry(1, 30, 30);
     const mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
+    //-------- ----------
+    // SCENE USER DATA
+    //-------- ----------
+    const sud = scene.userData;
+    sud.a_angle = 0;
+    sud.a_length = 0;
+    sud.intensity = 1;
     //-------- ----------
     // BACKGROUND
     //-------- ----------
@@ -64,11 +77,12 @@ VIDEO.init = function(sm, scene, camera){
         fps: 30,
         beforeObjects: function(seq){
             camera.zoom = 1;
-            camera.position.set(0, 0, 3);
+            camera.position.set(2.5 - 5 * seq.per, 1, 3);
             camera.lookAt(0, 0, 0);
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
+            update(texture, sud.a_angle, sud.a_length, sud.intensity );
         },
         objects: []
     };
@@ -76,32 +90,36 @@ VIDEO.init = function(sm, scene, camera){
     opt_seq.objects[0] = {
         secs: 7,
         update: function(seq, partPer, partBias){
-            update(texture, partPer, 1, seq.getSinBias(5) * 5 );
+            sud.a_angle = partPer;
+            sud.a_length = 1;
+            sud.intensity = seq.getSinBias(5) * 5;
         }
     };
     // SEQ 1 - ...
     opt_seq.objects[1] = {
         secs: 3,
         update: function(seq, partPer, partBias){
-            update(texture, 0, 1 - 1 * partPer, 1 );
+            sud.a_angle = 0;
+            sud.a_length = 1 - 1 * partPer;
+            sud.intensity = 1;
         }
     };
     // SEQ 2 - ...
     opt_seq.objects[2] = {
         secs: 10,
         update: function(seq, partPer, partBias){
-            update(texture, 0, 0, 1 + 3 * seq.getSinBias( 10 ) );
+            sud.a_angle = 0;
+            sud.a_length = 0;
+            sud.intensity = 1 + 6 * partPer * seq.getSinBias( 10 );
         }
     };
     // SEQ 3 - ...
     opt_seq.objects[3] = {
         secs: 10,
         update: function(seq, partPer, partBias){
-
-            const a_angle = partPer * 5 % 1;
-            const a_length = partPer;
-
-            update(texture, a_angle, a_length, seq.getSinBias(5) );
+            sud.a_angle = partPer * 5 % 1;
+            sud.a_length = seq.getSinBias(2);
+            sud.intensity = seq.getSinBias(5);
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
@@ -115,9 +133,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 };
 // custom render function
 VIDEO.render = function(sm, canvas, ctx, scene, camera, renderer){
+    const sud = scene.userData;
 
     // background
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#181818';
     ctx.fillRect( 0, 0, canvas.width, canvas.height );
   
     // update and draw dom element of renderer
@@ -127,10 +146,13 @@ VIDEO.render = function(sm, canvas, ctx, scene, camera, renderer){
     // additional plain 2d overlay for status info
     ctx.fillStyle = 'rgba(0,0,0,0.3)';
     ctx.fillRect(0, 0, sm.canvas.width, sm.canvas.height);
-    ctx.fillStyle = 'white';
-    ctx.font = '60px arial';
+    ctx.fillStyle = 'rgba(255,255,0,0.5)';
+    ctx.font = '35px courier';
     ctx.textBaseline = 'top';
-    ctx.fillText('frame: ' + sm.frame + '/' + sm.frameMax, 10, 10);
+    ctx.fillText('frame: ' + sm.frame + ' / ' + sm.frameMax, 20, 40);
+    ctx.fillText('a_angle: ' + sud.a_angle.toFixed(4),       20, 80);
+    ctx.fillText('a_length: ' + sud.a_length.toFixed(4),     20, 120);
+    ctx.fillText('intensity: ' + sud.intensity.toFixed(4),   20, 160);
 
 };
  
