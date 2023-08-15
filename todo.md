@@ -6,20 +6,17 @@
 
 <!-- VIDEO2+ -->
 
-### ( ) - threejs-materials - video2
-* (done) have a video2 based on the source from a shader demo
-* () upload and embed
-
 ### ( ) - threejs-raycaster - video2
 * () start video2 for threejs-raycaster
 * () upload and embed
 
 <!--  0 VIDEOS -->
 
-
+### () - threejs-matcap-material
+* (done) start video1 based on the canvas texture loop demo
+* () upload and embed
 
 ### () - threejs-vector2
-
 ### () - threejs-quaternion-slerp
 ### () - threejs-quaternion-setfromunitvectors
 ### () - threejs-clock
@@ -51,6 +48,10 @@
 <!--  TRAFFIC -->
 
 <!-- DONE -->
+
+### ( done 08/08/2023 ) - threejs-materials - video2
+* (done) have a video2 based on the source from a shader demo
+* (done) upload and embed
 
 ### ( done 07/31/2023 ) - threejs-lathe-geometry
 * (done) start a video1 where We are just looking at cup geometry from vector2 post
