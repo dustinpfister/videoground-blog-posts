@@ -66,7 +66,6 @@ VIDEO.init = function(sm, scene, camera){
             camera.zoom = 1;
             camera.position.set(0, 0, 3);
             camera.lookAt(0, 0, 0);
-            update(texture, seq.per, 0.5, 1);
         },
         afterObjects: function(seq){
             camera.updateProjectionMatrix();
@@ -75,8 +74,34 @@ VIDEO.init = function(sm, scene, camera){
     };
     // SEQ 0 - ...
     opt_seq.objects[0] = {
-        secs: 30,
+        secs: 7,
         update: function(seq, partPer, partBias){
+            update(texture, partPer, 1, seq.getSinBias(5) * 5 );
+        }
+    };
+    // SEQ 1 - ...
+    opt_seq.objects[1] = {
+        secs: 3,
+        update: function(seq, partPer, partBias){
+            update(texture, 0, 1 - 1 * partPer, 1 );
+        }
+    };
+    // SEQ 2 - ...
+    opt_seq.objects[2] = {
+        secs: 10,
+        update: function(seq, partPer, partBias){
+            update(texture, 0, 0, 1 + 3 * seq.getSinBias( 10 ) );
+        }
+    };
+    // SEQ 3 - ...
+    opt_seq.objects[3] = {
+        secs: 10,
+        update: function(seq, partPer, partBias){
+
+            const a_angle = partPer * 5 % 1;
+            const a_length = partPer;
+
+            update(texture, a_angle, a_length, seq.getSinBias(5) );
         }
     };
     const seq = scene.userData.seq = seqHooks.create(opt_seq);
